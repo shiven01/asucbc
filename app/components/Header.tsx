@@ -5,7 +5,7 @@ export default function Header() {
         <div className="flex items-center justify-between h-16">
           {/* Logo on the left */}
           <div className="flex-shrink-0">
-            <h1 className="text-2xl font-bold text-[#f4f3ee] tracking-tight">
+            <h1 className="text-2xl font-bold text-[#f4f3ee] hover:text-black transition-colors duration-200 tracking-tight cursor-pointer">
               ANTHROP\C
             </h1>
           </div>
