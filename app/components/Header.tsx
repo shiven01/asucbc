@@ -12,13 +12,13 @@ export default function Header() {
           
           {/* Navigation buttons in the middle */}
           <nav className="hidden md:flex items-center space-x-8">
-            <button className="text-[#f4f3ee] hover:text-black transition-colors duration-200 font-medium">
+            <button className="text-[#f4f3ee] hover:text-black transition-colors duration-200 font-medium" style={{ fontFamily: 'var(--font-lora)' }}>
               About
             </button>
-            <button className="text-[#f4f3ee] hover:text-black transition-colors duration-200 font-medium">
+            <button className="text-[#f4f3ee] hover:text-black transition-colors duration-200 font-medium" style={{ fontFamily: 'var(--font-lora)' }}>
               Benefits
             </button>
-            <button className="bg-[#f4f3ee] text-[#c15f3c] px-6 py-2 rounded-full hover:bg-white transition-colors duration-200 font-medium">
+            <button className="bg-[#f4f3ee] text-[#c15f3c] px-6 py-2 rounded-full hover:bg-white transition-colors duration-200 font-medium" style={{ fontFamily: 'var(--font-lora)' }}>
               Join
             </button>
           </nav>
