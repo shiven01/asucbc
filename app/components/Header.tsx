@@ -18,7 +18,7 @@ export default function Header() {
             <button className="text-[#f4f3ee] hover:text-black transition-colors duration-200 font-medium" style={{ fontFamily: 'var(--font-lora)' }}>
               Benefits
             </button>
-            <button className="bg-[#f4f3ee] text-[#c15f3c] px-6 py-2 rounded-full hover:bg-white transition-colors duration-200 font-medium" style={{ fontFamily: 'var(--font-lora)' }}>
+            <button className="bg-[#f4f3ee] text-[#c15f3c] px-6 py-2 rounded-lg hover:bg-white transition-colors duration-200 font-medium" style={{ fontFamily: 'var(--font-lora)' }}>
               Join
             </button>
           </nav>
