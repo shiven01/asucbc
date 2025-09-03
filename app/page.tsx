@@ -3,7 +3,7 @@ import Header from "./components/Header";
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-[#f4f3ee]">
+    <div className="min-h-screen bg-[#c15f3c]">
       <Header />
       <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
       <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
