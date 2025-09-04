@@ -1,24 +1,63 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+This is a [Next.js](https://nextjs.org) project with Google Calendar integration featuring a dark-themed monthly calendar view.
+
+## Features
+
+- 📅 Monthly calendar grid view with FullCalendar
+- 🌙 Dark theme with custom styling
+- 📱 Responsive design for mobile and desktop
+- 🔗 Google Calendar integration (read-only)
+- 📋 Event details modal with "Add to Calendar" functionality
+- 🎯 Current day highlighting with red border
+- 📊 Event pills/badges on calendar dates
+
+## Google Calendar Setup
+
+### 1. Create Environment Variables
+
+Create a `.env.local` file in the root directory with the following variables:
+
+```bash
+# Google Calendar API Configuration
+NEXT_PUBLIC_GOOGLE_CALENDAR_API_KEY=your_api_key_here
+NEXT_PUBLIC_GOOGLE_CALENDAR_ID=your_calendar_id@group.calendar.google.com
+```
+
+### 2. Get Google Calendar API Key
+
+1. Go to [Google Cloud Console](https://console.developers.google.com/)
+2. Create a new project or select an existing one
+3. Enable the Google Calendar API
+4. Create credentials (API Key)
+5. Restrict the API key to Google Calendar API for security
+
+### 3. Get Calendar ID
+
+1. Go to [Google Calendar](https://calendar.google.com/)
+2. Find your calendar in the left sidebar
+3. Click the three dots next to your calendar name
+4. Select "Settings and sharing"
+5. Scroll down to "Integrate calendar"
+6. Copy the "Calendar ID" (format: `your-calendar-id@group.calendar.google.com`)
+
+### 4. Make Calendar Public (Optional)
+
+If you want to share the calendar publicly:
+1. In calendar settings, scroll to "Access permissions"
+2. Check "Make available to public"
+3. Set permission to "See all event details"
 
 ## Getting Started
 
-First, run the development server:
+First, install dependencies and run the development server:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
+pnpm install
 pnpm dev
-# or
-bun dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+The calendar will automatically load events from your configured Google Calendar.
 
 ## Learn More
 
