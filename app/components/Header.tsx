@@ -6,8 +6,8 @@ export default function Header() {
           {/* Logo on the left */}
           <div className="flex-shrink-0">
             <a href="https://www.anthropic.com/" target="_blank" rel="noopener noreferrer">
-              <h1 className="text-2xl font-bold text-[#c15f3c] hover:text-[#000000] transition-colors duration-200 tracking-tight cursor-pointer">
-                ANTHROP\C
+              <h1 className="text-2xl font-bold tracking-tight cursor-pointer">
+                <span className="text-[#c15f3c] hover:text-[#000000] transition-colors duration-200">ANTHROP\C</span> <span className="text-[#000000] hover:text-[#c15f3c] transition-colors duration-200">@ ASU</span>
               </h1>
             </a>
           </div>
