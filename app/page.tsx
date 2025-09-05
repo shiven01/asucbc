@@ -9,9 +9,9 @@ export default function Home() {
       <div className="font-sans min-h-screen p-8 pb-20 sm:p-20">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 min-h-screen items-start">
           {/* Left half - Title */}
-          <div className="flex flex-col justify-start">
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold text-[#000000] leading-tight">
-              The Arizona State University Claude Builder Club
+                      <div className="flex flex-col justify-start p-6">
+            <h1 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold text-[#000000] leading-tight">
+            The Arizona State University Claude Builder Club. Where curiosity meets <span className="text-[#c15f3c] font-bold underline">cutting-edge AI</span>. Build <span className="text-[#c15f3c] font-bold underline">anything</span>. Create the <span className="text-[#c15f3c] font-bold underline italic">impossible</span>.
             </h1>
           </div>
           
