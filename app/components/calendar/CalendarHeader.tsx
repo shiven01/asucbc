@@ -1,0 +1,88 @@
+'use client';
+
+import React from 'react';
+import { getMonthName } from '@/lib/calendar/utils';
+
+interface CalendarHeaderProps {
+  currentDate: Date;
+  onPreviousMonth: () => void;
+  onNextMonth: () => void;
+  onGoToToday: () => void;
+  isLoading?: boolean;
+}
+
+export default function CalendarHeader({
+  currentDate,
+  onPreviousMonth,
+  onNextMonth,
+  onGoToToday,
+  isLoading = false,
+}: CalendarHeaderProps) {
+  const monthName = getMonthName(currentDate.getMonth());
+  const year = currentDate.getFullYear();
+
+  return (
+    <div className="flex items-center justify-between mb-6">
+      {/* Month and Year */}
+      <h2 className="text-2xl font-bold text-[#000000]">
+        {monthName} {year}
+      </h2>
+
+      {/* Navigation Controls */}
+      <div className="flex items-center gap-4">
+        {/* Previous Month Button */}
+        <button
+          onClick={onPreviousMonth}
+          disabled={isLoading}
+          className="p-2 rounded-full hover:bg-[#b1ada1]/20 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+          aria-label="Previous month"
+        >
+          <svg
+            className="w-5 h-5 text-[#000000]"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M15 19l-7-7 7-7"
+            />
+          </svg>
+        </button>
+
+        {/* Today Button */}
+        <button
+          onClick={onGoToToday}
+          disabled={isLoading}
+          className="px-4 py-2 text-sm font-medium text-[#000000] hover:bg-[#b1ada1]/20 rounded-full transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+        >
+          Today
+        </button>
+
+        {/* Next Month Button */}
+        <button
+          onClick={onNextMonth}
+          disabled={isLoading}
+          className="p-2 rounded-full hover:bg-[#b1ada1]/20 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+          aria-label="Next month"
+        >
+          <svg
+            className="w-5 h-5 text-[#000000]"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M9 5l7 7-7 7"
+            />
+          </svg>
+        </button>
+      </div>
+    </div>
+  );
+}
