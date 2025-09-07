@@ -241,7 +241,8 @@ export async function getEventsForToday(
  * Generate calendar subscription URL
  */
 export function getCalendarSubscriptionUrl(calendarId: string = GOOGLE_CALENDAR_ID): string {
-  return `https://calendar.google.com/calendar/embed?src=${encodeURIComponent(calendarId)}&ctz=America/Phoenix`;
+  // Use the specific ASU CBC Google Calendar URL
+  return `https://calendar.google.com/calendar/u/0?cid=YWIxZDg0OWU1MWQ1ZGFiMjU5NzM0YTIzYjJiMTE3MTBmNzA5ODJlY2Q3MTJkNjcyOGQ1Nzc4MGUxZTFjNmRkMUBncm91cC5jYWxlbmRhci5nb29nbGUuY29t`;
 }
 
 /**
