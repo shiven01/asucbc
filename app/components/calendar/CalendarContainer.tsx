@@ -7,6 +7,7 @@ import { getEventsForMonth, testCalendarAccess } from '@/lib/google/calendar';
 import CalendarHeader from './CalendarHeader';
 import CalendarGrid from './CalendarGrid';
 import CalendarActions from './CalendarActions';
+import EventModal from './EventModal';
 
 interface CalendarContainerProps {
   className?: string;
@@ -22,6 +23,8 @@ export default function CalendarContainer({ className = '' }: CalendarContainerP
   });
 
   const [events, setEvents] = useState<CalendarEvent[]>([]);
+  const [selectedEvent, setSelectedEvent] = useState<CalendarEvent | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const [calendarMonth, setCalendarMonth] = useState(
     createCalendarMonth(
       calendarState.currentDate.getFullYear(),
@@ -98,6 +101,16 @@ export default function CalendarContainer({ className = '' }: CalendarContainerP
     setCalendarState(prev => ({ ...prev, selectedDate: date }));
   };
 
+  const handleEventClick = (event: CalendarEvent) => {
+    setSelectedEvent(event);
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+    setSelectedEvent(null);
+  };
+
   const navigation = {
     goToPreviousMonth: handlePreviousMonth,
     goToNextMonth: handleNextMonth,
@@ -118,6 +131,7 @@ export default function CalendarContainer({ className = '' }: CalendarContainerP
       <CalendarGrid
         calendarMonth={calendarMonth}
         onSelectDate={handleSelectDate}
+        onEventClick={handleEventClick}
         isLoading={calendarState.isLoading}
       />
       
@@ -144,6 +158,13 @@ export default function CalendarContainer({ className = '' }: CalendarContainerP
           Click this button and check the browser console for detailed debugging info
         </p>
       </div>
+      
+      {/* Event Modal */}
+      <EventModal
+        event={selectedEvent}
+        isOpen={isModalOpen}
+        onClose={handleCloseModal}
+      />
     </div>
   );
 }

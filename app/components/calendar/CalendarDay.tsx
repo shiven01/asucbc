@@ -1,16 +1,17 @@
 'use client';
 
 import React from 'react';
-import { CalendarDay as CalendarDayType } from '@/types/calendar';
+import { CalendarDay as CalendarDayType, CalendarEvent } from '@/types/calendar';
 import { truncateEventSummary } from '@/lib/calendar/utils';
 import EventIndicator from './EventIndicator';
 
 interface CalendarDayProps {
   day: CalendarDayType;
   onSelect: () => void;
+  onEventClick?: (event: CalendarEvent) => void;
 }
 
-export default function CalendarDay({ day, onSelect }: CalendarDayProps) {
+export default function CalendarDay({ day, onSelect, onEventClick }: CalendarDayProps) {
   const dayNumber = day.date.getDate();
   const isCurrentMonth = day.isCurrentMonth;
   const isToday = day.isToday;
@@ -52,6 +53,7 @@ export default function CalendarDay({ day, onSelect }: CalendarDayProps) {
             key={`${event.id}-${index}`}
             event={event}
             isFirst={index === 0}
+            onClick={onEventClick}
           />
         ))}
         {day.events.length > 2 && (

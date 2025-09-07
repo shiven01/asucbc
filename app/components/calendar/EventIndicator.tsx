@@ -7,19 +7,27 @@ import { truncateEventSummary } from '@/lib/calendar/utils';
 interface EventIndicatorProps {
   event: CalendarEvent;
   isFirst?: boolean;
+  onClick?: (event: CalendarEvent) => void;
 }
 
-export default function EventIndicator({ event, isFirst = false }: EventIndicatorProps) {
+export default function EventIndicator({ event, isFirst = false, onClick }: EventIndicatorProps) {
   const truncatedSummary = truncateEventSummary(event.summary, 15);
+  
+  const handleClick = (e: React.MouseEvent) => {
+    e.stopPropagation(); // Prevent the day selection from triggering
+    onClick?.(event);
+  };
   
   return (
     <div
       className={`
         bg-[#c15f3c] text-white text-xs px-2 py-1 rounded
-        truncate w-full text-center
+        truncate w-full text-center cursor-pointer
+        hover:bg-[#c15f3c]/90 transition-colors
         ${isFirst ? 'font-medium' : 'opacity-90'}
       `}
       title={event.summary}
+      onClick={handleClick}
     >
       {truncatedSummary}
     </div>
