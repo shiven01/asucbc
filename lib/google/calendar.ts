@@ -8,8 +8,8 @@ import {
 } from '@/types/calendar';
 
 // Environment variables for Google Calendar API
-const GOOGLE_CALENDAR_API_KEY = process.env.GOOGLE_CALENDAR_API_KEY;
-const GOOGLE_CALENDAR_ID = process.env.GOOGLE_CALENDAR_ID || 'asu.edu_primary';
+const GOOGLE_CALENDAR_API_KEY = process.env.NEXT_PUBLIC_GOOGLE_CALENDAR_API_KEY;
+const GOOGLE_CALENDAR_ID = process.env.NEXT_PUBLIC_GOOGLE_CALENDAR_ID || 'asu.edu_primary';
 const GOOGLE_API_BASE_URL = 'https://www.googleapis.com/calendar/v3';
 
 /**
@@ -64,19 +64,20 @@ export async function fetchCalendarEvents(
   timeMax?: string,
   maxResults: number = 250
 ): Promise<CalendarEvent[]> {
+  console.log('🔍 fetchCalendarEvents called with:', {
+    calendarId,
+    timeMin,
+    timeMax,
+    maxResults,
+    hasApiKey: !!GOOGLE_CALENDAR_API_KEY
+  });
+
   if (!GOOGLE_CALENDAR_API_KEY) {
-    console.warn('Google Calendar API key not configured');
+    console.warn('❌ Google Calendar API key not configured');
     return [];
   }
 
   try {
-    // First check if we have permission to read events
-    const metadata = await fetchCalendarMetadata(calendarId);
-    if (metadata && !metadata.canReadEvents) {
-      console.warn('Insufficient permissions to read calendar events');
-      return [];
-    }
-
     const params = new URLSearchParams({
       key: GOOGLE_CALENDAR_API_KEY,
       maxResults: maxResults.toString(),
@@ -92,6 +93,7 @@ export async function fetchCalendarEvents(
     }
 
     const url = `${GOOGLE_API_BASE_URL}/calendars/${encodeURIComponent(calendarId)}/events?${params.toString()}`;
+    console.log('🌐 Making API request to:', url);
     
     const response = await fetch(url, {
       method: 'GET',
@@ -100,15 +102,21 @@ export async function fetchCalendarEvents(
       },
     });
 
+    console.log('📡 API Response status:', response.status, response.statusText);
+
     if (!response.ok) {
-      throw new Error(`Google Calendar API error: ${response.status} ${response.statusText}`);
+      const errorText = await response.text();
+      console.error('❌ API Error response:', errorText);
+      throw new Error(`Google Calendar API error: ${response.status} ${response.statusText} - ${errorText}`);
     }
 
     const data: GoogleCalendarEventsResponse = await response.json();
+    console.log('📅 API Response data:', data);
+    console.log('📅 Number of events found:', data.items?.length || 0);
     
     return data.items?.map(convertGoogleEventToCalendarEvent) || [];
   } catch (error) {
-    console.error('Error fetching calendar events:', error);
+    console.error('❌ Error fetching calendar events:', error);
     return [];
   }
 }
@@ -119,8 +127,10 @@ export async function fetchCalendarEvents(
 export async function fetchCalendarMetadata(
   calendarId: string = GOOGLE_CALENDAR_ID
 ): Promise<CalendarMetadata | null> {
+  console.log('🔍 fetchCalendarMetadata called with calendarId:', calendarId);
+  
   if (!GOOGLE_CALENDAR_API_KEY) {
-    console.warn('Google Calendar API key not configured');
+    console.warn('❌ Google Calendar API key not configured');
     return null;
   }
 
@@ -130,6 +140,7 @@ export async function fetchCalendarMetadata(
     });
 
     const url = `${GOOGLE_API_BASE_URL}/calendars/${encodeURIComponent(calendarId)}?${params.toString()}`;
+    console.log('🌐 Making metadata request to:', url);
     
     const response = await fetch(url, {
       method: 'GET',
@@ -138,14 +149,21 @@ export async function fetchCalendarMetadata(
       },
     });
 
+    console.log('📡 Metadata API Response status:', response.status, response.statusText);
+
     if (!response.ok) {
-      throw new Error(`Google Calendar API error: ${response.status} ${response.statusText}`);
+      const errorText = await response.text();
+      console.error('❌ Metadata API Error response:', errorText);
+      throw new Error(`Google Calendar API error: ${response.status} ${response.statusText} - ${errorText}`);
     }
 
     const data = await response.json();
-    return convertGoogleCalendarToMetadata(data);
+    console.log('📋 Raw metadata response:', data);
+    const converted = convertGoogleCalendarToMetadata(data);
+    console.log('📋 Converted metadata:', converted);
+    return converted;
   } catch (error) {
-    console.error('Error fetching calendar metadata:', error);
+    console.error('❌ Error fetching calendar metadata:', error);
     return null;
   }
 }
@@ -251,4 +269,27 @@ export function getAddToCalendarUrl(event: CalendarEvent): string {
   });
   
   return `https://calendar.google.com/calendar/render?${params.toString()}`;
+}
+
+/**
+ * Test function to debug calendar access
+ */
+export async function testCalendarAccess(): Promise<void> {
+  console.log('🧪 Testing calendar access...');
+  console.log('Environment variables:');
+  console.log('- NEXT_PUBLIC_GOOGLE_CALENDAR_API_KEY:', !!process.env.NEXT_PUBLIC_GOOGLE_CALENDAR_API_KEY);
+  console.log('- NEXT_PUBLIC_GOOGLE_CALENDAR_ID:', process.env.NEXT_PUBLIC_GOOGLE_CALENDAR_ID);
+  console.log('- GOOGLE_CALENDAR_API_KEY (server-side):', !!process.env.GOOGLE_CALENDAR_API_KEY);
+  console.log('- GOOGLE_CALENDAR_ID (server-side):', process.env.GOOGLE_CALENDAR_ID);
+  
+  try {
+    const events = await fetchCalendarEvents();
+    console.log('✅ Calendar events test:', events.length, 'events found');
+    
+    if (events.length > 0) {
+      console.log('📅 Sample event:', events[0]);
+    }
+  } catch (error) {
+    console.error('❌ Calendar access test failed:', error);
+  }
 }

@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import { CalendarState, CalendarEvent } from '@/types/calendar';
 import { createCalendarMonth, getEventsForDate } from '@/lib/calendar/utils';
-import { getEventsForMonth } from '@/lib/google/calendar';
+import { getEventsForMonth, testCalendarAccess } from '@/lib/google/calendar';
 import CalendarHeader from './CalendarHeader';
 import CalendarGrid from './CalendarGrid';
 import CalendarActions from './CalendarActions';
@@ -37,16 +37,22 @@ export default function CalendarContainer({ className = '' }: CalendarContainerP
       setCalendarState(prev => ({ ...prev, isLoading: true, error: null }));
       
       try {
+        console.log('Loading events for month:', calendarState.currentDate.getFullYear(), calendarState.currentDate.getMonth());
+        console.log('API Key exists:', !!process.env.GOOGLE_CALENDAR_API_KEY);
+        console.log('Calendar ID:', process.env.GOOGLE_CALENDAR_ID);
+        
         const monthEvents = await getEventsForMonth(
           calendarState.currentDate.getFullYear(),
           calendarState.currentDate.getMonth()
         );
+        
+        console.log('Loaded events:', monthEvents.length, monthEvents);
         setEvents(monthEvents);
       } catch (error) {
         console.error('Error loading events:', error);
         setCalendarState(prev => ({ 
           ...prev, 
-          error: 'Failed to load calendar events' 
+          error: `Failed to load calendar events: ${error instanceof Error ? error.message : 'Unknown error'}` 
         }));
       } finally {
         setCalendarState(prev => ({ ...prev, isLoading: false }));
@@ -116,7 +122,7 @@ export default function CalendarContainer({ className = '' }: CalendarContainerP
       />
       
       <CalendarActions
-        calendarId="asu.edu_primary"
+        calendarId={process.env.NEXT_PUBLIC_GOOGLE_CALENDAR_ID || "asu.edu_primary"}
         selectedDate={calendarState.selectedDate}
       />
       
@@ -125,6 +131,19 @@ export default function CalendarContainer({ className = '' }: CalendarContainerP
           <p className="text-sm text-red-600">{calendarState.error}</p>
         </div>
       )}
+      
+      {/* Debug Test Button */}
+      <div className="mt-4 p-3 bg-blue-50 border border-blue-200 rounded-md">
+        <button
+          onClick={testCalendarAccess}
+          className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 text-sm"
+        >
+          🧪 Test Calendar Access
+        </button>
+        <p className="text-xs text-blue-600 mt-2">
+          Click this button and check the browser console for detailed debugging info
+        </p>
+      </div>
     </div>
   );
 }
