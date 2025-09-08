@@ -73,9 +73,9 @@ export default function Calendar() {
         dayMaxEvents={3}
         moreLinkClick="popover"
         eventDisplay="block"
-        eventTextColor="#f4f3ee"
-        eventBackgroundColor="#c15f3c"
-        eventBorderColor="#c15f3c"
+        eventTextColor="#c15f3c"
+        eventBackgroundColor="#f4f3ee"
+        eventBorderColor="#f4f3ee"
         dayHeaderFormat={{ weekday: 'short' }}
         buttonText={{
           today: 'Today',

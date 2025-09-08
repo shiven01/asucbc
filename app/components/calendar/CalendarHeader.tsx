@@ -24,7 +24,7 @@ export default function CalendarHeader({
   return (
     <div className="flex items-center justify-between mb-6">
       {/* Month and Year */}
-      <h2 className="text-2xl font-bold text-[#000000]">
+      <h2 className="text-2xl font-bold text-[#ffffff]">
         {monthName} {year}
       </h2>
 
@@ -38,7 +38,7 @@ export default function CalendarHeader({
           aria-label="Previous month"
         >
           <svg
-            className="w-5 h-5 text-[#000000]"
+            className="w-5 h-5 text-[#ffffff]"
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"
@@ -56,7 +56,7 @@ export default function CalendarHeader({
         <button
           onClick={onGoToToday}
           disabled={isLoading}
-          className="px-4 py-2 text-sm font-medium text-[#000000] hover:bg-[#b1ada1]/20 rounded-full transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+          className="px-4 py-2 text-sm font-medium text-[#ffffff] hover:bg-[#b1ada1]/20 rounded-full transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
         >
           Today
         </button>
@@ -69,7 +69,7 @@ export default function CalendarHeader({
           aria-label="Next month"
         >
           <svg
-            className="w-5 h-5 text-[#000000]"
+            className="w-5 h-5 text-[#ffffff]"
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"

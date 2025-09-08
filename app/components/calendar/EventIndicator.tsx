@@ -21,9 +21,9 @@ export default function EventIndicator({ event, isFirst = false, onClick }: Even
   return (
     <div
       className={`
-        bg-[#c15f3c] text-white text-xs px-2 py-1 rounded
+        bg-[#f4f3ee] text-[#c15f3c] text-xs px-2 py-1 rounded
         truncate w-full text-center cursor-pointer
-        hover:bg-[#c15f3c]/90 transition-colors
+        hover:bg-[#e0ddd8] transition-colors
         ${isFirst ? 'font-medium' : 'opacity-90'}
       `}
       title={event.summary}
