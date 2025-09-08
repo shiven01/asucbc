@@ -23,8 +23,8 @@ export default function CalendarDay({ day, onSelect, onEventClick }: CalendarDay
     flex flex-col items-center justify-start
     hover:bg-[#b1ada1]/10
     ${isCurrentMonth ? 'text-[#000000]' : 'text-[#b1ada1]'}
-    ${isToday ? 'bg-[#c15f3c]/10' : ''}
-    ${isSelected ? 'ring-2 ring-[#c15f3c] bg-[#c15f3c]/5' : ''}
+    ${isToday ? 'bg-[#f4f3ee]/10' : ''}
+    ${isSelected ? 'ring-2 ring-[#f4f3ee] bg-[#f4f3ee]/5' : ''}
   `;
 
   return (
