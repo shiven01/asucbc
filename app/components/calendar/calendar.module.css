@@ -10,9 +10,9 @@
 
 /* FullCalendar Warm Theme Overrides */
 .dark-calendar {
-  background-color: #000000 !important;
-  color: #ffffff !important;
-  border: 1px solid #f4f3ee !important;
+  background-color: #f4f3ee !important;
+  color: #000000 !important;
+  border: 1px solid #c15f3c !important;
   border-radius: 8px !important;
 }
 
@@ -80,47 +80,47 @@
 
 /* Day Cells */
 .dark-calendar .fc-daygrid-day {
-  background-color: #000000 !important;
-  border-color: #333333 !important;
-  color: #ffffff !important;
+  background-color: #f4f3ee !important;
+  border-color: #e0ddd8 !important;
+  color: #000000 !important;
 }
 
 .dark-calendar .fc-daygrid-day:hover {
-  background-color: #333333 !important;
+  background-color: #f8f7f4 !important;
 }
 
 /* Today Highlight */
 .dark-calendar .fc-day-today {
-  background-color: #333333 !important;
-  border: 2px solid #f4f3ee !important;
+  background-color: #f8f7f4 !important;
+  border: 2px solid #c15f3c !important;
 }
 
 .dark-calendar .fc-day-today .fc-daygrid-day-number {
-  color: #f4f3ee !important;
+  color: #c15f3c !important;
   font-weight: 700 !important;
 }
 
 /* Day Numbers */
 .dark-calendar .fc-daygrid-day-number {
-  color: #ffffff !important;
+  color: #000000 !important;
   padding: 0.5rem !important;
   font-weight: 500 !important;
 }
 
 .dark-calendar .fc-daygrid-day-number:hover {
-  color: #f4f3ee !important;
+  color: #c15f3c !important;
 }
 
 /* Other Month Days */
 .dark-calendar .fc-day-other .fc-daygrid-day-number {
-  color: #666666 !important;
+  color: #999999 !important;
 }
 
 /* Events */
 .dark-calendar .fc-event {
-  background-color: #f4f3ee !important;
-  border: 1px solid #f4f3ee !important;
-  color: #c15f3c !important;
+  background-color: #c15f3c !important;
+  border: 1px solid #c15f3c !important;
+  color: #000000 !important;
   border-radius: 4px !important;
   padding: 2px 6px !important;
   font-size: 0.875rem !important;
@@ -131,34 +131,34 @@
 }
 
 .dark-calendar .fc-event:hover {
-  background-color: #e0ddd8 !important;
-  border-color: #e0ddd8 !important;
+  background-color: #a04d2f !important;
+  border-color: #a04d2f !important;
   transform: translateY(-1px) !important;
-  box-shadow: 0 2px 4px rgba(244, 243, 238, 0.3) !important;
+  box-shadow: 0 2px 4px rgba(193, 95, 60, 0.3) !important;
 }
 
 .dark-calendar .fc-event-title {
-  color: #c15f3c !important;
+  color: #000000 !important;
   font-weight: 500 !important;
 }
 
 /* More Events Link */
 .dark-calendar .fc-more-link {
-  color: #f4f3ee !important;
+  color: #c15f3c !important;
   font-size: 0.75rem !important;
   font-weight: 500 !important;
 }
 
 .dark-calendar .fc-more-link:hover {
-  color: #e0ddd8 !important;
+  color: #a04d2f !important;
 }
 
 /* Popover */
 .dark-calendar .fc-popover {
-  background-color: #000000 !important;
-  border: 1px solid #f4f3ee !important;
+  background-color: #f4f3ee !important;
+  border: 1px solid #c15f3c !important;
   border-radius: 8px !important;
-  box-shadow: 0 4px 12px rgba(244, 243, 238, 0.2) !important;
+  box-shadow: 0 4px 12px rgba(193, 95, 60, 0.2) !important;
 }
 
 .dark-calendar .fc-popover-header {
@@ -170,22 +170,22 @@
 }
 
 .dark-calendar .fc-popover-body {
-  background-color: #000000 !important;
-  color: #ffffff !important;
+  background-color: #f4f3ee !important;
+  color: #000000 !important;
   padding: 0.5rem !important;
 }
 
 .dark-calendar .fc-popover-close {
-  color: #666666 !important;
+  color: #999999 !important;
 }
 
 .dark-calendar .fc-popover-close:hover {
-  color: #ffffff !important;
+  color: #000000 !important;
 }
 
 /* Loading State */
 .dark-calendar .fc-loading {
-  color: #f4f3ee !important;
+  color: #c15f3c !important;
 }
 
 /* Responsive Design */
@@ -225,13 +225,13 @@
 /* Print Styles */
 @media print {
   .dark-calendar {
-    background-color: #000000 !important;
-    color: #ffffff !important;
-    border: 1px solid #ffffff !important;
+    background-color: #f4f3ee !important;
+    color: #000000 !important;
+    border: 1px solid #000000 !important;
   }
   
   .dark-calendar .fc-event {
-    background-color: #f4f3ee !important;
-    color: #c15f3c !important;
+    background-color: #c15f3c !important;
+    color: #000000 !important;
   }
 }
