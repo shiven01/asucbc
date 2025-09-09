@@ -21,16 +21,16 @@ export default function JoinCard({
       <h2 className="text-xl sm:text-2xl font-bold text-black mb-3">{title}</h2>
       <p className="text-base text-black/70 leading-relaxed mb-6">{subtitle}</p>
 
-      <div className="flex flex-col gap-4">
+      <div className="grid grid-cols-2 gap-4">
         <Link
           href={discordHref}
-          className="inline-flex items-center justify-center rounded-xl bg-black text-white px-5 py-4 text-base font-semibold shadow hover:opacity-90 transition"
+          className="inline-flex w-full items-center justify-center rounded-xl bg-black text-white px-5 py-4 text-base font-semibold shadow hover:opacity-90 transition"
         >
           Join our Discord
         </Link>
         <Link
           href={benefitsHref}
-          className="inline-flex items-center justify-center rounded-xl border border-black/20 bg-white text-black px-5 py-4 text-base font-semibold hover:bg-black/5 transition"
+          className="inline-flex w-full items-center justify-center rounded-xl border border-black/20 bg-white text-black px-5 py-4 text-base font-semibold hover:bg-black/5 transition"
         >
           Sign up to receive benefits
         </Link>
