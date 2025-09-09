@@ -11,7 +11,7 @@ export default function Home() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 min-h-screen items-start">
           {/* Left half - Title + Join card */}
           <div className="flex flex-col justify-start p-6 gap-6">
-            <h1 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold text-[#ffffff] leading-tight">
+            <h1 className="text-xl sm:text-2xl lg:text-3xl xl:text-4xl font-bold text-[#ffffff] leading-tight">
             The Arizona State University Claude Builder Club. Where curiosity meets <span className="text-[#f4f3ee] font-bold underline">cutting-edge AI</span>. Build <span className="text-[#f4f3ee] font-bold underline">anything</span>. Create the <span className="text-[#f4f3ee] font-bold underline italic">impossible</span>.
             </h1>
             <JoinCard
