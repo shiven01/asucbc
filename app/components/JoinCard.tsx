@@ -19,12 +19,14 @@ export default function JoinCard({
     <div className={`w-full rounded-2xl bg-[#f4f3ee]/95 border border-black/10 shadow-sm p-6 sm:p-8 ${className}`}>
       <h2 className="text-xl sm:text-2xl font-bold text-black mb-3">{title}</h2>
       <p className="text-base text-black/70 leading-relaxed mb-4">{subtitle}</p>
-      <ul className="list-disc pl-5 text-black/80 space-y-1 mb-6">
-        <li>Complimentary Claude Pro</li>
-        <li>$50 in API credits</li>
+      <ul className="list-disc pl-5 text-black/80 space-y-1 mb-4">
+        <li>Free Claude Pro + $50 in API credits</li>
         <li>Hands-on workshops and resources</li>
         <li>Exclusive merchandise</li>
       </ul>
+      <p className="text-sm text-black/60 italic mb-6">
+        **Benefits require attendance at a CBC event for activation**
+      </p>
 
       <div className="grid grid-cols-2 gap-4">
         <Link
