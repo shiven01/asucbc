@@ -9,7 +9,7 @@ type JoinCardProps = {
 };
 
 export default function JoinCard({
-  title = "Join Claude Builder Club",
+  title = "Join the Claude Builder Club!",
   subtitle = "Meet fellow builders, learn fast, and collaborate on real projects across campus.",
   discordHref = "#",
   benefitsHref = "#",

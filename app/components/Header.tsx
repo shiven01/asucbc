@@ -7,7 +7,7 @@ export default function Header() {
           <div className="flex-shrink-0">
             <a href="https://www.anthropic.com/" target="_blank" rel="noopener noreferrer">
               <h1 className="text-2xl font-bold tracking-tight cursor-pointer font-sans">
-                <span className="text-[#ffffff] hover:text-[#ffffff] transition-colors duration-200">Claude Builder Club</span> <span className="text-[#ffffff] hover:text-[#f4f3ee] transition-colors duration-200">@ ASU</span>
+                <span className="text-[#ffffff] hover:text-[#ffffff] transition-colors duration-200">ANTHROPIC</span> <span className="text-[#ffffff] hover:text-[#f4f3ee] transition-colors duration-200">@ ASU</span>
               </h1>
             </a>
           </div>
@@ -21,7 +21,7 @@ export default function Header() {
               Benefits
             </button>
             <button className="bg-[#ffffff] text-[#c15f3c] px-6 py-2 rounded-lg hover:bg-[#e0ddd8] hover:text-[#a04d2f] transition-colors duration-200 font-medium text-base font-sans">
-              Join Club
+              Join Us
             </button>
           </nav>
           
