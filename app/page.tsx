@@ -16,8 +16,8 @@ export default function Home() {
             </h1>
             <JoinCard
               className="mt-2"
-              discordHref="https://discord.gg/"
-              benefitsHref="https://forms.gle/"
+              discordHref="https://discord.gg/PRh8F2XebB"
+              benefitsHref="https://docs.google.com/forms/d/e/1FAIpQLScP9LuFwiHEx806tv9zczjCIEzqO1Zjb-FjB4XWoa6BS1NNKQ/viewform"
             />
           </div>
           

@@ -29,12 +29,16 @@ export default function JoinCard({
       <div className="grid grid-cols-2 gap-4">
         <Link
           href={discordHref}
+          target="_blank"
+          rel="noopener noreferrer"
           className="inline-flex w-full items-center justify-center rounded-xl bg-black text-white px-5 py-4 text-base font-semibold shadow hover:opacity-90 transition"
         >
           Join our Discord
         </Link>
         <Link
           href={benefitsHref}
+          target="_blank"
+          rel="noopener noreferrer"
           className="inline-flex w-full items-center justify-center rounded-xl border border-black/20 bg-white text-black px-5 py-4 text-base font-semibold hover:bg-black/5 transition"
         >
           Sign up to receive benefits
