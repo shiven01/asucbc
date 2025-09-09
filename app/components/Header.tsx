@@ -17,9 +17,6 @@ export default function Header() {
             <button className="text-[#ffffff] hover:text-[#f4f3ee] transition-colors duration-200 font-medium font-sans">
               About
             </button>
-            <button className="text-[#ffffff] hover:text-[#f4f3ee] transition-colors duration-200 font-medium font-sans">
-              Benefits
-            </button>
             <a 
               href="https://docs.google.com/forms/d/e/1FAIpQLScP9LuFwiHEx806tv9zczjCIEzqO1Zjb-FjB4XWoa6BS1NNKQ/viewform"
               target="_blank"
