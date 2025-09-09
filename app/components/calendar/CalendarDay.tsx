@@ -24,7 +24,7 @@ export default function CalendarDay({ day, onSelect, onEventClick }: CalendarDay
     hover:bg-[#b1ada1]/10
     ${isCurrentMonth ? 'text-[#000000]' : 'text-[#b1ada1]'}
     ${isToday ? 'ring-2 ring-[#a04d2f] bg-[#f4f3ee]/10' : ''}
-    ${isSelected ? 'ring-2 ring-[#f4f3ee] bg-[#f4f3ee]/5' : ''}
+    ${isSelected ? `${isToday ? '' : 'ring-2 ring-[#f4f3ee]'} bg-[#f4f3ee]/5` : ''}
   `;
 
   return (
