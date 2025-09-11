@@ -31,9 +31,8 @@ export default function Team() {
                 </div>
               </div>
               <h3 className="text-2xl font-bold text-[#ffffff] mb-2">Shiven Shekar</h3>
-              <p className="text-lg text-[#f4f3ee] mb-3">Founder & President</p>
               <p className="text-[#f4f3ee] text-sm leading-relaxed max-w-xs">
-                Passionate about AI and building the future. Leading the charge in bringing cutting-edge AI tools to ASU students.
+              I'm a senior studying Computer Science with a Software Engineering concentration at Arizona State University. My interests lie in AppliedML and Distributed Systems.
               </p>
               <div className="mt-4 flex space-x-4">
                 <a 
@@ -72,9 +71,8 @@ export default function Team() {
                 </div>
               </div>
               <h3 className="text-2xl font-bold text-[#ffffff] mb-2">Tino Mavuga</h3>
-              <p className="text-lg text-[#f4f3ee] mb-3">Vice President</p>
               <p className="text-[#f4f3ee] text-sm leading-relaxed max-w-xs">
-                Tech enthusiast and community builder. Focused on creating engaging experiences and fostering innovation within our club.
+                Originally from Zimbabwe, Tino brings a global perspective to technology and policy, having lived and studied across four continents. She holds a BA in Psychology and Management from Monash University and is pursuing a Master in Global Management with Digital Transformation concentration at ASU's Thunderbird School, where she serves as a Claude AI Ambassador. With certifications in Software Entrepreneurship, Innovation Management, and Scrum, plus experience as a remote software project manager across Europe, she specializes in the intersection of technology, people, and policy. Currently studying Artificial Intelligence, Chip Strategy, cybersecurity, and governance of nuclear technologies, Tino is positioned at the forefront of critical technology policy issues.
               </p>
               <div className="mt-4 flex space-x-4">
                 <a 
@@ -109,10 +107,12 @@ export default function Team() {
                 </div>
               </div>
               <h3 className="text-2xl font-bold text-[#ffffff] mb-2">Farnaz Avarzamani</h3>
-              <p className="text-lg text-[#f4f3ee] mb-3">Tech Lead</p>
-              <p className="text-[#f4f3ee] text-sm leading-relaxed max-w-xs">
-                Full-stack developer and AI researcher. Passionate about building innovative solutions and mentoring fellow students in technology.
-              </p>
+              <ul className="text-[#f4f3ee] text-sm leading-relaxed max-w-xs text-left">
+                <li>• PhD Candidate in Education</li>
+                <li>• Claude AI Builder</li>
+                <li>• Educational AI Builder</li>
+                <li>• Educational Researcher</li>
+              </ul>
               <div className="mt-4 flex space-x-4">
                 <a 
                   href="#" 
