@@ -1,4 +1,5 @@
 import Header from "../components/Header";
+import Footer from "../components/Footer";
 
 export default function Team() {
   return (
@@ -125,6 +126,7 @@ export default function Team() {
           </div>
         </div>
       </div>
+      <Footer />
     </div>
   );
 }
