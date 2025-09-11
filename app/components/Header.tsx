@@ -5,18 +5,24 @@ export default function Header() {
         <div className="flex items-center justify-between h-16">
           {/* Logo on the left */}
           <div className="flex-shrink-0">
-            <a href="https://www.anthropic.com/" target="_blank" rel="noopener noreferrer">
-              <h1 className="text-2xl font-bold tracking-tight cursor-pointer font-sans">
-                <span className="text-[#ffffff] hover:text-[#ffffff] transition-colors duration-200">ANTHROPIC</span> <span className="text-[#ffffff] hover:text-[#f4f3ee] transition-colors duration-200">@ ASU</span>
+            <a href="/" className="group hover:scale-105 transition-all duration-200 inline-block px-4 py-2 rounded-lg hover:bg-white/10">
+              <h1 className="text-2xl font-bold tracking-tight cursor-pointer font-sans whitespace-nowrap">
+                <span className="text-[#ffffff] group-hover:text-[#f4f3ee] transition-colors duration-200">ANTHROPIC</span> <span className="text-[#ffffff] group-hover:text-[#f4f3ee] transition-colors duration-200">@ ASU</span>
               </h1>
             </a>
           </div>
           
           {/* Navigation buttons in the middle */}
           <nav className="hidden md:flex items-center space-x-8">
-            <button className="text-[#ffffff] hover:text-[#f4f3ee] transition-colors duration-200 font-medium font-sans">
+            <button className="text-[#ffffff] hover:text-[#f4f3ee] hover:scale-105 transition-all duration-200 font-medium font-sans px-3 py-2 rounded-md hover:bg-white/10">
               About
             </button>
+            <a 
+              href="/team"
+              className="text-[#ffffff] hover:text-[#f4f3ee] hover:scale-105 transition-all duration-200 font-medium font-sans px-3 py-2 rounded-md hover:bg-white/10"
+            >
+              Team
+            </a>
             <a 
               href="https://docs.google.com/forms/d/e/1FAIpQLScP9LuFwiHEx806tv9zczjCIEzqO1Zjb-FjB4XWoa6BS1NNKQ/viewform"
               target="_blank"
