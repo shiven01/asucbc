@@ -1,6 +1,6 @@
 export default function Header() {
   return (
-    <header className="w-full bg-[#c15f3c] border-b border-[#b1ada1]/30">
+    <header className="w-full bg-[#cc785c] border-b border-[#b1ada1]/30">
       <div className="px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           {/* Logo on the left */}
@@ -21,7 +21,7 @@ export default function Header() {
               href="https://docs.google.com/forms/d/e/1FAIpQLScP9LuFwiHEx806tv9zczjCIEzqO1Zjb-FjB4XWoa6BS1NNKQ/viewform"
               target="_blank"
               rel="noopener noreferrer"
-              className="bg-[#ffffff] text-[#c15f3c] px-6 py-2 rounded-lg hover:bg-[#c15f3c] hover:text-[#ffffff] hover:scale-105 hover:shadow-lg transition-all duration-300 ease-in-out font-medium text-base font-sans border border-transparent hover:border-[#ffffff]"
+              className="bg-[#ffffff] text-[#cc785c] px-6 py-2 rounded-lg hover:bg-[#cc785c] hover:text-[#ffffff] hover:scale-105 hover:shadow-lg transition-all duration-300 ease-in-out font-medium text-base font-sans border border-transparent hover:border-[#ffffff]"
             >
               Join Us
             </a>
