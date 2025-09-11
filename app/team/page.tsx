@@ -15,7 +15,7 @@ export default function Team() {
 
           {/* Team Members Grid */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12">
-            {/* Team Member 1 - Left (Your name) */}
+            {/* Team Member 1 - Left */}
             <div className="flex flex-col items-center text-center group">
               <div className="relative mb-6">
                 <div className="w-48 h-48 rounded-full bg-gradient-to-br from-[#f4f3ee] to-[#ffffff] flex items-center justify-center shadow-2xl group-hover:shadow-3xl transition-all duration-300 group-hover:scale-105">
@@ -30,7 +30,7 @@ export default function Team() {
               </p>
               <div className="mt-4 flex space-x-4">
                 <a 
-                  href="https://linkedin.com/in/shiven-shekar" 
+                  href="https://www.linkedin.com/in/shiven-shekar/" 
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="text-[#f4f3ee] hover:text-[#ffffff] transition-colors duration-200"
@@ -57,7 +57,9 @@ export default function Team() {
               </p>
               <div className="mt-4 flex space-x-4">
                 <a 
-                  href="#" 
+                  href="https://www.linkedin.com/in/heathermavunga/" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
                   className="text-[#f4f3ee] hover:text-[#ffffff] transition-colors duration-200"
                 >
                   <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
@@ -85,7 +87,9 @@ export default function Team() {
               </ul>
               <div className="mt-4 flex space-x-4">
                 <a 
-                  href="#" 
+                  href="https://www.linkedin.com/in/farnaz-avarzamani-a672069b/" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
                   className="text-[#f4f3ee] hover:text-[#ffffff] transition-colors duration-200"
                 >
                   <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
