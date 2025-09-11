@@ -21,7 +21,7 @@ export default function Header() {
               href="https://docs.google.com/forms/d/e/1FAIpQLScP9LuFwiHEx806tv9zczjCIEzqO1Zjb-FjB4XWoa6BS1NNKQ/viewform"
               target="_blank"
               rel="noopener noreferrer"
-              className="bg-[#ffffff] text-[#c15f3c] px-6 py-2 rounded-lg hover:bg-[#e0ddd8] hover:text-[#a04d2f] transition-colors duration-200 font-medium text-base font-sans"
+              className="bg-[#ffffff] text-[#c15f3c] px-6 py-2 rounded-lg hover:bg-[#c15f3c] hover:text-[#ffffff] hover:scale-105 hover:shadow-lg transition-all duration-300 ease-in-out font-medium text-base font-sans border border-transparent hover:border-[#ffffff]"
             >
               Join Us
             </a>
