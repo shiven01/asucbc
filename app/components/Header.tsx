@@ -5,7 +5,7 @@ export default function Header() {
         <div className="flex items-center justify-between h-16">
           {/* Logo on the left */}
           <div className="flex-shrink-0">
-            <a href="https://www.anthropic.com/" target="_blank" rel="noopener noreferrer">
+            <a href="/">
               <h1 className="text-2xl font-bold tracking-tight cursor-pointer font-sans">
                 <span className="text-[#ffffff] hover:text-[#ffffff] transition-colors duration-200">ANTHROPIC</span> <span className="text-[#ffffff] hover:text-[#f4f3ee] transition-colors duration-200">@ ASU</span>
               </h1>
