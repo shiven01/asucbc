@@ -18,6 +18,12 @@ export default function Header() {
               About
             </button>
             <a 
+              href="/team"
+              className="text-[#ffffff] hover:text-[#f4f3ee] transition-colors duration-200 font-medium font-sans"
+            >
+              Team
+            </a>
+            <a 
               href="https://docs.google.com/forms/d/e/1FAIpQLScP9LuFwiHEx806tv9zczjCIEzqO1Zjb-FjB4XWoa6BS1NNKQ/viewform"
               target="_blank"
               rel="noopener noreferrer"
