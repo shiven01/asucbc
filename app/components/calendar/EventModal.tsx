@@ -85,7 +85,7 @@ export default function EventModal({ event, isOpen, onClose, onAddToCalendar }: 
           </h2>
           <button
             onClick={onClose}
-            className="text-[#c15f3c] hover:text-[#a04d2f] transition-colors"
+            className="text-[#c15f3c] hover:text-[#a04d2f] hover:scale-110 hover:bg-[#f4f3ee]/20 rounded-full p-1 transition-all duration-300 ease-in-out"
             aria-label="Close modal"
           >
             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -158,14 +158,14 @@ export default function EventModal({ event, isOpen, onClose, onAddToCalendar }: 
           {onAddToCalendar && (
             <button
               onClick={onAddToCalendar}
-              className="bg-[#f4f3ee] hover:bg-[#e0ddd8] text-[#c15f3c] px-4 py-2 rounded-md transition-colors text-sm font-medium"
+              className="bg-[#f4f3ee] hover:bg-[#c15f3c] hover:text-white hover:scale-105 hover:shadow-lg text-[#c15f3c] px-4 py-2 rounded-md transition-all duration-300 ease-in-out text-sm font-medium border border-transparent hover:border-[#c15f3c]"
             >
               Add to Calendar
             </button>
           )}
           <button
             onClick={onClose}
-            className="text-white/70 hover:text-white transition-colors text-sm"
+            className="text-white/70 hover:text-white hover:scale-105 hover:bg-white/10 px-3 py-2 rounded-md transition-all duration-300 ease-in-out text-sm"
           >
             Close
           </button>

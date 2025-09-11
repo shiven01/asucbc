@@ -34,7 +34,7 @@ export default function CalendarHeader({
         <button
           onClick={onPreviousMonth}
           disabled={isLoading}
-          className="p-2 rounded-full hover:bg-[#b1ada1]/20 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+          className="p-2 rounded-full hover:bg-[#b1ada1]/20 hover:scale-110 hover:shadow-md transition-all duration-300 ease-in-out disabled:opacity-50 disabled:cursor-not-allowed"
           aria-label="Previous month"
         >
           <svg
@@ -56,7 +56,7 @@ export default function CalendarHeader({
         <button
           onClick={onGoToToday}
           disabled={isLoading}
-          className="px-4 py-2 text-sm font-medium text-[#000000] hover:bg-[#b1ada1]/20 rounded-full transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+          className="px-4 py-2 text-sm font-medium text-[#000000] hover:bg-[#b1ada1]/20 hover:scale-105 hover:shadow-md rounded-full transition-all duration-300 ease-in-out disabled:opacity-50 disabled:cursor-not-allowed"
         >
           Today
         </button>
@@ -65,7 +65,7 @@ export default function CalendarHeader({
         <button
           onClick={onNextMonth}
           disabled={isLoading}
-          className="p-2 rounded-full hover:bg-[#b1ada1]/20 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+          className="p-2 rounded-full hover:bg-[#b1ada1]/20 hover:scale-110 hover:shadow-md transition-all duration-300 ease-in-out disabled:opacity-50 disabled:cursor-not-allowed"
           aria-label="Next month"
         >
           <svg

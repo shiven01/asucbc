@@ -33,7 +33,7 @@ export default function JoinCard({
           href={discordHref}
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex w-full items-center justify-center rounded-xl bg-black text-white px-5 py-4 text-base font-semibold shadow hover:opacity-90 transition"
+          className="inline-flex w-full items-center justify-center rounded-xl bg-black text-white px-5 py-4 text-base font-semibold shadow hover:bg-white hover:text-black hover:scale-105 hover:shadow-lg transition-all duration-300 ease-in-out border border-transparent hover:border-black/20"
         >
           Join our Discord
         </Link>
@@ -41,7 +41,7 @@ export default function JoinCard({
           href={benefitsHref}
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex w-full items-center justify-center rounded-xl border border-black/20 bg-white text-black px-5 py-4 text-base font-semibold hover:bg-black/5 transition"
+          className="inline-flex w-full items-center justify-center rounded-xl border border-black/20 bg-white text-black px-5 py-4 text-base font-semibold hover:bg-black hover:text-white hover:scale-105 hover:shadow-lg hover:border-black transition-all duration-300 ease-in-out"
         >
           Sign up to receive benefits
         </Link>
