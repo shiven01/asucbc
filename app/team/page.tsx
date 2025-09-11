@@ -26,9 +26,6 @@ export default function Team() {
                     <span className="text-4xl font-bold text-[#ffffff]">SS</span>
                   </div>
                 </div>
-                <div className="absolute -bottom-2 -right-2 w-12 h-12 bg-[#f4f3ee] rounded-full flex items-center justify-center shadow-lg">
-                  <span className="text-lg">👑</span>
-                </div>
               </div>
               <h3 className="text-2xl font-bold text-[#ffffff] mb-2">Shiven Shekar</h3>
               <p className="text-[#f4f3ee] text-sm leading-relaxed max-w-xs">
@@ -66,9 +63,6 @@ export default function Team() {
                     <span className="text-4xl font-bold text-[#ffffff]">AM</span>
                   </div>
                 </div>
-                <div className="absolute -bottom-2 -right-2 w-12 h-12 bg-[#f4f3ee] rounded-full flex items-center justify-center shadow-lg">
-                  <span className="text-lg">🚀</span>
-                </div>
               </div>
               <h3 className="text-2xl font-bold text-[#ffffff] mb-2">Tino Mavuga</h3>
               <p className="text-[#f4f3ee] text-sm leading-relaxed max-w-xs">
@@ -101,9 +95,6 @@ export default function Team() {
                   <div className="w-44 h-44 rounded-full bg-[#cc785c] flex items-center justify-center">
                     <span className="text-4xl font-bold text-[#ffffff]">SJ</span>
                   </div>
-                </div>
-                <div className="absolute -bottom-2 -right-2 w-12 h-12 bg-[#f4f3ee] rounded-full flex items-center justify-center shadow-lg">
-                  <span className="text-lg">💡</span>
                 </div>
               </div>
               <h3 className="text-2xl font-bold text-[#ffffff] mb-2">Farnaz Avarzamani</h3>
