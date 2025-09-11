@@ -75,7 +75,8 @@
   border-color: #d4c4a8 !important;
   color: #8b7355 !important;
   font-weight: 600 !important;
-  padding: 0.75rem 0.5rem !important;
+  padding: 0.75rem 0.5rem 0.75rem 1rem !important;
+  text-align: left !important;
 }
 
 /* Day Cells */
@@ -103,8 +104,9 @@
 /* Day Numbers */
 .dark-calendar .fc-daygrid-day-number {
   color: #5d4e37 !important;
-  padding: 0.5rem !important;
+  padding: 0.5rem 0.5rem 0.5rem 1rem !important;
   font-weight: 500 !important;
+  text-align: left !important;
 }
 
 .dark-calendar .fc-daygrid-day-number:hover {
@@ -212,7 +214,7 @@
   }
   
   .dark-calendar .fc-daygrid-day-number {
-    padding: 0.25rem !important;
+    padding: 0.25rem 0.25rem 0.25rem 0.75rem !important;
     font-size: 0.875rem !important;
   }
   

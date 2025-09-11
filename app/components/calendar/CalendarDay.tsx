@@ -42,7 +42,7 @@ export default function CalendarDay({ day, onSelect, onEventClick }: CalendarDay
       }}
     >
       {/* Day number */}
-      <div className="text-sm font-medium mb-1">
+      <div className="text-sm font-medium mb-1 pl-2 self-start">
         {dayNumber}
       </div>
 
