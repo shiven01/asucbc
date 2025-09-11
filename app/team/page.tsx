@@ -71,7 +71,7 @@ export default function Team() {
                   <span className="text-lg">🚀</span>
                 </div>
               </div>
-              <h3 className="text-2xl font-bold text-[#ffffff] mb-2">Alex Martinez</h3>
+              <h3 className="text-2xl font-bold text-[#ffffff] mb-2">Tino Mavuga</h3>
               <p className="text-lg text-[#f4f3ee] mb-3">Vice President</p>
               <p className="text-[#f4f3ee] text-sm leading-relaxed max-w-xs">
                 Tech enthusiast and community builder. Focused on creating engaging experiences and fostering innovation within our club.
@@ -108,7 +108,7 @@ export default function Team() {
                   <span className="text-lg">💡</span>
                 </div>
               </div>
-              <h3 className="text-2xl font-bold text-[#ffffff] mb-2">Sarah Johnson</h3>
+              <h3 className="text-2xl font-bold text-[#ffffff] mb-2">Farnaz Avarzamani</h3>
               <p className="text-lg text-[#f4f3ee] mb-3">Tech Lead</p>
               <p className="text-[#f4f3ee] text-sm leading-relaxed max-w-xs">
                 Full-stack developer and AI researcher. Passionate about building innovative solutions and mentoring fellow students in technology.
