@@ -18,10 +18,12 @@ export default function Team() {
             {/* Team Member 1 - Left */}
             <div className="flex flex-col items-center text-center group">
               <div className="relative mb-6">
-                <div className="w-48 h-48 rounded-full bg-gradient-to-br from-[#f4f3ee] to-[#ffffff] flex items-center justify-center shadow-2xl group-hover:shadow-3xl transition-all duration-300 group-hover:scale-105">
-                  <div className="w-44 h-44 rounded-full bg-[#cc785c] flex items-center justify-center">
-                    <span className="text-4xl font-bold text-[#ffffff]">SS</span>
-                  </div>
+                <div className="w-48 h-48 rounded-full overflow-hidden shadow-2xl group-hover:shadow-3xl transition-all duration-300 group-hover:scale-105">
+                  <img 
+                    src="/shiven.jpeg" 
+                    alt="Shiven Shekar" 
+                    className="w-full h-full object-cover"
+                  />
                 </div>
               </div>
               <h3 className="text-2xl font-bold text-[#ffffff] mb-2">Shiven Shekar</h3>
@@ -45,10 +47,12 @@ export default function Team() {
             {/* Team Member 2 - Middle */}
             <div className="flex flex-col items-center text-center group">
               <div className="relative mb-6">
-                <div className="w-48 h-48 rounded-full bg-gradient-to-br from-[#f4f3ee] to-[#ffffff] flex items-center justify-center shadow-2xl group-hover:shadow-3xl transition-all duration-300 group-hover:scale-105">
-                  <div className="w-44 h-44 rounded-full bg-[#cc785c] flex items-center justify-center">
-                    <span className="text-4xl font-bold text-[#ffffff]">AM</span>
-                  </div>
+                <div className="w-48 h-48 rounded-full overflow-hidden shadow-2xl group-hover:shadow-3xl transition-all duration-300 group-hover:scale-105">
+                  <img 
+                    src="/tino.jpeg" 
+                    alt="Tino Mavuga" 
+                    className="w-full h-full object-cover"
+                  />
                 </div>
               </div>
               <h3 className="text-2xl font-bold text-[#ffffff] mb-2">Tino Mavuga</h3>
@@ -72,10 +76,12 @@ export default function Team() {
             {/* Team Member 3 - Right */}
             <div className="flex flex-col items-center text-center group">
               <div className="relative mb-6">
-                <div className="w-48 h-48 rounded-full bg-gradient-to-br from-[#f4f3ee] to-[#ffffff] flex items-center justify-center shadow-2xl group-hover:shadow-3xl transition-all duration-300 group-hover:scale-105">
-                  <div className="w-44 h-44 rounded-full bg-[#cc785c] flex items-center justify-center">
-                    <span className="text-4xl font-bold text-[#ffffff]">SJ</span>
-                  </div>
+                <div className="w-48 h-48 rounded-full overflow-hidden shadow-2xl group-hover:shadow-3xl transition-all duration-300 group-hover:scale-105">
+                  <img 
+                    src="/farnaz.jpg" 
+                    alt="Farnaz Avarzamani" 
+                    className="w-full h-full object-cover"
+                  />
                 </div>
               </div>
               <h3 className="text-2xl font-bold text-[#ffffff] mb-2">Farnaz Avarzamani</h3>
