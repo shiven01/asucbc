@@ -1,6 +1,6 @@
 export default function Header() {
   return (
-    <header className="w-full mesh-background border-b border-[#b1ada1]/30">
+    <header className="w-full mesh-background">
       <div className="px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           {/* Logo on the left */}
