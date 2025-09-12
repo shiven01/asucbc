@@ -14,9 +14,12 @@ export default function Header() {
           
           {/* Navigation buttons in the middle */}
           <nav className="hidden md:flex items-center space-x-8">
-            <button className="text-[#ffffff] hover:text-[#f4f3ee] hover:scale-105 transition-all duration-200 font-medium font-sans px-3 py-2 rounded-md hover:bg-white/10">
+            <a 
+              href="/about"
+              className="text-[#ffffff] hover:text-[#f4f3ee] hover:scale-105 transition-all duration-200 font-medium font-sans px-3 py-2 rounded-md hover:bg-white/10"
+            >
               About
-            </button>
+            </a>
             <a 
               href="/team"
               className="text-[#ffffff] hover:text-[#f4f3ee] hover:scale-105 transition-all duration-200 font-medium font-sans px-3 py-2 rounded-md hover:bg-white/10"
