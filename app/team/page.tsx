@@ -3,7 +3,7 @@ import Footer from "../components/Footer";
 
 export default function Team() {
   return (
-    <div className="min-h-screen bg-[#cc785c]">
+    <div className="min-h-screen">
       <Header />
       <div className="font-sans min-h-screen p-8 pb-20 sm:p-20">
         <div className="max-w-6xl mx-auto">

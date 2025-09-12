@@ -6,7 +6,7 @@ import JoinCard from "./components/JoinCard";
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-[#cc785c] flex flex-col">
+    <div className="min-h-screen flex flex-col">
       <Header />
       <div className="font-sans flex-1 p-8 pb-20 sm:p-20">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 min-h-full items-start">
