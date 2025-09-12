@@ -58,7 +58,7 @@ export default function Team() {
               </div>
               <h3 className="text-2xl font-bold text-[#ffffff] mb-2">Tino Mavunga</h3>
               <p className="text-[#f4f3ee] text-sm leading-relaxed max-w-xs">
-                Originally from Zimbabwe, Tino brings a global perspective to technology and policy, having lived and studied across four continents. She holds a BA in Psychology and Management from Monash University and is pursuing a Master in Global Management with Digital Transformation concentration at ASU's Thunderbird School, where she serves as a Claude AI Ambassador. With certifications in Software Entrepreneurship, Innovation Management, and Scrum, plus experience as a remote software project manager across Europe, she specializes in the intersection of technology, people, and policy. Currently studying Artificial Intelligence, Chip Strategy, cybersecurity, and governance of nuclear technologies, Tino is positioned at the forefront of critical technology policy issues.
+              Tino brings a global perspective to technology and policy, having studied across four continents. She holds a BA in Psychology and Management from Monash University and is pursuing a Master in Global Management at ASU’s Thunderbird School, where she serves as a Claude AI Ambassador. She specializes in technology, people, and policy, focusing on AI, cybersecurity, and emerging technologies.
               </p>
               <div className="mt-4 flex space-x-4">
                 <a 
