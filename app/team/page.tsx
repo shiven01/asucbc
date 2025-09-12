@@ -51,12 +51,12 @@ export default function Team() {
                 <div className="w-48 h-48 rounded-full overflow-hidden shadow-2xl group-hover:shadow-3xl transition-all duration-300 group-hover:scale-105">
                   <img 
                     src="/tino.jpeg" 
-                    alt="Tino Mavuga" 
+                    alt="Tino Mavunga" 
                     className="w-full h-full object-cover"
                   />
                 </div>
               </div>
-              <h3 className="text-2xl font-bold text-[#ffffff] mb-2">Tino Mavuga</h3>
+              <h3 className="text-2xl font-bold text-[#ffffff] mb-2">Tino Mavunga</h3>
               <p className="text-[#f4f3ee] text-sm leading-relaxed max-w-xs">
                 Originally from Zimbabwe, Tino brings a global perspective to technology and policy, having lived and studied across four continents. She holds a BA in Psychology and Management from Monash University and is pursuing a Master in Global Management with Digital Transformation concentration at ASU's Thunderbird School, where she serves as a Claude AI Ambassador. With certifications in Software Entrepreneurship, Innovation Management, and Scrum, plus experience as a remote software project manager across Europe, she specializes in the intersection of technology, people, and policy. Currently studying Artificial Intelligence, Chip Strategy, cybersecurity, and governance of nuclear technologies, Tino is positioned at the forefront of critical technology policy issues.
               </p>
