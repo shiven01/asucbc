@@ -8,7 +8,7 @@ export default function About() {
       <Header />
       <div className="font-sans min-h-screen p-8 pb-20 sm:p-20">
         <div className="max-w-6xl mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
             {/* Left side - Anthropic Logo */}
             <div className="flex justify-center lg:justify-start">
               <div className="relative">
@@ -63,9 +63,13 @@ export default function About() {
               </div>
             </div>
           </div>
+          
+          {/* Footer integrated into the grid layout */}
+          <div className="mt-16 pt-8">
+            <Footer />
+          </div>
         </div>
       </div>
-      <Footer />
     </div>
   );
 }

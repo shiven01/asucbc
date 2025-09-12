@@ -1,11 +1,11 @@
 export default function Footer() {
   return (
-    <footer className="w-full bg-[#cc785c] border-t border-[#b1ada1]/30 mt-auto">
+    <footer className="w-full mt-auto">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 border-t border-[#ffffff]/10 pt-6">
           {/* Left side - Club info */}
           <div className="text-center sm:text-left">
-            <p className="text-[#ffffff] font-medium text-sm">
+            <p className="text-[#f4f3ee] font-medium text-sm">
               Arizona State University Claude Builder Club
             </p>
           </div>
