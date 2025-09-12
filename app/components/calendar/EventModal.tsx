@@ -81,7 +81,7 @@ export default function EventModal({ event, isOpen, onClose, onAddToCalendar }: 
         {/* Header */}
         <div className="flex items-center justify-between p-6 border-b border-[#f4f3ee] bg-[#f4f3ee] rounded-t-lg">
           <h2 className="text-xl font-semibold text-[#cc785c]">
-            Event Details
+            {event.summary}
           </h2>
           <button
             onClick={onClose}
@@ -96,12 +96,6 @@ export default function EventModal({ event, isOpen, onClose, onAddToCalendar }: 
         
         {/* Content */}
         <div className="p-6 space-y-4">
-          {/* Event Title */}
-          <div>
-            <h3 className="text-lg font-medium text-[#f4f3ee] mb-2">
-              {event.summary}
-            </h3>
-          </div>
           
           {/* Date and Time */}
           <div className="space-y-2">
@@ -154,22 +148,16 @@ export default function EventModal({ event, isOpen, onClose, onAddToCalendar }: 
         </div>
         
         {/* Footer */}
-        <div className="flex items-center justify-between p-6 border-t border-[#f4f3ee]">
-          {onAddToCalendar && (
+        {onAddToCalendar && (
+          <div className="flex items-center justify-end p-6 border-t border-[#f4f3ee]">
             <button
               onClick={onAddToCalendar}
               className="bg-[#f4f3ee] hover:bg-[#cc785c] hover:text-white hover:scale-105 hover:shadow-lg text-[#cc785c] px-4 py-2 rounded-md transition-all duration-300 ease-in-out text-sm font-medium border border-transparent hover:border-[#cc785c]"
             >
               Add to Calendar
             </button>
-          )}
-          <button
-            onClick={onClose}
-            className="text-white/70 hover:text-white hover:scale-105 hover:bg-white/10 px-3 py-2 rounded-md transition-all duration-300 ease-in-out text-sm"
-          >
-            Close
-          </button>
-        </div>
+          </div>
+        )}
       </div>
     </div>
   );
