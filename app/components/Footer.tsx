@@ -8,9 +8,6 @@ export default function Footer() {
             <p className="text-[#ffffff] font-medium text-sm">
               Arizona State University Claude Builder Club
             </p>
-            <p className="text-[#f4f3ee] text-xs mt-1">
-              Where curiosity meets cutting-edge AI
-            </p>
           </div>
           
           {/* Right side - Attribution */}
