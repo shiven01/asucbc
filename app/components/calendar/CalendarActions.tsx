@@ -21,10 +21,10 @@ export default function CalendarActions({ calendarId, selectedDate }: CalendarAc
         onClick={handleAddToCalendar}
         className="
           flex items-center gap-2 px-4 py-2 
-          bg-[#c15f3c] text-white 
-          rounded-lg hover:bg-white hover:text-[#c15f3c] hover:scale-105 hover:shadow-lg
+          bg-[#cc785c] text-white 
+          rounded-lg hover:bg-white hover:text-[#cc785c] hover:scale-105 hover:shadow-lg
           transition-all duration-300 ease-in-out
-          font-medium text-sm border border-transparent hover:border-[#c15f3c]
+          font-medium text-sm border border-transparent hover:border-[#cc785c]
         "
       >
         <svg

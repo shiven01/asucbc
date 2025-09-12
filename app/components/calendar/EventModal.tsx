@@ -77,15 +77,15 @@ export default function EventModal({ event, isOpen, onClose, onAddToCalendar }: 
       />
       
       {/* Modal */}
-      <div className="relative bg-[#c15f3c] border-2 border-[#f4f3ee] rounded-lg shadow-xl max-w-md w-full mx-4 max-h-[90vh] overflow-y-auto">
+      <div className="relative bg-[#cc785c] border-2 border-[#f4f3ee] rounded-lg shadow-xl max-w-md w-full mx-4 max-h-[90vh] overflow-y-auto">
         {/* Header */}
         <div className="flex items-center justify-between p-6 border-b border-[#f4f3ee] bg-[#f4f3ee] rounded-t-lg">
-          <h2 className="text-xl font-semibold text-[#c15f3c]">
+          <h2 className="text-xl font-semibold text-[#cc785c]">
             Event Details
           </h2>
           <button
             onClick={onClose}
-            className="text-[#c15f3c] hover:text-[#a04d2f] hover:scale-110 hover:bg-[#f4f3ee]/20 rounded-full p-1 transition-all duration-300 ease-in-out"
+            className="text-[#cc785c] hover:text-[#b56a4f] hover:scale-110 hover:bg-[#f4f3ee]/20 rounded-full p-1 transition-all duration-300 ease-in-out"
             aria-label="Close modal"
           >
             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -158,7 +158,7 @@ export default function EventModal({ event, isOpen, onClose, onAddToCalendar }: 
           {onAddToCalendar && (
             <button
               onClick={onAddToCalendar}
-              className="bg-[#f4f3ee] hover:bg-[#c15f3c] hover:text-white hover:scale-105 hover:shadow-lg text-[#c15f3c] px-4 py-2 rounded-md transition-all duration-300 ease-in-out text-sm font-medium border border-transparent hover:border-[#c15f3c]"
+              className="bg-[#f4f3ee] hover:bg-[#cc785c] hover:text-white hover:scale-105 hover:shadow-lg text-[#cc785c] px-4 py-2 rounded-md transition-all duration-300 ease-in-out text-sm font-medium border border-transparent hover:border-[#cc785c]"
             >
               Add to Calendar
             </button>
