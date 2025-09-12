@@ -46,3 +46,22 @@ body {
 * {
   cursor: url('/claude.svg'), auto !important;
 }
+
+.mesh-background {
+  background: var(--background);
+  background-image: 
+    linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px),
+    linear-gradient(180deg, rgba(255,255,255,0.1) 1px, transparent 1px),
+    linear-gradient(45deg, rgba(255,255,255,0.05) 1px, transparent 1px),
+    linear-gradient(-45deg, rgba(255,255,255,0.05) 1px, transparent 1px);
+  background-size: 
+    20px 20px,
+    20px 20px,
+    40px 40px,
+    40px 40px;
+  background-position: 
+    0 0,
+    0 0,
+    0 0,
+    20px 20px;
+}
