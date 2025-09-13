@@ -86,12 +86,10 @@ export default function Team() {
                 </div>
               </div>
               <h3 className="text-2xl font-bold text-[#ffffff] mb-2">Farnaz Avarzamani</h3>
-              <ul className="text-[#f4f3ee] text-sm leading-relaxed max-w-xs text-left">
-                <li>• PhD Candidate in Education</li>
-                <li>• Claude AI Builder</li>
-                <li>• Educational AI Builder</li>
-                <li>• Educational Researcher</li>
-              </ul>
+              <p className="text-[#f4f3ee] text-sm leading-relaxed max-w-xs">
+                Farnaz is a PhD candidate in Educational Policy and Evaluation at Arizona State University's Mary Lou Fulton College for Teaching and Learning Innovation. Her doctoral research combines multilingual STEM education, curriculum policy, and generative AI to enhance teaching practices. She develops AI-driven solutions that support teachers in diverse classrooms, efforts that have been recognized through multiple awards, publications, and invited talks.
+                Her most recent AI project, conducted through Principled Innovation®️ (one of nine design aspirations that guides the ongoing evolution of ASU as a New American University), has led to the development of an AI tool that will be launched in mid-October.
+              </p>
               <div className="mt-4 flex space-x-4">
                 <a 
                   href="https://www.linkedin.com/in/farnaz-avarzamani-a672069b/" 
