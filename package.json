@@ -12,6 +12,7 @@
     "@fullcalendar/google-calendar": "^6.1.19",
     "@fullcalendar/interaction": "^6.1.19",
     "@fullcalendar/react": "^6.1.19",
+    "@vercel/analytics": "^1.5.0",
     "next": "15.5.2",
     "react": "19.1.0",
     "react-dom": "19.1.0"
