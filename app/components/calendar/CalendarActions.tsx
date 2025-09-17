@@ -16,7 +16,7 @@ export default function CalendarActions({ calendarId, selectedDate }: CalendarAc
   };
 
   return (
-    <div className="mt-6 flex justify-end">
+    <div className="flex justify-end">
       <button
         onClick={handleAddToCalendar}
         className="

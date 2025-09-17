@@ -23,7 +23,7 @@ export default function Home() {
           </div>
           
           {/* Right half - Calendar */}
-          <div className="flex flex-col items-center sm:items-start">
+          <div className="flex flex-col items-center sm:items-start pt-0 pb-20 px-16">
             <CalendarContainer className="w-full max-w-2xl" />
           </div>
         </div>
