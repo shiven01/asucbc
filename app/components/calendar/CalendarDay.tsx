@@ -52,7 +52,6 @@ export default function CalendarDay({ day, onSelect, onEventClick }: CalendarDay
           <EventIndicator
             key={`${event.id}-${index}`}
             event={event}
-            isFirst={index === 0}
             onClick={onEventClick}
           />
         ))}
