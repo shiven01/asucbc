@@ -1,4 +1,14 @@
+'use client';
+
+import { useState } from 'react';
+
 export default function Header() {
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  const toggleMobileMenu = () => {
+    setIsMobileMenuOpen(!isMobileMenuOpen);
+  };
+
   return (
     <header className="w-full mesh-background">
       <div className="px-4 sm:px-6 lg:px-8">
@@ -38,13 +48,54 @@ export default function Header() {
           
           {/* Mobile menu button */}
           <div className="md:hidden">
-            <button className="text-[#ffffff] hover:text-[#f4f3ee] transition-colors duration-200 font-sans p-2 rounded-lg hover:bg-white/10 min-h-[48px] min-w-[48px] flex items-center justify-center touch-manipulation">
-              <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-              </svg>
+            <button 
+              onClick={toggleMobileMenu}
+              className="text-[#ffffff] hover:text-[#f4f3ee] transition-colors duration-200 font-sans p-2 rounded-lg hover:bg-white/10 min-h-[48px] min-w-[48px] flex items-center justify-center touch-manipulation"
+              aria-label="Toggle mobile menu"
+            >
+              {isMobileMenuOpen ? (
+                <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              ) : (
+                <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+              )}
             </button>
           </div>
         </div>
+        
+        {/* Mobile menu */}
+        {isMobileMenuOpen && (
+          <div className="md:hidden">
+            <div className="px-2 pt-2 pb-3 space-y-1 bg-[#cc785c]/95 backdrop-blur-sm border-t border-white/10">
+              <a 
+                href="/about"
+                className="block px-3 py-4 text-[#ffffff] hover:text-[#f4f3ee] hover:bg-white/10 transition-all duration-200 font-medium font-sans rounded-lg min-h-[48px] flex items-center touch-manipulation"
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                About
+              </a>
+              <a 
+                href="/team"
+                className="block px-3 py-4 text-[#ffffff] hover:text-[#f4f3ee] hover:bg-white/10 transition-all duration-200 font-medium font-sans rounded-lg min-h-[48px] flex items-center touch-manipulation"
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                Team
+              </a>
+              <a 
+                href="https://docs.google.com/forms/d/e/1FAIpQLScP9LuFwiHEx806tv9zczjCIEzqO1Zjb-FjB4XWoa6BS1NNKQ/viewform"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block px-3 py-4 bg-[#ffffff] text-[#cc785c] hover:bg-[#cc785c] hover:text-[#ffffff] transition-all duration-300 ease-in-out font-medium text-base font-sans border border-transparent hover:border-[#ffffff] rounded-lg min-h-[48px] flex items-center touch-manipulation mt-2"
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                Join Us
+              </a>
+            </div>
+          </div>
+        )}
       </div>
     </header>
   );
