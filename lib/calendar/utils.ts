@@ -246,6 +246,58 @@ export function generateCalendarSubscriptionUrl(calendarId: string): string {
 }
 
 /**
+ * Find the closest event to the current date
+ */
+export function findClosestEvent(events: CalendarEvent[], referenceDate: Date = new Date()): CalendarEvent | null {
+  if (events.length === 0) return null;
+
+  let closestEvent: CalendarEvent | null = null;
+  let closestDistance = Infinity;
+
+  for (const event of events) {
+    const eventDate = event.start.dateTime 
+      ? new Date(event.start.dateTime)
+      : new Date(event.start.date!);
+    
+    // Calculate days difference (absolute value)
+    const timeDifference = Math.abs(eventDate.getTime() - referenceDate.getTime());
+    const daysDifference = timeDifference / (1000 * 60 * 60 * 24);
+
+    if (daysDifference < closestDistance) {
+      closestDistance = daysDifference;
+      closestEvent = event;
+    }
+  }
+
+  return closestEvent;
+}
+
+/**
+ * Check if a date matches the current day or the day of the closest event
+ */
+export function isCurrentDayOrClosestEventDay(date: Date, events: CalendarEvent[]): boolean {
+  const today = new Date();
+  
+  // Check if it's today
+  if (isToday(date)) {
+    return true;
+  }
+
+  // Find the closest event
+  const closestEvent = findClosestEvent(events, today);
+  if (!closestEvent) {
+    return false;
+  }
+
+  // Check if the date matches the closest event's date
+  const closestEventDate = closestEvent.start.dateTime 
+    ? new Date(closestEvent.start.dateTime)
+    : new Date(closestEvent.start.date!);
+
+  return isSameDay(date, closestEventDate);
+}
+
+/**
  * Generate "Add to Calendar" URL for Google Calendar
  */
 export function generateAddToCalendarUrl(event: CalendarEvent): string {
