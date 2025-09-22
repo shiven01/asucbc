@@ -5,8 +5,8 @@ export default function Header() {
         <div className="flex items-center justify-between h-16">
           {/* Logo on the left */}
           <div className="flex-shrink-0">
-            <a href="/" className="group hover:scale-105 transition-all duration-200 inline-block px-4 py-2 rounded-lg hover:bg-white/10">
-              <h1 className="text-2xl font-bold tracking-tight cursor-pointer font-sans whitespace-nowrap">
+            <a href="/" className="group hover:scale-105 transition-all duration-200 inline-block px-4 py-3 rounded-lg hover:bg-white/10 min-h-[48px] flex items-center touch-manipulation">
+              <h1 className="text-xl sm:text-2xl font-bold tracking-tight cursor-pointer font-sans whitespace-nowrap">
                 <span className="text-[#ffffff] group-hover:text-[#f4f3ee] transition-colors duration-200">ANTHROPIC</span> <span className="text-[#ffffff] group-hover:text-[#f4f3ee] transition-colors duration-200">@ ASU</span>
               </h1>
             </a>
@@ -16,13 +16,13 @@ export default function Header() {
           <nav className="hidden md:flex items-center space-x-8">
             <a 
               href="/about"
-              className="text-[#ffffff] hover:text-[#f4f3ee] hover:scale-105 transition-all duration-200 font-medium font-sans px-3 py-2 rounded-md hover:bg-white/10"
+              className="text-[#ffffff] hover:text-[#f4f3ee] hover:scale-105 transition-all duration-200 font-medium font-sans px-4 py-3 rounded-md hover:bg-white/10 min-h-[48px] flex items-center touch-manipulation"
             >
               About
             </a>
             <a 
               href="/team"
-              className="text-[#ffffff] hover:text-[#f4f3ee] hover:scale-105 transition-all duration-200 font-medium font-sans px-3 py-2 rounded-md hover:bg-white/10"
+              className="text-[#ffffff] hover:text-[#f4f3ee] hover:scale-105 transition-all duration-200 font-medium font-sans px-4 py-3 rounded-md hover:bg-white/10 min-h-[48px] flex items-center touch-manipulation"
             >
               Team
             </a>
@@ -30,7 +30,7 @@ export default function Header() {
               href="https://docs.google.com/forms/d/e/1FAIpQLScP9LuFwiHEx806tv9zczjCIEzqO1Zjb-FjB4XWoa6BS1NNKQ/viewform"
               target="_blank"
               rel="noopener noreferrer"
-              className="bg-[#ffffff] text-[#cc785c] px-6 py-2 rounded-lg hover:bg-[#cc785c] hover:text-[#ffffff] hover:scale-105 hover:shadow-lg transition-all duration-300 ease-in-out font-medium text-base font-sans border border-transparent hover:border-[#ffffff]"
+              className="bg-[#ffffff] text-[#cc785c] px-6 py-3 rounded-lg hover:bg-[#cc785c] hover:text-[#ffffff] hover:scale-105 hover:shadow-lg transition-all duration-300 ease-in-out font-medium text-base font-sans border border-transparent hover:border-[#ffffff] min-h-[48px] flex items-center touch-manipulation"
             >
               Join Us
             </a>
@@ -38,7 +38,7 @@ export default function Header() {
           
           {/* Mobile menu button */}
           <div className="md:hidden">
-            <button className="text-[#ffffff] hover:text-[#f4f3ee] transition-colors duration-200 font-sans">
+            <button className="text-[#ffffff] hover:text-[#f4f3ee] transition-colors duration-200 font-sans p-2 rounded-lg hover:bg-white/10 min-h-[48px] min-w-[48px] flex items-center justify-center touch-manipulation">
               <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
               </svg>
