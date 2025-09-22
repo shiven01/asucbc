@@ -83,17 +83,6 @@ export default function CalendarDay({ day, onSelect, onEventClick }: CalendarDay
         </div>
       )}
 
-      {/* Special indicators for specific days */}
-      {dayNumber === 27 && (
-        <div className="absolute bottom-1 right-1 text-[#b1ada1] text-xs">
-          +
-        </div>
-      )}
-      {dayNumber === 28 && (
-        <div className="absolute bottom-1 right-1 text-[#b1ada1] text-xs">
-          *
-        </div>
-      )}
     </div>
   );
 }
