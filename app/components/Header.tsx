@@ -69,7 +69,7 @@ export default function Header() {
         {/* Mobile menu */}
         {isMobileMenuOpen && (
           <div className="md:hidden">
-            <div className="px-2 pt-2 pb-3 space-y-1 bg-white/95 backdrop-blur-sm border-t border-[#cc785c]/20 rounded-b-2xl shadow-lg">
+            <div className="px-2 pt-2 pb-3 space-y-1 bg-white/95 backdrop-blur-sm border-t border-[#cc785c]/20 rounded-b-2xl">
               <a 
                 href="/about"
                 className="block px-3 py-4 text-[#cc785c] hover:text-[#5d4e37] hover:bg-[#cc785c]/10 transition-all duration-200 font-medium font-sans rounded-lg min-h-[48px] flex items-center touch-manipulation"

@@ -19,13 +19,12 @@ export default function CalendarHeader({
   isLoading = false,
 }: CalendarHeaderProps) {
   const monthName = getMonthName(currentDate.getMonth());
-  const year = currentDate.getFullYear();
 
   return (
     <div className="flex items-center justify-between mb-6">
-      {/* Month and Year */}
-      <h2 className="text-2xl font-bold text-[#000000]">
-        {monthName} {year}
+      {/* Month Only */}
+      <h2 className="text-2xl font-bold text-[#000000] min-w-[120px]">
+        {monthName}
       </h2>
 
       {/* Navigation Controls */}
