@@ -133,6 +133,7 @@ export default function CalendarContainer({ className = '' }: CalendarContainerP
         onSelectDate={handleSelectDate}
         onEventClick={handleEventClick}
         isLoading={calendarState.isLoading}
+        allEvents={events}
       />
       
       <CalendarActions
