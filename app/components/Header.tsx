@@ -69,17 +69,17 @@ export default function Header() {
         {/* Mobile menu */}
         {isMobileMenuOpen && (
           <div className="md:hidden">
-            <div className="px-2 pt-2 pb-3 space-y-1 bg-[#cc785c]/95 backdrop-blur-sm border-t border-white/10">
+            <div className="px-2 pt-2 pb-3 space-y-1 bg-white/95 backdrop-blur-sm border-t border-[#cc785c]/20">
               <a 
                 href="/about"
-                className="block px-3 py-4 text-[#ffffff] hover:text-[#f4f3ee] hover:bg-white/10 transition-all duration-200 font-medium font-sans rounded-lg min-h-[48px] flex items-center touch-manipulation"
+                className="block px-3 py-4 text-[#cc785c] hover:text-[#5d4e37] hover:bg-[#cc785c]/10 transition-all duration-200 font-medium font-sans rounded-lg min-h-[48px] flex items-center touch-manipulation"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 About
               </a>
               <a 
                 href="/team"
-                className="block px-3 py-4 text-[#ffffff] hover:text-[#f4f3ee] hover:bg-white/10 transition-all duration-200 font-medium font-sans rounded-lg min-h-[48px] flex items-center touch-manipulation"
+                className="block px-3 py-4 text-[#cc785c] hover:text-[#5d4e37] hover:bg-[#cc785c]/10 transition-all duration-200 font-medium font-sans rounded-lg min-h-[48px] flex items-center touch-manipulation"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 Team
@@ -88,7 +88,7 @@ export default function Header() {
                 href="https://docs.google.com/forms/d/e/1FAIpQLScP9LuFwiHEx806tv9zczjCIEzqO1Zjb-FjB4XWoa6BS1NNKQ/viewform"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="block px-3 py-4 bg-[#ffffff] text-[#cc785c] hover:bg-[#cc785c] hover:text-[#ffffff] transition-all duration-300 ease-in-out font-medium text-base font-sans border border-transparent hover:border-[#ffffff] rounded-lg min-h-[48px] flex items-center touch-manipulation mt-2"
+                className="block px-3 py-4 bg-[#cc785c] text-white hover:bg-[#5d4e37] hover:text-white transition-all duration-300 ease-in-out font-medium text-base font-sans border border-transparent hover:border-[#cc785c] rounded-lg min-h-[48px] flex items-center touch-manipulation mt-2"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 Join Us
