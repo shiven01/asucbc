@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
 import { getMonthName } from '@/lib/calendar/utils';
 
 interface CalendarHeaderProps {
@@ -18,6 +18,14 @@ export default function CalendarHeader({
   onGoToToday,
   isLoading = false,
 }: CalendarHeaderProps) {
+  const [activeButton, setActiveButton] = useState<string | null>(null);
+
+  const handleButtonClick = (action: () => void, buttonType: string) => {
+    setActiveButton(buttonType);
+    action();
+    // Reset active state after a short delay
+    setTimeout(() => setActiveButton(null), 200);
+  };
   const monthName = getMonthName(currentDate.getMonth());
 
   return (
@@ -31,9 +39,11 @@ export default function CalendarHeader({
       <div className="flex items-center gap-4">
         {/* Previous Month Button */}
         <button
-          onClick={onPreviousMonth}
+          onClick={() => handleButtonClick(onPreviousMonth, 'prev')}
           disabled={isLoading}
-          className="p-2 rounded-full hover:bg-[#b1ada1]/20 hover:scale-110 hover:shadow-md transition-all duration-300 ease-in-out disabled:opacity-50 disabled:cursor-not-allowed"
+          className={`p-2 rounded-full hover:bg-[#b1ada1]/20 hover:scale-110 hover:shadow-md transition-all duration-300 ease-in-out disabled:opacity-50 disabled:cursor-not-allowed ${
+            activeButton === 'prev' ? 'bg-[#cc785c] scale-110 shadow-md text-white' : ''
+          }`}
           aria-label="Previous month"
         >
           <svg
@@ -53,18 +63,22 @@ export default function CalendarHeader({
 
         {/* Today Button */}
         <button
-          onClick={onGoToToday}
+          onClick={() => handleButtonClick(onGoToToday, 'today')}
           disabled={isLoading}
-          className="px-4 py-2 text-sm font-medium text-[#000000] hover:bg-[#b1ada1]/20 hover:scale-105 hover:shadow-md rounded-full transition-all duration-300 ease-in-out disabled:opacity-50 disabled:cursor-not-allowed"
+          className={`px-4 py-2 text-sm font-medium text-[#000000] hover:bg-[#b1ada1]/20 hover:scale-105 hover:shadow-md rounded-full transition-all duration-300 ease-in-out disabled:opacity-50 disabled:cursor-not-allowed ${
+            activeButton === 'today' ? 'bg-[#cc785c] scale-105 shadow-md text-white' : ''
+          }`}
         >
           Today
         </button>
 
         {/* Next Month Button */}
         <button
-          onClick={onNextMonth}
+          onClick={() => handleButtonClick(onNextMonth, 'next')}
           disabled={isLoading}
-          className="p-2 rounded-full hover:bg-[#b1ada1]/20 hover:scale-110 hover:shadow-md transition-all duration-300 ease-in-out disabled:opacity-50 disabled:cursor-not-allowed"
+          className={`p-2 rounded-full hover:bg-[#b1ada1]/20 hover:scale-110 hover:shadow-md transition-all duration-300 ease-in-out disabled:opacity-50 disabled:cursor-not-allowed ${
+            activeButton === 'next' ? 'bg-[#cc785c] scale-110 shadow-md text-white' : ''
+          }`}
           aria-label="Next month"
         >
           <svg
