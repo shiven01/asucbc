@@ -2,6 +2,8 @@
 
 import React, { useState } from 'react';
 import { getMonthName } from '@/lib/calendar/utils';
+import { useButtonTracking } from '@/lib/analytics';
+import { FEATURE_FLAGS } from '@/lib/analytics';
 
 interface CalendarHeaderProps {
   currentDate: Date;
@@ -19,9 +21,14 @@ export default function CalendarHeader({
   isLoading = false,
 }: CalendarHeaderProps) {
   const [activeButton, setActiveButton] = useState<string | null>(null);
+  const { trackCalendar } = useButtonTracking();
 
-  const handleButtonClick = (action: () => void, buttonType: string) => {
+  const handleButtonClick = (action: () => void, buttonType: string, flagName: string) => {
     setActiveButton(buttonType);
+    trackCalendar(flagName as any, {
+      currentMonth: currentDate.getMonth(),
+      currentYear: currentDate.getFullYear()
+    });
     action();
     // Reset active state after a short delay
     setTimeout(() => setActiveButton(null), 200);
@@ -39,7 +46,7 @@ export default function CalendarHeader({
       <div className="flex items-center gap-4">
         {/* Previous Month Button */}
         <button
-          onClick={() => handleButtonClick(onPreviousMonth, 'prev')}
+          onClick={() => handleButtonClick(onPreviousMonth, 'prev', FEATURE_FLAGS.CALENDAR.PREVIOUS_MONTH)}
           disabled={isLoading}
           className={`p-2 rounded-full hover:bg-[#b1ada1]/20 hover:scale-110 hover:shadow-md transition-all duration-300 ease-in-out disabled:opacity-50 disabled:cursor-not-allowed ${
             activeButton === 'prev' ? 'bg-[#cc785c] scale-110 shadow-md text-white' : ''
@@ -63,7 +70,7 @@ export default function CalendarHeader({
 
         {/* Today Button */}
         <button
-          onClick={() => handleButtonClick(onGoToToday, 'today')}
+          onClick={() => handleButtonClick(onGoToToday, 'today', FEATURE_FLAGS.CALENDAR.GO_TO_TODAY)}
           disabled={isLoading}
           className={`px-4 py-2 text-sm font-medium text-[#000000] hover:bg-[#b1ada1]/20 hover:scale-105 hover:shadow-md rounded-full transition-all duration-300 ease-in-out disabled:opacity-50 disabled:cursor-not-allowed ${
             activeButton === 'today' ? 'bg-[#cc785c] scale-105 shadow-md text-white' : ''
@@ -74,7 +81,7 @@ export default function CalendarHeader({
 
         {/* Next Month Button */}
         <button
-          onClick={() => handleButtonClick(onNextMonth, 'next')}
+          onClick={() => handleButtonClick(onNextMonth, 'next', FEATURE_FLAGS.CALENDAR.NEXT_MONTH)}
           disabled={isLoading}
           className={`p-2 rounded-full hover:bg-[#b1ada1]/20 hover:scale-110 hover:shadow-md transition-all duration-300 ease-in-out disabled:opacity-50 disabled:cursor-not-allowed ${
             activeButton === 'next' ? 'bg-[#cc785c] scale-110 shadow-md text-white' : ''

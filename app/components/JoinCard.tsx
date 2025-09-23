@@ -1,4 +1,6 @@
 import Link from "next/link";
+import { useButtonTracking } from '@/lib/analytics';
+import { FEATURE_FLAGS } from '@/lib/analytics';
 
 type JoinCardProps = {
   title?: string;
@@ -15,6 +17,7 @@ export default function JoinCard({
   benefitsHref = "#",
   className = "",
 }: JoinCardProps) {
+  const { trackJoinCard } = useButtonTracking();
   return (
     <div className={`w-full rounded-2xl bg-[#f4f3ee]/95 border border-black/10 shadow-sm p-4 sm:p-6 ${className}`}>
       <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-black mb-3">{title}</h2>
@@ -33,6 +36,7 @@ export default function JoinCard({
           href={discordHref}
           target="_blank"
           rel="noopener noreferrer"
+          onClick={() => trackJoinCard(FEATURE_FLAGS.JOIN_CARD.DISCORD)}
           className="inline-flex w-full items-center justify-center rounded-xl bg-black text-white px-4 py-3 text-sm sm:text-base font-semibold shadow hover:bg-white hover:text-black hover:scale-105 hover:shadow-lg transition-all duration-300 ease-in-out border border-transparent hover:border-black/20 min-h-[40px] touch-manipulation"
         >
           Join our Discord
@@ -41,6 +45,7 @@ export default function JoinCard({
           href={benefitsHref}
           target="_blank"
           rel="noopener noreferrer"
+          onClick={() => trackJoinCard(FEATURE_FLAGS.JOIN_CARD.BENEFITS)}
           className="inline-flex w-full items-center justify-center rounded-xl border border-black/20 bg-white text-black px-4 py-3 text-sm sm:text-base font-semibold hover:bg-black hover:text-white hover:scale-105 hover:shadow-lg hover:border-black transition-all duration-300 ease-in-out min-h-[40px] touch-manipulation"
         >
           Sign up to receive benefits

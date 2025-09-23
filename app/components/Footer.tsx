@@ -1,4 +1,10 @@
+'use client';
+
+import { useButtonTracking } from '@/lib/analytics';
+import { FEATURE_FLAGS } from '@/lib/analytics';
+
 export default function Footer() {
+  const { trackFooter } = useButtonTracking();
   return (
     <footer className="p-6 flex justify-between items-center">
       {/* Left side - Club info */}
@@ -16,6 +22,7 @@ export default function Footer() {
             href="https://github.com/shiven01"
             target="_blank"
             rel="noopener noreferrer"
+            onClick={() => trackFooter(FEATURE_FLAGS.FOOTER.GITHUB_PROFILE, { source: 'desktop' })}
             className="text-[#ffffff] hover:text-[#f4f3ee] transition-colors duration-200 font-medium flex items-center gap-1"
           >
             <svg 
@@ -36,6 +43,7 @@ export default function Footer() {
           href="https://github.com/shiven01"
           target="_blank"
           rel="noopener noreferrer"
+          onClick={() => trackFooter(FEATURE_FLAGS.FOOTER.GITHUB_PROFILE, { source: 'mobile' })}
           className="md:hidden text-[#ffffff] hover:text-[#f4f3ee] transition-colors duration-200"
           aria-label="Visit Shiven Shekar's GitHub"
         >

@@ -2,6 +2,8 @@
 
 import React from 'react';
 import { getCalendarSubscriptionUrl } from '@/lib/google/calendar';
+import { useButtonTracking } from '@/lib/analytics';
+import { FEATURE_FLAGS } from '@/lib/analytics';
 
 interface CalendarActionsProps {
   calendarId: string;
@@ -10,8 +12,13 @@ interface CalendarActionsProps {
 
 export default function CalendarActions({ calendarId, selectedDate }: CalendarActionsProps) {
   const subscriptionUrl = getCalendarSubscriptionUrl(calendarId);
+  const { trackCalendar } = useButtonTracking();
 
   const handleAddToCalendar = () => {
+    trackCalendar(FEATURE_FLAGS.CALENDAR.ADD_TO_CALENDAR, {
+      calendarId,
+      selectedDate: selectedDate?.toISOString()
+    });
     window.open(subscriptionUrl, '_blank', 'noopener,noreferrer');
   };
 

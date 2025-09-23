@@ -1,11 +1,17 @@
 'use client';
 
 import { useState } from 'react';
+import { useButtonTracking } from '@/lib/analytics';
+import { FEATURE_FLAGS } from '@/lib/analytics';
 
 export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const { trackNavigation, trackLogo } = useButtonTracking();
 
   const toggleMobileMenu = () => {
+    trackNavigation(FEATURE_FLAGS.NAVIGATION.MOBILE_MENU_TOGGLE, {
+      action: isMobileMenuOpen ? 'close' : 'open'
+    });
     setIsMobileMenuOpen(!isMobileMenuOpen);
   };
 
@@ -15,7 +21,11 @@ export default function Header() {
         <div className="flex items-center justify-between h-16">
           {/* Logo on the left */}
           <div className="flex-shrink-0">
-            <a href="/" className="group hover:scale-105 transition-all duration-200 inline-block px-4 py-3 rounded-lg hover:bg-white/10 min-h-[48px] flex items-center touch-manipulation">
+            <a 
+              href="/" 
+              onClick={() => trackLogo(FEATURE_FLAGS.LOGO.HOME_CLICK)}
+              className="group hover:scale-105 transition-all duration-200 inline-block px-4 py-3 rounded-lg hover:bg-white/10 min-h-[48px] flex items-center touch-manipulation"
+            >
               <h1 className="text-xl sm:text-2xl font-bold tracking-tight cursor-pointer font-sans whitespace-nowrap">
                 <span className="text-[#ffffff] group-hover:text-[#f4f3ee] transition-colors duration-200">ANTHROPIC</span> <span className="text-[#ffffff] group-hover:text-[#f4f3ee] transition-colors duration-200">@ ASU</span>
               </h1>
@@ -26,12 +36,14 @@ export default function Header() {
           <nav className="hidden md:flex items-center space-x-8">
             <a 
               href="/about"
+              onClick={() => trackNavigation(FEATURE_FLAGS.NAVIGATION.ABOUT)}
               className="text-[#ffffff] hover:text-[#f4f3ee] hover:scale-105 transition-all duration-200 font-medium font-sans px-4 py-3 rounded-md hover:bg-white/10 min-h-[48px] flex items-center touch-manipulation"
             >
               About
             </a>
             <a 
               href="/team"
+              onClick={() => trackNavigation(FEATURE_FLAGS.NAVIGATION.TEAM)}
               className="text-[#ffffff] hover:text-[#f4f3ee] hover:scale-105 transition-all duration-200 font-medium font-sans px-4 py-3 rounded-md hover:bg-white/10 min-h-[48px] flex items-center touch-manipulation"
             >
               Team
@@ -40,6 +52,7 @@ export default function Header() {
               href="https://docs.google.com/forms/d/e/1FAIpQLScP9LuFwiHEx806tv9zczjCIEzqO1Zjb-FjB4XWoa6BS1NNKQ/viewform"
               target="_blank"
               rel="noopener noreferrer"
+              onClick={() => trackNavigation(FEATURE_FLAGS.NAVIGATION.JOIN_US)}
               className="bg-[#ffffff] text-[#cc785c] px-6 py-3 rounded-lg hover:bg-[#cc785c] hover:text-[#ffffff] hover:scale-105 hover:shadow-lg transition-all duration-300 ease-in-out font-medium text-base font-sans border border-transparent hover:border-[#ffffff] min-h-[48px] flex items-center touch-manipulation"
             >
               Join Us
@@ -73,14 +86,20 @@ export default function Header() {
               <a 
                 href="/about"
                 className="block px-3 py-4 text-[#cc785c] hover:text-[#5d4e37] hover:bg-[#cc785c]/10 transition-all duration-200 font-medium font-sans rounded-lg min-h-[48px] flex items-center touch-manipulation"
-                onClick={() => setIsMobileMenuOpen(false)}
+                onClick={() => {
+                  trackNavigation(FEATURE_FLAGS.NAVIGATION.ABOUT, { source: 'mobile' });
+                  setIsMobileMenuOpen(false);
+                }}
               >
                 About
               </a>
               <a 
                 href="/team"
                 className="block px-3 py-4 text-[#cc785c] hover:text-[#5d4e37] hover:bg-[#cc785c]/10 transition-all duration-200 font-medium font-sans rounded-lg min-h-[48px] flex items-center touch-manipulation"
-                onClick={() => setIsMobileMenuOpen(false)}
+                onClick={() => {
+                  trackNavigation(FEATURE_FLAGS.NAVIGATION.TEAM, { source: 'mobile' });
+                  setIsMobileMenuOpen(false);
+                }}
               >
                 Team
               </a>
@@ -89,7 +108,10 @@ export default function Header() {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="block px-3 py-4 bg-[#cc785c] text-white hover:bg-[#5d4e37] hover:text-white transition-all duration-300 ease-in-out font-medium text-base font-sans border border-transparent hover:border-[#cc785c] rounded-lg min-h-[48px] flex items-center touch-manipulation mt-2"
-                onClick={() => setIsMobileMenuOpen(false)}
+                onClick={() => {
+                  trackNavigation(FEATURE_FLAGS.NAVIGATION.JOIN_US, { source: 'mobile' });
+                  setIsMobileMenuOpen(false);
+                }}
               >
                 Join Us
               </a>
