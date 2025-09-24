@@ -30,7 +30,7 @@ export default function CalendarGrid({
           {dayNames.map((day, index) => (
             <div
               key={index}
-              className="h-8 flex items-center justify-start pl-4"
+              className="h-8 flex items-center justify-start"
             >
               <div className="h-4 w-8 bg-[#b1ada1]/30 rounded"></div>
             </div>
@@ -57,7 +57,7 @@ export default function CalendarGrid({
         {dayNames.map((day, index) => (
           <div
             key={index}
-            className="h-8 flex items-center justify-start text-sm font-medium text-[#b1ada1] pl-4"
+            className="h-8 flex items-center justify-start text-sm font-medium text-[#b1ada1]"
           >
             {day}
           </div>
