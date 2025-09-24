@@ -2,6 +2,7 @@
 
 import React, { useEffect } from 'react';
 import { CalendarEvent } from '@/types/calendar';
+import DOMPurify from 'dompurify';
 
 interface EventModalProps {
   event: CalendarEvent | null;
@@ -11,6 +12,21 @@ interface EventModalProps {
 }
 
 export default function EventModal({ event, isOpen, onClose, onAddToCalendar }: EventModalProps) {
+  // Sanitize HTML content to prevent XSS while allowing safe tags like links
+  const sanitizeHTML = (html: string): string => {
+    // First, normalize self-closing tags to proper HTML format
+    const normalizedHTML = html
+      .replace(/<wbr\s*\/>/gi, '<wbr>')
+      .replace(/<br\s*\/>/gi, '<br>');
+    
+    return DOMPurify.sanitize(normalizedHTML, {
+      ALLOWED_TAGS: ['a', 'p', 'br', 'wbr', 'strong', 'em', 'u', 'ul', 'ol', 'li', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6'],
+      ALLOWED_ATTR: ['href', 'target', 'rel', 'class', 'id'],
+      ALLOW_DATA_ATTR: false,
+      ALLOW_UNKNOWN_PROTOCOLS: false,
+    });
+  };
+
   useEffect(() => {
     const handleEscape = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
@@ -126,9 +142,10 @@ export default function EventModal({ event, isOpen, onClose, onAddToCalendar }: 
           {event.description && (
             <div>
               <h4 className="text-sm font-medium text-[#f4f3ee] mb-2">Description</h4>
-              <p className="text-white/70 text-sm leading-relaxed">
-                {event.description}
-              </p>
+              <div 
+                className="text-white/70 text-sm leading-relaxed prose prose-sm prose-invert max-w-none"
+                dangerouslySetInnerHTML={{ __html: sanitizeHTML(event.description) }}
+              />
             </div>
           )}
           
