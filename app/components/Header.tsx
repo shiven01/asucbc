@@ -37,6 +37,12 @@ export default function Header() {
               Team
             </a>
             <a 
+              href="#"
+              className="text-[#ffffff] hover:text-[#f4f3ee] hover:scale-105 transition-all duration-200 font-medium font-sans px-4 py-3 rounded-md hover:bg-white/10 min-h-[48px] flex items-center touch-manipulation"
+            >
+              Careers
+            </a>
+            <a 
               href="https://docs.google.com/forms/d/e/1FAIpQLScP9LuFwiHEx806tv9zczjCIEzqO1Zjb-FjB4XWoa6BS1NNKQ/viewform"
               target="_blank"
               rel="noopener noreferrer"
@@ -83,6 +89,13 @@ export default function Header() {
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 Team
+              </a>
+              <a 
+                href="#"
+                className="block px-3 py-4 text-[#cc785c] hover:text-[#5d4e37] hover:bg-[#cc785c]/10 transition-all duration-200 font-medium font-sans rounded-lg min-h-[48px] flex items-center touch-manipulation"
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                Careers
               </a>
               <a 
                 href="https://docs.google.com/forms/d/e/1FAIpQLScP9LuFwiHEx806tv9zczjCIEzqO1Zjb-FjB4XWoa6BS1NNKQ/viewform"
