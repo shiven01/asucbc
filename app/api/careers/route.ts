@@ -62,7 +62,7 @@ export async function POST(request: NextRequest) {
 
     // Create email content
     const emailContent = `
-New Job Application Received
+New Officer Application Received
 
 Personal Information:
 - Name: ${fullName}
@@ -84,7 +84,7 @@ Application submitted on: ${new Date().toLocaleString()}
     const mailOptions = {
       from: process.env.SMTP_USER,
       to: process.env.RECIPIENT_EMAIL || process.env.SMTP_USER, // Fallback to sender if no recipient specified
-      subject: `New Job Application: ${fullName}`,
+      subject: `New Officer Application: ${fullName}`,
       text: emailContent,
       attachments: [
         {
@@ -97,7 +97,7 @@ Application submitted on: ${new Date().toLocaleString()}
     await transporter.sendMail(mailOptions);
 
     return NextResponse.json(
-      { message: 'Application submitted successfully' },
+      { message: 'Officer application submitted successfully' },
       { status: 200 }
     );
 

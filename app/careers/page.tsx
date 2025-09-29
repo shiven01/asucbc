@@ -11,14 +11,14 @@ export default function Careers() {
           {/* Page Header */}
           <div className="text-center mb-8 sm:mb-12">
             <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-[#ffffff] leading-tight mb-4">
-              Join Our <span className="text-[#f4f3ee] font-bold underline">Team</span>
+              Become an <span className="text-[#f4f3ee] font-bold underline">Officer</span>
             </h1>
             <p className="text-lg sm:text-xl text-[#f4f3ee] max-w-2xl mx-auto">
-              Help us build the future of AI at Arizona State University. We're looking for passionate individuals to join the Claude Builder Club leadership team.
+              Help us build the future of AI at Arizona State University. We're looking for passionate individuals to join the Claude Builder Club as officers and leaders.
             </p>
           </div>
 
-          {/* Job Application Form */}
+          {/* Officer Application Form */}
           <div className="bg-[#ffffff]/95 backdrop-blur-sm rounded-2xl p-6 sm:p-8 md:p-12 shadow-xl">
             <JobApplicationForm />
           </div>

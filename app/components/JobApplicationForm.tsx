@@ -162,7 +162,7 @@ export default function JobApplicationForm() {
     <div className="max-w-2xl mx-auto">
       <div className="mb-8">
         <h2 className="text-2xl sm:text-3xl font-bold text-[#5d4e37] mb-4">
-          Job Application Form
+          Officer Application Form
         </h2>
         <p className="text-[#5d4e37]/80 text-sm">
           All fields marked with * are required.
@@ -171,14 +171,14 @@ export default function JobApplicationForm() {
 
       {submitStatus === 'success' && (
         <div className="mb-6 p-4 bg-green-100 border border-green-400 text-green-700 rounded-lg">
-          <p className="font-medium">Application submitted successfully!</p>
+          <p className="font-medium">Officer application submitted successfully!</p>
           <p className="text-sm mt-1">We'll review your application and get back to you soon.</p>
         </div>
       )}
 
       {submitStatus === 'error' && (
         <div className="mb-6 p-4 bg-red-100 border border-red-400 text-red-700 rounded-lg">
-          <p className="font-medium">There was an error submitting your application.</p>
+          <p className="font-medium">There was an error submitting your officer application.</p>
           <p className="text-sm mt-1">Please try again or contact us directly.</p>
         </div>
       )}
@@ -372,7 +372,7 @@ export default function JobApplicationForm() {
                 Submitting...
               </span>
             ) : (
-              'Submit Application'
+              'Submit Officer Application'
             )}
           </button>
         </div>
