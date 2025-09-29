@@ -37,7 +37,7 @@ export default function Header() {
               Team
             </a>
             <a 
-              href="#"
+              href="/careers"
               className="text-[#ffffff] hover:text-[#f4f3ee] hover:scale-105 transition-all duration-200 font-medium font-sans px-4 py-3 rounded-md hover:bg-white/10 min-h-[48px] flex items-center touch-manipulation"
             >
               Careers
@@ -91,7 +91,7 @@ export default function Header() {
                 Team
               </a>
               <a 
-                href="#"
+                href="/careers"
                 className="block px-3 py-4 text-[#cc785c] hover:text-[#5d4e37] hover:bg-[#cc785c]/10 transition-all duration-200 font-medium font-sans rounded-lg min-h-[48px] flex items-center touch-manipulation"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
