@@ -43,6 +43,12 @@ export default function Header() {
               Careers
             </a>
             <a 
+              href="/app-submission"
+              className="relative bg-gradient-to-r from-yellow-400 to-orange-500 text-white px-6 py-3 rounded-lg hover:from-yellow-500 hover:to-orange-600 hover:scale-105 hover:shadow-lg transition-all duration-300 ease-in-out font-medium text-base font-sans min-h-[48px] flex items-center touch-manipulation"
+            >
+              Submit App
+            </a>
+            <a 
               href="https://docs.google.com/forms/d/e/1FAIpQLScP9LuFwiHEx806tv9zczjCIEzqO1Zjb-FjB4XWoa6BS1NNKQ/viewform"
               target="_blank"
               rel="noopener noreferrer"
@@ -96,6 +102,13 @@ export default function Header() {
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 Careers
+              </a>
+              <a 
+                href="/app-submission"
+                className="relative block px-3 py-4 bg-gradient-to-r from-yellow-400 to-orange-500 text-white hover:from-yellow-500 hover:to-orange-600 transition-all duration-300 ease-in-out font-medium text-base font-sans rounded-lg min-h-[48px] flex items-center touch-manipulation mt-2"
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                Submit App
               </a>
               <a 
                 href="https://docs.google.com/forms/d/e/1FAIpQLScP9LuFwiHEx806tv9zczjCIEzqO1Zjb-FjB4XWoa6BS1NNKQ/viewform"
