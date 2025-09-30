@@ -56,7 +56,6 @@ export default function CalendarContainer({ className = '' }: CalendarContainerP
         // Calculate which events should show details (first two upcoming events)
         const upcomingIds = getUpcomingEventIds(monthEvents);
         setUpcomingEventIds(upcomingIds);
-        console.log('Upcoming event IDs for details:', Array.from(upcomingIds));
       } catch (error) {
         console.error('Error loading events:', error);
         setCalendarState(prev => ({ 
