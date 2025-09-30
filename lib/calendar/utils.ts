@@ -119,13 +119,15 @@ export function createCalendarMonth(
   
   for (let i = firstDayOfWeek - 1; i >= 0; i--) {
     const date = new Date(prevYear, prevMonth, daysInPrevMonth - i);
+    const dayEvents = getEventsForDate(date, events);
+    
     days.push({
       date,
       isCurrentMonth: false,
       isToday: isToday(date),
       isSelected: selectedDate ? isSameDay(date, selectedDate) : false,
-      events: [],
-      hasEvents: false,
+      events: dayEvents,
+      hasEvents: dayEvents.length > 0,
     });
   }
   
@@ -152,14 +154,15 @@ export function createCalendarMonth(
     const nextMonth = month === 11 ? 0 : month + 1;
     const nextYear = month === 11 ? year + 1 : year;
     const date = new Date(nextYear, nextMonth, day);
+    const dayEvents = getEventsForDate(date, events);
     
     days.push({
       date,
       isCurrentMonth: false,
       isToday: isToday(date),
       isSelected: selectedDate ? isSameDay(date, selectedDate) : false,
-      events: [],
-      hasEvents: false,
+      events: dayEvents,
+      hasEvents: dayEvents.length > 0,
     });
   }
   
@@ -322,4 +325,45 @@ export function generateAddToCalendarUrl(event: CalendarEvent): string {
   });
   
   return `https://calendar.google.com/calendar/render?${params.toString()}`;
+}
+
+/**
+ * Get the first two upcoming events from the current day
+ * Returns a Set of event IDs that should show details
+ */
+export function getUpcomingEventIds(events: CalendarEvent[], referenceDate: Date = new Date()): Set<string> {
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+  
+  // Filter events that are today or in the future
+  const upcomingEvents = events.filter(event => {
+    const eventDate = event.start.dateTime 
+      ? new Date(event.start.dateTime)
+      : new Date(event.start.date!);
+    
+    eventDate.setHours(0, 0, 0, 0);
+    return eventDate >= today;
+  });
+  
+  // Sort by date (earliest first)
+  upcomingEvents.sort((a, b) => {
+    const dateA = a.start.dateTime 
+      ? new Date(a.start.dateTime)
+      : new Date(a.start.date!);
+    const dateB = b.start.dateTime 
+      ? new Date(b.start.dateTime)
+      : new Date(b.start.date!);
+    
+    return dateA.getTime() - dateB.getTime();
+  });
+  
+  // Return the first two upcoming events
+  return new Set(upcomingEvents.slice(0, 2).map(event => event.id));
+}
+
+/**
+ * Check if an event should show details (first two upcoming events only)
+ */
+export function shouldShowEventDetails(event: CalendarEvent, upcomingEventIds: Set<string>): boolean {
+  return upcomingEventIds.has(event.id);
 }

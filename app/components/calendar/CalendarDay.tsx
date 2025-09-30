@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { CalendarDay as CalendarDayType, CalendarEvent } from '@/types/calendar';
-import { truncateEventSummary, isCurrentDayOrClosestEventDay } from '@/lib/calendar/utils';
+import { truncateEventSummary, shouldShowEventDetails } from '@/lib/calendar/utils';
 import EventIndicator from './EventIndicator';
 
 interface CalendarDayProps {
@@ -10,9 +10,10 @@ interface CalendarDayProps {
   onSelect: () => void;
   onEventClick?: (event: CalendarEvent) => void;
   allEvents?: CalendarEvent[]; // All events in the calendar to find closest event
+  upcomingEventIds?: Set<string>; // IDs of events that should show details
 }
 
-export default function CalendarDay({ day, onSelect, onEventClick, allEvents = [] }: CalendarDayProps) {
+export default function CalendarDay({ day, onSelect, onEventClick, allEvents = [], upcomingEventIds = new Set() }: CalendarDayProps) {
   const dayNumber = day.date.getDate();
   const isCurrentMonth = day.isCurrentMonth;
   const isToday = day.isToday;
@@ -20,8 +21,8 @@ export default function CalendarDay({ day, onSelect, onEventClick, allEvents = [
   const hasEvents = day.hasEvents;
   
   // Check if this day should show event name instead of Claude logo
-  // Only show event name if: has events AND is in current month AND (is today OR is closest event day)
-  const shouldShowEventName = hasEvents && isCurrentMonth && isCurrentDayOrClosestEventDay(day.date, allEvents);
+  // Only show event name if: has events AND the first event should show details (first two upcoming events)
+  const shouldShowEventName = hasEvents && day.events.length > 0 && shouldShowEventDetails(day.events[0], upcomingEventIds);
 
   const handleDayClick = () => {
     if (hasEvents && day.events.length > 0 && onEventClick) {

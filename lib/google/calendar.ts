@@ -212,11 +212,36 @@ export async function getEventsForMonth(
   month: number,
   calendarId: string = GOOGLE_CALENDAR_ID
 ): Promise<CalendarEvent[]> {
-  const startDate = new Date(year, month, 1);
-  const endDate = new Date(year, month + 1, 0, 23, 59, 59);
+  // Get the first day of the month and find what day of the week it falls on
+  const firstDayOfMonth = new Date(year, month, 1);
+  const firstDayOfWeek = firstDayOfMonth.getDay(); // 0 = Sunday, 1 = Monday, etc.
+  
+  // Calculate the start date to include the previous month's visible days
+  // We want to go back to the start of the week that contains the first day of the month
+  const startDate = new Date(firstDayOfMonth);
+  startDate.setDate(startDate.getDate() - firstDayOfWeek);
+  
+  // Get the last day of the month and find what day of the week it falls on
+  const lastDayOfMonth = new Date(year, month + 1, 0);
+  const lastDayOfWeek = lastDayOfMonth.getDay();
+  
+  // Calculate the end date to include the next month's visible days
+  // We want to go forward to the end of the week that contains the last day of the month
+  const endDate = new Date(lastDayOfMonth);
+  endDate.setDate(endDate.getDate() + (6 - lastDayOfWeek));
+  endDate.setHours(23, 59, 59, 999);
   
   const timeMin = startDate.toISOString();
   const timeMax = endDate.toISOString();
+  
+  console.log('📅 getEventsForMonth called with:', { year, month, monthName: firstDayOfMonth.toLocaleString('default', { month: 'long' }) });
+  console.log('📅 Calendar grid range:', { 
+    startDate: startDate.toISOString(), 
+    endDate: endDate.toISOString(),
+    firstDayOfWeek,
+    lastDayOfWeek
+  });
+  console.log('📅 timeMin:', timeMin, 'timeMax:', timeMax);
   
   return fetchCalendarEvents(calendarId, timeMin, timeMax);
 }

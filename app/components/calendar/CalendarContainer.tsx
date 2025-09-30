@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { CalendarState, CalendarEvent } from '@/types/calendar';
-import { createCalendarMonth, getEventsForDate } from '@/lib/calendar/utils';
+import { createCalendarMonth, getEventsForDate, getUpcomingEventIds } from '@/lib/calendar/utils';
 import { getEventsForMonth } from '@/lib/google/calendar';
 import CalendarHeader from './CalendarHeader';
 import CalendarGrid from './CalendarGrid';
@@ -25,6 +25,7 @@ export default function CalendarContainer({ className = '' }: CalendarContainerP
   const [events, setEvents] = useState<CalendarEvent[]>([]);
   const [selectedEvent, setSelectedEvent] = useState<CalendarEvent | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [upcomingEventIds, setUpcomingEventIds] = useState<Set<string>>(new Set());
   const [calendarMonth, setCalendarMonth] = useState(
     createCalendarMonth(
       calendarState.currentDate.getFullYear(),
@@ -51,6 +52,11 @@ export default function CalendarContainer({ className = '' }: CalendarContainerP
         
         console.log('Loaded events:', monthEvents.length, monthEvents);
         setEvents(monthEvents);
+        
+        // Calculate which events should show details (first two upcoming events)
+        const upcomingIds = getUpcomingEventIds(monthEvents);
+        setUpcomingEventIds(upcomingIds);
+        console.log('Upcoming event IDs for details:', Array.from(upcomingIds));
       } catch (error) {
         console.error('Error loading events:', error);
         setCalendarState(prev => ({ 
@@ -134,6 +140,7 @@ export default function CalendarContainer({ className = '' }: CalendarContainerP
         onEventClick={handleEventClick}
         isLoading={calendarState.isLoading}
         allEvents={events}
+        upcomingEventIds={upcomingEventIds}
       />
       
       <CalendarActions
