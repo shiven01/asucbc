@@ -1,10 +1,4 @@
 {
-  "functions": {
-    "app/api/app-submission/route.ts": {
-      "maxDuration": 30,
-      "memory": 1024
-    }
-  },
   "regions": ["sfo1"],
   "framework": "nextjs"
 }
