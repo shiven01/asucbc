@@ -207,7 +207,7 @@ export default function Team() {
           </div>
 
           {/* Infinite Scrolling Team Members */}
-          <div className="relative overflow-hidden" style={{ paddingBottom: "40rem" }}>
+          <div className="relative overflow-hidden" style={{ paddingBottom: "27rem" }}>
             <div className="flex animate-scroll">
               {/* First set of team members */}
               {teamMembers.map((member, index) =>
