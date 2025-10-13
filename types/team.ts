@@ -4,6 +4,7 @@ export interface TeamMember {
   position: string;
   image: string;
   linkedinUrl?: string;
+  websiteUrl?: string;
   description?: string;
 }
 
@@ -79,5 +80,13 @@ export const teamMembers: TeamMember[] = [
     name: 'Sebastian',
     position: 'Technology',
     image: '/claude.svg',
+  },
+  {
+    id: 'ekagra',
+    name: 'Ekagra',
+    position: 'Technology',
+    image: '/ekagra.jpeg',
+    websiteUrl: 'https://ekagragupta.com/',
+    description: 'I\'m a senior studying Computer Science @ASU. Incoming intern @Google Drive. My interest lies in Distributed Systems and Machine Learning.'
   }
 ];
