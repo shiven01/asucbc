@@ -116,6 +116,7 @@ export default function Team() {
         key={memberId}
         className="flex flex-col items-center text-center flex-shrink-0 px-12 relative"
         style={{ width: "360px" }}
+        onMouseEnter={() => hasDescription && setOpenDropdown(memberId)}
         onMouseLeave={() => setOpenDropdown(null)}
       >
         <div className="relative mb-4">
@@ -132,9 +133,6 @@ export default function Team() {
         </h3>
         <div className="relative w-full flex justify-center">
           <button
-            onClick={() => hasDescription && toggleDropdown(memberId)}
-            onMouseEnter={() => hasDescription && setOpenDropdown(memberId)}
-            onFocus={() => hasDescription && setOpenDropdown(memberId)}
             className="text-[#cc785c] text-sm bg-[#ffffff] px-6 py-3 rounded-lg hover:bg-[#cc785c] hover:text-[#ffffff] hover:scale-105 transition-all duration-300 ease-in-out font-medium border border-transparent hover:border-[#ffffff] whitespace-nowrap"
             style={{ cursor: hasDescription ? 'pointer' : 'default', minWidth: '18rem' }}
           >
