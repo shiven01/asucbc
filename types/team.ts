@@ -87,6 +87,6 @@ export const teamMembers: TeamMember[] = [
     position: 'Technology',
     image: '/ekagra.jpeg',
     websiteUrl: 'https://ekagragupta.com/',
-    description: 'I\'m a senior studying Computer Science @ASU. Incoming intern @Google Drive. My interest lies in Distributed Systems and Machine Learning.'
+    description: 'I\'m a senior studying Computer Science @ASU. Incoming intern @Google. My interest lies in Distributed Systems and Machine Learning.'
   }
 ];
