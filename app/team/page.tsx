@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 
@@ -14,7 +14,7 @@ interface TeamMember {
 const teamMembers: TeamMember[] = [
   {
     name: "Shiven Shekar",
-    role: "Claude Builder Ambassador and President",
+    role: "President",
     image: "/shiven.jpeg",
     description:
       "I'm a senior studying Computer Science with a Software Engineering concentration at Arizona State University. My interests lie in AppliedML and Distributed Systems.",
@@ -77,6 +77,23 @@ const teamMembers: TeamMember[] = [
 
 export default function Team() {
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
+  const dropdownRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setOpenDropdown(null);
+      }
+    };
+
+    if (openDropdown) {
+      document.addEventListener("mousedown", handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [openDropdown]);
 
   const toggleDropdown = (memberId: string) => {
     setOpenDropdown(openDropdown === memberId ? null : memberId);
@@ -85,12 +102,13 @@ export default function Team() {
   const renderTeamMember = (member: TeamMember, index: number, setKey: string) => {
     const memberId = `${setKey}-${index}`;
     const hasDescription = !!member.description;
+    const isOpen = openDropdown === memberId;
 
     return (
       <div
         key={memberId}
-        className="flex flex-col items-center text-center flex-shrink-0 px-8 relative"
-        style={{ width: "250px" }}
+        className="flex flex-col items-center text-center flex-shrink-0 px-10 relative"
+        style={{ width: "300px" }}
       >
         <div className="relative mb-4">
           <div className="w-32 h-32 sm:w-40 sm:h-40 rounded-full overflow-hidden">
@@ -105,31 +123,27 @@ export default function Team() {
           {member.name}
         </h3>
         <div className="relative w-full">
-          {hasDescription ? (
-            <>
+          <button
+            onClick={() => hasDescription && toggleDropdown(memberId)}
+            className="text-[#cc785c] text-sm bg-[#ffffff] px-6 py-3 rounded-lg hover:bg-[#cc785c] hover:text-[#ffffff] hover:scale-105 transition-all duration-300 ease-in-out font-medium border border-transparent hover:border-[#ffffff] w-full"
+            style={{ cursor: hasDescription ? 'pointer' : 'default' }}
+          >
+            {member.role}
+          </button>
+          {isOpen && hasDescription && (
+            <div 
+              ref={dropdownRef}
+              className="absolute top-full mt-2 left-1/2 transform -translate-x-1/2 bg-white rounded-lg p-5 w-72 z-50 text-[#cc785c] text-xs leading-relaxed shadow-xl border-2 border-[#cc785c]"
+            >
               <button
-                onClick={() => toggleDropdown(memberId)}
-                className="text-[#f4f3ee] text-sm bg-[#cc785c] hover:bg-[#b5674d] px-4 py-2 rounded-lg transition-all duration-200 font-medium"
+                onClick={() => setOpenDropdown(null)}
+                className="absolute top-3 right-3 text-[#cc785c] hover:text-[#b5674d] font-bold text-xl w-8 h-8 flex items-center justify-center"
               >
-                {member.role}
+                ✕
               </button>
-              {openDropdown === memberId && (
-                <div className="absolute top-full mt-1 left-1/2 transform -translate-x-1/2 bg-white rounded-lg p-4 w-64 z-50 text-[#cc785c] text-xs leading-relaxed shadow-xl border-2 border-[#cc785c]">
-                  <button
-                    onClick={() => setOpenDropdown(null)}
-                    className="absolute top-2 right-2 text-[#cc785c] hover:text-[#b5674d] font-bold text-lg"
-                  >
-                    ✕
-                  </button>
-                  <div className="pt-2">
-                    {member.description}
-                  </div>
-                </div>
-              )}
-            </>
-          ) : (
-            <div className="text-[#f4f3ee] text-sm px-4 py-2">
-              {member.role}
+              <div className="pt-2 pr-8">
+                {member.description}
+              </div>
             </div>
           )}
         </div>
@@ -150,7 +164,7 @@ export default function Team() {
           </div>
 
           {/* Infinite Scrolling Team Members */}
-          <div className="relative overflow-hidden pb-64">
+          <div className="relative overflow-hidden" style={{ paddingBottom: "40rem" }}>
             <div className="flex animate-scroll">
               {/* First set of team members */}
               {teamMembers.map((member, index) =>
@@ -195,7 +209,7 @@ export default function Team() {
         }
 
         .animate-scroll {
-          animation: scroll 40s linear infinite;
+          animation: scroll 25s linear infinite;
         }
 
         .animate-scroll:hover {
