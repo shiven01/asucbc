@@ -114,8 +114,9 @@ export default function Team() {
     return (
       <div
         key={memberId}
-        className="flex flex-col items-center text-center flex-shrink-0 px-10 relative"
-        style={{ width: "300px" }}
+        className="flex flex-col items-center text-center flex-shrink-0 px-12 relative"
+        style={{ width: "360px" }}
+        onMouseLeave={() => setOpenDropdown(null)}
       >
         <div className="relative mb-4">
           <div className="w-32 h-32 sm:w-40 sm:h-40 rounded-full overflow-hidden">
@@ -129,11 +130,11 @@ export default function Team() {
         <h3 className="text-xl font-bold text-[#ffffff] mb-3">
           {member.name}
         </h3>
-        <div className="relative w-full">
+        <div className="relative w-full flex justify-center">
           <button
             onClick={() => hasDescription && toggleDropdown(memberId)}
-            className="text-[#cc785c] text-sm bg-[#ffffff] px-6 py-3 rounded-lg hover:bg-[#cc785c] hover:text-[#ffffff] hover:scale-105 transition-all duration-300 ease-in-out font-medium border border-transparent hover:border-[#ffffff] w-full whitespace-nowrap"
-            style={{ cursor: hasDescription ? 'pointer' : 'default' }}
+            className="text-[#cc785c] text-sm bg-[#ffffff] px-6 py-3 rounded-lg hover:bg-[#cc785c] hover:text-[#ffffff] hover:scale-105 transition-all duration-300 ease-in-out font-medium border border-transparent hover:border-[#ffffff] whitespace-nowrap"
+            style={{ cursor: hasDescription ? 'pointer' : 'default', minWidth: '18rem' }}
           >
             {member.role}
           </button>
@@ -144,7 +145,7 @@ export default function Team() {
             >
               <button
                 onClick={() => setOpenDropdown(null)}
-                className="absolute top-2 right-2 text-[#cc785c] hover:text-[#b5674d] font-bold text-lg w-6 h-6 flex items-center justify-center"
+                className="absolute top-1.5 right-1.5 text-[#cc785c] hover:text-[#b5674d] font-bold text-base w-5 h-5 flex items-center justify-center"
               >
                 ✕
               </button>
