@@ -3,90 +3,52 @@
 import { useState, useEffect, useRef } from "react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
-
-interface TeamMember {
-  name: string;
-  role: string;
-  image: string;
-  description?: string;
-  linkedin?: string;
-}
-
-const teamMembers: TeamMember[] = [
-  {
-    name: "Shiven",
-    role: "President",
-    image: "/shiven.jpeg",
-    description:
-      "I'm a senior studying Computer Science with a Software Engineering concentration at Arizona State University. My interests lie in AppliedML and Distributed Systems.",
-    linkedin: "https://www.linkedin.com/in/shiven-shekar/",
-  },
-  {
-    name: "Tino",
-    role: "Claude Ambassador",
-    image: "/tino.jpeg",
-    description:
-      "Tino brings a global perspective to technology and policy, having studied across four continents. She holds a BA in Psychology and Management from Monash University and is pursuing a Master in Global Management at ASU's Thunderbird School, where she serves as a Claude AI Ambassador. She specializes in technology, people, and policy, focusing on AI, cybersecurity, and emerging technologies.",
-    linkedin: "https://www.linkedin.com/in/heathermavunga/",
-  },
-  {
-    name: "Farnaz",
-    role: "Claude Builder Ambassador",
-    image: "/farnaz.jpg",
-    description:
-      "Farnaz is a PhD candidate in Educational Policy and Evaluation at Arizona State University's Mary Lou Fulton College for Teaching and Learning Innovation. Her doctoral research combines multilingual STEM education, curriculum policy, and generative AI to enhance teaching practices. She develops AI-driven solutions that support teachers in diverse classrooms, efforts that have been recognized through multiple awards, publications, and invited talks. Her most recent AI project, conducted through Principled Innovation® (one of nine design aspirations that guides the ongoing evolution of ASU as a New American University), has led to the development of an AI tool that will be launched in mid-October.",
-    linkedin: "https://www.linkedin.com/in/farnaz-avarzamani-a672069b/",
-  },
-  {
-    name: "Anjali",
-    role: "Technology",
-    image: "/claude.svg",
-  },
-  {
-    name: "Sathwin",
-    role: "Operations + Finance",
-    image: "/claude.svg",
-  },
-  {
-    name: "Ben",
-    role: "Head of Operations",
-    image: "/claude.svg",
-  },
-  {
-    name: "Erick",
-    role: "Business + Finance Public Outreach",
-    image: "/claude.svg",
-  },
-  {
-    name: "Hieu",
-    role: "Technology",
-    image: "/claude.svg",
-  },
-  {
-    name: "Joana",
-    role: "Head of Community Outreach",
-    image: "/claude.svg",
-  },
-  {
-    name: "John",
-    role: "Technology",
-    image: "/claude.svg",
-  },
-  {
-    name: "Sebastian",
-    role: "Outreach",
-    image: "/claude.svg",
-  },
-];
+import { TeamMember, teamMembers } from "../../types/team";
 
 export default function Team() {
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
   const dropdownRef = useRef<HTMLDivElement>(null);
   const [isTouch, setIsTouch] = useState(false);
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
+  const [scrollWidth, setScrollWidth] = useState<number>(0);
 
   useEffect(() => {
     setIsTouch(typeof window !== 'undefined' && ('ontouchstart' in window || (navigator as any).maxTouchPoints > 0));
   }, []);
+
+  useEffect(() => {
+    // Measure the actual width of one set of team members
+    const measureWidth = () => {
+      if (scrollContainerRef.current) {
+        const firstChild = scrollContainerRef.current.firstElementChild as HTMLElement;
+        if (firstChild) {
+          // The first child contains one complete set of team members
+          const children = Array.from(firstChild.children);
+          const halfCount = Math.floor(children.length / 2);
+          let totalWidth = 0;
+          
+          // Sum up the width of the first half (one complete set)
+          for (let i = 0; i < halfCount; i++) {
+            totalWidth += (children[i] as HTMLElement).offsetWidth;
+          }
+          
+          setScrollWidth(totalWidth);
+        }
+      }
+    };
+
+    // Measure after images load and on resize
+    measureWidth();
+    window.addEventListener('resize', measureWidth);
+    
+    // Also measure after a short delay to ensure images are loaded
+    const timer = setTimeout(measureWidth, 100);
+
+    return () => {
+      window.removeEventListener('resize', measureWidth);
+      clearTimeout(timer);
+    };
+  }, [isTouch]);
 
   useEffect(() => {
     const handleOutside = (event: Event) => {
@@ -157,7 +119,7 @@ export default function Team() {
             className="text-[#cc785c] text-sm bg-[#ffffff] px-5 sm:px-6 py-3 rounded-lg hover:bg-[#cc785c] hover:text-[#ffffff] hover:scale-105 transition-all duration-300 ease-in-out font-medium border border-transparent hover:border-[#ffffff] whitespace-nowrap"
             style={{ minWidth: isTouch ? '15rem' : '18rem' }}
           >
-            {member.role}
+            {member.position}
           </button>
           {isOpen && hasDescription && (
             <div 
@@ -170,9 +132,9 @@ export default function Team() {
               >
                 ✕
               </button>
-              {member.linkedin && (
+              {member.linkedinUrl && (
                 <a
-                  href={member.linkedin}
+                  href={member.linkedinUrl}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center justify-center mb-3 text-[#cc785c] hover:text-[#b5674d]"
@@ -207,8 +169,13 @@ export default function Team() {
           </div>
 
           {/* Infinite Scrolling Team Members */}
-          <div className="relative overflow-hidden" style={{ paddingBottom: "27rem" }}>
-            <div className="flex animate-scroll">
+          <div className="relative overflow-hidden" style={{ paddingBottom: "32rem" }} ref={scrollContainerRef}>
+            <div 
+              className={`flex ${openDropdown ? 'paused' : ''}`}
+              style={{
+                animation: scrollWidth > 0 ? `scroll-exact ${isTouch ? '40s' : '30s'} linear infinite` : 'none'
+              }}
+            >
               {/* First set of team members */}
               {teamMembers.map((member, index) =>
                 renderTeamMember(member, index, "team-1")
@@ -242,21 +209,17 @@ export default function Team() {
       <Footer />
 
       <style jsx>{`
-        @keyframes scroll {
+        @keyframes scroll-exact {
           0% {
             transform: translateX(0);
           }
           100% {
-            transform: translateX(-50%);
+            transform: translateX(-${scrollWidth}px);
           }
         }
 
-        .animate-scroll {
-          animation: scroll 25s linear infinite;
-        }
-
-        .animate-scroll:hover {
-          animation-play-state: paused;
+        .paused {
+          animation-play-state: paused !important;
         }
       `}</style>
     </div>
