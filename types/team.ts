@@ -4,7 +4,7 @@ export interface TeamMember {
   position: string;
   image: string;
   linkedinUrl?: string;
-  description: string;
+  description?: string;
 }
 
 export const teamMembers: TeamMember[] = [
@@ -37,55 +37,47 @@ export const teamMembers: TeamMember[] = [
     name: 'Anjali',
     position: 'Technology',
     image: '/claude.svg',
-    description: 'Anjali is a key member of our technology team, bringing expertise in software development and technical innovation.'
   },
   {
     id: 'sathwin',
     name: 'Sathwin',
     position: 'Operations + Finance',
     image: '/claude.svg',
-    description: 'Sathwin manages our operations and finance, ensuring the smooth running of our organization\'s administrative and financial processes.'
   },
   {
     id: 'ben',
     name: 'Ben',
     position: 'Head of Operations',
     image: '/claude.svg',
-    description: 'Ben leads our operations team, overseeing strategic planning and execution of our organizational initiatives.'
   },
   {
     id: 'erick',
     name: 'Erick',
     position: 'Business + Finance Outreach',
     image: '/claude.svg',
-    description: 'Erick handles business development, finance, and public outreach, building connections between our organization and the broader community.'
   },
   {
     id: 'hieu',
     name: 'Hieu',
     position: 'Technology',
     image: '/claude.svg',
-    description: 'Hieu is a technology specialist contributing to our technical infrastructure and development projects.'
   },
   {
     id: 'joana',
     name: 'Joana',
     position: 'Community Outreach',
     image: '/claude.svg',
-    description: 'Joana leads our community outreach efforts, building relationships and fostering engagement with our target communities.'
   },
   {
     id: 'john',
     name: 'John',
     position: 'Technology',
     image: '/claude.svg',
-    description: 'John is a technology team member focused on developing innovative solutions and maintaining our technical systems.'
   },
   {
     id: 'sebastian',
     name: 'Sebastian',
     position: 'Technology',
     image: '/claude.svg',
-    description: 'Sebastian handles outreach activities, connecting with various stakeholders and expanding our network.'
   }
 ];
