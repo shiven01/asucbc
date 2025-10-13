@@ -133,6 +133,8 @@ export default function Team() {
         <div className="relative w-full flex justify-center">
           <button
             onClick={() => hasDescription && toggleDropdown(memberId)}
+            onMouseEnter={() => hasDescription && setOpenDropdown(memberId)}
+            onFocus={() => hasDescription && setOpenDropdown(memberId)}
             className="text-[#cc785c] text-sm bg-[#ffffff] px-6 py-3 rounded-lg hover:bg-[#cc785c] hover:text-[#ffffff] hover:scale-105 transition-all duration-300 ease-in-out font-medium border border-transparent hover:border-[#ffffff] whitespace-nowrap"
             style={{ cursor: hasDescription ? 'pointer' : 'default', minWidth: '18rem' }}
           >
