@@ -11,12 +11,12 @@ export default function HackathonPromo({ className = '' }: HackathonPromoProps) 
   if (!showHackathonPromo) return null;
 
   return (
-    <div className={`hackathon-promo relative w-full rounded-2xl overflow-hidden ${className}`}>
+    <div className={`hackathon-promo relative w-full rounded-2xl overflow-hidden animate-pulse-scale ${className}`}>
       {/* Animated border gradient */}
       <div className="absolute inset-0 bg-gradient-to-r from-[#FFD700] via-[#ff8c42] to-[#FFD700] bg-[length:200%_100%] animate-shimmer rounded-2xl" />
       
       {/* Inner content with glow effect */}
-      <div className="relative m-[3px] rounded-2xl bg-gradient-to-br from-[#1a1a1a] to-[#2a2a2a] p-6 sm:p-8 animate-pulse-scale shadow-glow">
+      <div className="relative m-[3px] rounded-2xl bg-gradient-to-br from-[#1a1a1a] to-[#2a2a2a] p-6 sm:p-8 shadow-glow">
         {/* Glowing badge */}
         <div className="inline-block mb-4 px-4 py-1.5 bg-gradient-to-r from-[#FFD700] to-[#ff8c42] rounded-full">
           <span className="text-black font-bold text-sm uppercase tracking-wider">
