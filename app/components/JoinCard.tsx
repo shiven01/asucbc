@@ -16,15 +16,15 @@ export default function JoinCard({
   className = "",
 }: JoinCardProps) {
   return (
-    <div className={`w-full rounded-2xl bg-[#f4f3ee]/95 border border-black/10 shadow-sm p-4 sm:p-6 ${className}`}>
-      <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-black mb-3">{title}</h2>
-      <p className="text-sm sm:text-base text-black/70 leading-relaxed mb-4">{subtitle}</p>
-      <ul className="list-disc pl-4 text-sm sm:text-base text-black/80 space-y-1 mb-4">
+    <div className={`w-full rounded-2xl bg-[var(--theme-card-bg)] border border-[var(--theme-card-border)] shadow-sm p-4 sm:p-6 ${className}`}>
+      <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-[var(--theme-text-dark)] mb-3">{title}</h2>
+      <p className="text-sm sm:text-base text-[var(--theme-text-dark)]/70 leading-relaxed mb-4">{subtitle}</p>
+      <ul className="list-disc pl-4 text-sm sm:text-base text-[var(--theme-text-dark)]/80 space-y-1 mb-4">
         <li>Free Claude Pro + $50 in API credits</li>
         <li>Hands-on workshops and resources</li>
         <li>Exclusive merchandise</li>
       </ul>
-      <p className="text-xs sm:text-sm text-black/60 italic mb-4">
+      <p className="text-xs sm:text-sm text-[var(--theme-text-dark)]/60 italic mb-4">
         **Benefits require attendance at a CBC event for activation**
       </p>
 
@@ -33,7 +33,7 @@ export default function JoinCard({
           href={discordHref}
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex w-full items-center justify-center rounded-xl bg-black text-white px-4 py-3 text-sm sm:text-base font-semibold shadow hover:bg-white hover:text-black hover:scale-105 hover:shadow-lg transition-all duration-300 ease-in-out border border-transparent hover:border-black/20 min-h-[40px] touch-manipulation"
+          className="inline-flex w-full items-center justify-center rounded-xl bg-[var(--theme-button-text)] text-[var(--theme-card-bg)] px-4 py-3 text-sm sm:text-base font-semibold shadow hover:bg-[var(--theme-card-bg)] hover:text-[var(--theme-button-text)] hover:scale-105 hover:shadow-lg transition-all duration-300 ease-in-out border border-transparent hover:border-[var(--theme-card-border)] min-h-[40px] touch-manipulation"
         >
           Join our Discord
         </Link>
@@ -41,7 +41,7 @@ export default function JoinCard({
           href={benefitsHref}
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex w-full items-center justify-center rounded-xl border border-black/20 bg-white text-black px-4 py-3 text-sm sm:text-base font-semibold hover:bg-black hover:text-white hover:scale-105 hover:shadow-lg hover:border-black transition-all duration-300 ease-in-out min-h-[40px] touch-manipulation"
+          className="inline-flex w-full items-center justify-center rounded-xl border border-[var(--theme-card-border)] bg-[var(--theme-card-bg)] text-[var(--theme-button-text)] px-4 py-3 text-sm sm:text-base font-semibold hover:bg-[var(--theme-button-text)] hover:text-[var(--theme-card-bg)] hover:scale-105 hover:shadow-lg hover:border-[var(--theme-button-text)] transition-all duration-300 ease-in-out min-h-[40px] touch-manipulation"
         >
           Sign up to receive benefits
         </Link>

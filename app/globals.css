@@ -1,11 +1,51 @@
 @import "tailwindcss";
 
+/* Default Theme Variables */
 :root {
   --background: #cc785c;
   --foreground: #5d4e37;
   --primary: #faf7f2;
   --secondary: #d4c4a8;
   --white: #5d4e37;
+  
+  /* Theme Colors */
+  --theme-bg: #cc785c;
+  --theme-text-primary: #ffffff;
+  --theme-text-accent: #f4f3ee;
+  --theme-text-dark: #5d4e37;
+  --theme-card-bg: #faf7f2;
+  --theme-card-border: rgba(0, 0, 0, 0.1);
+  --theme-button-bg: #ffffff;
+  --theme-button-text: #cc785c;
+  --theme-button-hover-bg: #cc785c;
+  --theme-button-hover-text: #ffffff;
+  --theme-button-hover-border: #ffffff;
+  --theme-pattern-color: rgba(255, 255, 255, 0.1);
+  --theme-pattern-color-light: rgba(255, 255, 255, 0.05);
+}
+
+/* Halloween Theme Variables */
+.halloween-theme {
+  --background: #0a0a0a;
+  --foreground: #ffffff;
+  --primary: #1a1a1a;
+  --secondary: #ff8c42;
+  --white: #ffffff;
+  
+  /* Halloween Theme Colors */
+  --theme-bg: #0a0a0a;
+  --theme-text-primary: #ffffff;
+  --theme-text-accent: #ff8c42;
+  --theme-text-dark: #ffffff;
+  --theme-card-bg: #1a1a1a;
+  --theme-card-border: rgba(255, 140, 66, 0.3);
+  --theme-button-bg: #ff8c42;
+  --theme-button-text: #000000;
+  --theme-button-hover-bg: #ffffff;
+  --theme-button-hover-text: #ff8c42;
+  --theme-button-hover-border: #ff8c42;
+  --theme-pattern-color: rgba(255, 140, 66, 0.08);
+  --theme-pattern-color-light: rgba(255, 140, 66, 0.04);
 }
 
 @theme inline {
@@ -15,7 +55,7 @@
 }
 
 @media (prefers-color-scheme: dark) {
-  :root {
+  :root:not(.halloween-theme) {
     --background: #cc785c;
     --foreground: #5d4e37;
   }
@@ -24,10 +64,10 @@
 body {
   background: var(--background);
   background-image: 
-    linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px),
-    linear-gradient(180deg, rgba(255,255,255,0.1) 1px, transparent 1px),
-    linear-gradient(45deg, rgba(255,255,255,0.05) 1px, transparent 1px),
-    linear-gradient(-45deg, rgba(255,255,255,0.05) 1px, transparent 1px);
+    linear-gradient(90deg, var(--theme-pattern-color) 1px, transparent 1px),
+    linear-gradient(180deg, var(--theme-pattern-color) 1px, transparent 1px),
+    linear-gradient(45deg, var(--theme-pattern-color-light) 1px, transparent 1px),
+    linear-gradient(-45deg, var(--theme-pattern-color-light) 1px, transparent 1px);
   background-size: 
     20px 20px,
     20px 20px,
@@ -50,10 +90,10 @@ body {
 .mesh-background {
   background: var(--background);
   background-image: 
-    linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px),
-    linear-gradient(180deg, rgba(255,255,255,0.1) 1px, transparent 1px),
-    linear-gradient(45deg, rgba(255,255,255,0.05) 1px, transparent 1px),
-    linear-gradient(-45deg, rgba(255,255,255,0.05) 1px, transparent 1px);
+    linear-gradient(90deg, var(--theme-pattern-color) 1px, transparent 1px),
+    linear-gradient(180deg, var(--theme-pattern-color) 1px, transparent 1px),
+    linear-gradient(45deg, var(--theme-pattern-color-light) 1px, transparent 1px),
+    linear-gradient(-45deg, var(--theme-pattern-color-light) 1px, transparent 1px);
   background-size: 
     20px 20px,
     20px 20px,

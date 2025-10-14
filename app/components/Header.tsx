@@ -17,7 +17,7 @@ export default function Header() {
           <div className="flex-shrink-0">
             <a href="/" className="group hover:scale-105 transition-all duration-200 inline-block px-4 py-3 rounded-lg hover:bg-white/10 min-h-[48px] flex items-center touch-manipulation">
               <h1 className="text-xl sm:text-2xl font-bold tracking-tight cursor-pointer font-sans whitespace-nowrap">
-                <span className="text-[#ffffff] group-hover:text-[#f4f3ee] transition-colors duration-200">ANTHROPIC</span> <span className="text-[#ffffff] group-hover:text-[#f4f3ee] transition-colors duration-200">@ ASU</span>
+                <span className="text-[var(--theme-text-primary)] group-hover:text-[var(--theme-text-accent)] transition-colors duration-200">ANTHROPIC</span> <span className="text-[var(--theme-text-primary)] group-hover:text-[var(--theme-text-accent)] transition-colors duration-200">@ ASU</span>
               </h1>
             </a>
           </div>
@@ -26,19 +26,19 @@ export default function Header() {
           <nav className="hidden md:flex items-center space-x-8">
             <a 
               href="/about"
-              className="text-[#ffffff] hover:text-[#f4f3ee] hover:scale-105 transition-all duration-200 font-medium font-sans px-4 py-3 rounded-md hover:bg-white/10 min-h-[48px] flex items-center touch-manipulation"
+              className="text-[var(--theme-text-primary)] hover:text-[var(--theme-text-accent)] hover:scale-105 transition-all duration-200 font-medium font-sans px-4 py-3 rounded-md hover:bg-white/10 min-h-[48px] flex items-center touch-manipulation"
             >
               About
             </a>
             <a 
               href="/team"
-              className="text-[#ffffff] hover:text-[#f4f3ee] hover:scale-105 transition-all duration-200 font-medium font-sans px-4 py-3 rounded-md hover:bg-white/10 min-h-[48px] flex items-center touch-manipulation"
+              className="text-[var(--theme-text-primary)] hover:text-[var(--theme-text-accent)] hover:scale-105 transition-all duration-200 font-medium font-sans px-4 py-3 rounded-md hover:bg-white/10 min-h-[48px] flex items-center touch-manipulation"
             >
               Team
             </a>
             <a 
               href="/careers"
-              className="text-[#ffffff] hover:text-[#f4f3ee] hover:scale-105 transition-all duration-200 font-medium font-sans px-4 py-3 rounded-md hover:bg-white/10 min-h-[48px] flex items-center touch-manipulation"
+              className="text-[var(--theme-text-primary)] hover:text-[var(--theme-text-accent)] hover:scale-105 transition-all duration-200 font-medium font-sans px-4 py-3 rounded-md hover:bg-white/10 min-h-[48px] flex items-center touch-manipulation"
             >
               Careers
             </a>
@@ -46,7 +46,7 @@ export default function Header() {
               href="https://docs.google.com/forms/d/e/1FAIpQLScP9LuFwiHEx806tv9zczjCIEzqO1Zjb-FjB4XWoa6BS1NNKQ/viewform"
               target="_blank"
               rel="noopener noreferrer"
-              className="bg-[#ffffff] text-[#cc785c] px-6 py-3 rounded-lg hover:bg-[#cc785c] hover:text-[#ffffff] hover:scale-105 hover:shadow-lg transition-all duration-300 ease-in-out font-medium text-base font-sans border border-transparent hover:border-[#ffffff] min-h-[48px] flex items-center touch-manipulation"
+              className="bg-[var(--theme-button-bg)] text-[var(--theme-button-text)] px-6 py-3 rounded-lg hover:bg-[var(--theme-button-hover-bg)] hover:text-[var(--theme-button-hover-text)] hover:scale-105 hover:shadow-lg transition-all duration-300 ease-in-out font-medium text-base font-sans border border-transparent hover:border-[var(--theme-button-hover-border)] min-h-[48px] flex items-center touch-manipulation"
             >
               Join Us
             </a>
@@ -56,7 +56,7 @@ export default function Header() {
           <div className="md:hidden">
             <button 
               onClick={toggleMobileMenu}
-              className="text-[#ffffff] hover:text-[#f4f3ee] transition-colors duration-200 font-sans p-2 rounded-lg hover:bg-white/10 min-h-[48px] min-w-[48px] flex items-center justify-center touch-manipulation"
+              className="text-[var(--theme-text-primary)] hover:text-[var(--theme-text-accent)] transition-colors duration-200 font-sans p-2 rounded-lg hover:bg-white/10 min-h-[48px] min-w-[48px] flex items-center justify-center touch-manipulation"
               aria-label="Toggle mobile menu"
             >
               {isMobileMenuOpen ? (
@@ -75,24 +75,24 @@ export default function Header() {
         {/* Mobile menu */}
         {isMobileMenuOpen && (
           <div className="md:hidden">
-            <div className="px-2 pt-2 pb-3 space-y-1 bg-white/95 backdrop-blur-sm border-t border-[#cc785c]/20 rounded-b-2xl">
+            <div className="px-2 pt-2 pb-3 space-y-1 bg-[var(--theme-card-bg)] backdrop-blur-sm border-t border-[var(--theme-card-border)] rounded-b-2xl">
               <a 
                 href="/about"
-                className="block px-3 py-4 text-[#cc785c] hover:text-[#5d4e37] hover:bg-[#cc785c]/10 transition-all duration-200 font-medium font-sans rounded-lg min-h-[48px] flex items-center touch-manipulation"
+                className="block px-3 py-4 text-[var(--theme-button-text)] hover:text-[var(--theme-text-accent)] hover:bg-[var(--theme-button-bg)]/10 transition-all duration-200 font-medium font-sans rounded-lg min-h-[48px] flex items-center touch-manipulation"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 About
               </a>
               <a 
                 href="/team"
-                className="block px-3 py-4 text-[#cc785c] hover:text-[#5d4e37] hover:bg-[#cc785c]/10 transition-all duration-200 font-medium font-sans rounded-lg min-h-[48px] flex items-center touch-manipulation"
+                className="block px-3 py-4 text-[var(--theme-button-text)] hover:text-[var(--theme-text-accent)] hover:bg-[var(--theme-button-bg)]/10 transition-all duration-200 font-medium font-sans rounded-lg min-h-[48px] flex items-center touch-manipulation"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 Team
               </a>
               <a 
                 href="/careers"
-                className="block px-3 py-4 text-[#cc785c] hover:text-[#5d4e37] hover:bg-[#cc785c]/10 transition-all duration-200 font-medium font-sans rounded-lg min-h-[48px] flex items-center touch-manipulation"
+                className="block px-3 py-4 text-[var(--theme-button-text)] hover:text-[var(--theme-text-accent)] hover:bg-[var(--theme-button-bg)]/10 transition-all duration-200 font-medium font-sans rounded-lg min-h-[48px] flex items-center touch-manipulation"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 Careers
@@ -101,7 +101,7 @@ export default function Header() {
                 href="https://docs.google.com/forms/d/e/1FAIpQLScP9LuFwiHEx806tv9zczjCIEzqO1Zjb-FjB4XWoa6BS1NNKQ/viewform"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="block px-3 py-4 bg-[#cc785c] text-white hover:bg-[#5d4e37] hover:text-white transition-all duration-300 ease-in-out font-medium text-base font-sans border border-transparent hover:border-[#cc785c] rounded-lg min-h-[48px] flex items-center touch-manipulation mt-2"
+                className="block px-3 py-4 bg-[var(--theme-button-bg)] text-[var(--theme-button-text)] hover:bg-[var(--theme-button-hover-bg)] hover:text-[var(--theme-button-hover-text)] transition-all duration-300 ease-in-out font-medium text-base font-sans border border-transparent hover:border-[var(--theme-button-hover-border)] rounded-lg min-h-[48px] flex items-center touch-manipulation mt-2"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 Join Us
