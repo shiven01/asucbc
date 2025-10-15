@@ -3,6 +3,7 @@ import { Poppins } from "next/font/google";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { isHalloweenTheme } from "./theme-config";
+import HalloweenThemeProvider from "./components/HalloweenThemeProvider";
 import "./globals.css";
 
 const poppins = Poppins({
@@ -29,7 +30,9 @@ export default function RootLayout({
       <body
         className={`${poppins.variable} antialiased ${isHalloweenTheme ? 'halloween-theme' : ''}`}
       >
-        {children}
+        <HalloweenThemeProvider>
+          {children}
+        </HalloweenThemeProvider>
         <Analytics />
         <SpeedInsights />
       </body>
