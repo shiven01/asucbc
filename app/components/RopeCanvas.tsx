@@ -31,7 +31,28 @@ const RopeCanvas: React.FC<RopeCanvasProps> = ({
     y: window.innerHeight / 2,
   });
   const animationRef = useRef<number | null>(null);
-  const [anchorPoint, setAnchorPoint] = useState(initialAnchorPoint);
+
+  // Load anchor point from localStorage on mount, or use initial value
+  const [anchorPoint, setAnchorPoint] = useState(() => {
+    if (typeof window !== 'undefined') {
+      const saved = localStorage.getItem('ropeAnchorPoint');
+      if (saved) {
+        try {
+          return JSON.parse(saved);
+        } catch {
+          return initialAnchorPoint;
+        }
+      }
+    }
+    return initialAnchorPoint;
+  });
+
+  // Save anchor point to localStorage whenever it changes
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('ropeAnchorPoint', JSON.stringify(anchorPoint));
+    }
+  }, [anchorPoint]);
 
   const resetRopeCanvas = (anchor = anchorPoint) => {
     const newPoints: Point[] = [];
