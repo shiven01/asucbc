@@ -204,24 +204,6 @@ export default function Team() {
               )}
             </div>
           </div>
-
-          {/* Call to Action */}
-          <div className="text-center mt-16">
-            <h2 className="text-2xl font-bold text-[#ffffff] mb-4">
-              Want to Join Our Team?
-            </h2>
-            <p className="text-[#f4f3ee] mb-6 max-w-2xl mx-auto">
-              We're always looking for passionate individuals who want to make a difference in the AI community at ASU.
-            </p>
-            <a
-              href="https://mail.google.com/mail/u/0/?fs=1&tf=cm&source=mailto&to=sshekar9@asu.edu"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-block bg-[#ffffff] text-[#cc785c] px-8 py-3 rounded-lg hover:bg-[#cc785c] hover:text-[#ffffff] hover:scale-105 hover:shadow-lg transition-all duration-300 ease-in-out font-medium text-lg font-sans border border-transparent hover:border-[#ffffff]"
-            >
-              Apply Now
-            </a>
-          </div>
         </div>
       </div>
       <Footer />

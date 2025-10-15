@@ -10,6 +10,12 @@ export interface TeamMember {
 
 export const teamMembers: TeamMember[] = [
   {
+    id: 'punya',
+    name: 'Punya',
+    position: 'Advisor',
+    image: '/claude.svg',
+  },
+  {
     id: 'shiven',
     name: 'Shiven',
     position: 'President',
