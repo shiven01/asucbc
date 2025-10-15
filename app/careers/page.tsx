@@ -1,11 +1,9 @@
 import Header from "../components/Header";
 import Footer from "../components/Footer";
-import HalloweenDecorations from "../components/HalloweenDecorations";
 
 export default function Careers() {
   return (
     <div className="min-h-screen flex flex-col relative">
-      <HalloweenDecorations />
       <Header />
       <div className="font-sans flex-1 flex items-center justify-center px-4 relative z-10">
         <div className="text-center">

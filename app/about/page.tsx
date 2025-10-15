@@ -1,12 +1,10 @@
 import Image from "next/image";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
-import HalloweenDecorations from "../components/HalloweenDecorations";
 
 export default function About() {
   return (
     <div className="min-h-screen relative">
-      <HalloweenDecorations />
       <Header />
       <div className="font-sans min-h-screen p-8 pb-20 sm:p-20 relative z-10">
         <div className="max-w-6xl mx-auto">
