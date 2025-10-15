@@ -34,7 +34,6 @@ const RopeCanvas: React.FC<RopeCanvasProps> = ({
   const [anchorPoint, setAnchorPoint] = useState(initialAnchorPoint);
 
   const resetRopeCanvas = (anchor = anchorPoint) => {
-    const spacing = length / segments;
     const newPoints: Point[] = [];
 
     for (let i = 0; i <= segments; i++) {
@@ -53,8 +52,13 @@ const RopeCanvas: React.FC<RopeCanvasProps> = ({
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
 
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
+    // Set canvas size to viewport (we handle scroll offsets in drawing)
+    const updateCanvasSize = () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    };
+
+    updateCanvasSize();
 
     const gravity = 0.5;
     const friction = 0.98;
@@ -64,14 +68,15 @@ const RopeCanvas: React.FC<RopeCanvasProps> = ({
     resetRopeCanvas(anchorPoint);
 
     const handleMouseMove = (e: MouseEvent) => {
-      mouseRef.current.x = e.clientX + cursorOffset.x;
-      mouseRef.current.y = e.clientY + cursorOffset.y;
+      // Add scroll offset to track position relative to document, not viewport
+      mouseRef.current.x = e.clientX + window.scrollX + cursorOffset.x;
+      mouseRef.current.y = e.clientY + window.scrollY + cursorOffset.y;
     };
 
     const handleClick = (e: MouseEvent) => {
-      // Apply cursor offset to click position before snapping
-      const clickX = e.clientX + cursorOffset.x;
-      const clickY = e.clientY + cursorOffset.y;
+      // Apply cursor offset and scroll position to click position before snapping
+      const clickX = e.clientX + window.scrollX + cursorOffset.x;
+      const clickY = e.clientY + window.scrollY + cursorOffset.y;
       const snappedX = Math.round(clickX / 20) * 20;
       const snappedY = Math.round(clickY / 20) * 20;
       const newAnchor = { x: snappedX, y: snappedY };
@@ -80,8 +85,7 @@ const RopeCanvas: React.FC<RopeCanvasProps> = ({
     };
 
     const handleResize = () => {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
+      updateCanvasSize();
     };
 
     window.addEventListener("mousemove", handleMouseMove);
@@ -143,8 +147,15 @@ const RopeCanvas: React.FC<RopeCanvasProps> = ({
       ctx.strokeStyle = strokeColor;
       ctx.lineWidth = strokeWidth;
       ctx.beginPath();
-      ctx.moveTo(pts[0].x, pts[0].y);
-      for (let i = 1; i < pts.length; i++) ctx.lineTo(pts[i].x, pts[i].y);
+
+      // Adjust drawing position based on scroll offset
+      const scrollX = window.scrollX;
+      const scrollY = window.scrollY;
+
+      ctx.moveTo(pts[0].x - scrollX, pts[0].y - scrollY);
+      for (let i = 1; i < pts.length; i++) {
+        ctx.lineTo(pts[i].x - scrollX, pts[i].y - scrollY);
+      }
       ctx.stroke();
 
       animationRef.current = requestAnimationFrame(update);
@@ -165,9 +176,11 @@ const RopeCanvas: React.FC<RopeCanvasProps> = ({
     <canvas
       ref={canvasRef}
       style={{
-        position: "absolute",
+        position: "fixed",
         top: 0,
         left: 0,
+        width: "100vw",
+        height: "100vh",
         background: "transparent",
         pointerEvents: "none",
         zIndex: 9999,
