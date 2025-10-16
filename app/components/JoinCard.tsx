@@ -34,18 +34,18 @@ export default function JoinCard({
     <div
       className={`w-full rounded-2xl bg-[var(--theme-card-bg)] border-2 border-[var(--theme-card-border)] shadow-sm p-4 sm:p-6 ${className}`}
     >
-      <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-[var(--theme-text-dark)] mb-3">
+      <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-black mb-3">
         {title}
       </h2>
-      <p className="text-sm sm:text-base text-[var(--theme-text-dark)]/70 leading-relaxed mb-4">
+      <p className="text-sm sm:text-base text-black/70 leading-relaxed mb-4">
         {subtitle}
       </p>
-      <ul className="list-disc pl-4 text-sm sm:text-base text-[var(--theme-text-dark)]/80 space-y-1 mb-4">
+      <ul className="list-disc pl-4 text-sm sm:text-base text-black/80 space-y-1 mb-4">
         <li>Free Claude Pro + $50 in API credits</li>
         <li>Hands-on workshops and resources</li>
         <li>Exclusive merchandise</li>
       </ul>
-      <p className="text-xs sm:text-sm text-[var(--theme-text-dark)]/60 italic mb-4">
+      <p className="text-xs sm:text-sm text-black/60 italic mb-4">
         **Benefits require attendance at a CBC event for activation**
       </p>
 
