@@ -61,13 +61,6 @@ export default function HackathonPromo({
 
         {/* Content overlay */}
         <div className="relative p-3 sm:p-4">
-          {/* Glowing badge */}
-          <div className="inline-block mb-2 px-3 py-1 bg-white rounded-full">
-            <span className="text-black font-bold text-sm uppercase tracking-wider">
-              🎃 Featured Event
-            </span>
-          </div>
-
         <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-white mb-3 leading-tight text-shadow-strong">
           Spooky Hackathon 2025
         </h2>
