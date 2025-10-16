@@ -139,7 +139,7 @@ export default function Team() {
                       href={member.linkedinUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center justify-center text-[var(--theme-text-accent)] hover:text-[var(--theme-text-primary)]"
+                      className="inline-flex items-center justify-center text-black hover:text-gray-700"
                       aria-label={`Open ${member.name} LinkedIn`}
                       onClick={(e) => e.stopPropagation()}
                     >
@@ -153,7 +153,7 @@ export default function Team() {
                       href={member.websiteUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center justify-center text-[var(--theme-text-accent)] hover:text-[var(--theme-text-primary)]"
+                      className="inline-flex items-center justify-center text-black hover:text-gray-700"
                       aria-label={`Open ${member.name} Website`}
                       onClick={(e) => e.stopPropagation()}
                     >
