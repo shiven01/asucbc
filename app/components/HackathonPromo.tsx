@@ -97,7 +97,7 @@ export default function HackathonPromo({
           className="text-xs text-white text-center mt-2"
           style={{ filter: "drop-shadow(0 2px 6px rgba(0,0,0,0.9))" }}
         >
-          October 31st, 2025 • 6 PM - 6 AM
+          November 8-9, 2025 • Nov 8, 11 AM - Nov 9, 5 PM
         </p>
       </div>
 
