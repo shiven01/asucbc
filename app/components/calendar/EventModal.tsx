@@ -3,6 +3,8 @@
 import React, { useEffect } from 'react';
 import { CalendarEvent } from '@/types/calendar';
 import DOMPurify from 'dompurify';
+import { useHalloweenTheme } from '../HalloweenThemeProvider';
+import { useBatParticles } from '../../hooks/useBatParticles';
 
 interface EventModalProps {
   event: CalendarEvent | null;
@@ -12,6 +14,8 @@ interface EventModalProps {
 }
 
 export default function EventModal({ event, isOpen, onClose, onAddToCalendar }: EventModalProps) {
+  const { isHalloween } = useHalloweenTheme();
+  const { containerRef, particlesRef, createParticles } = useBatParticles();
   // Sanitize HTML content to prevent XSS while allowing safe tags like links
   const sanitizeHTML = (html: string): string => {
     // First, normalize self-closing tags to proper HTML format
@@ -180,12 +184,20 @@ export default function EventModal({ event, isOpen, onClose, onAddToCalendar }: 
         {/* Footer */}
         {onAddToCalendar && (
           <div className="px-6 py-4 bg-[var(--theme-text-primary)]/5 border-t border-[var(--theme-card-border)]">
-            <button
-              onClick={onAddToCalendar}
-              className="w-full bg-[var(--theme-button-bg)] hover:bg-[var(--theme-button-hover-bg)] text-[var(--theme-button-text)] font-medium py-3 px-4 rounded-xl transition-all duration-200 ease-in-out hover:shadow-lg transform hover:scale-[1.02]"
-            >
-              Add to Calendar
-            </button>
+            <div ref={containerRef} className="relative z-10">
+              <div
+                ref={particlesRef}
+                className="absolute inset-0 pointer-events-none overflow-visible z-0"
+              />
+              <button
+                onClick={onAddToCalendar}
+                onMouseEnter={isHalloween ? createParticles : undefined}
+                onTouchStart={isHalloween ? createParticles : undefined}
+                className={`relative z-10 w-full bg-[var(--theme-button-bg)] hover:bg-[var(--theme-button-hover-bg)] text-[var(--theme-button-text)] font-medium py-3 px-4 rounded-xl transition-all duration-200 ease-in-out hover:shadow-lg transform hover:scale-[1.02] ${isHalloween ? 'active:scale-90' : ''}`}
+              >
+                Add to Calendar
+              </button>
+            </div>
           </div>
         )}
       </div>
