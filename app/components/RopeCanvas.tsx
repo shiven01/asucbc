@@ -94,6 +94,15 @@ const RopeCanvas: React.FC<RopeCanvasProps> = ({
       mouseRef.current.y = e.clientY + window.scrollY + cursorOffset.y;
     };
 
+    const handleTouchMove = (e: TouchEvent) => {
+      if (e.touches.length > 0) {
+        e.preventDefault(); // Prevent scrolling while dragging rope
+        const touch = e.touches[0];
+        mouseRef.current.x = touch.clientX + window.scrollX + cursorOffset.x;
+        mouseRef.current.y = touch.clientY + window.scrollY + cursorOffset.y;
+      }
+    };
+
     const handleClick = (e: MouseEvent) => {
       // Apply cursor offset and scroll position to click position before snapping
       const clickX = e.clientX + window.scrollX + cursorOffset.x;
@@ -105,12 +114,27 @@ const RopeCanvas: React.FC<RopeCanvasProps> = ({
       resetRopeCanvas(newAnchor);
     };
 
+    const handleTouchStart = (e: TouchEvent) => {
+      if (e.touches.length > 0) {
+        const touch = e.touches[0];
+        const clickX = touch.clientX + window.scrollX + cursorOffset.x;
+        const clickY = touch.clientY + window.scrollY + cursorOffset.y;
+        const snappedX = Math.round(clickX / 20) * 20;
+        const snappedY = Math.round(clickY / 20) * 20;
+        const newAnchor = { x: snappedX, y: snappedY };
+        setAnchorPoint(newAnchor);
+        resetRopeCanvas(newAnchor);
+      }
+    };
+
     const handleResize = () => {
       updateCanvasSize();
     };
 
     window.addEventListener("mousemove", handleMouseMove);
+    window.addEventListener("touchmove", handleTouchMove, { passive: false });
     window.addEventListener("click", handleClick);
+    window.addEventListener("touchstart", handleTouchStart, { passive: true });
     window.addEventListener("resize", handleResize);
 
     const update = () => {
@@ -188,10 +212,12 @@ const RopeCanvas: React.FC<RopeCanvasProps> = ({
     return () => {
       if (animationRef.current) cancelAnimationFrame(animationRef.current);
       window.removeEventListener("mousemove", handleMouseMove);
+      window.removeEventListener("touchmove", handleTouchMove);
       window.removeEventListener("click", handleClick);
+      window.removeEventListener("touchstart", handleTouchStart);
       window.removeEventListener("resize", handleResize);
     };
-  }, [anchorPoint, length, segments, strokeColor, strokeWidth]);
+  }, [anchorPoint, length, segments, strokeColor, strokeWidth, cursorOffset]);
 
   return (
     <canvas

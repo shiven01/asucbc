@@ -60,6 +60,7 @@ export default function HackathonPromo({ className = '' }: HackathonPromoProps) 
           <Link
             href="/hackathon"
             onMouseEnter={isHalloween ? createParticles : undefined}
+            onTouchStart={isHalloween ? createParticles : undefined}
             className={`relative z-10 inline-flex w-full items-center justify-center rounded-xl bg-gradient-to-r from-[#FFD700] to-[#ff8c42] text-black px-6 py-4 text-base sm:text-lg font-bold shadow-lg hover:shadow-2xl hover:scale-105 transition-all duration-300 ease-in-out border-2 border-transparent hover:border-white/20 min-h-[48px] touch-manipulation overflow-hidden group ${isHalloween ? 'active:scale-90' : ''}`}
           >
             <span className="relative z-10">Register Now - Limited Spots!</span>

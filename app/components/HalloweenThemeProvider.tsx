@@ -1,15 +1,19 @@
 "use client";
 
-import React, { createContext, useContext } from "react";
+import React, { createContext, useContext, useState } from "react";
 import { isHalloweenTheme } from "../theme-config";
 import dynamic from "next/dynamic";
 
 interface HalloweenThemeContextType {
   isHalloween: boolean;
+  ropeEndpoint: { x: number; y: number };
+  setRopeEndpoint: (position: { x: number; y: number }) => void;
 }
 
 const HalloweenThemeContext = createContext<HalloweenThemeContextType>({
   isHalloween: false,
+  ropeEndpoint: { x: 100, y: 100 },
+  setRopeEndpoint: () => {},
 });
 
 /**
@@ -17,10 +21,10 @@ const HalloweenThemeContext = createContext<HalloweenThemeContextType>({
  *
  * Access the Halloween theme state from any component within the HalloweenThemeProvider.
  *
- * @returns {HalloweenThemeContextType} Object containing isHalloween boolean
+ * @returns {HalloweenThemeContextType} Object containing isHalloween boolean and rope endpoint position
  *
  * @example
- * const { isHalloween } = useHalloweenTheme();
+ * const { isHalloween, ropeEndpoint } = useHalloweenTheme();
  * if (!isHalloween) return null;
  */
 export const useHalloweenTheme = () => {
@@ -52,9 +56,12 @@ const HalloweenThemeProvider: React.FC<HalloweenThemeProviderProps> = ({
   children,
 }) => {
   const RopeCanvas = dynamic(() => import("./RopeCanvas"), { ssr: false });
+  const SpiderIcon = dynamic(() => import("./SpiderIcon"), { ssr: false });
+
+  const [ropeEndpoint, setRopeEndpoint] = useState({ x: 100, y: 100 });
 
   return (
-    <HalloweenThemeContext.Provider value={{ isHalloween: isHalloweenTheme }}>
+    <HalloweenThemeContext.Provider value={{ isHalloween: isHalloweenTheme, ropeEndpoint, setRopeEndpoint }}>
       {isHalloweenTheme && (
         <>
           <RopeCanvas
@@ -65,6 +72,7 @@ const HalloweenThemeProvider: React.FC<HalloweenThemeProviderProps> = ({
             strokeWidth={3}
             cursorOffset={{ x: 8, y: 8 }}
           />
+          <SpiderIcon />
         </>
       )}
       {children}

@@ -60,6 +60,7 @@ export default function JoinCard({
             target="_blank"
             rel="noopener noreferrer"
             onMouseEnter={isHalloween ? createDiscordParticles : undefined}
+            onTouchStart={isHalloween ? createDiscordParticles : undefined}
             className={`relative z-10 inline-flex w-full items-center justify-center rounded-xl bg-[var(--theme-card-bg)] text-[var(--theme-button-text)] px-4 py-3 text-sm sm:text-base font-semibold shadow hover:bg-[var(--theme-button-text)] hover:text-[var(--theme-card-bg)] hover:scale-105 hover:shadow-lg transition-all duration-300 ease-in-out border border-[var(--theme-button-text)] hover:border-[var(--theme-button-text)] min-h-[40px] touch-manipulation ${isHalloween ? 'active:scale-90' : ''}`}
           >
             Join our Discord
@@ -75,7 +76,8 @@ export default function JoinCard({
             target="_blank"
             rel="noopener noreferrer"
             onMouseEnter={isHalloween ? createBenefitsParticles : undefined}
-            className={`relative z-10 inline-flex w-full items-center justify-center rounded-xl bg-[var(--theme-card-bg)] text-[var(--theme-button-text)] px-4 py-3 text-sm sm:text-base font-semibold shadow hover:bg-[var(--theme-button-text)] hover:text-[var(--theme-card-bg)] hover:scale-105 hover:shadow-lg transition-all duration-300 ease-in-out border border-[var(--theme-button-text)] hover:border-[var(--theme-button-text)] min-h-[40px] touch-manipulation ${isHalloween ? 'active:scale-90' : ''}`}
+            onTouchStart={isHalloween ? createBenefitsParticles : undefined}
+            className={`relative z-10 inline-flex w-full items-center justify-center rounded-xl bg-[var(--theme-button-text)] text-[var(--theme-card-bg)] px-4 py-3 text-sm sm:text-base font-semibold shadow hover:bg-[var(--theme-card-bg)] hover:text-[var(--theme-button-text)] hover:scale-105 hover:shadow-lg transition-all duration-300 ease-in-out border border-[var(--theme-button-text)] hover:border-[var(--theme-button-text)] min-h-[40px] touch-manipulation ${isHalloween ? 'active:scale-90' : ''}`}
           >
             Sign up to receive benefits
           </Link>

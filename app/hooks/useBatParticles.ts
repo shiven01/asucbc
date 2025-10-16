@@ -24,10 +24,26 @@ export const useBatParticles = ({
   const activeParticlesRef = useRef<SVGSVGElement[]>([]);
 
   const createParticles = useCallback(
-    (e: React.MouseEvent<HTMLElement, MouseEvent>) => {
+    (e: React.MouseEvent<HTMLElement, MouseEvent> | React.TouchEvent<HTMLElement>) => {
       const container = containerRef.current;
       const particles = particlesRef.current;
       if (!container || !particles) return;
+
+      // Get clientX and clientY from either mouse or touch event
+      let clientX: number;
+      let clientY: number;
+
+      if ('touches' in e && e.touches.length > 0) {
+        // Touch event
+        clientX = e.touches[0].clientX;
+        clientY = e.touches[0].clientY;
+      } else if ('clientX' in e) {
+        // Mouse event
+        clientX = e.clientX;
+        clientY = e.clientY;
+      } else {
+        return; // Invalid event
+      }
 
       const rect = container.getBoundingClientRect();
       const group: SVGSVGElement[] = [];
@@ -62,8 +78,8 @@ export const useBatParticles = ({
         svg.style.transform = `scale(0.${scale})`;
         svg.style.pointerEvents = "none";
 
-        const startLeft = e.clientX - rect.left - 25;
-        const startTop = e.clientY - rect.top - 25;
+        const startLeft = clientX - rect.left - 25;
+        const startTop = clientY - rect.top - 25;
         svg.style.left = `${startLeft}px`;
         svg.style.top = `${startTop}px`;
         svg.innerHTML = shapeSVG;

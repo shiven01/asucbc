@@ -33,6 +33,7 @@ export default function Header() {
               <a
                 href="/"
                 onMouseEnter={isHalloween ? logoParticles.createParticles : undefined}
+                onTouchStart={isHalloween ? logoParticles.createParticles : undefined}
                 className={`relative z-10 group hover:scale-105 transition-all duration-200 inline-block px-4 py-3 rounded-lg hover:bg-white/10 min-h-[48px] flex items-center touch-manipulation ${isHalloween ? 'active:scale-90' : ''}`}
               >
                 <h1 className="text-xl sm:text-2xl font-bold tracking-tight cursor-pointer font-sans whitespace-nowrap">
@@ -52,6 +53,7 @@ export default function Header() {
               <a
                 href="/about"
                 onMouseEnter={isHalloween ? aboutParticles.createParticles : undefined}
+                onTouchStart={isHalloween ? aboutParticles.createParticles : undefined}
                 className={`relative z-10 text-[var(--theme-text-primary)] hover:text-[var(--theme-text-accent)] hover:scale-105 transition-all duration-200 font-medium font-sans px-4 py-3 rounded-md hover:bg-white/10 min-h-[48px] flex items-center touch-manipulation ${isHalloween ? 'active:scale-90' : ''}`}
               >
                 About
@@ -65,6 +67,7 @@ export default function Header() {
               <a
                 href="/team"
                 onMouseEnter={isHalloween ? teamParticles.createParticles : undefined}
+                onTouchStart={isHalloween ? teamParticles.createParticles : undefined}
                 className={`relative z-10 text-[var(--theme-text-primary)] hover:text-[var(--theme-text-accent)] hover:scale-105 transition-all duration-200 font-medium font-sans px-4 py-3 rounded-md hover:bg-white/10 min-h-[48px] flex items-center touch-manipulation ${isHalloween ? 'active:scale-90' : ''}`}
               >
                 Team
@@ -78,6 +81,7 @@ export default function Header() {
               <a
                 href="/careers"
                 onMouseEnter={isHalloween ? careersParticles.createParticles : undefined}
+                onTouchStart={isHalloween ? careersParticles.createParticles : undefined}
                 className={`relative z-10 text-[var(--theme-text-primary)] hover:text-[var(--theme-text-accent)] hover:scale-105 transition-all duration-200 font-medium font-sans px-4 py-3 rounded-md hover:bg-white/10 min-h-[48px] flex items-center touch-manipulation ${isHalloween ? 'active:scale-90' : ''}`}
               >
                 Careers
@@ -93,6 +97,7 @@ export default function Header() {
                 target="_blank"
                 rel="noopener noreferrer"
                 onMouseEnter={isHalloween ? joinUsParticles.createParticles : undefined}
+                onTouchStart={isHalloween ? joinUsParticles.createParticles : undefined}
                 className={`relative z-10 bg-[var(--theme-button-bg)] text-[var(--theme-button-text)] px-6 py-3 rounded-lg hover:bg-[var(--theme-button-hover-bg)] hover:text-[var(--theme-button-hover-text)] hover:scale-105 hover:shadow-lg transition-all duration-300 ease-in-out font-medium text-base font-sans border border-transparent hover:border-[var(--theme-button-hover-border)] min-h-[48px] flex items-center touch-manipulation ${isHalloween ? 'active:scale-90' : ''}`}
               >
                 Join Us
@@ -127,6 +132,7 @@ export default function Header() {
               <a
                 href="/about"
                 onMouseEnter={isHalloween ? aboutParticles.createParticles : undefined}
+                onTouchStart={isHalloween ? aboutParticles.createParticles : undefined}
                 className={`flex px-3 py-4 text-[var(--theme-button-text)] hover:text-[var(--theme-text-accent)] hover:bg-[var(--theme-button-bg)]/10 transition-all duration-200 font-medium font-sans rounded-lg min-h-[48px] items-center touch-manipulation ${isHalloween ? 'active:scale-90' : ''}`}
                 onClick={() => setIsMobileMenuOpen(false)}
               >
@@ -135,6 +141,7 @@ export default function Header() {
               <a
                 href="/team"
                 onMouseEnter={isHalloween ? teamParticles.createParticles : undefined}
+                onTouchStart={isHalloween ? teamParticles.createParticles : undefined}
                 className={`flex px-3 py-4 text-[var(--theme-button-text)] hover:text-[var(--theme-text-accent)] hover:bg-[var(--theme-button-bg)]/10 transition-all duration-200 font-medium font-sans rounded-lg min-h-[48px] items-center touch-manipulation ${isHalloween ? 'active:scale-90' : ''}`}
                 onClick={() => setIsMobileMenuOpen(false)}
               >
@@ -143,6 +150,7 @@ export default function Header() {
               <a
                 href="/careers"
                 onMouseEnter={isHalloween ? careersParticles.createParticles : undefined}
+                onTouchStart={isHalloween ? careersParticles.createParticles : undefined}
                 className={`flex px-3 py-4 text-[var(--theme-button-text)] hover:text-[var(--theme-text-accent)] hover:bg-[var(--theme-button-bg)]/10 transition-all duration-200 font-medium font-sans rounded-lg min-h-[48px] items-center touch-manipulation ${isHalloween ? 'active:scale-90' : ''}`}
                 onClick={() => setIsMobileMenuOpen(false)}
               >
@@ -153,6 +161,7 @@ export default function Header() {
                 target="_blank"
                 rel="noopener noreferrer"
                 onMouseEnter={isHalloween ? joinUsParticles.createParticles : undefined}
+                onTouchStart={isHalloween ? joinUsParticles.createParticles : undefined}
                 className={`flex px-3 py-4 bg-[var(--theme-button-bg)] text-[var(--theme-button-text)] hover:bg-[var(--theme-button-hover-bg)] hover:text-[var(--theme-button-hover-text)] transition-all duration-300 ease-in-out font-medium text-base font-sans border border-transparent hover:border-[var(--theme-button-hover-border)] rounded-lg min-h-[48px] items-center touch-manipulation mt-2 ${isHalloween ? 'active:scale-90' : ''}`}
                 onClick={() => setIsMobileMenuOpen(false)}
               >

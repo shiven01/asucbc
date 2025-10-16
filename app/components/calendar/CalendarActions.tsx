@@ -29,6 +29,7 @@ export default function CalendarActions({ calendarId, selectedDate }: CalendarAc
         <button
           onClick={handleAddToCalendar}
           onMouseEnter={isHalloween ? createParticles : undefined}
+          onTouchStart={isHalloween ? createParticles : undefined}
           className={`
             relative z-10 flex items-center gap-2 px-4 py-2
             bg-[#cc785c] text-white

@@ -192,6 +192,7 @@ export default function EventModal({ event, isOpen, onClose, onAddToCalendar }: 
               <button
                 onClick={onAddToCalendar}
                 onMouseEnter={isHalloween ? createParticles : undefined}
+                onTouchStart={isHalloween ? createParticles : undefined}
                 className={`relative z-10 w-full bg-[var(--theme-button-bg)] hover:bg-[var(--theme-button-hover-bg)] text-[var(--theme-button-text)] font-medium py-3 px-4 rounded-xl transition-all duration-200 ease-in-out hover:shadow-lg transform hover:scale-[1.02] ${isHalloween ? 'active:scale-90' : ''}`}
               >
                 Add to Calendar
