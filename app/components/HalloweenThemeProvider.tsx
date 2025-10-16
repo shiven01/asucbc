@@ -56,14 +56,16 @@ const HalloweenThemeProvider: React.FC<HalloweenThemeProviderProps> = ({
   return (
     <HalloweenThemeContext.Provider value={{ isHalloween: isHalloweenTheme }}>
       {isHalloweenTheme && (
-        <RopeCanvas
-          length={300}
-          segments={100}
-          anchorPoint={{ x: 100, y: 100 }}
-          strokeColor="#FFFFFF"
-          strokeWidth={3}
-          cursorOffset={{ x: 8, y: 8 }}
-        />
+        <>
+          <RopeCanvas
+            length={300}
+            segments={100}
+            anchorPoint={{ x: 100, y: 100 }}
+            strokeColor="#FFFFFF"
+            strokeWidth={3}
+            cursorOffset={{ x: 8, y: 8 }}
+          />
+        </>
       )}
       {children}
     </HalloweenThemeContext.Provider>

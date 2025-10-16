@@ -2,12 +2,17 @@
 
 import { showHackathonPromo } from '../theme-config';
 import Link from 'next/link';
+import { useHalloweenTheme } from './HalloweenThemeProvider';
+import { useBatParticles } from '../hooks/useBatParticles';
 
 type HackathonPromoProps = {
   className?: string;
 };
 
 export default function HackathonPromo({ className = '' }: HackathonPromoProps) {
+  const { isHalloween } = useHalloweenTheme();
+  const { containerRef, particlesRef, createParticles } = useBatParticles();
+
   if (!showHackathonPromo) return null;
 
   return (
@@ -47,13 +52,20 @@ export default function HackathonPromo({ className = '' }: HackathonPromoProps) 
           </li>
         </ul>
 
-        <Link
-          href="/hackathon"
-          className="inline-flex w-full items-center justify-center rounded-xl bg-gradient-to-r from-[#FFD700] to-[#ff8c42] text-black px-6 py-4 text-base sm:text-lg font-bold shadow-lg hover:shadow-2xl hover:scale-105 transition-all duration-300 ease-in-out border-2 border-transparent hover:border-white/20 min-h-[48px] touch-manipulation relative overflow-hidden group"
-        >
-          <span className="relative z-10">Register Now - Limited Spots!</span>
-          <span className="absolute inset-0 bg-white/20 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
-        </Link>
+        <div ref={containerRef} className="relative z-10">
+          <div
+            ref={particlesRef}
+            className="absolute inset-0 pointer-events-none overflow-visible z-0"
+          />
+          <Link
+            href="/hackathon"
+            onMouseEnter={isHalloween ? createParticles : undefined}
+            className={`relative z-10 inline-flex w-full items-center justify-center rounded-xl bg-gradient-to-r from-[#FFD700] to-[#ff8c42] text-black px-6 py-4 text-base sm:text-lg font-bold shadow-lg hover:shadow-2xl hover:scale-105 transition-all duration-300 ease-in-out border-2 border-transparent hover:border-white/20 min-h-[48px] touch-manipulation overflow-hidden group ${isHalloween ? 'active:scale-90' : ''}`}
+          >
+            <span className="relative z-10">Register Now - Limited Spots!</span>
+            <span className="absolute inset-0 bg-white/20 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
+          </Link>
+        </div>
 
         <p className="text-xs text-white/50 text-center mt-3">
           October 31st, 2024 • 6 PM - 6 AM

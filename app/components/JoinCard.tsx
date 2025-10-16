@@ -1,4 +1,8 @@
+"use client";
+
 import Link from "next/link";
+import { useHalloweenTheme } from "./HalloweenThemeProvider";
+import { useBatParticles } from "../hooks/useBatParticles";
 
 type JoinCardProps = {
   title?: string;
@@ -15,6 +19,17 @@ export default function JoinCard({
   benefitsHref = "#",
   className = "",
 }: JoinCardProps) {
+  const { isHalloween } = useHalloweenTheme();
+  const {
+    containerRef: discordContainerRef,
+    particlesRef: discordParticlesRef,
+    createParticles: createDiscordParticles
+  } = useBatParticles();
+  const {
+    containerRef: benefitsContainerRef,
+    particlesRef: benefitsParticlesRef,
+    createParticles: createBenefitsParticles
+  } = useBatParticles();
   return (
     <div
       className={`w-full rounded-2xl bg-[var(--theme-card-bg)] border-2 border-[var(--theme-card-border)] shadow-sm p-4 sm:p-6 ${className}`}
@@ -35,22 +50,36 @@ export default function JoinCard({
       </p>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-3">
-        <Link
-          href={discordHref}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-flex w-full items-center justify-center rounded-xl bg-[var(--theme-card-bg)] text-[var(--theme-button-text)] px-4 py-3 text-sm sm:text-base font-semibold shadow hover:bg-[var(--theme-button-text)] hover:text-[var(--theme-card-bg)] hover:scale-105 hover:shadow-lg transition-all duration-300 ease-in-out border border-[var(--theme-button-text)] hover:border-[var(--theme-button-text)] min-h-[40px] touch-manipulation"
-        >
-          Join our Discord
-        </Link>
-        <Link
-          href={benefitsHref}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-flex w-full items-center justify-center rounded-xl bg-[var(--theme-card-bg)] text-[var(--theme-button-text)] px-4 py-3 text-sm sm:text-base font-semibold shadow hover:bg-[var(--theme-button-text)] hover:text-[var(--theme-card-bg)] hover:scale-105 hover:shadow-lg transition-all duration-300 ease-in-out border border-[var(--theme-button-text)] hover:border-[var(--theme-button-text)] min-h-[40px] touch-manipulation"
-        >
-          Sign up to receive benefits
-        </Link>
+        <div ref={discordContainerRef} className="relative z-10">
+          <div
+            ref={discordParticlesRef}
+            className="absolute inset-0 pointer-events-none overflow-visible z-0"
+          />
+          <Link
+            href={discordHref}
+            target="_blank"
+            rel="noopener noreferrer"
+            onMouseEnter={isHalloween ? createDiscordParticles : undefined}
+            className={`relative z-10 inline-flex w-full items-center justify-center rounded-xl bg-[var(--theme-card-bg)] text-[var(--theme-button-text)] px-4 py-3 text-sm sm:text-base font-semibold shadow hover:bg-[var(--theme-button-text)] hover:text-[var(--theme-card-bg)] hover:scale-105 hover:shadow-lg transition-all duration-300 ease-in-out border border-[var(--theme-button-text)] hover:border-[var(--theme-button-text)] min-h-[40px] touch-manipulation ${isHalloween ? 'active:scale-90' : ''}`}
+          >
+            Join our Discord
+          </Link>
+        </div>
+        <div ref={benefitsContainerRef} className="relative z-10">
+          <div
+            ref={benefitsParticlesRef}
+            className="absolute inset-0 pointer-events-none overflow-visible z-0"
+          />
+          <Link
+            href={benefitsHref}
+            target="_blank"
+            rel="noopener noreferrer"
+            onMouseEnter={isHalloween ? createBenefitsParticles : undefined}
+            className={`relative z-10 inline-flex w-full items-center justify-center rounded-xl bg-[var(--theme-card-bg)] text-[var(--theme-button-text)] px-4 py-3 text-sm sm:text-base font-semibold shadow hover:bg-[var(--theme-button-text)] hover:text-[var(--theme-card-bg)] hover:scale-105 hover:shadow-lg transition-all duration-300 ease-in-out border border-[var(--theme-button-text)] hover:border-[var(--theme-button-text)] min-h-[40px] touch-manipulation ${isHalloween ? 'active:scale-90' : ''}`}
+          >
+            Sign up to receive benefits
+          </Link>
+        </div>
       </div>
     </div>
   );
