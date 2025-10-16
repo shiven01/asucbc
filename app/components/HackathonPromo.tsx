@@ -70,7 +70,7 @@ export default function HackathonPromo({
           spooky, win amazing prizes, and connect with fellow builders.
         </p>
 
-        <ul className="list-none space-y-1.5 mb-4 text-base text-white text-shadow-medium">
+        <ul className="list-none space-y-1.5 mb-4 text-base text-white text-shadow-medium pl-8">
           <li className="flex items-start">
             <span className="text-white mr-2">🎃</span>
             <span>$5,000 in prizes</span>
