@@ -35,7 +35,7 @@ export default function HackathonPromo({
       <div className="relative rounded-2xl overflow-hidden border-4 border-yellow-500 shadow-gold-glow min-h-[400px] sm:min-h-[450px]">
         {/* Loading Skeleton - shown while image is loading */}
         {!imageLoaded && (
-          <div className="absolute inset-0 bg-gradient-to-br from-orange-500 via-purple-600 to-orange-700 animate-pulse">
+          <div className="absolute inset-0 bg-gradient-to-r from-orange-400 via-orange-500 via-orange-600 to-orange-700 animate-pulse">
             <div className="p-3 sm:p-4 space-y-3">
               <div className="h-8 w-40 bg-white/20 rounded-full"></div>
               <div className="h-10 w-3/4 bg-white/30 rounded"></div>
@@ -89,7 +89,7 @@ export default function HackathonPromo({
           href="/hackathon"
           onMouseEnter={isHalloween ? createParticles : undefined}
           onTouchStart={isHalloween ? createParticles : undefined}
-          className={`cta-button relative z-20 flex max-w-md mx-auto items-center justify-center rounded-xl bg-white text-black px-6 py-4 text-base sm:text-lg font-bold shadow-lg min-h-[48px] touch-manipulation ${
+          className={`cta-button relative z-20 flex max-w-md mx-auto items-center justify-center rounded-xl bg-gradient-to-r from-orange-400 via-orange-500 to-orange-600 text-white px-6 py-4 text-base sm:text-lg font-bold shadow-lg min-h-[48px] touch-manipulation ${
             isHalloween ? "active:scale-90" : ""
           }`}
         >
@@ -119,12 +119,12 @@ export default function HackathonPromo({
             transform: scale(1);
           }
           50% {
-            transform: scale(1.02);
+            transform: scale(1.03);
           }
         }
 
         .animate-pulse-scale {
-          animation: pulse-scale 3s ease-in-out infinite;
+          animation: pulse-scale 2s ease-in-out infinite;
           will-change: transform;
         }
 
