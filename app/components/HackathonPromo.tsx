@@ -68,40 +68,25 @@ export default function HackathonPromo({
             </span>
           </div>
 
-        <h2
-          className="text-xl sm:text-2xl md:text-3xl font-bold text-white mb-3 leading-tight"
-          style={{ filter: "drop-shadow(0 2px 8px rgba(0,0,0,0.9))" }}
-        >
+        <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-white mb-3 leading-tight text-shadow-strong">
           Spooky Hackathon 2025
         </h2>
 
-        <p
-          className="text-base sm:text-lg text-white leading-relaxed mb-4"
-          style={{ filter: "drop-shadow(0 2px 6px rgba(0,0,0,0.9))" }}
-        >
+        <p className="text-base sm:text-lg text-white leading-relaxed mb-4 text-shadow-medium">
           Join us for an epic Halloween-themed hackathon! Build something
           spooky, win amazing prizes, and connect with fellow builders.
         </p>
 
-        <ul className="list-none space-y-1.5 mb-4 text-base text-white">
-          <li
-            className="flex items-start"
-            style={{ filter: "drop-shadow(0 2px 6px rgba(0,0,0,0.9))" }}
-          >
+        <ul className="list-none space-y-1.5 mb-4 text-base text-white text-shadow-medium">
+          <li className="flex items-start">
             <span className="text-white mr-2">🎃</span>
             <span>$5,000 in prizes</span>
           </li>
-          <li
-            className="flex items-start"
-            style={{ filter: "drop-shadow(0 2px 6px rgba(0,0,0,0.9))" }}
-          >
+          <li className="flex items-start">
             <span className="text-white mr-2">👻</span>
             <span>Free food & swag</span>
           </li>
-          <li
-            className="flex items-start"
-            style={{ filter: "drop-shadow(0 2px 6px rgba(0,0,0,0.9))" }}
-          >
+          <li className="flex items-start">
             <span className="text-white mr-2">🦇</span>
             <span>Mentorship from industry experts</span>
           </li>
@@ -111,33 +96,30 @@ export default function HackathonPromo({
           href="/hackathon"
           onMouseEnter={isHalloween ? createParticles : undefined}
           onTouchStart={isHalloween ? createParticles : undefined}
-          className={`relative z-20 flex max-w-md mx-auto items-center justify-center rounded-xl bg-white text-black px-6 py-4 text-base sm:text-lg font-bold shadow-lg hover:shadow-2xl hover:scale-105 transition-all duration-300 ease-in-out border-2 border-transparent hover:border-white/20 min-h-[48px] touch-manipulation overflow-hidden group ${
+          className={`cta-button relative z-20 flex max-w-md mx-auto items-center justify-center rounded-xl bg-white text-black px-6 py-4 text-base sm:text-lg font-bold shadow-lg min-h-[48px] touch-manipulation ${
             isHalloween ? "active:scale-90" : ""
           }`}
         >
-          <span className="relative z-10">Register Now - Limited Spots!</span>
-          <span className="absolute inset-0 bg-white/20 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
+          Register Now - Limited Spots!
         </Link>
 
-          <p
-            className="text-xs text-white text-center mt-2"
-            style={{ filter: "drop-shadow(0 2px 6px rgba(0,0,0,0.9))" }}
-          >
+          <p className="text-xs text-white text-center mt-2 text-shadow-medium">
             November 8-9, 2025 • Nov 8, 11 AM - Nov 9, 5 PM
           </p>
         </div>
       </div>
 
       <style jsx>{`
-        @keyframes shimmer {
-          0% {
-            background-position: -200% center;
-          }
-          100% {
-            background-position: 200% center;
-          }
+        /* Performance-optimized text shadows */
+        .text-shadow-strong {
+          text-shadow: 0 2px 8px rgba(0, 0, 0, 0.9), 0 1px 4px rgba(0, 0, 0, 0.8);
         }
 
+        .text-shadow-medium {
+          text-shadow: 0 2px 6px rgba(0, 0, 0, 0.9), 0 1px 3px rgba(0, 0, 0, 0.7);
+        }
+
+        /* Optimized animations with will-change and reduced motion support */
         @keyframes pulse-scale {
           0%,
           100% {
@@ -148,36 +130,48 @@ export default function HackathonPromo({
           }
         }
 
-        .animate-shimmer {
-          animation: shimmer 3s linear infinite;
-        }
-
         .animate-pulse-scale {
           animation: pulse-scale 3s ease-in-out infinite;
+          will-change: transform;
         }
 
-        .shadow-glow {
-          box-shadow: 0 0 30px rgba(255, 215, 0, 0.3),
-            0 0 60px rgba(255, 140, 66, 0.2), 0 10px 40px rgba(0, 0, 0, 0.5);
+        /* Respect reduced motion preference */
+        @media (prefers-reduced-motion: reduce) {
+          .animate-pulse-scale {
+            animation: none;
+          }
+          
+          .cta-button {
+            transition: none !important;
+          }
         }
 
-        .hackathon-promo:hover .shadow-glow {
-          box-shadow: 0 0 40px rgba(255, 215, 0, 0.5),
-            0 0 80px rgba(255, 140, 66, 0.3), 0 15px 50px rgba(0, 0, 0, 0.6);
-        }
-
+        /* Simplified shadow effects - fewer layers */
         .shadow-gold-glow {
-          box-shadow: 0 0 20px rgba(255, 215, 0, 0.5),
-            0 0 40px rgba(255, 215, 0, 0.3),
-            0 0 60px rgba(255, 180, 0, 0.2),
+          box-shadow: 0 0 20px rgba(255, 215, 0, 0.4),
             0 4px 20px rgba(0, 0, 0, 0.3);
         }
 
         .hackathon-promo:hover .shadow-gold-glow {
-          box-shadow: 0 0 30px rgba(255, 215, 0, 0.7),
-            0 0 60px rgba(255, 215, 0, 0.5),
-            0 0 90px rgba(255, 180, 0, 0.3),
+          box-shadow: 0 0 30px rgba(255, 215, 0, 0.6),
             0 6px 30px rgba(0, 0, 0, 0.4);
+        }
+
+        /* Optimized button hover */
+        .cta-button {
+          transition: transform 0.2s ease-out, box-shadow 0.2s ease-out;
+          will-change: transform;
+        }
+
+        .cta-button:hover {
+          transform: scale(1.05);
+          box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+          .cta-button:hover {
+            transform: none;
+          }
         }
       `}</style>
     </div>
