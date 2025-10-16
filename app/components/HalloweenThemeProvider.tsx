@@ -1,35 +1,32 @@
 "use client";
 
-import React, { createContext, useContext, useState } from "react";
+import React, { createContext, useContext, useRef } from "react";
 import { isHalloweenTheme } from "../theme-config";
 import dynamic from "next/dynamic";
 
 interface HalloweenThemeContextType {
   isHalloween: boolean;
-  ropeEndpoint: { x: number; y: number };
-  setRopeEndpoint: (position: { x: number; y: number }) => void;
+  ropeEndpointRef: React.RefObject<{ x: number; y: number }>;
 }
 
-const HalloweenThemeContext = createContext<HalloweenThemeContextType>({
-  isHalloween: false,
-  ropeEndpoint: { x: 100, y: 100 },
-  setRopeEndpoint: () => {},
-});
+const HalloweenThemeContext = createContext<HalloweenThemeContextType | null>(
+  null
+);
 
 /**
  * useHalloweenTheme hook
  *
  * Access the Halloween theme state from any component within the HalloweenThemeProvider.
  *
- * @returns {HalloweenThemeContextType} Object containing isHalloween boolean and rope endpoint position
+ * @returns {HalloweenThemeContextType} Object containing isHalloween boolean and rope endpoint ref
  *
  * @example
- * const { isHalloween, ropeEndpoint } = useHalloweenTheme();
+ * const { isHalloween, ropeEndpointRef } = useHalloweenTheme();
  * if (!isHalloween) return null;
  */
 export const useHalloweenTheme = () => {
   const context = useContext(HalloweenThemeContext);
-  if (context === undefined) {
+  if (!context) {
     throw new Error(
       "useHalloweenTheme must be used within a HalloweenThemeProvider"
     );
@@ -58,10 +55,12 @@ const HalloweenThemeProvider: React.FC<HalloweenThemeProviderProps> = ({
   const RopeCanvas = dynamic(() => import("./RopeCanvas"), { ssr: false });
   const SpiderIcon = dynamic(() => import("./SpiderIcon"), { ssr: false });
 
-  const [ropeEndpoint, setRopeEndpoint] = useState({ x: 100, y: 100 });
+  const ropeEndpointRef = useRef({ x: 100, y: 100 });
 
   return (
-    <HalloweenThemeContext.Provider value={{ isHalloween: isHalloweenTheme, ropeEndpoint, setRopeEndpoint }}>
+    <HalloweenThemeContext.Provider
+      value={{ isHalloween: isHalloweenTheme, ropeEndpointRef }}
+    >
       {isHalloweenTheme && (
         <>
           <RopeCanvas

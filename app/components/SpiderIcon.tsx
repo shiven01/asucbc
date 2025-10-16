@@ -1,12 +1,14 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import Image from "next/image";
 import { useHalloweenTheme } from "./HalloweenThemeProvider";
 
 const SpiderIcon: React.FC = () => {
-  const { ropeEndpoint } = useHalloweenTheme();
+  const { ropeEndpointRef } = useHalloweenTheme();
   const [isMobile, setIsMobile] = useState(false);
+  const [position, setPosition] = useState({ x: 100, y: 100 });
+  const animationFrameRef = useRef<number | null>(null);
 
   useEffect(() => {
     // Check if device is mobile (no fine pointer = touch device)
@@ -23,6 +25,27 @@ const SpiderIcon: React.FC = () => {
     };
   }, []);
 
+  useEffect(() => {
+    if (!isMobile) return;
+
+    // Animation loop to update position from ref
+    const updatePosition = () => {
+      setPosition({
+        x: ropeEndpointRef.current.x,
+        y: ropeEndpointRef.current.y,
+      });
+      animationFrameRef.current = requestAnimationFrame(updatePosition);
+    };
+
+    animationFrameRef.current = requestAnimationFrame(updatePosition);
+
+    return () => {
+      if (animationFrameRef.current) {
+        cancelAnimationFrame(animationFrameRef.current);
+      }
+    };
+  }, [isMobile, ropeEndpointRef]);
+
   // Don't render on desktop
   if (!isMobile) {
     return null;
@@ -32,8 +55,8 @@ const SpiderIcon: React.FC = () => {
     <div
       style={{
         position: "fixed",
-        left: ropeEndpoint.x - window.scrollX - 10,
-        top: ropeEndpoint.y - window.scrollY - 10,
+        left: position.x - window.scrollX - 10,
+        top: position.y - window.scrollY - 10,
         width: "20px",
         height: "20px",
         pointerEvents: "none",

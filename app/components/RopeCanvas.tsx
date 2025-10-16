@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
+import { useHalloweenTheme } from "./HalloweenThemeProvider";
 
 interface RopeCanvasProps {
   length?: number;
@@ -24,12 +25,18 @@ const RopeCanvas: React.FC<RopeCanvasProps> = ({
   strokeWidth = 2,
   cursorOffset = { x: 8, y: 8 },
 }) => {
+  const { ropeEndpointRef } = useHalloweenTheme();
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const pointsRef = useRef<Point[]>([]);
   const mouseRef = useRef({
     x: window.innerWidth / 2,
     y: window.innerHeight / 2,
   });
+  const unsnappedMouseRef = useRef({
+    x: window.innerWidth / 2,
+    y: window.innerHeight / 2,
+  });
+  const isTouchingRef = useRef(false);
   const animationRef = useRef<number | null>(null);
 
   // Load anchor point from localStorage on mount, or use initial value
@@ -92,14 +99,23 @@ const RopeCanvas: React.FC<RopeCanvasProps> = ({
       // Add scroll offset to track position relative to document, not viewport
       mouseRef.current.x = e.clientX + window.scrollX + cursorOffset.x;
       mouseRef.current.y = e.clientY + window.scrollY + cursorOffset.y;
+      // Also update unsnapped position for desktop
+      unsnappedMouseRef.current.x = mouseRef.current.x;
+      unsnappedMouseRef.current.y = mouseRef.current.y;
     };
 
     const handleTouchMove = (e: TouchEvent) => {
       if (e.touches.length > 0) {
         e.preventDefault(); // Prevent scrolling while dragging rope
+        isTouchingRef.current = true;
         const touch = e.touches[0];
-        mouseRef.current.x = touch.clientX + window.scrollX + cursorOffset.x;
-        mouseRef.current.y = touch.clientY + window.scrollY + cursorOffset.y;
+        const rawX = touch.clientX + window.scrollX + cursorOffset.x;
+        const rawY = touch.clientY + window.scrollY + cursorOffset.y;
+        // Don't snap the rope endpoint on mobile - use raw position
+        mouseRef.current.x = rawX;
+        mouseRef.current.y = rawY;
+        unsnappedMouseRef.current.x = rawX;
+        unsnappedMouseRef.current.y = rawY;
       }
     };
 
@@ -116,15 +132,24 @@ const RopeCanvas: React.FC<RopeCanvasProps> = ({
 
     const handleTouchStart = (e: TouchEvent) => {
       if (e.touches.length > 0) {
+        isTouchingRef.current = true;
         const touch = e.touches[0];
         const clickX = touch.clientX + window.scrollX + cursorOffset.x;
         const clickY = touch.clientY + window.scrollY + cursorOffset.y;
+        // Update unsnapped position
+        unsnappedMouseRef.current.x = clickX;
+        unsnappedMouseRef.current.y = clickY;
+        // Snap anchor point to grid
         const snappedX = Math.round(clickX / 20) * 20;
         const snappedY = Math.round(clickY / 20) * 20;
         const newAnchor = { x: snappedX, y: snappedY };
         setAnchorPoint(newAnchor);
         resetRopeCanvas(newAnchor);
       }
+    };
+
+    const handleTouchEnd = () => {
+      isTouchingRef.current = false;
     };
 
     const handleResize = () => {
@@ -135,6 +160,7 @@ const RopeCanvas: React.FC<RopeCanvasProps> = ({
     window.addEventListener("touchmove", handleTouchMove, { passive: false });
     window.addEventListener("click", handleClick);
     window.addEventListener("touchstart", handleTouchStart, { passive: true });
+    window.addEventListener("touchend", handleTouchEnd, { passive: true });
     window.addEventListener("resize", handleResize);
 
     const update = () => {
@@ -187,6 +213,20 @@ const RopeCanvas: React.FC<RopeCanvasProps> = ({
         pts[last].y = mouseRef.current.y;
       }
 
+      // Update rope endpoint ref for SpiderIcon
+      // Using ref instead of state to avoid re-renders
+      if (typeof window !== 'undefined' && window.matchMedia("(pointer: coarse)").matches) {
+        // While touching, use unsnapped position; otherwise follow the rope endpoint
+        if (isTouchingRef.current) {
+          ropeEndpointRef.current.x = unsnappedMouseRef.current.x;
+          ropeEndpointRef.current.y = unsnappedMouseRef.current.y;
+        } else {
+          const last = pts.length - 1;
+          ropeEndpointRef.current.x = pts[last].x;
+          ropeEndpointRef.current.y = pts[last].y;
+        }
+      }
+
       // Draw
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       ctx.strokeStyle = strokeColor;
@@ -215,6 +255,7 @@ const RopeCanvas: React.FC<RopeCanvasProps> = ({
       window.removeEventListener("touchmove", handleTouchMove);
       window.removeEventListener("click", handleClick);
       window.removeEventListener("touchstart", handleTouchStart);
+      window.removeEventListener("touchend", handleTouchEnd);
       window.removeEventListener("resize", handleResize);
     };
   }, [anchorPoint, length, segments, strokeColor, strokeWidth, cursorOffset]);
