@@ -130,7 +130,7 @@ export default function Header() {
                 onTouchStart={
                   isHalloween ? hackathonParticles.createParticles : undefined
                 }
-                className={`relative z-20 bg-orange-500 text-white px-6 py-3 rounded-lg hover:bg-orange-600 hover:scale-105 hover:shadow-lg transition-all duration-300 ease-in-out font-medium text-base font-sans border border-orange-400 hover:border-orange-300 min-h-[48px] flex items-center touch-manipulation ${
+                className={`relative z-20 bg-orange-500 text-white px-6 py-3 rounded-lg hover:bg-white hover:text-orange-500 hover:scale-105 hover:shadow-lg transition-all duration-300 ease-in-out font-medium text-base font-sans border border-orange-400 hover:border-orange-500 min-h-[48px] flex items-center touch-manipulation ${
                   isHalloween ? "active:scale-90" : ""
                 }`}
               >
@@ -258,7 +258,7 @@ export default function Header() {
                 onTouchStart={
                   isHalloween ? hackathonParticles.createParticles : undefined
                 }
-                className={`relative z-20 flex px-3 py-4 bg-orange-500 text-white hover:bg-orange-600 transition-all duration-300 ease-in-out font-medium text-base font-sans border border-orange-400 hover:border-orange-300 rounded-lg min-h-[48px] items-center touch-manipulation ${
+                className={`relative z-20 flex px-3 py-4 bg-orange-500 text-white hover:bg-white hover:text-orange-500 transition-all duration-300 ease-in-out font-medium text-base font-sans border border-orange-400 hover:border-orange-500 rounded-lg min-h-[48px] items-center touch-manipulation ${
                   isHalloween ? "active:scale-90" : ""
                 }`}
                 onClick={() => setIsMobileMenuOpen(false)}

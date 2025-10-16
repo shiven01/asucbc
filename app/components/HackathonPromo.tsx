@@ -139,14 +139,16 @@ export default function HackathonPromo({
           }
         }
 
-        /* Simplified shadow effects - fewer layers */
+        /* Enhanced glow effects for brighter appearance */
         .shadow-gold-glow {
-          box-shadow: 0 0 20px rgba(255, 215, 0, 0.4),
+          box-shadow: 0 0 30px rgba(255, 215, 0, 0.8),
+            0 0 60px rgba(255, 140, 0, 0.4),
             0 4px 20px rgba(0, 0, 0, 0.3);
         }
 
         .hackathon-promo:hover .shadow-gold-glow {
-          box-shadow: 0 0 30px rgba(255, 215, 0, 0.6),
+          box-shadow: 0 0 40px rgba(255, 215, 0, 1),
+            0 0 80px rgba(255, 140, 0, 0.6),
             0 6px 30px rgba(0, 0, 0, 0.4);
         }
 
