@@ -85,7 +85,7 @@ export default function HackathonPromo({
           href="/hackathon"
           onMouseEnter={isHalloween ? createParticles : undefined}
           onTouchStart={isHalloween ? createParticles : undefined}
-          className={`relative z-20 inline-flex w-full items-center justify-center rounded-xl bg-white text-black px-6 py-4 text-base sm:text-lg font-bold shadow-lg hover:shadow-2xl hover:scale-105 transition-all duration-300 ease-in-out border-2 border-transparent hover:border-white/20 min-h-[48px] touch-manipulation overflow-hidden group ${
+          className={`relative z-20 flex max-w-md mx-auto items-center justify-center rounded-xl bg-white text-black px-6 py-4 text-base sm:text-lg font-bold shadow-lg hover:shadow-2xl hover:scale-105 transition-all duration-300 ease-in-out border-2 border-transparent hover:border-white/20 min-h-[48px] touch-manipulation overflow-hidden group ${
             isHalloween ? "active:scale-90" : ""
           }`}
         >
