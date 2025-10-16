@@ -1,14 +1,14 @@
 export default function Footer() {
   return (
-    <footer className="p-6 flex justify-between items-center">
+    <footer className="p-6 flex justify-between items-center relative z-10">
       {/* Left side - Club info */}
-      <p className="text-[#f4f3ee] font-medium text-sm">
+      <p className="text-[var(--theme-text-accent)] font-medium text-sm">
         <span className="hidden md:inline">Arizona State University Claude Builder Club</span>
         <span className="md:hidden">ASU Claude Builder Club</span>
       </p>
       
       {/* Right side - Attribution */}
-      <div className="flex items-center gap-2 text-[#f4f3ee] text-xs">
+      <div className="flex items-center gap-2 text-[var(--theme-text-accent)] text-xs">
         {/* Desktop version */}
         <div className="hidden md:flex items-center gap-2">
           <span>Website by</span>
@@ -16,7 +16,7 @@ export default function Footer() {
             href="https://github.com/shiven01"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-[#ffffff] hover:text-[#f4f3ee] transition-colors duration-200 font-medium flex items-center gap-1"
+            className="text-[var(--theme-text-primary)] hover:text-[var(--theme-text-accent)] transition-colors duration-200 font-medium flex items-center gap-1"
           >
             <svg 
               className="w-3 h-3" 
@@ -36,7 +36,7 @@ export default function Footer() {
           href="https://github.com/shiven01"
           target="_blank"
           rel="noopener noreferrer"
-          className="md:hidden text-[#ffffff] hover:text-[#f4f3ee] transition-colors duration-200"
+          className="md:hidden text-[var(--theme-text-primary)] hover:text-[var(--theme-text-accent)] transition-colors duration-200"
           aria-label="Visit Shiven Shekar's GitHub"
         >
           <svg 

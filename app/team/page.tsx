@@ -111,12 +111,12 @@ export default function Team() {
             />
           </div>
         </div>
-        <h3 className="text-lg sm:text-xl font-bold text-[#ffffff] mb-3">
+        <h3 className="text-lg sm:text-xl font-bold text-[var(--theme-text-primary)] mb-3">
           {member.name}
         </h3>
         <div className="relative w-full flex justify-center">
           <button
-            className="text-[#cc785c] text-sm bg-[#ffffff] px-5 sm:px-6 py-3 rounded-lg hover:bg-[#cc785c] hover:text-[#ffffff] hover:scale-105 transition-all duration-300 ease-in-out font-medium border border-transparent hover:border-[#ffffff] whitespace-nowrap"
+            className="text-[var(--theme-button-text)] text-sm bg-[var(--theme-button-bg)] px-5 sm:px-6 py-3 rounded-lg hover:bg-[var(--theme-button-hover-bg)] hover:text-[var(--theme-button-hover-text)] hover:scale-105 transition-all duration-300 ease-in-out font-medium border border-transparent hover:border-[var(--theme-button-hover-border)] whitespace-nowrap"
             style={{ minWidth: isTouch ? '15rem' : '18rem' }}
           >
             {member.position}
@@ -124,11 +124,11 @@ export default function Team() {
           {isOpen && hasDescription && (
             <div 
               ref={dropdownRef}
-              className="absolute top-full mt-2 left-1/2 transform -translate-x-1/2 bg-white rounded-lg p-4 sm:p-5 w-72 sm:w-80 z-50 text-[#cc785c] text-xs leading-relaxed shadow-xl border-2 border-[#cc785c] text-center"
+              className="absolute top-full mt-2 left-1/2 transform -translate-x-1/2 bg-[var(--theme-card-bg)] rounded-lg p-4 sm:p-5 w-72 sm:w-80 z-50 text-[var(--theme-text-dark)] text-xs leading-relaxed shadow-xl border-2 border-[var(--theme-card-border)] text-center"
             >
               <button
                 onClick={(e) => { e.stopPropagation(); setOpenDropdown(null); }}
-                className="absolute top-1.5 right-1.5 text-[#cc785c] hover:text-[#b5674d] font-bold text-base w-5 h-5 flex items-center justify-center"
+                className="absolute top-1.5 right-1.5 text-[var(--theme-text-accent)] hover:text-[var(--theme-text-primary)] font-bold text-base w-5 h-5 flex items-center justify-center"
               >
                 ✕
               </button>
@@ -139,7 +139,7 @@ export default function Team() {
                       href={member.linkedinUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center justify-center text-[#cc785c] hover:text-[#b5674d]"
+                      className="inline-flex items-center justify-center text-[var(--theme-text-accent)] hover:text-[var(--theme-text-primary)]"
                       aria-label={`Open ${member.name} LinkedIn`}
                       onClick={(e) => e.stopPropagation()}
                     >
@@ -153,7 +153,7 @@ export default function Team() {
                       href={member.websiteUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center justify-center text-[#cc785c] hover:text-[#b5674d]"
+                      className="inline-flex items-center justify-center text-[var(--theme-text-accent)] hover:text-[var(--theme-text-primary)]"
                       aria-label={`Open ${member.name} Website`}
                       onClick={(e) => e.stopPropagation()}
                     >
@@ -175,13 +175,13 @@ export default function Team() {
   };
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen relative">
       <Header />
-      <div className="font-sans min-h-screen p-8 pb-20 sm:p-20">
+      <div className="font-sans min-h-screen p-8 pb-20 sm:p-20 relative z-10">
         <div className="max-w-7xl mx-auto">
           {/* Page Title */}
           <div className="text-center mb-16">
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-[#ffffff] mb-4">
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-[var(--theme-text-primary)] mb-4">
               Meet Our Team
             </h1>
           </div>

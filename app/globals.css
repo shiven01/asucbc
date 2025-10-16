@@ -1,11 +1,27 @@
 @import "tailwindcss";
 
+/* Theme Variables */
 :root {
   --background: #cc785c;
   --foreground: #5d4e37;
   --primary: #faf7f2;
   --secondary: #d4c4a8;
   --white: #5d4e37;
+
+  /* Theme Colors */
+  --theme-bg: #cc785c;
+  --theme-text-primary: #ffffff;
+  --theme-text-accent: #f4f3ee;
+  --theme-text-dark: #5d4e37;
+  --theme-card-bg: #faf7f2;
+  --theme-card-border: rgba(0, 0, 0, 0.1);
+  --theme-button-bg: #ffffff;
+  --theme-button-text: #cc785c;
+  --theme-button-hover-bg: #cc785c;
+  --theme-button-hover-text: #ffffff;
+  --theme-button-hover-border: #ffffff;
+  --theme-pattern-color: rgba(255, 255, 255, 0.1);
+  --theme-pattern-color-light: rgba(255, 255, 255, 0.05);
 }
 
 @theme inline {
@@ -21,19 +37,29 @@
   }
 }
 
+html {
+  overflow-x: hidden !important;
+  width: 100vw;
+  max-width: 100vw;
+}
+
 body {
+  overflow-x: hidden !important;
+  width: 100%;
+  max-width: 100vw;
+  position: relative;
   background: var(--background);
-  background-image: 
-    linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px),
-    linear-gradient(180deg, rgba(255,255,255,0.1) 1px, transparent 1px),
-    linear-gradient(45deg, rgba(255,255,255,0.05) 1px, transparent 1px),
-    linear-gradient(-45deg, rgba(255,255,255,0.05) 1px, transparent 1px);
-  background-size: 
+  background-image:
+    linear-gradient(90deg, var(--theme-pattern-color) 1px, transparent 1px),
+    linear-gradient(180deg, var(--theme-pattern-color) 1px, transparent 1px),
+    linear-gradient(45deg, var(--theme-pattern-color-light) 1px, transparent 1px),
+    linear-gradient(-45deg, var(--theme-pattern-color-light) 1px, transparent 1px);
+  background-size:
     20px 20px,
     20px 20px,
     40px 40px,
     40px 40px;
-  background-position: 
+  background-position:
     0 0,
     0 0,
     0 0,
@@ -50,10 +76,10 @@ body {
 .mesh-background {
   background: var(--background);
   background-image: 
-    linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px),
-    linear-gradient(180deg, rgba(255,255,255,0.1) 1px, transparent 1px),
-    linear-gradient(45deg, rgba(255,255,255,0.05) 1px, transparent 1px),
-    linear-gradient(-45deg, rgba(255,255,255,0.05) 1px, transparent 1px);
+    linear-gradient(90deg, var(--theme-pattern-color) 1px, transparent 1px),
+    linear-gradient(180deg, var(--theme-pattern-color) 1px, transparent 1px),
+    linear-gradient(45deg, var(--theme-pattern-color-light) 1px, transparent 1px),
+    linear-gradient(-45deg, var(--theme-pattern-color-light) 1px, transparent 1px);
   background-size: 
     20px 20px,
     20px 20px,

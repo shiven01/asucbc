@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import HalloweenThemeProvider from "./components/HalloweenThemeProvider";
 import "./globals.css";
 
 const poppins = Poppins({
@@ -14,7 +15,7 @@ export const metadata: Metadata = {
   title: "ASU Claude Builder Club",
   description: "ASU Claude Builder Club - Building with Claude AI",
   icons: {
-    icon: '/claude.svg',
+    icon: "/claude.svg",
   },
 };
 
@@ -25,10 +26,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`${poppins.variable} antialiased`}
-      >
-        {children}
+      <body className={`${poppins.variable} antialiased`}>
+        <HalloweenThemeProvider>{children}</HalloweenThemeProvider>
         <Analytics />
         <SpeedInsights />
       </body>

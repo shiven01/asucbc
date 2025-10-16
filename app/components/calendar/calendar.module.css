@@ -237,3 +237,163 @@
     color: #5d4e37 !important;
   }
 }
+
+/* Halloween Theme Calendar Styles */
+.halloween-theme .calendar-container {
+  background-color: #1a1a1a;
+  border: 2px solid rgba(255, 140, 66, 0.3);
+  box-shadow: 0 4px 12px rgba(255, 140, 66, 0.2);
+}
+
+.halloween-theme .dark-calendar {
+  background-color: #0a0a0a !important;
+  color: #ffffff !important;
+  border: 1px solid rgba(255, 140, 66, 0.3) !important;
+}
+
+/* Header */
+.halloween-theme .dark-calendar .fc-header-toolbar {
+  background-color: #0a0a0a !important;
+  border-bottom: 1px solid rgba(255, 140, 66, 0.3) !important;
+}
+
+.halloween-theme .dark-calendar .fc-toolbar-title {
+  color: #ff8c42 !important;
+}
+
+/* Navigation Buttons */
+.halloween-theme .dark-calendar .fc-button {
+  background-color: #ff8c42 !important;
+  border: 1px solid #ff7a2b !important;
+  color: #000000 !important;
+}
+
+.halloween-theme .dark-calendar .fc-button:hover {
+  background-color: #ff7a2b !important;
+  border-color: #ff6614 !important;
+  color: #000000 !important;
+  box-shadow: 0 0 10px rgba(255, 140, 66, 0.5) !important;
+}
+
+.halloween-theme .dark-calendar .fc-button:focus {
+  box-shadow: 0 0 0 2px rgba(255, 140, 66, 0.5) !important;
+}
+
+.halloween-theme .dark-calendar .fc-button:disabled {
+  background-color: #663518 !important;
+  border-color: #ff8c42 !important;
+  color: #999999 !important;
+}
+
+/* Today Button */
+.halloween-theme .dark-calendar .fc-today-button {
+  background-color: #1a1a1a !important;
+  border-color: #ff8c42 !important;
+  color: #ff8c42 !important;
+}
+
+.halloween-theme .dark-calendar .fc-today-button:hover {
+  background-color: #2a2a2a !important;
+  border-color: #ff7a2b !important;
+}
+
+/* Day Headers */
+.halloween-theme .dark-calendar .fc-col-header-cell {
+  background-color: #0a0a0a !important;
+  border-color: rgba(255, 140, 66, 0.3) !important;
+  color: #ff8c42 !important;
+}
+
+/* Day Cells */
+.halloween-theme .dark-calendar .fc-daygrid-day {
+  background-color: #0a0a0a !important;
+  border-color: rgba(255, 140, 66, 0.2) !important;
+  color: #ffffff !important;
+}
+
+.halloween-theme .dark-calendar .fc-daygrid-day:hover {
+  background-color: #1a1a1a !important;
+}
+
+/* Today Highlight */
+.halloween-theme .dark-calendar .fc-day-today {
+  background-color: #1a1a1a !important;
+  border: 2px solid #ff8c42 !important;
+  box-shadow: 0 0 10px rgba(255, 140, 66, 0.3) !important;
+}
+
+.halloween-theme .dark-calendar .fc-day-today .fc-daygrid-day-number {
+  color: #ff8c42 !important;
+  font-weight: 700 !important;
+}
+
+/* Day Numbers */
+.halloween-theme .dark-calendar .fc-daygrid-day-number {
+  color: #ffffff !important;
+}
+
+.halloween-theme .dark-calendar .fc-daygrid-day-number:hover {
+  color: #ff8c42 !important;
+}
+
+/* Other Month Days */
+.halloween-theme .dark-calendar .fc-day-other .fc-daygrid-day-number {
+  color: #666666 !important;
+}
+
+/* Events */
+.halloween-theme .dark-calendar .fc-event {
+  background-color: #ff8c42 !important;
+  border: 1px solid #ff7a2b !important;
+  color: #000000 !important;
+}
+
+.halloween-theme .dark-calendar .fc-event:hover {
+  background-color: #ff7a2b !important;
+  border-color: #ff6614 !important;
+  box-shadow: 0 2px 4px rgba(255, 140, 66, 0.4) !important;
+}
+
+.halloween-theme .dark-calendar .fc-event-title {
+  color: #000000 !important;
+}
+
+/* More Events Link */
+.halloween-theme .dark-calendar .fc-more-link {
+  color: #ff8c42 !important;
+}
+
+.halloween-theme .dark-calendar .fc-more-link:hover {
+  color: #ff7a2b !important;
+}
+
+/* Popover */
+.halloween-theme .dark-calendar .fc-popover {
+  background-color: #1a1a1a !important;
+  border: 1px solid rgba(255, 140, 66, 0.3) !important;
+  box-shadow: 0 4px 12px rgba(255, 140, 66, 0.3) !important;
+}
+
+.halloween-theme .dark-calendar .fc-popover-header {
+  background-color: #1a1a1a !important;
+  border-bottom: 1px solid rgba(255, 140, 66, 0.3) !important;
+  color: #ff8c42 !important;
+}
+
+.halloween-theme .dark-calendar .fc-popover-body {
+  background-color: #1a1a1a !important;
+  color: #ffffff !important;
+}
+
+.halloween-theme .dark-calendar .fc-popover-close {
+  color: #999999 !important;
+}
+
+.halloween-theme .dark-calendar .fc-popover-close:hover {
+  color: #ff8c42 !important;
+}
+
+/* Loading State */
+.halloween-theme .dark-calendar .fc-loading {
+  color: #ff8c42 !important;
+}
