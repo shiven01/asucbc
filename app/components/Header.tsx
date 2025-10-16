@@ -120,7 +120,7 @@ export default function Header() {
             <div ref={hackathonParticles.containerRef} className="relative z-10">
               <div
                 ref={hackathonParticles.particlesRef}
-                className="absolute inset-0 pointer-events-none overflow-visible z-0"
+                className="absolute inset-0 pointer-events-none overflow-hidden z-0"
               />
               <a
                 href="/hackathon"
@@ -130,11 +130,11 @@ export default function Header() {
                 onTouchStart={
                   isHalloween ? hackathonParticles.createParticles : undefined
                 }
-                className={`relative z-10 bg-gradient-to-r from-yellow-400 to-orange-500 text-white px-6 py-3 rounded-lg hover:from-yellow-500 hover:to-orange-600 hover:scale-105 hover:shadow-lg transition-all duration-300 ease-in-out font-medium text-base font-sans border border-transparent hover:border-white/20 min-h-[48px] flex items-center touch-manipulation ${
+                className={`relative z-20 bg-orange-500 text-white px-6 py-3 rounded-lg hover:bg-orange-600 hover:scale-105 hover:shadow-lg transition-all duration-300 ease-in-out font-medium text-base font-sans border border-orange-400 hover:border-orange-300 min-h-[48px] flex items-center touch-manipulation ${
                   isHalloween ? "active:scale-90" : ""
                 }`}
               >
-                🎃 Hackathon
+                Hackathon
               </a>
             </div>
             <div ref={joinUsParticles.containerRef} className="relative z-10">
@@ -258,12 +258,12 @@ export default function Header() {
                 onTouchStart={
                   isHalloween ? hackathonParticles.createParticles : undefined
                 }
-                className={`flex px-3 py-4 bg-gradient-to-r from-yellow-400 to-orange-500 text-white hover:from-yellow-500 hover:to-orange-600 transition-all duration-300 ease-in-out font-medium text-base font-sans border border-transparent hover:border-white/20 rounded-lg min-h-[48px] items-center touch-manipulation ${
+                className={`relative z-20 flex px-3 py-4 bg-orange-500 text-white hover:bg-orange-600 transition-all duration-300 ease-in-out font-medium text-base font-sans border border-orange-400 hover:border-orange-300 rounded-lg min-h-[48px] items-center touch-manipulation ${
                   isHalloween ? "active:scale-90" : ""
                 }`}
                 onClick={() => setIsMobileMenuOpen(false)}
               >
-                🎃 Hackathon
+                Hackathon
               </a>
               <a
                 href="https://docs.google.com/forms/d/e/1FAIpQLScP9LuFwiHEx806tv9zczjCIEzqO1Zjb-FjB4XWoa6BS1NNKQ/viewform"
