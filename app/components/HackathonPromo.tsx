@@ -30,7 +30,7 @@ export default function HackathonPromo({
 
       {/* Inner content with glow effect */}
       <div
-        className="relative rounded-2xl bg-cover bg-center bg-no-repeat p-3 sm:p-4 overflow-hidden"
+        className="relative rounded-2xl bg-cover bg-center bg-no-repeat p-3 sm:p-4 overflow-hidden border-4 border-yellow-500 shadow-gold-glow"
         style={{
           backgroundImage: "url(/halloween/halloween-illustration-dark.png)",
         }}
@@ -137,6 +137,20 @@ export default function HackathonPromo({
         .hackathon-promo:hover .shadow-glow {
           box-shadow: 0 0 40px rgba(255, 215, 0, 0.5),
             0 0 80px rgba(255, 140, 66, 0.3), 0 15px 50px rgba(0, 0, 0, 0.6);
+        }
+
+        .shadow-gold-glow {
+          box-shadow: 0 0 20px rgba(255, 215, 0, 0.5),
+            0 0 40px rgba(255, 215, 0, 0.3),
+            0 0 60px rgba(255, 180, 0, 0.2),
+            0 4px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .hackathon-promo:hover .shadow-gold-glow {
+          box-shadow: 0 0 30px rgba(255, 215, 0, 0.7),
+            0 0 60px rgba(255, 215, 0, 0.5),
+            0 0 90px rgba(255, 180, 0, 0.3),
+            0 6px 30px rgba(0, 0, 0, 0.4);
         }
       `}</style>
     </div>
