@@ -11,6 +11,7 @@ export default function Team() {
   const [isTouch, setIsTouch] = useState(false);
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const [scrollWidth, setScrollWidth] = useState<number>(0);
+  const hoverTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
     setIsTouch(typeof window !== 'undefined' && ('ontouchstart' in window || (navigator as any).maxTouchPoints > 0));
@@ -68,6 +69,15 @@ export default function Team() {
     };
   }, [openDropdown]);
 
+  // Cleanup timeout on unmount
+  useEffect(() => {
+    return () => {
+      if (hoverTimeoutRef.current) {
+        clearTimeout(hoverTimeoutRef.current);
+      }
+    };
+  }, []);
+
   const toggleDropdown = (memberId: string) => {
     if (openDropdown === memberId) {
       setOpenDropdown(null);
@@ -84,8 +94,22 @@ export default function Team() {
     const hoverHandlers = isTouch
       ? {}
       : {
-          onMouseEnter: () => hasDescription && setOpenDropdown(memberId),
-          onMouseLeave: () => setOpenDropdown(null),
+          onMouseEnter: () => {
+            if (hasDescription) {
+              // Clear any pending timeout when entering
+              if (hoverTimeoutRef.current) {
+                clearTimeout(hoverTimeoutRef.current);
+                hoverTimeoutRef.current = null;
+              }
+              setOpenDropdown(memberId);
+            }
+          },
+          onMouseLeave: () => {
+            // Add a small delay to allow mouse to move to bridge or dropdown
+            hoverTimeoutRef.current = setTimeout(() => {
+              setOpenDropdown(null);
+            }, 100);
+          },
         };
 
     const touchHandlers = isTouch
@@ -97,7 +121,7 @@ export default function Team() {
     return (
       <div
         key={memberId}
-        className="flex flex-col items-center text-center flex-shrink-0 px-6 sm:px-12 relative"
+        className={`flex flex-col items-center text-center flex-shrink-0 px-6 sm:px-12 relative hover-bridge ${hasDescription ? 'has-dropdown' : ''}`}
         style={{ width: isTouch ? "280px" : "360px" }}
         {...hoverHandlers}
         {...touchHandlers}
@@ -125,6 +149,17 @@ export default function Team() {
             <div 
               ref={dropdownRef}
               className="absolute top-full mt-2 left-1/2 transform -translate-x-1/2 bg-[var(--theme-card-bg)] rounded-lg p-4 sm:p-5 w-72 sm:w-80 z-50 text-[var(--theme-text-dark)] text-xs leading-relaxed shadow-xl border-2 border-[var(--theme-card-border)] text-center"
+              onMouseEnter={() => {
+                // Clear any pending timeout when entering dropdown
+                if (hoverTimeoutRef.current) {
+                  clearTimeout(hoverTimeoutRef.current);
+                  hoverTimeoutRef.current = null;
+                }
+              }}
+              onMouseLeave={() => {
+                // Close dropdown when leaving
+                setOpenDropdown(null);
+              }}
             >
               <button
                 onClick={(e) => { e.stopPropagation(); setOpenDropdown(null); }}
@@ -220,6 +255,26 @@ export default function Team() {
 
         .paused {
           animation-play-state: paused !important;
+        }
+
+        /* Extended hover area bridge to dropdown */
+        .hover-bridge.has-dropdown::after {
+          content: '';
+          position: absolute;
+          bottom: 0;
+          left: 50%;
+          transform: translateX(-50%);
+          width: 288px; /* w-72 (18rem = 288px) */
+          height: 12px; /* mt-2 (8px) + 4px buffer */
+          pointer-events: all;
+          z-index: 49;
+        }
+
+        /* Responsive bridge width for sm screens */
+        @media (min-width: 640px) {
+          .hover-bridge.has-dropdown::after {
+            width: 320px; /* w-80 (20rem = 320px) */
+          }
         }
       `}</style>
     </div>
