@@ -13,7 +13,6 @@ export default function Header() {
   const aboutParticles = useBatParticles();
   const teamParticles = useBatParticles();
   const careersParticles = useBatParticles();
-  const hackathonParticles = useBatParticles();
   const joinUsParticles = useBatParticles();
 
   const toggleMobileMenu = () => {
@@ -23,7 +22,7 @@ export default function Header() {
   return (
     <header className="w-full mesh-background">
       <div className="px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
+        <div className="flex items-center justify-between h-16 overflow-visible">
           {/* Logo on the left */}
           <div className="flex-shrink-0">
             <div ref={logoParticles.containerRef} className="relative z-10">
@@ -56,7 +55,7 @@ export default function Header() {
           </div>
 
           {/* Navigation buttons in the middle */}
-          <nav className="hidden md:flex items-center space-x-8">
+          <nav className="hidden md:flex items-center space-x-8 overflow-visible">
             <div ref={aboutParticles.containerRef} className="relative z-10">
               <div
                 ref={aboutParticles.particlesRef}
@@ -117,19 +116,9 @@ export default function Header() {
                 Careers
               </a>
             </div>
-            <div ref={hackathonParticles.containerRef} className="relative z-10">
-              <div
-                ref={hackathonParticles.particlesRef}
-                className="absolute inset-0 pointer-events-none overflow-hidden z-0"
-              />
+            <div className="relative z-10">
               <a
                 href="/hackathon"
-                onMouseEnter={
-                  isHalloween ? hackathonParticles.createParticles : undefined
-                }
-                onTouchStart={
-                  isHalloween ? hackathonParticles.createParticles : undefined
-                }
                 className={`relative z-20 bg-orange-500 text-white px-6 py-3 rounded-lg hover:bg-white hover:text-orange-500 hover:scale-105 hover:shadow-lg transition-all duration-300 ease-in-out font-medium text-base font-sans border border-orange-400 hover:border-orange-500 min-h-[48px] flex items-center touch-manipulation ${
                   isHalloween ? "active:scale-90" : ""
                 }`}
@@ -252,12 +241,6 @@ export default function Header() {
               </a>
               <a
                 href="/hackathon"
-                onMouseEnter={
-                  isHalloween ? hackathonParticles.createParticles : undefined
-                }
-                onTouchStart={
-                  isHalloween ? hackathonParticles.createParticles : undefined
-                }
                 className={`relative z-20 flex px-3 py-4 bg-orange-500 text-white hover:bg-white hover:text-orange-500 transition-all duration-300 ease-in-out font-medium text-base font-sans border border-orange-400 hover:border-orange-500 rounded-lg min-h-[48px] items-center touch-manipulation ${
                   isHalloween ? "active:scale-90" : ""
                 }`}
