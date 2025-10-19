@@ -5,6 +5,7 @@ import { useHalloweenTheme } from './HalloweenThemeProvider';
 import { useBatParticles } from '../hooks/useBatParticles';
 
 interface FormData {
+  track: string;
   firstName: string;
   lastName: string;
   schoolEmail: string;
@@ -15,6 +16,7 @@ interface FormData {
 }
 
 interface FormErrors {
+  track?: string;
   firstName?: string;
   lastName?: string;
   schoolEmail?: string;
@@ -25,6 +27,7 @@ interface FormErrors {
 
 export default function HackathonSignupForm() {
   const [formData, setFormData] = useState<FormData>({
+    track: '',
     firstName: '',
     lastName: '',
     schoolEmail: '',
@@ -55,6 +58,10 @@ export default function HackathonSignupForm() {
 
   const validateForm = (): boolean => {
     const newErrors: FormErrors = {};
+
+    if (!formData.track) {
+      newErrors.track = 'Please select a track';
+    }
 
     if (!formData.firstName.trim()) {
       newErrors.firstName = 'First name is required';
@@ -114,6 +121,7 @@ export default function HackathonSignupForm() {
 
     try {
       const formDataToSend = new FormData();
+      formDataToSend.append('track', formData.track);
       formDataToSend.append('firstName', formData.firstName);
       formDataToSend.append('lastName', formData.lastName);
       formDataToSend.append('schoolEmail', formData.schoolEmail);
@@ -130,6 +138,7 @@ export default function HackathonSignupForm() {
       if (response.ok) {
         setSubmitStatus('success');
         setFormData({
+          track: '',
           firstName: '',
           lastName: '',
           schoolEmail: '',
@@ -175,6 +184,40 @@ export default function HackathonSignupForm() {
       )}
 
       <form onSubmit={handleSubmit} className="space-y-6">
+        {/* Track selection */}
+        <div>
+          <label className="block text-sm font-medium text-[#5d4e37] mb-2">
+            Track *
+          </label>
+          <div className="grid grid-cols-2 gap-3">
+            {[
+              'Engineering',
+              'Comprehensive Business Case Competition',
+            ].map((option) => (
+              <button
+                key={option}
+                type="button"
+                onClick={() => {
+                  setFormData((p) => ({ ...p, track: option }));
+                  if (errors.track) {
+                    setErrors((prev) => ({ ...prev, track: undefined }));
+                  }
+                }}
+                className={`w-full px-4 py-2 rounded-lg border transition-colors ${
+                  formData.track === option
+                    ? 'bg-[#cc785c] text-white border-transparent'
+                    : 'bg-white text-[#5d4e37] border-gray-300 hover:border-[#cc785c]'
+                }`}
+              >
+                {option}
+              </button>
+            ))}
+          </div>
+          {errors.track && (
+            <p className="mt-1 text-sm text-red-600">{errors.track}</p>
+          )}
+        </div>
+
         {/* First Name */}
         <div>
           <label htmlFor="firstName" className="block text-sm font-medium text-[#5d4e37] mb-2">
