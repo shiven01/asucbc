@@ -1,6 +1,8 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useHalloweenTheme } from './HalloweenThemeProvider';
+import { useBatParticles } from '../hooks/useBatParticles';
 
 interface FormData {
   firstName: string;
@@ -35,6 +37,21 @@ export default function HackathonSignupForm() {
   const [errors, setErrors] = useState<FormErrors>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
+
+  // Halloween theme and bat particles
+  const { isHalloween } = useHalloweenTheme();
+  const { containerRef, particlesRef, createParticles } = useBatParticles();
+
+  // Reset success state after 5 seconds to allow another submission
+  useEffect(() => {
+    if (submitStatus === 'success') {
+      const timer = setTimeout(() => {
+        setSubmitStatus('idle');
+      }, 5000);
+      
+      return () => clearTimeout(timer);
+    }
+  }, [submitStatus]);
 
   const validateForm = (): boolean => {
     const newErrors: FormErrors = {};
@@ -312,27 +329,44 @@ export default function HackathonSignupForm() {
 
         {/* Submit Button */}
         <div className="pt-6">
-          <button
-            type="submit"
-            disabled={isSubmitting}
-            className={`w-full py-4 px-6 rounded-lg font-medium text-white transition-all duration-200 ${
-              isSubmitting
-                ? 'bg-gray-400 cursor-not-allowed'
-                : 'bg-[#cc785c] hover:bg-[#5d4e37] hover:scale-105 hover:shadow-lg'
-            }`}
-          >
-            {isSubmitting ? (
-              <span className="flex items-center justify-center">
-                <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                  <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                  <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                </svg>
-                Submitting...
-              </span>
-            ) : (
-              'Submit Hackathon Registration'
-            )}
-          </button>
+          <div ref={containerRef} className="relative z-10">
+            <div
+              ref={particlesRef}
+              className="absolute inset-0 pointer-events-none overflow-visible z-0"
+            />
+            <button
+              type="submit"
+              disabled={isSubmitting || submitStatus === 'success'}
+              onMouseEnter={isHalloween && submitStatus !== 'success' ? createParticles : undefined}
+              onTouchStart={isHalloween && submitStatus !== 'success' ? createParticles : undefined}
+              className={`w-full py-4 px-6 rounded-lg font-medium text-white transition-all duration-200 relative z-10 ${
+                submitStatus === 'success'
+                  ? 'bg-green-600 cursor-default'
+                  : isSubmitting
+                  ? 'bg-gray-400 cursor-not-allowed'
+                  : 'bg-[#cc785c] hover:bg-[#5d4e37] hover:scale-105 hover:shadow-lg'
+              }`}
+            >
+              {submitStatus === 'success' ? (
+                <span className="flex items-center justify-center">
+                  <svg className="mr-3 h-5 w-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                  </svg>
+                  Registration Complete!
+                </span>
+              ) : isSubmitting ? (
+                <span className="flex items-center justify-center">
+                  <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                  </svg>
+                  Submitting...
+                </span>
+              ) : (
+                'Submit Hackathon Registration'
+              )}
+            </button>
+          </div>
         </div>
       </form>
 
