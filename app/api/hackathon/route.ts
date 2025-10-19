@@ -67,7 +67,57 @@ Registration submitted on: ${new Date().toLocaleString()}
       text: emailContent,
     };
 
-    await transporter.sendMail(mailOptions);
+    // Send data to Google Sheets via Apps Script webhook FIRST
+    let sheetsSuccess = false;
+    
+    if (process.env.GOOGLE_APPS_SCRIPT_URL) {
+      console.log('Attempting to save to Google Sheets...');
+      const sheetsData = {
+        firstName,
+        lastName,
+        schoolEmail,
+        year,
+        hackathonsParticipated,
+        experienceLevel,
+        dietaryRestrictions: dietaryRestrictions || ''
+      };
+
+      try {
+        console.log('Sending data to:', process.env.GOOGLE_APPS_SCRIPT_URL);
+        console.log('Data being sent:', sheetsData);
+        
+        const sheetsResponse = await fetch(process.env.GOOGLE_APPS_SCRIPT_URL, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(sheetsData),
+        });
+
+        const responseText = await sheetsResponse.text();
+        console.log('Google Sheets response status:', sheetsResponse.status);
+        console.log('Google Sheets response:', responseText);
+
+        if (sheetsResponse.ok) {
+          console.log('✅ Successfully saved to Google Sheets');
+          sheetsSuccess = true;
+        } else {
+          console.error('❌ Failed to save to Google Sheets:', responseText);
+        }
+      } catch (sheetsError) {
+        console.error('❌ Google Sheets integration error:', sheetsError);
+      }
+    } else {
+      console.log('⚠️ GOOGLE_APPS_SCRIPT_URL not configured, skipping Sheets integration');
+    }
+
+    // Only send email as backup if Sheets failed or wasn't configured
+    if (!sheetsSuccess) {
+      console.log('📧 Sending email as backup since Sheets integration failed or not configured');
+      await transporter.sendMail(mailOptions);
+    } else {
+      console.log('📧 Skipping email since Sheets integration succeeded');
+    }
 
     return NextResponse.json(
       { message: 'Hackathon registration submitted successfully' },
