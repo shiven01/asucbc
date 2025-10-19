@@ -23,18 +23,16 @@ export async function POST(request: NextRequest) {
     const formData = await request.formData();
     
     // Extract form data
-    const fullName = formData.get('fullName') as string;
-    const email = formData.get('email') as string;
-    const phoneNumber = formData.get('phoneNumber') as string;
-    const major = formData.get('major') as string;
+    const firstName = formData.get('firstName') as string;
+    const lastName = formData.get('lastName') as string;
+    const schoolEmail = formData.get('schoolEmail') as string;
     const year = formData.get('year') as string;
-    const experience = formData.get('experience') as string;
-    const teamStatus = formData.get('teamStatus') as string;
-    const interests = formData.get('interests') as string;
+    const hackathonsParticipated = formData.get('hackathonsParticipated') as string;
+    const experienceLevel = formData.get('experienceLevel') as string;
     const dietaryRestrictions = formData.get('dietaryRestrictions') as string;
 
     // Validate required fields
-    if (!fullName || !email || !phoneNumber || !major || !year || !experience || !teamStatus) {
+    if (!firstName || !lastName || !schoolEmail || !year || !hackathonsParticipated || !experienceLevel) {
       return NextResponse.json(
         { error: 'Missing required fields' },
         { status: 400 }
@@ -46,16 +44,14 @@ export async function POST(request: NextRequest) {
 New Hackathon Registration Received
 
 Personal Information:
-- Name: ${fullName}
-- Email: ${email}
-- Phone: ${phoneNumber}
-- Major: ${major}
+- First Name: ${firstName}
+- Last Name: ${lastName}
+- School Email: ${schoolEmail}
 - Year: ${year}
-- Coding Experience: ${experience}
-- Team Status: ${teamStatus === 'solo' ? 'Looking for a team' : 'Has a team'}
+- Hackathons Participated: ${hackathonsParticipated}
+- Experience Level: ${experienceLevel}
 
 Additional Information:
-- Interests/Project Ideas: ${interests || 'Not provided'}
 - Dietary Restrictions: ${dietaryRestrictions || 'None'}
 
 Registration submitted on: ${new Date().toLocaleString()}
@@ -67,7 +63,7 @@ Registration submitted on: ${new Date().toLocaleString()}
     const mailOptions = {
       from: process.env.SMTP_USER,
       to: process.env.RECIPIENT_EMAIL || 'shivenshekar01@gmail.com',
-      subject: `🎃 New Hackathon Registration: ${fullName}`,
+      subject: `🎃 New Hackathon Registration: ${firstName} ${lastName}`,
       text: emailContent,
     };
 

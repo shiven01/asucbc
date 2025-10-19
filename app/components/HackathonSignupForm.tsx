@@ -3,37 +3,32 @@
 import { useState } from 'react';
 
 interface FormData {
-  fullName: string;
-  email: string;
-  phoneNumber: string;
-  major: string;
+  firstName: string;
+  lastName: string;
+  schoolEmail: string;
   year: string;
-  experience: string;
-  teamStatus: string;
-  interests: string;
+  hackathonsParticipated: number;
+  experienceLevel: string;
   dietaryRestrictions: string;
 }
 
 interface FormErrors {
-  fullName?: string;
-  email?: string;
-  phoneNumber?: string;
-  major?: string;
+  firstName?: string;
+  lastName?: string;
+  schoolEmail?: string;
   year?: string;
-  experience?: string;
-  teamStatus?: string;
+  hackathonsParticipated?: string;
+  experienceLevel?: string;
 }
 
 export default function HackathonSignupForm() {
   const [formData, setFormData] = useState<FormData>({
-    fullName: '',
-    email: '',
-    phoneNumber: '',
-    major: '',
+    firstName: '',
+    lastName: '',
+    schoolEmail: '',
     year: '',
-    experience: '',
-    teamStatus: 'solo',
-    interests: '',
+    hackathonsParticipated: 0,
+    experienceLevel: '',
     dietaryRestrictions: '',
   });
 
@@ -44,40 +39,30 @@ export default function HackathonSignupForm() {
   const validateForm = (): boolean => {
     const newErrors: FormErrors = {};
 
-    if (!formData.fullName.trim()) {
-      newErrors.fullName = 'Full name is required';
+    if (!formData.firstName.trim()) {
+      newErrors.firstName = 'First name is required';
     }
 
-    if (!formData.email.trim()) {
-      newErrors.email = 'Email is required';
-    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
-      newErrors.email = 'Please enter a valid email address';
+    if (!formData.lastName.trim()) {
+      newErrors.lastName = 'Last name is required';
     }
 
-    if (!formData.phoneNumber.trim()) {
-      newErrors.phoneNumber = 'Phone number is required';
-    } else {
-      const phoneRegex = /^[\+]?[1-9][\d]{0,15}$/;
-      const cleanPhone = formData.phoneNumber.replace(/[\s\-\(\)]/g, '');
-      if (!phoneRegex.test(cleanPhone)) {
-        newErrors.phoneNumber = 'Please enter a valid phone number';
-      }
-    }
-
-    if (!formData.major.trim()) {
-      newErrors.major = 'Major is required';
+    if (!formData.schoolEmail.trim()) {
+      newErrors.schoolEmail = 'School email is required';
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.schoolEmail)) {
+      newErrors.schoolEmail = 'Please enter a valid email address';
     }
 
     if (!formData.year) {
       newErrors.year = 'Year is required';
     }
 
-    if (!formData.experience) {
-      newErrors.experience = 'Experience level is required';
+    if (formData.hackathonsParticipated < 0) {
+      newErrors.hackathonsParticipated = 'Please enter a valid number of hackathons';
     }
 
-    if (!formData.teamStatus) {
-      newErrors.teamStatus = 'Team status is required';
+    if (!formData.experienceLevel) {
+      newErrors.experienceLevel = 'Experience level is required';
     }
 
     setErrors(newErrors);
@@ -86,7 +71,14 @@ export default function HackathonSignupForm() {
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
+    
+    // Handle number input for hackathonsParticipated
+    if (name === 'hackathonsParticipated') {
+      const numValue = parseInt(value) || 0;
+      setFormData(prev => ({ ...prev, [name]: numValue }));
+    } else {
+      setFormData(prev => ({ ...prev, [name]: value }));
+    }
 
     if (errors[name as keyof FormErrors]) {
       setErrors(prev => ({ ...prev, [name]: undefined }));
@@ -105,14 +97,12 @@ export default function HackathonSignupForm() {
 
     try {
       const formDataToSend = new FormData();
-      formDataToSend.append('fullName', formData.fullName);
-      formDataToSend.append('email', formData.email);
-      formDataToSend.append('phoneNumber', formData.phoneNumber);
-      formDataToSend.append('major', formData.major);
+      formDataToSend.append('firstName', formData.firstName);
+      formDataToSend.append('lastName', formData.lastName);
+      formDataToSend.append('schoolEmail', formData.schoolEmail);
       formDataToSend.append('year', formData.year);
-      formDataToSend.append('experience', formData.experience);
-      formDataToSend.append('teamStatus', formData.teamStatus);
-      formDataToSend.append('interests', formData.interests);
+      formDataToSend.append('hackathonsParticipated', formData.hackathonsParticipated.toString());
+      formDataToSend.append('experienceLevel', formData.experienceLevel);
       formDataToSend.append('dietaryRestrictions', formData.dietaryRestrictions);
 
       const response = await fetch('/api/hackathon', {
@@ -123,14 +113,12 @@ export default function HackathonSignupForm() {
       if (response.ok) {
         setSubmitStatus('success');
         setFormData({
-          fullName: '',
-          email: '',
-          phoneNumber: '',
-          major: '',
+          firstName: '',
+          lastName: '',
+          schoolEmail: '',
           year: '',
-          experience: '',
-          teamStatus: 'solo',
-          interests: '',
+          hackathonsParticipated: 0,
+          experienceLevel: '',
           dietaryRestrictions: '',
         });
       } else {
@@ -170,87 +158,66 @@ export default function HackathonSignupForm() {
       )}
 
       <form onSubmit={handleSubmit} className="space-y-6">
-        {/* Full Name */}
+        {/* First Name */}
         <div>
-          <label htmlFor="fullName" className="block text-sm font-medium text-[#5d4e37] mb-2">
-            Full Name *
+          <label htmlFor="firstName" className="block text-sm font-medium text-[#5d4e37] mb-2">
+            First Name *
           </label>
           <input
             type="text"
-            id="fullName"
-            name="fullName"
-            value={formData.fullName}
+            id="firstName"
+            name="firstName"
+            value={formData.firstName}
             onChange={handleInputChange}
             className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-[#cc785c] focus:border-transparent transition-colors ${
-              errors.fullName ? 'border-red-500' : 'border-gray-300'
+              errors.firstName ? 'border-red-500' : 'border-gray-300'
             }`}
-            placeholder="Enter your full name"
+            placeholder="Enter your first name"
           />
-          {errors.fullName && (
-            <p className="mt-1 text-sm text-red-600">{errors.fullName}</p>
+          {errors.firstName && (
+            <p className="mt-1 text-sm text-red-600">{errors.firstName}</p>
           )}
         </div>
 
-        {/* Email */}
+        {/* Last Name */}
         <div>
-          <label htmlFor="email" className="block text-sm font-medium text-[#5d4e37] mb-2">
-            Email Address *
+          <label htmlFor="lastName" className="block text-sm font-medium text-[#5d4e37] mb-2">
+            Last Name *
+          </label>
+          <input
+            type="text"
+            id="lastName"
+            name="lastName"
+            value={formData.lastName}
+            onChange={handleInputChange}
+            className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-[#cc785c] focus:border-transparent transition-colors ${
+              errors.lastName ? 'border-red-500' : 'border-gray-300'
+            }`}
+            placeholder="Enter your last name"
+          />
+          {errors.lastName && (
+            <p className="mt-1 text-sm text-red-600">{errors.lastName}</p>
+          )}
+        </div>
+
+        {/* School Email */}
+        <div>
+          <label htmlFor="schoolEmail" className="block text-sm font-medium text-[#5d4e37] mb-2">
+            School Email *
           </label>
           <input
             type="email"
-            id="email"
-            name="email"
-            value={formData.email}
+            id="schoolEmail"
+            name="schoolEmail"
+            value={formData.schoolEmail}
             onChange={handleInputChange}
             className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-[#cc785c] focus:border-transparent transition-colors ${
-              errors.email ? 'border-red-500' : 'border-gray-300'
+              errors.schoolEmail ? 'border-red-500' : 'border-gray-300'
             }`}
             placeholder="your.email@asu.edu"
           />
-          {errors.email && (
-            <p className="mt-1 text-sm text-red-600">{errors.email}</p>
-          )}
-        </div>
-
-        {/* Phone Number */}
-        <div>
-          <label htmlFor="phoneNumber" className="block text-sm font-medium text-[#5d4e37] mb-2">
-            Phone Number *
-          </label>
-          <input
-            type="tel"
-            id="phoneNumber"
-            name="phoneNumber"
-            value={formData.phoneNumber}
-            onChange={handleInputChange}
-            className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-[#cc785c] focus:border-transparent transition-colors ${
-              errors.phoneNumber ? 'border-red-500' : 'border-gray-300'
-            }`}
-            placeholder="+1 (555) 123-4567"
-          />
-          {errors.phoneNumber && (
-            <p className="mt-1 text-sm text-red-600">{errors.phoneNumber}</p>
-          )}
-        </div>
-
-        {/* Major */}
-        <div>
-          <label htmlFor="major" className="block text-sm font-medium text-[#5d4e37] mb-2">
-            Major *
-          </label>
-          <input
-            type="text"
-            id="major"
-            name="major"
-            value={formData.major}
-            onChange={handleInputChange}
-            className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-[#cc785c] focus:border-transparent transition-colors ${
-              errors.major ? 'border-red-500' : 'border-gray-300'
-            }`}
-            placeholder="Computer Science"
-          />
-          {errors.major && (
-            <p className="mt-1 text-sm text-red-600">{errors.major}</p>
+          {errors.schoolEmail && (
+            <p className="mt-1 text-sm text-red-600">{errors.schoolEmail}</p>
           )}
         </div>
 
@@ -273,73 +240,58 @@ export default function HackathonSignupForm() {
             <option value="sophomore">Sophomore</option>
             <option value="junior">Junior</option>
             <option value="senior">Senior</option>
-            <option value="graduate">Graduate Student</option>
+            <option value="masters">Masters</option>
           </select>
           {errors.year && (
             <p className="mt-1 text-sm text-red-600">{errors.year}</p>
           )}
         </div>
 
+        {/* Number of Hackathons Participated */}
+        <div>
+          <label htmlFor="hackathonsParticipated" className="block text-sm font-medium text-[#5d4e37] mb-2">
+            How many hackathons have you participated in before? *
+          </label>
+          <input
+            type="number"
+            id="hackathonsParticipated"
+            name="hackathonsParticipated"
+            value={formData.hackathonsParticipated}
+            onChange={handleInputChange}
+            min="0"
+            className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-[#cc785c] focus:border-transparent transition-colors ${
+              errors.hackathonsParticipated ? 'border-red-500' : 'border-gray-300'
+            }`}
+            placeholder="0"
+          />
+          {errors.hackathonsParticipated && (
+            <p className="mt-1 text-sm text-red-600">{errors.hackathonsParticipated}</p>
+          )}
+        </div>
+
         {/* Experience Level */}
         <div>
-          <label htmlFor="experience" className="block text-sm font-medium text-[#5d4e37] mb-2">
-            Coding Experience *
+          <label htmlFor="experienceLevel" className="block text-sm font-medium text-[#5d4e37] mb-2">
+            Field of Study Experience Level *
           </label>
           <select
-            id="experience"
-            name="experience"
-            value={formData.experience}
+            id="experienceLevel"
+            name="experienceLevel"
+            value={formData.experienceLevel}
             onChange={handleInputChange}
             className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-[#cc785c] focus:border-transparent transition-colors ${
-              errors.experience ? 'border-red-500' : 'border-gray-300'
+              errors.experienceLevel ? 'border-red-500' : 'border-gray-300'
             }`}
           >
             <option value="">Select your experience level</option>
-            <option value="beginner">Beginner (0-1 years)</option>
-            <option value="intermediate">Intermediate (1-3 years)</option>
-            <option value="advanced">Advanced (3+ years)</option>
+            <option value="0-1">0-1 years</option>
+            <option value="1-2">1-2 years</option>
+            <option value="2-4">2-4 years</option>
+            <option value="4+">4+ years</option>
           </select>
-          {errors.experience && (
-            <p className="mt-1 text-sm text-red-600">{errors.experience}</p>
+          {errors.experienceLevel && (
+            <p className="mt-1 text-sm text-red-600">{errors.experienceLevel}</p>
           )}
-        </div>
-
-        {/* Team Status */}
-        <div>
-          <label htmlFor="teamStatus" className="block text-sm font-medium text-[#5d4e37] mb-2">
-            Team Status *
-          </label>
-          <select
-            id="teamStatus"
-            name="teamStatus"
-            value={formData.teamStatus}
-            onChange={handleInputChange}
-            className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-[#cc785c] focus:border-transparent transition-colors ${
-              errors.teamStatus ? 'border-red-500' : 'border-gray-300'
-            }`}
-          >
-            <option value="solo">Looking for a team</option>
-            <option value="has-team">I have a team</option>
-          </select>
-          {errors.teamStatus && (
-            <p className="mt-1 text-sm text-red-600">{errors.teamStatus}</p>
-          )}
-        </div>
-
-        {/* Interests */}
-        <div>
-          <label htmlFor="interests" className="block text-sm font-medium text-[#5d4e37] mb-2">
-            What are you interested in building?
-          </label>
-          <textarea
-            id="interests"
-            name="interests"
-            value={formData.interests}
-            onChange={handleInputChange}
-            rows={4}
-            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#cc785c] focus:border-transparent transition-colors resize-none"
-            placeholder="Tell us about your project ideas or interests..."
-          />
         </div>
 
         {/* Dietary Restrictions */}
@@ -383,6 +335,19 @@ export default function HackathonSignupForm() {
           </button>
         </div>
       </form>
+
+      {/* Contact Info */}
+      <div className="text-center mt-8">
+        <p className="text-[#5d4e37]/80 mb-2">
+          Questions? Contact us at{" "}
+          <a
+            href="mailto:shivenshekar01@gmail.com"
+            className="text-[#5d4e37] hover:underline font-semibold"
+          >
+            shivenshekar01@gmail.com
+          </a>
+        </p>
+      </div>
     </div>
   );
 }

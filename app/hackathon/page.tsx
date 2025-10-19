@@ -1,5 +1,6 @@
 import Header from "../components/Header";
 import Footer from "../components/Footer";
+import HackathonSignupForm from "../components/HackathonSignupForm";
 
 export default function Hackathon() {
   return (
@@ -20,66 +21,9 @@ export default function Hackathon() {
             </p>
           </div>
 
-          {/* Coming Soon Card */}
+          {/* Registration Form */}
           <div className="bg-[#ffffff]/95 backdrop-blur-sm rounded-2xl p-6 sm:p-8 md:p-12 shadow-xl border-2 border-yellow-400/20">
-            <div className="text-center">
-              <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold text-[#5d4e37] mb-6">
-                Signup Form Coming Soon!
-              </h2>
-              <p className="text-xl text-[#5d4e37]/80 mb-8">
-                We're putting the finishing touches on our hackathon registration form. Check back soon!
-              </p>
-              
-              {/* Event Details */}
-              <div className="bg-[#f4f3ee] rounded-xl p-6 mb-8">
-                <h3 className="text-2xl font-bold text-[#5d4e37] mb-4">Event Details</h3>
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-center">
-                  <div>
-                    <p className="text-[#5d4e37]/60 text-sm font-semibold mb-1">📅 DATE</p>
-                    <p className="text-[#5d4e37] font-bold">November 8-9, 2025</p>
-                  </div>
-                  <div>
-                    <p className="text-[#5d4e37]/60 text-sm font-semibold mb-1">⏰ TIME</p>
-                    <p className="text-[#5d4e37] font-bold">Nov 8, 11 AM - Nov 9, 5 PM</p>
-                  </div>
-                  <div>
-                    <p className="text-[#5d4e37]/60 text-sm font-semibold mb-1">💰 PRIZES</p>
-                    <p className="text-[#5d4e37] font-bold">$5,000 Total</p>
-                  </div>
-                </div>
-                
-                <div className="mt-6 pt-6 border-t border-[#cc785c]/20">
-                  <h4 className="text-[#5d4e37] font-semibold mb-3">What's Included:</h4>
-                  <ul className="space-y-2 text-[#5d4e37]">
-                    <li className="flex items-center justify-center">
-                      <span className="mr-2">🎃</span>
-                      <span>$5,000 in prizes</span>
-                    </li>
-                    <li className="flex items-center justify-center">
-                      <span className="mr-2">👻</span>
-                      <span>Free food & swag</span>
-                    </li>
-                    <li className="flex items-center justify-center">
-                      <span className="mr-2">🦇</span>
-                      <span>Mentorship from industry experts</span>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-
-              {/* Contact Info */}
-              <div className="text-center">
-                <p className="text-[#5d4e37]/80 mb-2">
-                  Questions? Contact us at{" "}
-                  <a
-                    href="mailto:shivenshekar01@gmail.com"
-                    className="text-[#5d4e37] hover:underline font-semibold"
-                  >
-                    shivenshekar01@gmail.com
-                  </a>
-                </p>
-              </div>
-            </div>
+            <HackathonSignupForm />
           </div>
         </div>
       </div>
