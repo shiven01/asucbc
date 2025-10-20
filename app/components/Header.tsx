@@ -119,14 +119,14 @@ export default function Header() {
             <div className="relative z-10">
               <a
                 href="/hackathon"
-                className={`relative z-20 bg-orange-500 text-white px-6 py-3 rounded-lg hover:bg-white hover:text-orange-500 hover:scale-105 hover:shadow-lg transition-all duration-300 ease-in-out font-medium text-base font-sans border border-orange-400 hover:border-orange-500 min-h-[48px] flex items-center touch-manipulation ${
+                className={`relative z-20 bg-[var(--theme-button-bg)] text-white px-6 py-3 rounded-lg hover:bg-[var(--theme-button-hover-bg)] hover:shadow-lg transition-all duration-300 ease-in-out font-medium text-base font-sans  min-h-[48px] flex items-center touch-manipulation ${
                   isHalloween ? "active:scale-90" : ""
                 }`}
               >
                 Hackathon
               </a>
             </div>
-            <div ref={joinUsParticles.containerRef} className="relative z-10">
+            {/* <div ref={joinUsParticles.containerRef} className="relative z-10">
               <div
                 ref={joinUsParticles.particlesRef}
                 className="absolute inset-0 pointer-events-none overflow-visible z-0"
@@ -147,7 +147,7 @@ export default function Header() {
               >
                 Join Us
               </a>
-            </div>
+            </div> */}
           </nav>
 
           {/* Mobile menu button */}
@@ -248,7 +248,7 @@ export default function Header() {
               >
                 Hackathon
               </a>
-              <a
+              {/* <a
                 href="https://docs.google.com/forms/d/e/1FAIpQLScP9LuFwiHEx806tv9zczjCIEzqO1Zjb-FjB4XWoa6BS1NNKQ/viewform"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -264,7 +264,7 @@ export default function Header() {
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 Join Us
-              </a>
+              </a> */}
             </div>
           </div>
         )}

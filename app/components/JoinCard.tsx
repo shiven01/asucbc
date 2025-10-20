@@ -32,7 +32,7 @@ export default function JoinCard({
   } = useBatParticles();
   return (
     <div
-      className={`w-full rounded-xl bg-[#faf7f2] border-2 border-[var(--theme-card-border)] shadow-sm p-4 sm:p-6 ${className}`}
+      className={`w-full rounded-xl bg-[var(--theme-card-bg)] border-2 border-[var(--theme-card-border)] shadow-sm p-4 sm:p-6 ${className}`}
     >
       <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-black mb-3">
         {title}
