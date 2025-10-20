@@ -5,11 +5,35 @@ import CalendarContainer from "./components/calendar/CalendarContainer";
 import JoinCard from "./components/JoinCard";
 import HackathonPromo from "./components/HackathonPromo";
 import { showHackathonPromo } from "./theme-config";
+import Head from "next/head";
 
 export default function Home() {
   return (
     <div className="min-h-screen flex flex-col relative">
       <Header />
+      <Head>
+        <title>ASU Claude Builder Club</title>
+        <meta
+          name="description"
+          content="ASU Claude Builder Club - Building with Claude AI"
+        />
+        <link rel="icon" href="/claude.svg" />
+        <meta property="og:title" content="ASU Claude Builder Club" />
+        <meta
+          property="og:description"
+          content="ASU Claude Builder Club - Building with Claude AI"
+        />
+        <meta property="og:image" content="/assets/og/splash.png" />
+        <meta property="og:type" content="website" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="ASU Claude Builder Club" />
+        <meta
+          name="twitter:description"
+          content="ASU Claude Builder Club - Building with Claude AI"
+        />
+        <meta name="twitter:image" content="/assets/og/splash.png" />
+
+      </Head>
       <div className="font-sans flex-1 pt-4 px-4 pb-0 sm:pt-8 sm:px-8 md:p-20 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 md:gap-8 min-h-full items-start">
           {/* Left half - Title + Hackathon */}
