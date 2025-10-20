@@ -26,6 +26,28 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+                <title>ASU Claude Builder Club</title>
+        <meta
+          name="description"
+          content="ASU Claude Builder Club - Building with Claude AI"
+        />
+        <link rel="icon" href="/claude.svg" />
+        <meta property="og:title" content="ASU Claude Builder Club" />
+        <meta
+          property="og:description"
+          content="ASU Claude Builder Club - Building with Claude AI"
+        />
+        <meta property="og:image" content="/assets/og/splash.png" />
+        <meta property="og:type" content="website" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="ASU Claude Builder Club" />
+        <meta
+          name="twitter:description"
+          content="ASU Claude Builder Club - Building with Claude AI"
+        />
+        <meta name="twitter:image" content="/assets/og/splash.png" />
+      </head>
       <body className={`${poppins.variable} antialiased`}>
         <HalloweenThemeProvider>{children}</HalloweenThemeProvider>
         <Analytics />
