@@ -2,7 +2,7 @@
 
 /* Theme Variables */
 :root {
-  --background: #cc785c;
+  --background: #faf7f2;
   --foreground: #5d4e37;
   --primary: #faf7f2;
   --secondary: #d4c4a8;
@@ -10,18 +10,18 @@
 
   /* Theme Colors */
   --theme-bg: #cc785c;
-  --theme-text-primary: #ffffff;
-  --theme-text-accent: #f4f3ee;
+  --theme-text-primary: #212120;
+  --theme-text-accent: #cc785c;
   --theme-text-dark: #5d4e37;
   --theme-card-bg: #faf7f2;
   --theme-card-border: rgba(0, 0, 0, 0.1);
-  --theme-button-bg: #ffffff;
+  --theme-button-bg: #212120;
   --theme-button-text: #cc785c;
-  --theme-button-hover-bg: #cc785c;
+  --theme-button-hover-bg: #3d3d3a;
   --theme-button-hover-text: #ffffff;
   --theme-button-hover-border: #ffffff;
-  --theme-pattern-color: rgba(255, 255, 255, 0.1);
-  --theme-pattern-color-light: rgba(255, 255, 255, 0.05);
+  --theme-pattern-color: rgba(204, 120, 92, 0.1);
+  --theme-pattern-color-light: rgba(204, 120, 92, 0.05);
 }
 
 @theme inline {
@@ -30,12 +30,12 @@
   --font-sans: var(--font-poppins);
 }
 
-@media (prefers-color-scheme: dark) {
+/* @media (prefers-color-scheme: dark) {
   :root {
     --background: #cc785c;
     --foreground: #5d4e37;
   }
-}
+} */
 
 html {
   overflow-x: hidden !important;
