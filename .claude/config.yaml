@@ -1,0 +1,77 @@
+# Claude for GitHub Configuration
+# This file configures how Claude reviews pull requests
+
+# Claude Activation
+claude:
+  enabled: true
+
+# Project Context
+project:
+  name: ASU CBC Website
+  description: Next.js website with Google Calendar integration, dark theme, and Halloween theme features
+  tech_stack:
+    - Next.js 14+ (App Router)
+    - TypeScript
+    - React
+    - Google Calendar API
+    - Tailwind CSS (if applicable)
+
+# Review Guidelines
+review:
+  # Focus areas for code review
+  focus:
+    - Code quality and best practices
+    - TypeScript type safety
+    - React component patterns and hooks
+    - Next.js App Router conventions
+    - API route security and error handling
+    - Accessibility (a11y)
+    - Performance optimization
+    - SEO considerations
+    
+  # What to look for
+  check:
+    - Proper error handling in API routes
+    - Secure handling of API keys and environment variables
+    - Responsive design considerations
+    - React hooks dependencies and cleanup
+    - TypeScript strict mode compliance
+    - Unused imports and variables
+    - Console logs in production code
+    - Proper async/await usage
+    
+  # Code style preferences
+  style:
+    - Prefer functional components over class components
+    - Use TypeScript strict mode
+    - Follow Next.js best practices for server/client components
+    - Use meaningful variable and function names
+    - Add JSDoc comments for complex functions
+    - Keep components focused and single-responsibility
+
+# Files to pay special attention to
+priority_files:
+  - "app/**/*.tsx"
+  - "app/api/**/*.ts"
+  - "lib/**/*.ts"
+  - "components/**/*.tsx"
+  - "types/**/*.ts"
+
+# Files that typically need less scrutiny
+ignore_patterns:
+  - "node_modules/**"
+  - ".next/**"
+  - "*.log"
+  - "pnpm-lock.yaml"
+  - "*.config.ts"
+  - "*.config.js"
+  - "*.config.mjs"
+
+# Additional context
+context:
+  - The project uses Google Calendar API for event management
+  - The site features a custom calendar component
+  - There's a Halloween theme with animated elements
+  - The project includes a job application and hackathon signup functionality
+  - Focus on maintaining dark theme consistency
+
