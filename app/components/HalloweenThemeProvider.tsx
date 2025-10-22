@@ -67,7 +67,7 @@ const HalloweenThemeProvider: React.FC<HalloweenThemeProviderProps> = ({
             length={300}
             segments={100}
             anchorPoint={{ x: 100, y: 100 }}
-            strokeColor="#FFFFFF"
+            strokeColor="#212121"
             strokeWidth={3}
             cursorOffset={{ x: 8, y: 8 }}
           />

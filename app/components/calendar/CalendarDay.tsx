@@ -38,7 +38,7 @@ export default function CalendarDay({ day, onSelect, onEventClick, allEvents = [
     h-20 rounded-lg cursor-pointer transition-all duration-200
     flex flex-col items-center justify-start relative
     hover:bg-[#b1ada1]/10
-    ${hasEvents ? 'bg-[#cc785c] hover:bg-[#b56a4f]' : ''}
+    ${hasEvents ? 'bg-[#cc785c]/50 hover:bg-[#b56a4f]' : ''}
     ${isCurrentMonth && !hasEvents ? 'text-[#000000]' : 'text-[#b1ada1]'}
     ${hasEvents ? 'text-white' : ''}
     ${isToday && !hasEvents ? 'ring-2 ring-[#a04d2f] bg-[#f4f3ee]/10' : ''}

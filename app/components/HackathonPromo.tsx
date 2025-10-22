@@ -32,10 +32,10 @@ export default function HackathonPromo({
       />
 
       {/* Inner content with glow effect */}
-      <div className="relative rounded-2xl overflow-hidden border-4 border-yellow-500 shadow-gold-glow min-h-[400px] sm:min-h-[450px]">
+      <div className="relative rounded-2xl overflow-hidden border-4 border-[var(--theme-text-accent)] theme-glow min-h-[400px] sm:min-h-[450px] transition">
         {/* Loading Skeleton - shown while image is loading */}
         {!imageLoaded && (
-          <div className="absolute inset-0 bg-gradient-to-r from-orange-400 via-orange-500 via-orange-600 to-orange-700 animate-pulse">
+          <div className="absolute inset-0 bg-gradient-to-r from-orange-400/30 via-orange-500/30 via-orange-600/30 to-orange-700/30 animate-pulse">
             <div className="p-3 sm:p-4 space-y-3">
               <div className="h-8 w-40 bg-white/20 rounded-full"></div>
               <div className="h-10 w-3/4 bg-white/30 rounded"></div>
@@ -52,8 +52,8 @@ export default function HackathonPromo({
           alt="Halloween hackathon spooky background"
           fill
           priority
-          className={`object-cover transition-opacity duration-500 ${
-            imageLoaded ? "opacity-100" : "opacity-0"
+          className={`object-cover transition-all duration-500 ${
+            imageLoaded ? "opacity-100 blur-none" : "opacity-20 blur-lg"
           }`}
           onLoad={() => setImageLoaded(true)}
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
@@ -61,40 +61,40 @@ export default function HackathonPromo({
 
         {/* Content overlay */}
         <div className="relative p-3 sm:p-4">
-        <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-white mb-3 leading-tight text-shadow-strong">
-          Spooky Hackathon 2025
-        </h2>
+          <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-white mb-3 leading-tight text-shadow-strong">
+            Spooky Hackathon 2025
+          </h2>
 
-        <p className="text-base sm:text-lg text-white leading-relaxed mb-4 text-shadow-medium">
-          Join us for an epic Halloween-themed hackathon! Build something
-          spooky, win amazing prizes, and connect with fellow builders.
-        </p>
+          <p className="text-base sm:text-lg text-white leading-relaxed mb-4 text-shadow-medium">
+            Join us for an epic Halloween-themed hackathon! Build something
+            spooky, win amazing prizes, and connect with fellow builders.
+          </p>
 
-        <ul className="list-none space-y-1.5 mb-4 text-base text-white text-shadow-medium pl-8">
-          <li className="flex items-start">
-            <span className="text-white mr-2">🎃</span>
-            <span>$5,000 in prizes</span>
-          </li>
-          <li className="flex items-start">
-            <span className="text-white mr-2">👻</span>
-            <span>Free food & swag</span>
-          </li>
-          <li className="flex items-start">
-            <span className="text-white mr-2">🦇</span>
-            <span>Mentorship from industry experts</span>
-          </li>
-        </ul>
+          <ul className="list-none space-y-1.5 mb-4 text-base text-white text-shadow-medium pl-8">
+            <li className="flex items-start">
+              <span className="text-white mr-2">🎃</span>
+              <span>$5,000 in prizes</span>
+            </li>
+            <li className="flex items-start">
+              <span className="text-white mr-2">👻</span>
+              <span>Free food & swag</span>
+            </li>
+            <li className="flex items-start">
+              <span className="text-white mr-2">🦇</span>
+              <span>Mentorship from industry experts</span>
+            </li>
+          </ul>
 
-        <Link
-          href="/hackathon"
-          onMouseEnter={isHalloween ? createParticles : undefined}
-          onTouchStart={isHalloween ? createParticles : undefined}
-          className={`cta-button relative z-20 flex max-w-md mx-auto items-center justify-center rounded-xl bg-white text-black px-6 py-4 text-base sm:text-lg font-bold shadow-lg min-h-[48px] touch-manipulation ${
-            isHalloween ? "active:scale-90" : ""
-          }`}
-        >
-          Register Now - Limited Spots!
-        </Link>
+          <Link
+            href="/hackathon"
+            onMouseEnter={isHalloween ? createParticles : undefined}
+            onTouchStart={isHalloween ? createParticles : undefined}
+            className={`relative z-10 inline-flex w-full items-center justify-center rounded-xl bg-[var(--theme-card-bg)] text-[var(--theme-button-text)] px-4 py-3 text-sm sm:text-base font-semibold shadow hover:bg-[var(--theme-button-text)] hover:text-[var(--theme-card-bg)] hover:shadow-lg transition-all duration-300 ease-in-out border border-[var(--theme-button-text)] hover:border-[var(--theme-button-text)] min-h-[40px] touch-manipulation ${
+              isHalloween ? "active:scale-90" : ""
+            }`}
+          >
+            Register Now - Limited Spots!
+          </Link>
 
           <p className="text-xs text-white text-center mt-2 text-shadow-medium">
             November 8-9, 2025 • Nov 8, 11 AM - Nov 9, 5 PM
@@ -105,11 +105,13 @@ export default function HackathonPromo({
       <style jsx>{`
         /* Performance-optimized text shadows */
         .text-shadow-strong {
-          text-shadow: 0 2px 8px rgba(0, 0, 0, 0.9), 0 1px 4px rgba(0, 0, 0, 0.8);
+          text-shadow: 0 2px 8px rgba(0, 0, 0, 0.9),
+            0 1px 4px rgba(0, 0, 0, 0.8);
         }
 
         .text-shadow-medium {
-          text-shadow: 0 2px 6px rgba(0, 0, 0, 0.9), 0 1px 3px rgba(0, 0, 0, 0.7);
+          text-shadow: 0 2px 6px rgba(0, 0, 0, 0.9),
+            0 1px 3px rgba(0, 0, 0, 0.7);
         }
 
         /* Optimized animations with will-change and reduced motion support */
@@ -133,23 +135,21 @@ export default function HackathonPromo({
           .animate-pulse-scale {
             animation: none;
           }
-          
+
           .cta-button {
             transition: none !important;
           }
         }
 
-        /* Enhanced glow effects for brighter appearance */
-        .shadow-gold-glow {
-          box-shadow: 0 0 30px rgba(255, 215, 0, 0.8),
-            0 0 60px rgba(255, 140, 0, 0.4),
-            0 4px 20px rgba(0, 0, 0, 0.3);
+        /* Enhanced glow effects using theme color */
+        .theme-glow {
+          box-shadow: 0 0 30px rgba(204, 120, 92, 0.2),
+            0 0 60px rgba(204, 120, 92, 0.4), 0 4px 20px rgba(0, 0, 0, 0.3);
         }
 
-        .hackathon-promo:hover .shadow-gold-glow {
-          box-shadow: 0 0 40px rgba(255, 215, 0, 1),
-            0 0 80px rgba(255, 140, 0, 0.6),
-            0 6px 30px rgba(0, 0, 0, 0.4);
+        .hackathon-promo:hover .theme-glow {
+          box-shadow: 0 0 40px rgba(204, 120, 92, 0.4),
+            0 0 80px rgba(204, 120, 92, 0.5), 0 6px 30px rgba(0, 0, 0, 0.4);
         }
 
         /* Optimized button hover */
