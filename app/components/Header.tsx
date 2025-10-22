@@ -128,22 +128,10 @@ export default function Header() {
                 onTouchStart={
                   isHalloween ? joinUsParticles.createParticles : undefined
                 }
-                className={`relative z-10 bg-[var(--theme-button-alternate-bg)] text-[var(--theme-button-hover-text)] px-6 py-3 rounded-lg hover:bg-[var(--theme-button-hover-bg)] hover:text-[var(--theme-button-hover-text)] hover:scale-105 hover:shadow-lg transition-all duration-300 ease-in-out font-medium text-base font-sans border border-transparent hover:border-[var(--theme-button-hover-border)] min-h-[48px] flex items-center touch-manipulation overflow-visible ${
+                className={`relative z-10 bg-[var(--theme-button-alternate-bg)] text-[var(--theme-button-hover-text)] px-6 py-3 rounded-lg hover:bg-[var(--theme-button-hover-bg)] hover:text-[var(--theme-button-hover-text)] hover:scale-105 hover:shadow-lg transition-all duration-300 ease-in-out font-medium text-base font-sans border border-transparent hover:border-[var(--theme-button-hover-border)] min-h-[48px] flex items-center touch-manipulation ${
                   isHalloween ? "active:scale-90" : ""
                 }`}
               >
-                {/* Spider web decoration */}
-                <svg className="absolute -bottom-1 -left-1 w-16 h-16 text-gray-400 opacity-80 pointer-events-none" viewBox="0 0 80 80" preserveAspectRatio="none">
-                  {/* Anchor lines from corner */}
-                  <line x1="0" y1="80" x2="0" y2="0" stroke="currentColor" strokeWidth="2" />
-                  <line x1="0" y1="80" x2="80" y2="80" stroke="currentColor" strokeWidth="2" />
-                  <line x1="0" y1="80" x2="60" y2="0" stroke="currentColor" strokeWidth="1.5" />
-                  <line x1="0" y1="80" x2="23" y2="0" stroke="currentColor" strokeWidth="1.5" />
-                  {/* Curved web lines */}
-                  <path d="M 0,60 a 12,15 45 1,1 37,-26 a 10,12 0 1,1 14,-24 a 25,20 -45 1,1 20,-10" stroke="currentColor" strokeWidth="1.5" fill="none" />
-                  <path d="M 0,40 a 17,20 45 1,1 45,-30 a 17,20 0 1,1 18,-20 a 30,25 -45 1,1 17,-10" stroke="currentColor" strokeWidth="1.5" fill="none" />
-                  <path d="M 0,20 a 22,25 45 1,1 53,-34 a 23,26 0 1,1 23,-16 a 35,30 -45 1,1 4,30" stroke="currentColor" strokeWidth="1.5" fill="none" />
-                </svg>
                 Hackathon
               </a>
             </div>
