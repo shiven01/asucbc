@@ -21,6 +21,12 @@
   --theme-button-hover-bg: #3d3d3a;
   --theme-button-hover-text: #ffffff;
   --theme-button-hover-border: #ffffff;
+  --theme-button-alternate-bg: #cc785c;
+  --theme-button-alternate-text: #212120;
+  --theme-button-alternate-hover-bg: #e5947d;
+  --theme-button-alternate-hover-text: #212120;
+  --theme-button-alternate-hover-border: #212120;
+  
   --theme-pattern-color: rgba(204, 120, 92, 0.1);
   --theme-pattern-color-light: rgba(204, 120, 92, 0.05);
 }

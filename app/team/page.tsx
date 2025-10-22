@@ -1,9 +1,12 @@
-import { teamMembers } from "../../types/team";
+"use client";
+import { useState } from "react";
+import { TeamMember, teamMembers } from "../../types/team";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
 import { TeamMemberCard } from "../components/Team/TeamMemberCard";
 
 export default function TeamPage() {
+  const [activeMember, setActiveMember] = useState<TeamMember["id"] | null>(null);
   return (
     <div className="min-h-screen relative">
       <Header />
@@ -22,7 +25,7 @@ export default function TeamPage() {
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 gap-x-4 gap-y-12">
             {/* Team Member Card */}
             {teamMembers.map((member) => (
-              <TeamMemberCard key={member.id} member={member} />
+              <TeamMemberCard key={member.id} member={member} activeMember={activeMember} setActiveMember={setActiveMember} />
             ))}
           </div>
         </div>
