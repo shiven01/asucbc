@@ -1,6 +1,10 @@
 # Claude for GitHub Configuration
 # This file configures how Claude reviews pull requests
 
+# Claude Activation
+claude:
+  enabled: true
+
 # Project Context
 project:
   name: ASU CBC Website

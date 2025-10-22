@@ -10,6 +10,7 @@ export default function Home() {
   return (
     <div className="min-h-screen flex flex-col relative">
       <Header />
+      
       <div className="font-sans flex-1 pt-4 px-4 pb-0 sm:pt-8 sm:px-8 md:p-20 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 md:gap-8 min-h-full items-start">
           {/* Left half - Title + Hackathon */}

@@ -27,7 +27,7 @@ export default function About() {
               <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-[var(--theme-text-primary)] mb-6">
                 About Anthropic
               </h1>
-              <p className="text-[var(--theme-text-accent)] text-lg leading-relaxed mb-8 max-w-2xl mx-auto lg:mx-0">
+              <p className="text-[var(--theme-text-secondary)] text-lg leading-relaxed mb-8 max-w-2xl mx-auto lg:mx-0">
                 The Arizona State University Claude Builder Club is a
                 student-run organization dedicated to exploring the cutting-edge
                 capabilities of Anthropic's Claude AI. We foster innovation,
@@ -37,43 +37,43 @@ export default function About() {
 
               {/* Feature Cards */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div className="bg-[var(--theme-text-primary)]/10 backdrop-blur-sm rounded-lg p-6 border border-[var(--theme-card-border)] hover:bg-[var(--theme-text-primary)]/15 transition-all duration-300">
+                <div className="bg-[var(--theme-card-bg)] rounded-lg p-6 border border-[var(--theme-card-border)] transition-all duration-300">
                   <h3 className="text-xl font-bold text-[var(--theme-text-primary)] mb-3">
                     AI Innovation
                   </h3>
-                  <p className="text-[var(--theme-text-accent)] text-sm leading-relaxed">
+                  <p className="text-[var(--theme-text-secondary)] text-sm leading-relaxed">
                     Explore the latest developments in AI technology and build
                     innovative applications using Claude's advanced
                     capabilities.
                   </p>
                 </div>
 
-                <div className="bg-[var(--theme-text-primary)]/10 backdrop-blur-sm rounded-lg p-6 border border-[var(--theme-card-border)] hover:bg-[var(--theme-text-primary)]/15 transition-all duration-300">
+                <div className="bg-[var(--theme-card-bg)] rounded-lg p-6 border border-[var(--theme-card-border)] transition-all duration-300">
                   <h3 className="text-xl font-bold text-[var(--theme-text-primary)] mb-3">
                     Community Learning
                   </h3>
-                  <p className="text-[var(--theme-text-accent)] text-sm leading-relaxed">
+                  <p className="text-[var(--theme-text-secondary)] text-sm leading-relaxed">
                     Join a vibrant community of students passionate about AI,
                     sharing knowledge and collaborating on exciting projects.
                   </p>
                 </div>
 
-                <div className="bg-[var(--theme-text-primary)]/10 backdrop-blur-sm rounded-lg p-6 border border-[var(--theme-card-border)] hover:bg-[var(--theme-text-primary)]/15 transition-all duration-300">
+                <div className="bg-[var(--theme-card-bg)] rounded-lg p-6 border border-[var(--theme-card-border)] transition-all duration-300">
                   <h3 className="text-xl font-bold text-[var(--theme-text-primary)] mb-3">
                     Hands-on Projects
                   </h3>
-                  <p className="text-[var(--theme-text-accent)] text-sm leading-relaxed">
+                  <p className="text-[var(--theme-text-secondary)] text-sm leading-relaxed">
                     Work on real-world projects that showcase the power of
                     Claude AI and contribute to meaningful technological
                     solutions.
                   </p>
                 </div>
 
-                <div className="bg-[var(--theme-text-primary)]/10 backdrop-blur-sm rounded-lg p-6 border border-[var(--theme-card-border)] hover:bg-[var(--theme-text-primary)]/15 transition-all duration-300">
+                <div className="bg-[var(--theme-card-bg)] rounded-lg p-6 border border-[var(--theme-card-border)] transition-all duration-300">
                   <h3 className="text-xl font-bold text-[var(--theme-text-primary)] mb-3">
                     Future-Ready Skills
                   </h3>
-                  <p className="text-[var(--theme-text-accent)] text-sm leading-relaxed">
+                  <p className="text-[var(--theme-text-secondary)] text-sm leading-relaxed">
                     Develop essential skills for the AI-driven future, preparing
                     for careers in technology and artificial intelligence.
                   </p>

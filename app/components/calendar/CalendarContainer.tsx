@@ -124,7 +124,7 @@ export default function CalendarContainer({ className = '' }: CalendarContainerP
   };
 
   return (
-    <div className={`bg-[#f4f3ee] rounded-lg shadow-lg p-3 sm:p-4 md:p-6 ${className}`}>
+    <div className={`bg-[var(--theme-card-bg)] border-2 border-[var(--theme-card-border)] rounded-lg shadow-lg p-3 sm:p-4 md:p-6 ${className}`}>
       <CalendarHeader
         currentDate={calendarState.currentDate}
         onPreviousMonth={handlePreviousMonth}

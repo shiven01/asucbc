@@ -1,3 +1,5 @@
+import Link from "next/link"
+
 export default function Footer() {
   return (
     <footer className="p-6 flex justify-between items-center relative z-10">
@@ -28,6 +30,16 @@ export default function Footer() {
             </svg>
             Shiven Shekar
           </a>
+          and 
+          <Link
+            href="https://tet.moe/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-[var(--theme-text-primary)] hover:text-[var(--theme-text-accent)] transition-colors duration-200 font-medium flex items-center gap-1"
+          >
+            John Li
+          </Link>
+
           <span>© 2025</span>
         </div>
         
