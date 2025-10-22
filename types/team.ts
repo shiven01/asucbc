@@ -57,7 +57,11 @@ export const teamMembers: TeamMember[] = [
     id: 'john',
     name: 'John',
     position: 'Technology',
-    image: '/staff/claude.svg',
+    image: '/staff/john.png',
+    description: "John Li is a Full Stack Developer, Honors Student at Arizona State University, and Technical Officer of the Claude Builder Club. With a passion for building robust applications and leading technical initiatives, John combines hands-on development expertise with community leadership. As a technical officer, he spearheads innovative projects and fosters a collaborative environment for club members to explore the latest in AI and software development.",
+    linkedinUrl: 'https://www.linkedin.com/in/johnli05/',
+    websiteUrl: 'https://tet.moe/',
+
   },
   {
     id: 'sebastian',
