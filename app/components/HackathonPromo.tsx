@@ -143,12 +143,12 @@ export default function HackathonPromo({
 
         /* Enhanced glow effects using theme color */
         .theme-glow {
-          box-shadow: 0 0 30px rgba(204, 120, 92, 0.6),
+          box-shadow: 0 0 30px rgba(204, 120, 92, 0.2),
             0 0 60px rgba(204, 120, 92, 0.4), 0 4px 20px rgba(0, 0, 0, 0.3);
         }
 
         .hackathon-promo:hover .theme-glow {
-          box-shadow: 0 0 40px rgba(204, 120, 92, 0.8),
+          box-shadow: 0 0 40px rgba(204, 120, 92, 0.4),
             0 0 80px rgba(204, 120, 92, 0.5), 0 6px 30px rgba(0, 0, 0, 0.4);
         }
 
