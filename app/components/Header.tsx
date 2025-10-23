@@ -13,6 +13,7 @@ export default function Header() {
   const aboutParticles = useBatParticles();
   const teamParticles = useBatParticles();
   const careersParticles = useBatParticles();
+  const announcementsParticles = useBatParticles();
   const joinUsParticles = useBatParticles();
 
   const toggleMobileMenu = () => {
@@ -114,6 +115,26 @@ export default function Header() {
                 }`}
               >
                 Careers
+              </a>
+            </div>
+            <div ref={announcementsParticles.containerRef} className="relative z-10">
+              <div
+                ref={announcementsParticles.particlesRef}
+                className="absolute inset-0 pointer-events-none overflow-visible z-0"
+              />
+              <a
+                href="/announcements"
+                onMouseEnter={
+                  isHalloween ? announcementsParticles.createParticles : undefined
+                }
+                onTouchStart={
+                  isHalloween ? announcementsParticles.createParticles : undefined
+                }
+                className={`relative z-10 text-[var(--theme-text-primary)] hover:text-[var(--theme-text-accent)] hover:scale-105 transition-all duration-200 font-medium font-sans px-4 py-3 rounded-md hover:bg-white/10 min-h-[48px] flex items-center touch-manipulation ${
+                  isHalloween ? "active:scale-90" : ""
+                }`}
+              >
+                Announcements
               </a>
             </div>
             <div className="relative z-10">
@@ -250,6 +271,21 @@ export default function Header() {
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 Careers
+              </a>
+              <a
+                href="/announcements"
+                onMouseEnter={
+                  isHalloween ? announcementsParticles.createParticles : undefined
+                }
+                onTouchStart={
+                  isHalloween ? announcementsParticles.createParticles : undefined
+                }
+                className={`flex px-3 py-4 text-[var(--theme-button-text)] hover:text-[var(--theme-text-accent)] hover:bg-[var(--theme-button-bg)]/10 transition-all duration-200 font-medium font-sans rounded-lg min-h-[48px] items-center touch-manipulation ${
+                  isHalloween ? "active:scale-90" : ""
+                }`}
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                Announcements
               </a>
               <a
                 href="/hackathon"
