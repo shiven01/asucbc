@@ -6,6 +6,7 @@ import { useBatParticles } from '../hooks/useBatParticles';
 
 interface FormData {
   track: string;
+  isAsuOnlineStudent: boolean;
   firstName: string;
   lastName: string;
   schoolEmail: string;
@@ -17,6 +18,7 @@ interface FormData {
 
 interface FormErrors {
   track?: string;
+  isAsuOnlineStudent?: string;
   firstName?: string;
   lastName?: string;
   schoolEmail?: string;
@@ -28,6 +30,7 @@ interface FormErrors {
 export default function HackathonSignupForm() {
   const [formData, setFormData] = useState<FormData>({
     track: '',
+    isAsuOnlineStudent: false,
     firstName: '',
     lastName: '',
     schoolEmail: '',
@@ -61,6 +64,10 @@ export default function HackathonSignupForm() {
 
     if (!formData.track) {
       newErrors.track = 'Please select a track';
+    }
+
+    if (formData.isAsuOnlineStudent === undefined || formData.isAsuOnlineStudent === null) {
+      newErrors.isAsuOnlineStudent = 'Please confirm if you are an ASU Online student';
     }
 
     if (!formData.firstName.trim()) {
@@ -122,6 +129,7 @@ export default function HackathonSignupForm() {
     try {
       const formDataToSend = new FormData();
       formDataToSend.append('track', formData.track);
+      formDataToSend.append('isAsuOnlineStudent', formData.isAsuOnlineStudent.toString());
       formDataToSend.append('firstName', formData.firstName);
       formDataToSend.append('lastName', formData.lastName);
       formDataToSend.append('schoolEmail', formData.schoolEmail);
@@ -139,6 +147,7 @@ export default function HackathonSignupForm() {
         setSubmitStatus('success');
         setFormData({
           track: '',
+          isAsuOnlineStudent: false,
           firstName: '',
           lastName: '',
           schoolEmail: '',
@@ -216,6 +225,43 @@ export default function HackathonSignupForm() {
           {errors.track && (
             <p className="mt-1 text-sm text-red-600">{errors.track}</p>
           )}
+        </div>
+
+        {/* ASU Online Student Confirmation */}
+        <div>
+          <label className="block text-sm font-medium text-[#5d4e37] mb-2">
+            Are you an ASU Online Student? *
+          </label>
+          <div className="grid grid-cols-2 gap-3">
+            {[
+              { value: true, label: 'Yes' },
+              { value: false, label: 'No' }
+            ].map((option) => (
+              <button
+                key={option.label}
+                type="button"
+                onClick={() => {
+                  setFormData((p) => ({ ...p, isAsuOnlineStudent: option.value }));
+                  if (errors.isAsuOnlineStudent) {
+                    setErrors((prev) => ({ ...prev, isAsuOnlineStudent: undefined }));
+                  }
+                }}
+                className={`w-full px-4 py-2 rounded-lg border transition-colors ${
+                  formData.isAsuOnlineStudent === option.value
+                    ? 'bg-[#cc785c] text-white border-transparent'
+                    : 'bg-white text-[#5d4e37] border-gray-300 hover:border-[#cc785c]'
+                }`}
+              >
+                {option.label}
+              </button>
+            ))}
+          </div>
+          {errors.isAsuOnlineStudent && (
+            <p className="mt-1 text-sm text-red-600">{errors.isAsuOnlineStudent}</p>
+          )}
+          <p className="mt-1 text-xs text-[#5d4e37]/60">
+            We will be verifying each one individually for proof later
+          </p>
         </div>
 
         {/* First Name */}

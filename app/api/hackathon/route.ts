@@ -24,6 +24,7 @@ export async function POST(request: NextRequest) {
     
     // Extract form data
     const track = formData.get('track') as string;
+    const isAsuOnlineStudent = formData.get('isAsuOnlineStudent') === 'true';
     const firstName = formData.get('firstName') as string;
     const lastName = formData.get('lastName') as string;
     const schoolEmail = formData.get('schoolEmail') as string;
@@ -33,7 +34,7 @@ export async function POST(request: NextRequest) {
     const dietaryRestrictions = formData.get('dietaryRestrictions') as string;
 
     // Validate required fields
-    if (!track || !firstName || !lastName || !schoolEmail || !year || !hackathonsParticipated || !experienceLevel) {
+    if (!track || isAsuOnlineStudent === undefined || isAsuOnlineStudent === null || !firstName || !lastName || !schoolEmail || !year || !hackathonsParticipated || !experienceLevel) {
       return NextResponse.json(
         { error: 'Missing required fields' },
         { status: 400 }
@@ -49,7 +50,8 @@ Personal Information:
 - Last Name: ${lastName}
 - School Email: ${schoolEmail}
 - Year: ${year}
- - Track: ${track}
+- Track: ${track}
+- ASU Online Student: ${isAsuOnlineStudent ? 'Yes' : 'No'}
 - Hackathons Participated: ${hackathonsParticipated}
 - Experience Level: ${experienceLevel}
 
@@ -76,6 +78,7 @@ Registration submitted on: ${new Date().toLocaleString()}
       console.log('Attempting to save to Google Sheets...');
       const sheetsData = {
         track,
+        isAsuOnlineStudent,
         firstName,
         lastName,
         schoolEmail,
