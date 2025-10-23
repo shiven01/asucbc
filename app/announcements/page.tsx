@@ -47,7 +47,7 @@ export default function Announcements() {
                     </div>
                   </div>
                   <p className="text-xl font-bold mb-2">💰 <span className="underline">FREE</span> Claude Pro + $50 API Credits</p>
-                  <p className="text-white/90 text-sm font-medium">⚡ Only 58 spots left! Join our exclusive hybrid meeting to claim your benefits</p>
+                  <p className="text-white/90 text-sm font-medium">⚡ Join our exclusive hybrid meeting to claim your benefits</p>
                 </div>
                 <div className="absolute inset-0 bg-gradient-to-r from-transparent to-white/10 transform translate-x-full group-hover:translate-x-0 transition-transform duration-500"></div>
               </a>
@@ -68,7 +68,7 @@ export default function Announcements() {
                     </div>
                   </div>
                   <p className="text-lg font-bold text-[var(--theme-text-primary)] mb-2">💰 <span className="text-[var(--theme-text-accent)]">MASSIVE PRIZES</span> + Industry Recognition</p>
-                  <p className="text-[var(--theme-text-primary)]/80 text-sm font-medium">🔥 Sponsored by Anthropic, Polymarket, ASU Blockchain & more!</p>
+                  <p className="text-[var(--theme-text-primary)]/80 text-sm font-medium">🔥 Sponsored by Anthropic, Polymarket, ASU Blockchain, Acorns, StreetSmart & more!</p>
                 </div>
                 <div className="absolute inset-0 bg-gradient-to-r from-[var(--theme-text-accent)]/5 to-transparent transform translate-x-full group-hover:translate-x-0 transition-transform duration-500"></div>
               </a>
@@ -123,13 +123,13 @@ export default function Announcements() {
                   <span className="text-2xl">🏛️</span>
                 </div>
                 <div>
-                  <h2 className="text-2xl font-bold text-[var(--theme-text-primary)] mb-2">🎓 <span className="text-[var(--theme-text-accent)]">ASU's Premier AI Club</span></h2>
-                  <p className="text-lg text-[var(--theme-text-primary)]/80 font-medium">Exclusive access to Anthropic's cutting-edge AI tools</p>
+                  <h2 className="text-2xl font-bold text-[var(--theme-text-primary)] mb-2">About Claude Builder Club</h2>
+                  <p className="text-lg text-[var(--theme-text-primary)]/80">A program to sponsor Anthropic builder tools to our university</p>
                 </div>
               </div>
-              <div className="bg-gradient-to-r from-[var(--theme-text-accent)]/10 to-transparent p-6 rounded-2xl border-l-4 border-[var(--theme-text-accent)]">
-                <p className="text-[var(--theme-text-primary)] font-bold text-lg">
-                  🚀 We're building the <span className="text-[var(--theme-text-accent)]">most technically connected</span> university community in the Southwest!
+              <div className="bg-[var(--theme-text-accent)]/5 p-6 rounded-2xl border-l-4 border-[var(--theme-text-accent)]">
+                <p className="text-[var(--theme-text-primary)] font-medium">
+                  Part of this is trying to have an on-campus club to do this
                 </p>
               </div>
             </div>
@@ -141,31 +141,31 @@ export default function Announcements() {
                   <span className="text-2xl">🎁</span>
                 </div>
                 <div>
-                  <h2 className="text-2xl font-bold text-[var(--theme-text-primary)] mb-2">💰 <span className="text-[var(--theme-text-accent)]">EXCLUSIVE BENEFITS</span></h2>
-                  <p className="text-lg text-[var(--theme-text-primary)]/80 font-medium">Only for ASU students - Limited time offer!</p>
+                  <h2 className="text-2xl font-bold text-[var(--theme-text-primary)] mb-2">What We Offer</h2>
+                  <p className="text-lg text-[var(--theme-text-primary)]/80">Exclusive benefits for ASU students</p>
                 </div>
               </div>
               
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {/* Free Claude Pro */}
-                <div className="bg-gradient-to-br from-[var(--theme-text-accent)]/10 to-transparent p-6 rounded-2xl border-2 border-[var(--theme-text-accent)]/20">
-                  <h3 className="text-xl font-bold text-[var(--theme-text-accent)] mb-3">🔥 <span className="underline">FREE</span> Claude Pro + $50 API Credits</h3>
-                  <p className="text-[var(--theme-text-primary)] mb-4 font-bold">⏰ Valid until February 2025</p>
-                  <div className="space-y-2 text-sm text-[var(--theme-text-primary)] font-medium">
-                    <p>✅ Join our hybrid info meeting</p>
-                    <p>✅ Monday 27, 6-7pm (Arizona Time)</p>
-                    <p>✅ <span className="text-[var(--theme-text-accent)] font-bold">Instant access</span> - 1-7 business days</p>
+                <div className="bg-gradient-to-br from-[var(--theme-text-accent)]/10 to-transparent p-6 rounded-2xl">
+                  <h3 className="text-xl font-bold text-[var(--theme-text-accent)] mb-3">Free Claude Pro + $50 API Credits</h3>
+                  <p className="text-[var(--theme-text-primary)] mb-4">Valid until February</p>
+                  <div className="space-y-2 text-sm text-[var(--theme-text-primary)]/70">
+                    <p>• Join our hybrid info meeting</p>
+                    <p>• Monday 27, 6-7pm (Arizona Time)</p>
+                    <p>• 1-7 business days to receive benefits</p>
                   </div>
                 </div>
 
                 {/* Community Access */}
-                <div className="bg-gradient-to-br from-[var(--theme-text-accent)]/5 to-transparent p-6 rounded-2xl border border-[var(--theme-text-accent)]/10">
-                  <h3 className="text-xl font-bold text-[var(--theme-text-primary)] mb-3">🤝 <span className="text-[var(--theme-text-accent)]">Elite Community</span></h3>
-                  <p className="text-[var(--theme-text-primary)] mb-4 font-medium">Connect with the brightest ASU builders</p>
-                  <div className="space-y-2 text-sm text-[var(--theme-text-primary)] font-medium">
-                    <p>💬 200+ active Discord members</p>
-                    <p>🚀 Industry networking events</p>
-                    <p>⚡ Real-time project collaboration</p>
+                <div className="bg-gradient-to-br from-[var(--theme-text-accent)]/5 to-transparent p-6 rounded-2xl">
+                  <h3 className="text-xl font-bold text-[var(--theme-text-primary)] mb-3">Community Access</h3>
+                  <p className="text-[var(--theme-text-primary)] mb-4">Connect with like-minded builders</p>
+                  <div className="space-y-2 text-sm text-[var(--theme-text-primary)]/70">
+                    <p>• Discord community</p>
+                    <p>• Networking opportunities</p>
+                    <p>• Project collaboration</p>
                   </div>
                 </div>
               </div>
@@ -178,50 +178,50 @@ export default function Announcements() {
                   <span className="text-2xl">🚀</span>
                 </div>
                 <div>
-                  <h2 className="text-2xl font-bold text-[var(--theme-text-primary)] mb-2">🎯 <span className="text-[var(--theme-text-accent)]">Our Mission</span></h2>
-                  <p className="text-lg text-[var(--theme-text-primary)]/80 font-medium">Making ASU the #1 tech-connected university in the Southwest</p>
+                  <h2 className="text-2xl font-bold text-[var(--theme-text-primary)] mb-2">Builder Community Vision</h2>
+                  <p className="text-lg text-[var(--theme-text-primary)]/80">Making ASU as technically connected as top-tier universities</p>
                 </div>
               </div>
 
               <div className="space-y-6">
-                <div className="bg-gradient-to-r from-[var(--theme-text-accent)]/10 to-transparent p-6 rounded-2xl border-l-4 border-[var(--theme-text-accent)]">
-                  <h3 className="text-lg font-bold text-[var(--theme-text-primary)] mb-3">🏆 Our Vision</h3>
-                  <p className="text-[var(--theme-text-primary)] font-medium">
-                    ASU should be as equally technically connected to tech-companies as schools like <span className="text-[var(--theme-text-accent)] font-bold">UC Berkeley, MIT, Dartmouth</span> - and we're making it happen!
+                <div className="bg-gradient-to-r from-[var(--theme-text-accent)]/10 to-transparent p-6 rounded-2xl">
+                  <h3 className="text-lg font-bold text-[var(--theme-text-primary)] mb-3">Our Vision</h3>
+                  <p className="text-[var(--theme-text-primary)]">
+                    ASU should be as equally technically connected to tech-companies as schools like UC Berkeley, MIT, Dartmouth, etc.
                   </p>
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div>
-                    <h3 className="text-lg font-bold text-[var(--theme-text-primary)] mb-4">⚡ How We Achieve This</h3>
+                    <h3 className="text-lg font-bold text-[var(--theme-text-primary)] mb-4">How We Achieve This</h3>
                     <ul className="space-y-3">
                       <li className="flex items-start space-x-3">
-                        <span className="text-[var(--theme-text-accent)] font-bold text-lg">🔥</span>
-                        <span className="font-medium">Building <span className="text-[var(--theme-text-accent)] font-bold">extremely hard</span> technical projects</span>
+                        <span className="text-[var(--theme-text-accent)] font-bold">•</span>
+                        <span>Building extremely hard technical projects</span>
                       </li>
                       <li className="flex items-start space-x-3">
-                        <span className="text-[var(--theme-text-accent)] font-bold text-lg">📱</span>
-                        <span className="font-medium">Social media engagement + <span className="text-[var(--theme-text-accent)] font-bold">massive analytics</span></span>
+                        <span className="text-[var(--theme-text-accent)] font-bold">•</span>
+                        <span>Social media engagement + analytics</span>
                       </li>
                       <li className="flex items-start space-x-3">
-                        <span className="text-[var(--theme-text-accent)] font-bold text-lg">💰</span>
-                        <span className="font-medium">Using proof to gather <span className="text-[var(--theme-text-accent)] font-bold">more sponsors</span></span>
+                        <span className="text-[var(--theme-text-accent)] font-bold">•</span>
+                        <span>Using proof to gather more sponsors</span>
                       </li>
                     </ul>
                   </div>
 
                   <div>
-                    <h3 className="text-lg font-bold text-[var(--theme-text-primary)] mb-4">🎯 What Makes a Project "Extremely Hard"</h3>
+                    <h3 className="text-lg font-bold text-[var(--theme-text-primary)] mb-4">What Makes a Project "Extremely Hard"</h3>
                     <div className="space-y-3">
-                      <p className="text-sm text-[var(--theme-text-primary)] font-medium">
-                        When the Service Level Agreement (SLA) <span className="text-[var(--theme-text-accent)] font-bold">technically cannot be possible</span> with just AI tools
+                      <p className="text-sm text-[var(--theme-text-primary)]/80">
+                        When the Service Level Agreement (SLA) technically cannot be possible with just AI tools
                       </p>
-                      <div className="bg-gradient-to-r from-[var(--theme-text-accent)]/10 to-transparent p-4 rounded-lg border border-[var(--theme-text-accent)]/20">
-                        <p className="text-sm font-bold text-[var(--theme-text-primary)] mb-2">🚀 Requires all three:</p>
-                        <ul className="space-y-1 text-sm text-[var(--theme-text-primary)] font-medium">
-                          <li>🔬 Independent Research</li>
-                          <li>🤖 AI Tools</li>
-                          <li>💬 Communication</li>
+                      <div className="bg-[var(--theme-text-accent)]/5 p-4 rounded-lg">
+                        <p className="text-sm font-medium text-[var(--theme-text-primary)] mb-2">Requires all three:</p>
+                        <ul className="space-y-1 text-sm text-[var(--theme-text-primary)]/70">
+                          <li>• Independent Research</li>
+                          <li>• AI Tools</li>
+                          <li>• Communication</li>
                         </ul>
                       </div>
                     </div>
@@ -231,46 +231,46 @@ export default function Announcements() {
             </div>
 
             {/* Hackathon Info */}
-            <div className="bg-gradient-to-br from-[var(--theme-text-accent)]/10 to-[var(--theme-text-accent)]/5 rounded-3xl p-8 shadow-lg border-2 border-[var(--theme-text-accent)]/30">
+            <div className="bg-gradient-to-br from-[var(--theme-text-accent)]/10 to-[var(--theme-text-accent)]/5 rounded-3xl p-8 shadow-lg border border-[var(--theme-text-accent)]/20">
               <div className="flex items-start space-x-4 mb-8">
                 <div className="w-12 h-12 bg-[var(--theme-text-accent)] rounded-full flex items-center justify-center flex-shrink-0">
                   <span className="text-2xl text-white">🏆</span>
                 </div>
                 <div>
-                  <h2 className="text-2xl font-bold text-[var(--theme-text-primary)] mb-2">🚀 <span className="text-[var(--theme-text-accent)]">EPIC HACKATHON</span></h2>
-                  <p className="text-lg text-[var(--theme-text-primary)]/80 font-bold">🔥 <span className="underline">NOT</span> your regular hackathon - This is LEGENDARY!</p>
+                  <h2 className="text-2xl font-bold text-[var(--theme-text-primary)] mb-2">Builder + Business Case Comp. Hackathon</h2>
+                  <p className="text-lg text-[var(--theme-text-primary)]/80">Definitely not your regular hackathon</p>
                 </div>
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
-                  <h3 className="text-lg font-bold text-[var(--theme-text-primary)] mb-4">💰 <span className="text-[var(--theme-text-accent)]">MAJOR SPONSORS</span></h3>
+                  <h3 className="text-lg font-bold text-[var(--theme-text-primary)] mb-4">Major Sponsors</h3>
                   <div className="flex flex-wrap gap-2">
                     {['Anthropic', 'Polymarket', 'ASU Blockchain', 'Acorns', 'StreetSmart'].map((sponsor) => (
-                      <span key={sponsor} className="bg-[var(--theme-text-accent)]/30 text-[var(--theme-text-primary)] px-3 py-1 rounded-full text-sm font-bold border border-[var(--theme-text-accent)]/40">
+                      <span key={sponsor} className="bg-[var(--theme-text-accent)]/20 text-[var(--theme-text-primary)] px-3 py-1 rounded-full text-sm font-medium">
                         {sponsor}
                       </span>
                     ))}
-                    <span className="bg-[var(--theme-text-accent)]/30 text-[var(--theme-text-primary)] px-3 py-1 rounded-full text-sm font-bold border border-[var(--theme-text-accent)]/40">
-                      + MORE COMING! 🚀
+                    <span className="bg-[var(--theme-text-accent)]/20 text-[var(--theme-text-primary)] px-3 py-1 rounded-full text-sm font-medium">
+                      + more coming!
                     </span>
                   </div>
                 </div>
 
                 <div>
-                  <h3 className="text-lg font-bold text-[var(--theme-text-primary)] mb-4">🎯 <span className="text-[var(--theme-text-accent)]">WHAT TO EXPECT</span></h3>
-                  <ul className="space-y-3 text-[var(--theme-text-primary)]">
-                    <li className="flex items-center space-x-3">
-                      <span className="text-[var(--theme-text-accent)] text-xl font-bold">💰</span>
-                      <span className="font-bold">MASSIVE prizes & recognition</span>
+                  <h3 className="text-lg font-bold text-[var(--theme-text-primary)] mb-4">What to Expect</h3>
+                  <ul className="space-y-2 text-[var(--theme-text-primary)]">
+                    <li className="flex items-center space-x-2">
+                      <span className="text-[var(--theme-text-accent)]">✓</span>
+                      <span>Very large prizes</span>
                     </li>
-                    <li className="flex items-center space-x-3">
-                      <span className="text-[var(--theme-text-accent)] text-xl font-bold">🚀</span>
-                      <span className="font-bold">Insanely unique projects</span>
+                    <li className="flex items-center space-x-2">
+                      <span className="text-[var(--theme-text-accent)]">✓</span>
+                      <span>Insanely unique projects</span>
                     </li>
-                    <li className="flex items-center space-x-3">
-                      <span className="text-[var(--theme-text-accent)] text-xl font-bold">⚡</span>
-                      <span className="font-bold">Life-changing experience</span>
+                    <li className="flex items-center space-x-2">
+                      <span className="text-[var(--theme-text-accent)]">✓</span>
+                      <span>Unforgettable experience</span>
                     </li>
                   </ul>
                 </div>
