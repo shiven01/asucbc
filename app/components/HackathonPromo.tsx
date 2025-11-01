@@ -4,7 +4,6 @@ import { showHackathonPromo } from "../theme-config";
 import Link from "next/link";
 import Image from "next/image";
 import { useState } from "react";
-import { useHalloweenTheme } from "./HalloweenThemeProvider";
 import { useBatParticles } from "../hooks/useBatParticles";
 
 type HackathonPromoProps = {
@@ -14,7 +13,6 @@ type HackathonPromoProps = {
 export default function HackathonPromo({
   className = "",
 }: HackathonPromoProps) {
-  const { isHalloween } = useHalloweenTheme();
   const { containerRef, particlesRef, createParticles } = useBatParticles();
   const [imageLoaded, setImageLoaded] = useState(false);
 
@@ -87,11 +85,7 @@ export default function HackathonPromo({
 
           <Link
             href="/hackathon"
-            onMouseEnter={isHalloween ? createParticles : undefined}
-            onTouchStart={isHalloween ? createParticles : undefined}
-            className={`relative z-10 inline-flex w-full items-center justify-center rounded-xl bg-[var(--theme-card-bg)] text-[var(--theme-button-text)] px-4 py-3 text-sm sm:text-base font-semibold shadow hover:bg-[var(--theme-button-text)] hover:text-[var(--theme-card-bg)] hover:shadow-lg transition-all duration-300 ease-in-out border border-[var(--theme-button-text)] hover:border-[var(--theme-button-text)] min-h-[40px] touch-manipulation ${
-              isHalloween ? "active:scale-90" : ""
-            }`}
+            className={`relative z-10 inline-flex w-full items-center justify-center rounded-xl bg-[var(--theme-card-bg)] text-[var(--theme-button-text)] px-4 py-3 text-sm sm:text-base font-semibold shadow hover:bg-[var(--theme-button-text)] hover:text-[var(--theme-card-bg)] hover:shadow-lg transition-all duration-300 ease-in-out border border-[var(--theme-button-text)] hover:border-[var(--theme-button-text)] min-h-[40px] touch-manipulation`}
           >
             Register Now - Limited Spots!
           </Link>

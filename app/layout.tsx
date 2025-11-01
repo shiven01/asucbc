@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
-import HalloweenThemeProvider from "./components/HalloweenThemeProvider";
 import "./globals.css";
 
 const poppins = Poppins({
@@ -49,7 +48,7 @@ export default function RootLayout({
         <meta name="twitter:image" content="/assets/og/splash.png" />
       </head>
       <body className={`${poppins.variable} antialiased`}>
-        <HalloweenThemeProvider>{children}</HalloweenThemeProvider>
+        {children}
         <Analytics />
         <SpeedInsights />
       </body>

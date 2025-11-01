@@ -7,6 +7,5 @@
  * useHalloweenTheme() hook instead.
  */
 
-export const isHalloweenTheme = process.env.NEXT_PUBLIC_HALLOWEEN_THEME === 'true';
 export const showHackathonPromo = process.env.NEXT_PUBLIC_SHOW_HACKATHON === 'true';
 
