@@ -55,7 +55,7 @@ export default function Header() {
               <div className="relative z-10">
                 <Link
                   href="/hackathon"
-                  className={`relative z-10 bg-[var(--theme-button-alternate-bg)] text-[var(--theme-button-hover-text)] px-6 py-3 rounded-lg hover:bg-[var(--theme-button-hover-bg)] hover:text-[var(--theme-button-hover-text)] hover:scale-105 hover:shadow-lg transition-all duration-300 ease-in-out font-medium text-base font-sans border border-transparent hover:border-[var(--theme-button-hover-border)] min-h-[48px] flex items-center touch-manipulation overflow-visible`}
+                  className={`relative z-10 bg-[var(--theme-button-alternate-bg)] text-[var(--theme-button-alternate-text)] px-6 py-3 rounded-lg hover:bg-[var(--theme-button-hover-bg)] hover:text-[var(--theme-button-hover-text)] hover:scale-105 hover:shadow-lg transition-all duration-300 ease-in-out font-medium text-base font-sans border border-transparent hover:border-[var(--theme-button-hover-border)] min-h-[48px] flex items-center touch-manipulation overflow-visible`}
                 >
                   Hackathon
                 </Link>

@@ -85,7 +85,7 @@ export default function HackathonPromo({
 
           <Link
             href="/hackathon"
-            className={`relative z-10 inline-flex w-full items-center justify-center rounded-xl bg-[var(--theme-card-bg)] text-[var(--theme-button-text)] px-4 py-3 text-sm sm:text-base font-semibold shadow hover:bg-[var(--theme-button-text)] hover:text-[var(--theme-card-bg)] hover:shadow-lg transition-all duration-300 ease-in-out border border-[var(--theme-button-text)] hover:border-[var(--theme-button-text)] min-h-[40px] touch-manipulation`}
+            className={`relative z-10 inline-flex w-full items-center justify-center rounded-xl bg-[var(--theme-button-bg)] text-[var(--theme-button-text)] px-4 py-3 text-sm sm:text-base font-semibold shadow hover:bg-[var(--theme-button-text)] hover:text-[var(--theme-card-text)] hover:shadow-lg transition-all duration-300 ease-in-out border border-transparent hover:border-[var(--theme-button-text)] min-h-[40px] touch-manipulation`}
           >
             Register Now - Limited Spots!
           </Link>

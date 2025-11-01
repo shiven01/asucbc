@@ -1,6 +1,6 @@
 @import "tailwindcss";
 
-/* Theme Variables */
+/* Theme Variables - Light Mode */
 :root {
   --background: #faf7f2;
   --foreground: #5d4e37;
@@ -14,7 +14,7 @@
   --theme-text-accent: #cc785c;
   --theme-text-dark: #5d4e37;
   --theme-card-bg: #faf7f2;
-  
+
   --theme-card-border: rgba(0, 0, 0, 0.1);
   --theme-button-bg: #212120;
   --theme-button-text: #cc785c;
@@ -26,9 +26,40 @@
   --theme-button-alternate-hover-bg: #e5947d;
   --theme-button-alternate-hover-text: #212120;
   --theme-button-alternate-hover-border: #212120;
-  
+
   --theme-pattern-color: rgba(204, 120, 92, 0.1);
   --theme-pattern-color-light: rgba(204, 120, 92, 0.05);
+}
+
+/* Dark Mode Variables */
+[data-theme="dark"] {
+  --background: #1a1a1a;
+  --foreground: #e0e0e0;
+  --primary: #2a2a2a;
+  --secondary: #3a3a3a;
+  --white: #e0e0e0;
+
+  /* Theme Colors - Dark */
+  --theme-bg: #cc785c;
+  --theme-text-primary: #e0e0e0;
+  --theme-text-accent: #ff9b7a;
+  --theme-text-dark: #c4b5a5;
+  --theme-card-bg: #2a2a2a;
+
+  --theme-card-border: rgba(255, 255, 255, 0.1);
+  --theme-button-bg: #ff9b7a;
+  --theme-button-text: #1a1a1a;
+  --theme-button-hover-bg: #ffb393;
+  --theme-button-hover-text: #1a1a1a;
+  --theme-button-hover-border: #ffb393;
+  --theme-button-alternate-bg: #3a3a3a;
+  --theme-button-alternate-text: #ff9b7a;
+  --theme-button-alternate-hover-bg: #4a4a4a;
+  --theme-button-alternate-hover-text: #ffb393;
+  --theme-button-alternate-hover-border: #ff9b7a;
+
+  --theme-pattern-color: rgba(255, 155, 122, 0.1);
+  --theme-pattern-color-light: rgba(255, 155, 122, 0.05);
 }
 
 @theme inline {
@@ -78,6 +109,11 @@ body {
 
 * {
   cursor: url('/claude.svg'), auto !important;
+}
+
+/* Dark mode image inversion */
+[data-theme="dark"] .claude-image-dark-mode {
+  filter: invert(1) hue-rotate(180deg);
 }
 
 .mesh-background {

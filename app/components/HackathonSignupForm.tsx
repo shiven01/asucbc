@@ -174,10 +174,10 @@ export default function HackathonSignupForm() {
   return (
     <div className="max-w-2xl mx-auto">
       <div className="mb-8">
-        <h2 className="text-2xl sm:text-3xl font-bold text-[#5d4e37] mb-4">
+        <h2 className="text-2xl sm:text-3xl font-bold text-[var(--theme-text-primary)] mb-4">
           Hackathon Registration Form
         </h2>
-        <p className="text-[#5d4e37]/80 text-sm">
+        <p className="text-[var(--theme-text-primary)]/80 text-sm">
           All fields marked with * are required.
         </p>
       </div>
@@ -207,7 +207,7 @@ export default function HackathonSignupForm() {
       <form onSubmit={handleSubmit} className="space-y-6">
         {/* Track selection */}
         <div>
-          <label className="block text-sm font-medium text-[#5d4e37] mb-2">
+          <label className="block text-sm font-medium text-[var(--theme-text-primary)] mb-2">
             Track *
           </label>
           <div className="grid grid-cols-2 gap-3">
@@ -224,8 +224,8 @@ export default function HackathonSignupForm() {
                   }}
                   className={`w-full px-4 py-2 rounded-lg border transition-colors ${
                     formData.track === option
-                      ? "bg-[#cc785c] text-white border-transparent"
-                      : "bg-white text-[#5d4e37] border-gray-300 hover:border-[#cc785c]"
+                      ? "bg-[var(--theme-text-accent)] text-white border-transparent"
+                      : "bg-[var(--theme-card-bg)] text-[var(--theme-text-primary)] border-[var(--theme-card-border)] hover:border-[var(--theme-text-accent)]"
                   }`}
                 >
                   {option}
@@ -240,7 +240,7 @@ export default function HackathonSignupForm() {
 
         {/* ASU Online Student Confirmation */}
         <div>
-          <label className="block text-sm font-medium text-[#5d4e37] mb-2">
+          <label className="block text-sm font-medium text-[var(--theme-text-primary)] mb-2">
             Are you an ASU Online Student? *
           </label>
           <div className="grid grid-cols-2 gap-3">
@@ -259,8 +259,8 @@ export default function HackathonSignupForm() {
                 }}
                 className={`w-full px-4 py-2 rounded-lg border transition-colors ${
                   formData.isAsuOnlineStudent === option.value
-                    ? 'bg-[#cc785c] text-white border-transparent'
-                    : 'bg-white text-[#5d4e37] border-gray-300 hover:border-[#cc785c]'
+                    ? 'bg-[var(--theme-text-accent)] text-white border-transparent'
+                    : 'bg-[var(--theme-card-bg)] text-[var(--theme-text-primary)] border-[var(--theme-card-border)] hover:border-[var(--theme-text-accent)]'
                 }`}
               >
                 {option.label}
@@ -270,7 +270,7 @@ export default function HackathonSignupForm() {
           {errors.isAsuOnlineStudent && (
             <p className="mt-1 text-sm text-red-600">{errors.isAsuOnlineStudent}</p>
           )}
-          <p className="mt-1 text-xs text-[#5d4e37]/60">
+          <p className="mt-1 text-xs text-[var(--theme-text-primary)]/60">
             We will be verifying each one individually for proof later
           </p>
         </div>
@@ -279,7 +279,7 @@ export default function HackathonSignupForm() {
         <div>
           <label
             htmlFor="firstName"
-            className="block text-sm font-medium text-[#5d4e37] mb-2"
+            className="block text-sm font-medium text-[var(--theme-text-primary)] mb-2"
           >
             First Name *
           </label>
@@ -289,8 +289,8 @@ export default function HackathonSignupForm() {
             name="firstName"
             value={formData.firstName}
             onChange={handleInputChange}
-            className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-[#cc785c] focus:border-transparent transition-colors ${
-              errors.firstName ? "border-red-500" : "border-gray-300"
+            className={`w-full px-4 py-3 bg-[var(--theme-card-bg)] text-[var(--theme-text-primary)] border rounded-lg focus:ring-2 focus:ring-[var(--theme-text-accent)] focus:border-transparent transition-colors ${
+              errors.firstName ? "border-red-500" : "border-[var(--theme-card-border)]"
             }`}
             placeholder="Enter your first name"
           />
@@ -303,7 +303,7 @@ export default function HackathonSignupForm() {
         <div>
           <label
             htmlFor="lastName"
-            className="block text-sm font-medium text-[#5d4e37] mb-2"
+            className="block text-sm font-medium text-[var(--theme-text-primary)] mb-2"
           >
             Last Name *
           </label>
@@ -313,8 +313,8 @@ export default function HackathonSignupForm() {
             name="lastName"
             value={formData.lastName}
             onChange={handleInputChange}
-            className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-[#cc785c] focus:border-transparent transition-colors ${
-              errors.lastName ? "border-red-500" : "border-gray-300"
+            className={`w-full px-4 py-3 bg-[var(--theme-card-bg)] text-[var(--theme-text-primary)] border rounded-lg focus:ring-2 focus:ring-[var(--theme-text-accent)] focus:border-transparent transition-colors ${
+              errors.lastName ? "border-red-500" : "border-[var(--theme-card-border)]"
             }`}
             placeholder="Enter your last name"
           />
@@ -327,7 +327,7 @@ export default function HackathonSignupForm() {
         <div>
           <label
             htmlFor="schoolEmail"
-            className="block text-sm font-medium text-[#5d4e37] mb-2"
+            className="block text-sm font-medium text-[var(--theme-text-primary)] mb-2"
           >
             School Email *
           </label>
@@ -337,8 +337,8 @@ export default function HackathonSignupForm() {
             name="schoolEmail"
             value={formData.schoolEmail}
             onChange={handleInputChange}
-            className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-[#cc785c] focus:border-transparent transition-colors ${
-              errors.schoolEmail ? "border-red-500" : "border-gray-300"
+            className={`w-full px-4 py-3 bg-[var(--theme-card-bg)] text-[var(--theme-text-primary)] border rounded-lg focus:ring-2 focus:ring-[var(--theme-text-accent)] focus:border-transparent transition-colors ${
+              errors.schoolEmail ? "border-red-500" : "border-[var(--theme-card-border)]"
             }`}
             placeholder="your.email@asu.edu"
           />
@@ -351,7 +351,7 @@ export default function HackathonSignupForm() {
         <div>
           <label
             htmlFor="year"
-            className="block text-sm font-medium text-[#5d4e37] mb-2"
+            className="block text-sm font-medium text-[var(--theme-text-primary)] mb-2"
           >
             Year *
           </label>
@@ -360,8 +360,8 @@ export default function HackathonSignupForm() {
             name="year"
             value={formData.year}
             onChange={handleInputChange}
-            className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-[#cc785c] focus:border-transparent transition-colors ${
-              errors.year ? "border-red-500" : "border-gray-300"
+            className={`w-full px-4 py-3 bg-[var(--theme-card-bg)] text-[var(--theme-text-primary)] border rounded-lg focus:ring-2 focus:ring-[var(--theme-text-accent)] focus:border-transparent transition-colors ${
+              errors.year ? "border-red-500" : "border-[var(--theme-card-border)]"
             }`}
           >
             <option value="">Select your year</option>
@@ -380,7 +380,7 @@ export default function HackathonSignupForm() {
         <div>
           <label
             htmlFor="hackathonsParticipated"
-            className="block text-sm font-medium text-[#5d4e37] mb-2"
+            className="block text-sm font-medium text-[var(--theme-text-primary)] mb-2"
           >
             How many hackathons have you participated in before? *
           </label>
@@ -391,10 +391,10 @@ export default function HackathonSignupForm() {
             value={formData.hackathonsParticipated}
             onChange={handleInputChange}
             min="0"
-            className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-[#cc785c] focus:border-transparent transition-colors ${
+            className={`w-full px-4 py-3 bg-[var(--theme-card-bg)] text-[var(--theme-text-primary)] border rounded-lg focus:ring-2 focus:ring-[var(--theme-text-accent)] focus:border-transparent transition-colors ${
               errors.hackathonsParticipated
                 ? "border-red-500"
-                : "border-gray-300"
+                : "border-[var(--theme-card-border)]"
             }`}
             placeholder="0"
           />
@@ -409,7 +409,7 @@ export default function HackathonSignupForm() {
         <div>
           <label
             htmlFor="experienceLevel"
-            className="block text-sm font-medium text-[#5d4e37] mb-2"
+            className="block text-sm font-medium text-[var(--theme-text-primary)] mb-2"
           >
             Field of Study Experience Level *
           </label>
@@ -418,8 +418,8 @@ export default function HackathonSignupForm() {
             name="experienceLevel"
             value={formData.experienceLevel}
             onChange={handleInputChange}
-            className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-[#cc785c] focus:border-transparent transition-colors ${
-              errors.experienceLevel ? "border-red-500" : "border-gray-300"
+            className={`w-full px-4 py-3 bg-[var(--theme-card-bg)] text-[var(--theme-text-primary)] border rounded-lg focus:ring-2 focus:ring-[var(--theme-text-accent)] focus:border-transparent transition-colors ${
+              errors.experienceLevel ? "border-red-500" : "border-[var(--theme-card-border)]"
             }`}
           >
             <option value="">Select your experience level</option>
@@ -439,7 +439,7 @@ export default function HackathonSignupForm() {
         <div>
           <label
             htmlFor="dietaryRestrictions"
-            className="block text-sm font-medium text-[#5d4e37] mb-2"
+            className="block text-sm font-medium text-[var(--theme-text-primary)] mb-2"
           >
             Dietary Restrictions
           </label>
@@ -449,7 +449,7 @@ export default function HackathonSignupForm() {
             name="dietaryRestrictions"
             value={formData.dietaryRestrictions}
             onChange={handleInputChange}
-            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#cc785c] focus:border-transparent transition-colors"
+            className="w-full px-4 py-3 bg-[var(--theme-card-bg)] text-[var(--theme-text-primary)] border border-[var(--theme-card-border)] rounded-lg focus:ring-2 focus:ring-[var(--theme-text-accent)] focus:border-transparent transition-colors"
             placeholder="Vegetarian, vegan, gluten-free, etc."
           />
         </div>
@@ -464,7 +464,7 @@ export default function HackathonSignupForm() {
                 ? "bg-green-600 cursor-default"
                 : isSubmitting
                 ? "bg-gray-400 cursor-not-allowed"
-                : "bg-[#cc785c] hover:bg-[#5d4e37] hover:scale-105 hover:shadow-lg"
+                : "bg-[var(--theme-text-accent)] hover:bg-[var(--theme-button-hover-bg)] hover:scale-105 hover:shadow-lg"
             }`}
           >
             {submitStatus === "success" ? (
@@ -517,11 +517,11 @@ export default function HackathonSignupForm() {
 
       {/* Contact Info */}
       <div className="text-center mt-8">
-        <p className="text-[#5d4e37]/80 mb-2">
+        <p className="text-[var(--theme-text-primary)]/80 mb-2">
           Questions? Contact us at{" "}
           <a
             href="mailto:shivenshekar01@gmail.com"
-            className="text-[#5d4e37] hover:underline font-semibold"
+            className="text-[var(--theme-text-primary)] hover:underline font-semibold"
           >
             shivenshekar01@gmail.com
           </a>

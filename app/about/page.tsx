@@ -17,7 +17,7 @@ export default function About() {
                   alt="Claude 3-7 Illustration"
                   width={800}
                   height={800}
-                  className="w-[36rem] h-[36rem] lg:w-[40rem] lg:h-[40rem] object-contain"
+                  className="w-[36rem] h-[36rem] lg:w-[40rem] lg:h-[40rem] object-contain claude-image-dark-mode"
                 />
               </div>
             </div>
