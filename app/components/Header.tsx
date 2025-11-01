@@ -1,20 +1,12 @@
 "use client";
 
+import Link from "next/link";
 import { useState } from "react";
-import { useHalloweenTheme } from "./HalloweenThemeProvider";
-import { useBatParticles } from "../hooks/useBatParticles";
 
 export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const { isHalloween } = useHalloweenTheme();
 
   // Separate particle hooks for each navigation item
-  const logoParticles = useBatParticles();
-  const aboutParticles = useBatParticles();
-  const teamParticles = useBatParticles();
-  const careersParticles = useBatParticles();
-  const announcementsParticles = useBatParticles();
-  const joinUsParticles = useBatParticles();
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
@@ -25,163 +17,58 @@ export default function Header() {
       <div className="px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 overflow-visible">
           {/* Logo on the left */}
-          <div className="flex-shrink-0">
-            <div ref={logoParticles.containerRef} className="relative z-10">
-              <div
-                ref={logoParticles.particlesRef}
-                className="absolute inset-0 pointer-events-none overflow-visible z-0"
-              />
-              <a
-                href="/"
-                onMouseEnter={
-                  isHalloween ? logoParticles.createParticles : undefined
-                }
-                onTouchStart={
-                  isHalloween ? logoParticles.createParticles : undefined
-                }
-                className={`relative z-10 group hover:scale-105 transition-all duration-200 px-4 py-3 rounded-lg hover:bg-white/10 min-h-[48px] flex items-center touch-manipulation ${
-                  isHalloween ? "active:scale-90" : ""
-                }`}
-              >
-                <h1 className="text-xl sm:text-2xl font-bold tracking-tight cursor-pointer font-sans whitespace-nowrap">
-                  <span className="text-[var(--theme-text-primary)] group-hover:text-[var(--theme-text-accent)] transition-colors duration-200">
-                    ANTHROPIC
-                  </span>{" "}
-                  <span className="text-[var(--theme-text-primary)] group-hover:text-[var(--theme-text-accent)] transition-colors duration-200">
-                    @ ASU
-                  </span>
-                </h1>
-              </a>
-            </div>
-          </div>
+            <Link
+              href="/"
+              className={`relative z-10 group hover:scale-105 transition-all duration-200 px-4 py-3 rounded-lg hover:bg-white/10 min-h-[48px] flex items-center touch-manipulation`}
+            >
+              <h1 className="text-xl sm:text-2xl font-bold tracking-tight cursor-pointer font-sans whitespace-nowrap">
+                <span className="text-[var(--theme-text-primary)] group-hover:text-[var(--theme-text-accent)] transition-colors duration-200">
+                  ANTHROPIC
+                </span>{" "}
+                <span className="text-[var(--theme-text-primary)] group-hover:text-[var(--theme-text-accent)] transition-colors duration-200">
+                  @ ASU
+                </span>
+              </h1>
+            </Link>
 
-          {/* Navigation buttons in the middle */}
-          <nav className="hidden lg:flex items-center space-x-8 overflow-visible">
-            <div ref={aboutParticles.containerRef} className="relative z-10">
-              <div
-                ref={aboutParticles.particlesRef}
-                className="absolute inset-0 pointer-events-none overflow-visible z-0"
-              />
-              <a
+            {/* Navigation buttons in the middle */}
+            <nav className="hidden lg:flex items-center space-x-8 overflow-visible">
+              <Link
                 href="/about"
-                onMouseEnter={
-                  isHalloween ? aboutParticles.createParticles : undefined
-                }
-                onTouchStart={
-                  isHalloween ? aboutParticles.createParticles : undefined
-                }
-                className={`relative z-10 text-[var(--theme-text-primary)] hover:text-[var(--theme-text-accent)] hover:scale-105 transition-all duration-200 font-medium font-sans px-4 py-3 rounded-md hover:bg-white/10 min-h-[48px] flex items-center touch-manipulation ${
-                  isHalloween ? "active:scale-90" : ""
-                }`}
+                className={`relative z-10 text-[var(--theme-text-primary)] hover:text-[var(--theme-text-accent)] hover:scale-105 transition-all duration-200 font-medium font-sans px-4 py-3 rounded-md hover:bg-white/10 min-h-[48px] flex items-center touch-manipulation`}
               >
                 About
-              </a>
-            </div>
-            <div ref={teamParticles.containerRef} className="relative z-10">
-              <div
-                ref={teamParticles.particlesRef}
-                className="absolute inset-0 pointer-events-none overflow-visible z-0"
-              />
-              <a
+              </Link>
+
+              <Link
                 href="/team"
-                onMouseEnter={
-                  isHalloween ? teamParticles.createParticles : undefined
-                }
-                onTouchStart={
-                  isHalloween ? teamParticles.createParticles : undefined
-                }
-                className={`relative z-10 text-[var(--theme-text-primary)] hover:text-[var(--theme-text-accent)] hover:scale-105 transition-all duration-200 font-medium font-sans px-4 py-3 rounded-md hover:bg-white/10 min-h-[48px] flex items-center touch-manipulation ${
-                  isHalloween ? "active:scale-90" : ""
-                }`}
+                className={`relative z-10 text-[var(--theme-text-primary)] hover:text-[var(--theme-text-accent)] hover:scale-105 transition-all duration-200 font-medium font-sans px-4 py-3 rounded-md hover:bg-white/10 min-h-[48px] flex items-center touch-manipulation`}
               >
                 Team
-              </a>
-            </div>
-            <div ref={careersParticles.containerRef} className="relative z-10">
-              <div
-                ref={careersParticles.particlesRef}
-                className="absolute inset-0 pointer-events-none overflow-visible z-0"
-              />
-              <a
+              </Link>
+              <Link
                 href="/careers"
-                onMouseEnter={
-                  isHalloween ? careersParticles.createParticles : undefined
-                }
-                onTouchStart={
-                  isHalloween ? careersParticles.createParticles : undefined
-                }
-                className={`relative z-10 text-[var(--theme-text-primary)] hover:text-[var(--theme-text-accent)] hover:scale-105 transition-all duration-200 font-medium font-sans px-4 py-3 rounded-md hover:bg-white/10 min-h-[48px] flex items-center touch-manipulation ${
-                  isHalloween ? "active:scale-90" : ""
-                }`}
+                className={`relative z-10 text-[var(--theme-text-primary)] hover:text-[var(--theme-text-accent)] hover:scale-105 transition-all duration-200 font-medium font-sans px-4 py-3 rounded-md hover:bg-white/10 min-h-[48px] flex items-center touch-manipulation`}
               >
                 Careers
-              </a>
-            </div>
-            <div ref={announcementsParticles.containerRef} className="relative z-10">
-              <div
-                ref={announcementsParticles.particlesRef}
-                className="absolute inset-0 pointer-events-none overflow-visible z-0"
-              />
-              <a
-                href="/announcements"
-                onMouseEnter={
-                  isHalloween ? announcementsParticles.createParticles : undefined
-                }
-                onTouchStart={
-                  isHalloween ? announcementsParticles.createParticles : undefined
-                }
-                className={`relative z-10 text-[var(--theme-text-primary)] hover:text-[var(--theme-text-accent)] hover:scale-105 transition-all duration-200 font-medium font-sans px-4 py-3 rounded-md hover:bg-white/10 min-h-[48px] flex items-center touch-manipulation ${
-                  isHalloween ? "active:scale-90" : ""
-                }`}
-              >
-                Announcements
-              </a>
-            </div>
-            <div className="relative z-10">
-              <a
-                href="/hackathon"
-                // className={`relative z-20 bg-[var(--theme-button-bg)] text-white px-6 py-3 rounded-lg hover:bg-[var(--theme-button-hover-bg)] hover:shadow-lg transition-all duration-300 ease-in-out font-medium text-base font-sans  min-h-[48px] flex items-center touch-manipulation ${
-                //   isHalloween ? "active:scale-90" : ""
-                // }`}
-                onMouseEnter={
-                  isHalloween ? joinUsParticles.createParticles : undefined
-                }
-                onTouchStart={
-                  isHalloween ? joinUsParticles.createParticles : undefined
-                }
-                className={`relative z-10 bg-[var(--theme-button-alternate-bg)] text-[var(--theme-button-hover-text)] px-6 py-3 rounded-lg hover:bg-[var(--theme-button-hover-bg)] hover:text-[var(--theme-button-hover-text)] hover:scale-105 hover:shadow-lg transition-all duration-300 ease-in-out font-medium text-base font-sans border border-transparent hover:border-[var(--theme-button-hover-border)] min-h-[48px] flex items-center touch-manipulation ${
-                  isHalloween ? "active:scale-90" : ""
-                }`}
-              >
-                Hackathon
-              </a>
-            </div>
-            <div ref={joinUsParticles.containerRef} className="relative z-10">
-              <div
-                ref={joinUsParticles.particlesRef}
-                className="absolute inset-0 pointer-events-none overflow-visible z-0"
-              />
-              <a
+              </Link>
+              <div className="relative z-10">
+                <Link
+                  href="/hackathon"
+                  className={`relative z-10 bg-[var(--theme-button-alternate-bg)] text-[var(--theme-button-hover-text)] px-6 py-3 rounded-lg hover:bg-[var(--theme-button-hover-bg)] hover:text-[var(--theme-button-hover-text)] hover:scale-105 hover:shadow-lg transition-all duration-300 ease-in-out font-medium text-base font-sans border border-transparent hover:border-[var(--theme-button-hover-border)] min-h-[48px] flex items-center touch-manipulation overflow-visible`}
+                >
+                  Hackathon
+                </Link>
+              </div>
+              <Link
                 href="https://docs.google.com/forms/d/e/1FAIpQLScP9LuFwiHEx806tv9zczjCIEzqO1Zjb-FjB4XWoa6BS1NNKQ/viewform"
                 target="_blank"
                 rel="noopener noreferrer"
-                onMouseEnter={
-                  isHalloween ? joinUsParticles.createParticles : undefined
-                }
-                onTouchStart={
-                  isHalloween ? joinUsParticles.createParticles : undefined
-                }
-                // className={`relative z-10 bg-[var(--theme-button-alternate-bg)] text-[var(--theme-button-hover-text)] px-6 py-3 rounded-lg hover:bg-[var(--theme-button-hover-bg)] hover:text-[var(--theme-button-hover-text)] hover:scale-105 hover:shadow-lg transition-all duration-300 ease-in-out font-medium text-base font-sans border border-transparent hover:border-[var(--theme-button-hover-border)] min-h-[48px] flex items-center touch-manipulation ${
-                //   isHalloween ? "active:scale-90" : ""
-                // }`}
-                className={`relative z-20 bg-[var(--theme-button-bg)] text-white px-6 py-3 rounded-lg hover:bg-[var(--theme-button-hover-bg)] hover:shadow-lg transition-all duration-300 ease-in-out font-medium text-base font-sans  min-h-[48px] flex items-center touch-manipulation ${
-                  isHalloween ? "active:scale-90" : ""
-                }`}
+                className={`relative z-20 bg-[var(--theme-button-bg)] text-white px-6 py-3 rounded-lg hover:bg-[var(--theme-button-hover-bg)] hover:shadow-lg transition-all duration-300 ease-in-out font-medium text-base font-sans  min-h-[48px] flex items-center touch-manipulation`}
               >
                 Join Us
-              </a>
-            </div>
-          </nav>
+              </Link>
+            </nav>
 
           {/* Mobile menu button */}
           <div className="lg:hidden">
@@ -227,92 +114,43 @@ export default function Header() {
         {isMobileMenuOpen && (
           <div className="md:hidden">
             <div className="px-2 pt-2 pb-3 space-y-1 bg-[var(--theme-card-bg)] backdrop-blur-sm border-t border-[var(--theme-card-border)] rounded-b-2xl">
-              <a
+              <Link
                 href="/about"
-                onMouseEnter={
-                  isHalloween ? aboutParticles.createParticles : undefined
-                }
-                onTouchStart={
-                  isHalloween ? aboutParticles.createParticles : undefined
-                }
-                className={`flex px-3 py-4 text-[var(--theme-button-text)] hover:text-[var(--theme-text-accent)] hover:bg-[var(--theme-button-bg)]/10 transition-all duration-200 font-medium font-sans rounded-lg min-h-[48px] items-center touch-manipulation ${
-                  isHalloween ? "active:scale-90" : ""
-                }`}
+                className={`flex px-3 py-4 text-[var(--theme-button-text)] hover:text-[var(--theme-text-accent)] hover:bg-[var(--theme-button-bg)]/10 transition-all duration-200 font-medium font-sans rounded-lg min-h-[48px] items-center touch-manipulation`}
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 About
-              </a>
-              <a
+              </Link>
+              <Link
                 href="/team"
-                onMouseEnter={
-                  isHalloween ? teamParticles.createParticles : undefined
-                }
-                onTouchStart={
-                  isHalloween ? teamParticles.createParticles : undefined
-                }
-                className={`flex px-3 py-4 text-[var(--theme-button-text)] hover:text-[var(--theme-text-accent)] hover:bg-[var(--theme-button-bg)]/10 transition-all duration-200 font-medium font-sans rounded-lg min-h-[48px] items-center touch-manipulation ${
-                  isHalloween ? "active:scale-90" : ""
-                }`}
+                className={`flex px-3 py-4 text-[var(--theme-button-text)] hover:text-[var(--theme-text-accent)] hover:bg-[var(--theme-button-bg)]/10 transition-all duration-200 font-medium font-sans rounded-lg min-h-[48px] items-center touch-manipulation`}
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 Team
-              </a>
-              <a
+              </Link>
+              <Link
                 href="/careers"
-                onMouseEnter={
-                  isHalloween ? careersParticles.createParticles : undefined
-                }
-                onTouchStart={
-                  isHalloween ? careersParticles.createParticles : undefined
-                }
-                className={`flex px-3 py-4 text-[var(--theme-button-text)] hover:text-[var(--theme-text-accent)] hover:bg-[var(--theme-button-bg)]/10 transition-all duration-200 font-medium font-sans rounded-lg min-h-[48px] items-center touch-manipulation ${
-                  isHalloween ? "active:scale-90" : ""
-                }`}
+                className={`flex px-3 py-4 text-[var(--theme-button-text)] hover:text-[var(--theme-text-accent)] hover:bg-[var(--theme-button-bg)]/10 transition-all duration-200 font-medium font-sans rounded-lg min-h-[48px] items-center touch-manipulation`}
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 Careers
-              </a>
-              <a
-                href="/announcements"
-                onMouseEnter={
-                  isHalloween ? announcementsParticles.createParticles : undefined
-                }
-                onTouchStart={
-                  isHalloween ? announcementsParticles.createParticles : undefined
-                }
-                className={`flex px-3 py-4 text-[var(--theme-button-text)] hover:text-[var(--theme-text-accent)] hover:bg-[var(--theme-button-bg)]/10 transition-all duration-200 font-medium font-sans rounded-lg min-h-[48px] items-center touch-manipulation ${
-                  isHalloween ? "active:scale-90" : ""
-                }`}
-                onClick={() => setIsMobileMenuOpen(false)}
-              >
-                Announcements
-              </a>
-              <a
+              </Link>
+              <Link
                 href="/hackathon"
-                className={`relative z-20 flex px-3 py-4 bg-orange-500 text-white hover:bg-white hover:text-orange-500 transition-all duration-300 ease-in-out font-medium text-base font-sans border border-orange-400 hover:border-orange-500 rounded-lg min-h-[48px] items-center touch-manipulation ${
-                  isHalloween ? "active:scale-90" : ""
-                }`}
+                className={`relative z-20 flex px-3 py-4 bg-orange-500 text-white hover:bg-white hover:text-orange-500 transition-all duration-300 ease-in-out font-medium text-base font-sans border border-orange-400 hover:border-orange-500 rounded-lg min-h-[48px] items-center touch-manipulation`}
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 Hackathon
-              </a>
-              <a
+              </Link>
+              <Link
                 href="https://docs.google.com/forms/d/e/1FAIpQLScP9LuFwiHEx806tv9zczjCIEzqO1Zjb-FjB4XWoa6BS1NNKQ/viewform"
                 target="_blank"
                 rel="noopener noreferrer"
-                onMouseEnter={
-                  isHalloween ? joinUsParticles.createParticles : undefined
-                }
-                onTouchStart={
-                  isHalloween ? joinUsParticles.createParticles : undefined
-                }
-                className={`relative z-20 flex px-3 py-4 bg-orange-500 text-white hover:bg-white hover:text-orange-500 transition-all duration-300 ease-in-out font-medium text-base font-sans border border-orange-400 hover:border-orange-500 rounded-lg min-h-[48px] items-center touch-manipulation ${
-                  isHalloween ? "active:scale-90" : ""
-                }`}
+                className={`relative z-20 flex px-3 py-4 bg-orange-500 text-white hover:bg-white hover:text-orange-500 transition-all duration-300 ease-in-out font-medium text-base font-sans border border-orange-400 hover:border-orange-500 rounded-lg min-h-[48px] items-center touch-manipulation`}
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 Join Us
-              </a>
+              </Link>
             </div>
           </div>
         )}

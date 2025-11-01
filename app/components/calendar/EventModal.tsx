@@ -3,7 +3,6 @@
 import React, { useEffect } from 'react';
 import { CalendarEvent } from '@/types/calendar';
 import DOMPurify from 'dompurify';
-import { useHalloweenTheme } from '../HalloweenThemeProvider';
 import { useBatParticles } from '../../hooks/useBatParticles';
 
 interface EventModalProps {
@@ -14,7 +13,6 @@ interface EventModalProps {
 }
 
 export default function EventModal({ event, isOpen, onClose, onAddToCalendar }: EventModalProps) {
-  const { isHalloween } = useHalloweenTheme();
   const { containerRef, particlesRef, createParticles } = useBatParticles();
   // Sanitize HTML content to prevent XSS while allowing safe tags like links
   const sanitizeHTML = (html: string): string => {
@@ -191,9 +189,7 @@ export default function EventModal({ event, isOpen, onClose, onAddToCalendar }: 
               />
               <button
                 onClick={onAddToCalendar}
-                onMouseEnter={isHalloween ? createParticles : undefined}
-                onTouchStart={isHalloween ? createParticles : undefined}
-                className={`relative z-10 w-full bg-orange-600 hover:bg-orange-700 text-white font-medium py-3 px-4 rounded-xl transition-all duration-200 ease-in-out hover:shadow-lg transform hover:scale-[1.02] ${isHalloween ? 'active:scale-90' : ''}`}
+                className={`relative z-10 w-full bg-orange-600 hover:bg-orange-700 text-white font-medium py-3 px-4 rounded-xl transition-all duration-200 ease-in-out hover:shadow-lg transform hover:scale-[1.02]`}
               >
                 Add to Calendar
               </button>
