@@ -1,32 +1,33 @@
 import Header from "../components/Header";
 import Footer from "../components/Footer";
+import { Heading, Text } from "../components/ui";
 
 export default function Announcements() {
   return (
-    <div className="min-h-screen flex flex-col relative">
+    <div className="min-h-[100dvh] max-h-[100dvh] flex flex-col relative overflow-y-auto">
       <Header />
-      
+
       <div className="font-sans flex-1 pt-4 px-4 pb-0 sm:pt-8 sm:px-8 md:p-20 relative z-10">
         <div className="max-w-6xl mx-auto">
           {/* Hero Section */}
           <div className="text-center mb-16">
-            <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-[var(--theme-text-primary)] mb-6 leading-tight">
+            <Heading level="h1" animate={false} className="mb-6">
               🚀 <span className="text-[var(--theme-text-accent)]">CodeDevils x CBC</span> Hackathon
-            </h1>
-            <p className="text-xl sm:text-2xl text-[var(--theme-text-accent)] font-bold mb-4">
+            </Heading>
+            <Text size="xl" variant="accent" className="font-bold mb-4">
               🎯 <span className="underline">FREE</span> Claude Pro + $50 API Credits
-            </p>
-            <p className="text-lg text-[var(--theme-text-primary)]/80 mb-8">
+            </Text>
+            <Text size="lg" variant="secondary" className="mb-8">
               Join our exclusive info meeting • Monday, Oct. 27th, 6-7pm (Arizona Time)
-            </p>
+            </Text>
             <div className="w-32 h-1 bg-[var(--theme-text-accent)] mx-auto rounded-full"></div>
           </div>
 
           {/* Quick Actions - Redesigned for better UX */}
           <div className="mb-16">
-            <h2 className="text-2xl sm:text-3xl font-bold text-[var(--theme-text-primary)] mb-8 text-center">
+            <Heading level="h2" animate={false} className="mb-8 text-center">
               🎯 <span className="text-[var(--theme-text-accent)]">Don't Miss Out</span> - Limited Time Only!
-            </h2>
+            </Heading>
             
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {/* Primary Action - Meeting */}
@@ -121,13 +122,13 @@ export default function Announcements() {
               <div className="absolute top-0 right-0 w-32 h-32 bg-[var(--theme-text-accent)]/5 rounded-full -translate-y-16 translate-x-16"></div>
               <div className="relative z-10">
                 <div className="mb-8">
-                  <h2 className="text-3xl font-bold text-[var(--theme-text-primary)] mb-3">About Claude Builder Club</h2>
-                  <p className="text-xl text-[var(--theme-text-primary)]/80 leading-relaxed">A program to sponsor Anthropic builder tools to our university</p>
+                  <Heading level="h2" animate={false} className="mb-3">About Claude Builder Club</Heading>
+                  <Text size="xl" variant="secondary" className="leading-relaxed">A program to sponsor Anthropic builder tools to our university</Text>
                 </div>
                 <div className="bg-gradient-to-r from-[var(--theme-text-accent)]/10 to-[var(--theme-text-accent)]/5 p-8 rounded-2xl border-l-4 border-[var(--theme-text-accent)] shadow-sm">
-                  <p className="text-[var(--theme-text-primary)] font-semibold text-lg leading-relaxed">
+                  <Text size="lg" variant="primary" className="font-semibold leading-relaxed">
                     Part of this is trying to have an on-campus club to do this
-                  </p>
+                  </Text>
                 </div>
               </div>
             </div>
@@ -137,8 +138,8 @@ export default function Announcements() {
               <div className="absolute top-0 left-0 w-24 h-24 bg-[var(--theme-text-accent)]/5 rounded-full -translate-x-12 -translate-y-12"></div>
               <div className="relative z-10">
                 <div className="mb-10">
-                  <h2 className="text-3xl font-bold text-[var(--theme-text-primary)] mb-3">What We Offer</h2>
-                  <p className="text-xl text-[var(--theme-text-primary)]/80 leading-relaxed">Exclusive benefits for ASU students</p>
+                  <Heading level="h2" animate={false} className="mb-3">What We Offer</Heading>
+                  <Text size="xl" variant="secondary" className="leading-relaxed">Exclusive benefits for ASU students</Text>
                 </div>
                 
                 <div className="space-y-10">
@@ -147,8 +148,8 @@ export default function Announcements() {
                     <div className="absolute top-4 right-4 w-8 h-8 bg-[var(--theme-text-accent)]/20 rounded-full flex items-center justify-center">
                       <span className="text-[var(--theme-text-accent)] font-bold text-sm">1</span>
                     </div>
-                    <h3 className="text-2xl font-bold text-[var(--theme-text-accent)] mb-4 pr-12">Free Claude Pro + $50 API Credits</h3>
-                    <p className="text-[var(--theme-text-primary)] mb-6 text-lg font-medium">Valid until February</p>
+                    <Heading level="h3" animate={false} className="text-[var(--theme-text-accent)] mb-4 pr-12">Free Claude Pro + $50 API Credits</Heading>
+                    <Text size="lg" variant="primary" className="mb-6 font-medium">Valid until February</Text>
                     <div className="space-y-3 text-[var(--theme-text-primary)]">
                       <div className="flex items-center space-x-3">
                         <div className="w-2 h-2 bg-[var(--theme-text-accent)] rounded-full"></div>
@@ -170,20 +171,20 @@ export default function Announcements() {
                     <div className="absolute top-4 right-4 w-8 h-8 bg-[var(--theme-text-accent)]/20 rounded-full flex items-center justify-center">
                       <span className="text-[var(--theme-text-accent)] font-bold text-sm">2</span>
                     </div>
-                    <h3 className="text-2xl font-bold text-[var(--theme-text-primary)] mb-4 pr-12">Vision: Builder Community</h3>
-                    <p className="text-[var(--theme-text-primary)] mb-8 text-lg font-medium leading-relaxed">Making ASU as technically connected as top-tier universities</p>
+                    <Heading level="h3" animate={false} className="mb-4 pr-12">Vision: Builder Community</Heading>
+                    <Text size="lg" variant="primary" className="mb-8 font-medium leading-relaxed">Making ASU as technically connected as top-tier universities</Text>
                     
                     <div className="space-y-6">
                       <div className="bg-gradient-to-r from-[var(--theme-text-accent)]/15 to-[var(--theme-text-accent)]/5 p-6 rounded-2xl border-l-4 border-[var(--theme-text-accent)]">
-                        <h4 className="text-xl font-bold text-[var(--theme-text-primary)] mb-3">Our Vision</h4>
-                        <p className="text-[var(--theme-text-primary)] leading-relaxed">
+                        <Heading level="h4" animate={false} className="mb-3">Our Vision</Heading>
+                        <Text size="base" variant="primary" className="leading-relaxed">
                           ASU should be as equally technically connected to tech-companies as schools like UC Berkeley, MIT, Dartmouth, etc.
-                        </p>
+                        </Text>
                       </div>
 
                       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
                         <div className="space-y-4">
-                          <h4 className="text-xl font-bold text-[var(--theme-text-primary)] mb-4">How We Achieve This</h4>
+                          <Heading level="h4" animate={false} className="mb-4">How We Achieve This</Heading>
                           <ul className="space-y-4">
                             <li className="flex items-start space-x-3">
                               <div className="w-6 h-6 bg-[var(--theme-text-accent)]/20 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
@@ -207,7 +208,7 @@ export default function Announcements() {
                         </div>
 
                         <div className="space-y-4">
-                          <h4 className="text-xl font-bold text-[var(--theme-text-primary)] mb-4">What Makes a Project "Extremely Hard"</h4>
+                          <Heading level="h4" animate={false} className="mb-4">What Makes a Project "Extremely Hard"</Heading>
                           <div className="space-y-4">
                             <p className="text-[var(--theme-text-primary)]/80 leading-relaxed">
                               When the Service Level Agreement (SLA) technically cannot be possible with just AI tools
@@ -249,14 +250,14 @@ export default function Announcements() {
                     <span className="text-3xl text-white">🏆</span>
                   </div>
                   <div>
-                    <h2 className="text-3xl font-bold text-[var(--theme-text-primary)] mb-3">Builder + Business Case Comp. Hackathon</h2>
-                    <p className="text-xl text-[var(--theme-text-primary)]/80 font-medium">Definitely not your regular hackathon</p>
+                    <Heading level="h2" animate={false} className="mb-3">Builder + Business Case Comp. Hackathon</Heading>
+                    <Text size="xl" variant="secondary" className="font-medium">Definitely not your regular hackathon</Text>
                   </div>
                 </div>
 
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
                   <div className="space-y-6">
-                    <h3 className="text-2xl font-bold text-[var(--theme-text-primary)] mb-6">Major Sponsors</h3>
+                    <Heading level="h3" animate={false} className="mb-6">Major Sponsors</Heading>
                     <div className="flex flex-wrap gap-3">
                       {['Anthropic', 'Polymarket', 'ASU Blockchain', 'Acorns', 'StreetSmart'].map((sponsor) => (
                         <span key={sponsor} className="bg-gradient-to-r from-[var(--theme-text-accent)]/25 to-[var(--theme-text-accent)]/15 text-[var(--theme-text-primary)] px-4 py-2 rounded-full text-sm font-bold border border-[var(--theme-text-accent)]/30 shadow-sm">
@@ -270,7 +271,7 @@ export default function Announcements() {
                   </div>
 
                   <div className="space-y-6">
-                    <h3 className="text-2xl font-bold text-[var(--theme-text-primary)] mb-6">What to Expect</h3>
+                    <Heading level="h3" animate={false} className="mb-6">What to Expect</Heading>
                     <div className="space-y-4">
                       <div className="flex items-center space-x-4 p-4 bg-gradient-to-r from-[var(--theme-text-accent)]/10 to-transparent rounded-2xl border border-[var(--theme-text-accent)]/20">
                         <div className="w-8 h-8 bg-[var(--theme-text-accent)]/20 rounded-full flex items-center justify-center flex-shrink-0">

@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { useBatParticles } from "../hooks/useBatParticles";
+import { Heading, Text, Label, Input, Button, ButtonGroup } from "./ui";
 
 interface FormData {
   track: string;
@@ -44,8 +44,6 @@ export default function HackathonSignupForm() {
   const [submitStatus, setSubmitStatus] = useState<
     "idle" | "success" | "error"
   >("idle");
-
-  // Halloween theme and bat particles
 
   // Reset success state after 5 seconds to allow another submission
   useEffect(() => {
@@ -172,14 +170,14 @@ export default function HackathonSignupForm() {
   };
 
   return (
-    <div className="max-w-2xl mx-auto">
+    <div className="max-w-2xl mx-auto pt-8 sm:pt-12 md:pt-16">
       <div className="mb-8">
-        <h2 className="text-2xl sm:text-3xl font-bold text-[#5d4e37] mb-4">
+        <Heading level="h2" animate={false} className="mb-4">
           Hackathon Registration Form
-        </h2>
-        <p className="text-[#5d4e37]/80 text-sm">
+        </Heading>
+        <Text size="sm" variant="secondary">
           All fields marked with * are required.
-        </p>
+        </Text>
       </div>
 
       {submitStatus === "success" && (
@@ -207,32 +205,31 @@ export default function HackathonSignupForm() {
       <form onSubmit={handleSubmit} className="space-y-6">
         {/* Track selection */}
         <div>
-          <label className="block text-sm font-medium text-[#5d4e37] mb-2">
-            Track *
-          </label>
-          <div className="grid grid-cols-2 gap-3">
-            {["Engineering", "Comprehensive Business Case Competition"].map(
-              (option) => (
-                <button
-                  key={option}
-                  type="button"
-                  onClick={() => {
-                    setFormData((p) => ({ ...p, track: option }));
-                    if (errors.track) {
-                      setErrors((prev) => ({ ...prev, track: undefined }));
-                    }
-                  }}
-                  className={`w-full px-4 py-2 rounded-lg border transition-colors ${
-                    formData.track === option
-                      ? "bg-[#cc785c] text-white border-transparent"
-                      : "bg-white text-[#5d4e37] border-gray-300 hover:border-[#cc785c]"
-                  }`}
-                >
-                  {option}
-                </button>
-              )
-            )}
-          </div>
+          <Label htmlFor="track" required>
+            Track
+          </Label>
+          <ButtonGroup
+            options={[
+              {
+                value: "Engineering",
+                label: "Engineering",
+                description: "Build technical solutions with AI"
+              },
+              {
+                value: "Comprehensive Business Case Competition",
+                label: "Business Case",
+                description: "Solve business challenges strategically"
+              }
+            ]}
+            value={formData.track}
+            onChange={(value) => {
+              setFormData((p) => ({ ...p, track: value }));
+              if (errors.track) {
+                setErrors((prev) => ({ ...prev, track: undefined }));
+              }
+            }}
+            columns={2}
+          />
           {errors.track && (
             <p className="mt-1 text-sm text-red-600">{errors.track}</p>
           )}
@@ -240,137 +237,120 @@ export default function HackathonSignupForm() {
 
         {/* ASU Online Student Confirmation */}
         <div>
-          <label className="block text-sm font-medium text-[#5d4e37] mb-2">
-            Are you an ASU Online Student? *
-          </label>
-          <div className="grid grid-cols-2 gap-3">
-            {[
-              { value: true, label: 'Yes' },
-              { value: false, label: 'No' }
-            ].map((option) => (
-              <button
-                key={option.label}
-                type="button"
-                onClick={() => {
-                  setFormData((p) => ({ ...p, isAsuOnlineStudent: option.value }));
-                  if (errors.isAsuOnlineStudent) {
-                    setErrors((prev) => ({ ...prev, isAsuOnlineStudent: undefined }));
-                  }
-                }}
-                className={`w-full px-4 py-2 rounded-lg border transition-colors ${
-                  formData.isAsuOnlineStudent === option.value
-                    ? 'bg-[#cc785c] text-white border-transparent'
-                    : 'bg-white text-[#5d4e37] border-gray-300 hover:border-[#cc785c]'
-                }`}
-              >
-                {option.label}
-              </button>
-            ))}
-          </div>
+          <Label required>
+            Are you an ASU Online Student?
+          </Label>
+          <ButtonGroup
+            options={[
+              {
+                value: true,
+                label: 'Yes',
+                description: 'I am an ASU Online student'
+              },
+              {
+                value: false,
+                label: 'No',
+                description: 'I am an in-person student'
+              }
+            ]}
+            value={formData.isAsuOnlineStudent}
+            onChange={(value) => {
+              setFormData((p) => ({ ...p, isAsuOnlineStudent: value }));
+              if (errors.isAsuOnlineStudent) {
+                setErrors((prev) => ({ ...prev, isAsuOnlineStudent: undefined }));
+              }
+            }}
+            columns={2}
+          />
           {errors.isAsuOnlineStudent && (
             <p className="mt-1 text-sm text-red-600">{errors.isAsuOnlineStudent}</p>
           )}
-          <p className="mt-1 text-xs text-[#5d4e37]/60">
+          <Text size="xs" variant="secondary" className="mt-2">
             We will be verifying each one individually for proof later
-          </p>
+          </Text>
         </div>
 
         {/* First Name */}
         <div>
-          <label
-            htmlFor="firstName"
-            className="block text-sm font-medium text-[#5d4e37] mb-2"
-          >
-            First Name *
-          </label>
-          <input
+          <Label htmlFor="firstName" required>
+            First Name
+          </Label>
+          <Input
             type="text"
             id="firstName"
             name="firstName"
             value={formData.firstName}
             onChange={handleInputChange}
-            className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-[#cc785c] focus:border-transparent transition-colors ${
-              errors.firstName ? "border-red-500" : "border-gray-300"
-            }`}
+            error={errors.firstName}
             placeholder="Enter your first name"
+            fullWidth
           />
-          {errors.firstName && (
-            <p className="mt-1 text-sm text-red-600">{errors.firstName}</p>
-          )}
         </div>
 
         {/* Last Name */}
         <div>
-          <label
-            htmlFor="lastName"
-            className="block text-sm font-medium text-[#5d4e37] mb-2"
-          >
-            Last Name *
-          </label>
-          <input
+          <Label htmlFor="lastName" required>
+            Last Name
+          </Label>
+          <Input
             type="text"
             id="lastName"
             name="lastName"
             value={formData.lastName}
             onChange={handleInputChange}
-            className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-[#cc785c] focus:border-transparent transition-colors ${
-              errors.lastName ? "border-red-500" : "border-gray-300"
-            }`}
+            error={errors.lastName}
             placeholder="Enter your last name"
+            fullWidth
           />
-          {errors.lastName && (
-            <p className="mt-1 text-sm text-red-600">{errors.lastName}</p>
-          )}
         </div>
 
         {/* School Email */}
         <div>
-          <label
-            htmlFor="schoolEmail"
-            className="block text-sm font-medium text-[#5d4e37] mb-2"
-          >
-            School Email *
-          </label>
-          <input
+          <Label htmlFor="schoolEmail" required>
+            School Email
+          </Label>
+          <Input
             type="email"
             id="schoolEmail"
             name="schoolEmail"
             value={formData.schoolEmail}
             onChange={handleInputChange}
-            className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-[#cc785c] focus:border-transparent transition-colors ${
-              errors.schoolEmail ? "border-red-500" : "border-gray-300"
-            }`}
+            error={errors.schoolEmail}
             placeholder="your.email@asu.edu"
+            fullWidth
           />
-          {errors.schoolEmail && (
-            <p className="mt-1 text-sm text-red-600">{errors.schoolEmail}</p>
-          )}
         </div>
 
         {/* Year */}
         <div>
-          <label
-            htmlFor="year"
-            className="block text-sm font-medium text-[#5d4e37] mb-2"
-          >
-            Year *
-          </label>
-          <select
-            id="year"
-            name="year"
-            value={formData.year}
-            onChange={handleInputChange}
-            className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-[#cc785c] focus:border-transparent transition-colors ${
-              errors.year ? "border-red-500" : "border-gray-300"
-            }`}
-          >
-            <option value="">Select your year</option>
-            <option value="freshman">Freshman</option>
-            <option value="sophomore">Sophomore</option>
-            <option value="junior">Junior</option>
-            <option value="senior">Senior</option>
-            <option value="masters">Masters</option>
-          </select>
+          <Label htmlFor="year" required>
+            Year
+          </Label>
+          <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+            {[
+              { value: "freshman", label: "Freshman" },
+              { value: "sophomore", label: "Sophomore" },
+              { value: "junior", label: "Junior" },
+              { value: "senior", label: "Senior" },
+              { value: "masters", label: "Masters" },
+            ].map((option) => (
+              <Button
+                key={option.value}
+                type="button"
+                variant={formData.year === option.value ? "secondary" : "outline"}
+                size="md"
+                onClick={() => {
+                  setFormData((p) => ({ ...p, year: option.value }));
+                  if (errors.year) {
+                    setErrors((prev) => ({ ...prev, year: undefined }));
+                  }
+                }}
+                className="w-full"
+              >
+                {option.label}
+              </Button>
+            ))}
+          </div>
           {errors.year && (
             <p className="mt-1 text-sm text-red-600">{errors.year}</p>
           )}
@@ -378,56 +358,51 @@ export default function HackathonSignupForm() {
 
         {/* Number of Hackathons Participated */}
         <div>
-          <label
-            htmlFor="hackathonsParticipated"
-            className="block text-sm font-medium text-[#5d4e37] mb-2"
-          >
-            How many hackathons have you participated in before? *
-          </label>
-          <input
+          <Label htmlFor="hackathonsParticipated" required>
+            How many hackathons have you participated in before?
+          </Label>
+          <Input
             type="number"
             id="hackathonsParticipated"
             name="hackathonsParticipated"
-            value={formData.hackathonsParticipated}
+            value={formData.hackathonsParticipated.toString()}
             onChange={handleInputChange}
-            min="0"
-            className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-[#cc785c] focus:border-transparent transition-colors ${
-              errors.hackathonsParticipated
-                ? "border-red-500"
-                : "border-gray-300"
-            }`}
+            error={errors.hackathonsParticipated}
             placeholder="0"
+            min={0}
+            fullWidth
           />
-          {errors.hackathonsParticipated && (
-            <p className="mt-1 text-sm text-red-600">
-              {errors.hackathonsParticipated}
-            </p>
-          )}
         </div>
 
         {/* Experience Level */}
         <div>
-          <label
-            htmlFor="experienceLevel"
-            className="block text-sm font-medium text-[#5d4e37] mb-2"
-          >
-            Field of Study Experience Level *
-          </label>
-          <select
-            id="experienceLevel"
-            name="experienceLevel"
-            value={formData.experienceLevel}
-            onChange={handleInputChange}
-            className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-[#cc785c] focus:border-transparent transition-colors ${
-              errors.experienceLevel ? "border-red-500" : "border-gray-300"
-            }`}
-          >
-            <option value="">Select your experience level</option>
-            <option value="0-1">0-1 years</option>
-            <option value="1-2">1-2 years</option>
-            <option value="2-4">2-4 years</option>
-            <option value="4+">4+ years</option>
-          </select>
+          <Label htmlFor="experienceLevel" required>
+            Field of Study Experience Level
+          </Label>
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+            {[
+              { value: "0-1", label: "0-1 years" },
+              { value: "1-2", label: "1-2 years" },
+              { value: "2-4", label: "2-4 years" },
+              { value: "4+", label: "4+ years" },
+            ].map((option) => (
+              <Button
+                key={option.value}
+                type="button"
+                variant={formData.experienceLevel === option.value ? "secondary" : "outline"}
+                size="md"
+                onClick={() => {
+                  setFormData((p) => ({ ...p, experienceLevel: option.value }));
+                  if (errors.experienceLevel) {
+                    setErrors((prev) => ({ ...prev, experienceLevel: undefined }));
+                  }
+                }}
+                className="w-full"
+              >
+                {option.label}
+              </Button>
+            ))}
+          </div>
           {errors.experienceLevel && (
             <p className="mt-1 text-sm text-red-600">
               {errors.experienceLevel}
@@ -437,35 +412,29 @@ export default function HackathonSignupForm() {
 
         {/* Dietary Restrictions */}
         <div>
-          <label
-            htmlFor="dietaryRestrictions"
-            className="block text-sm font-medium text-[#5d4e37] mb-2"
-          >
+          <Label htmlFor="dietaryRestrictions">
             Dietary Restrictions
-          </label>
-          <input
+          </Label>
+          <Input
             type="text"
             id="dietaryRestrictions"
             name="dietaryRestrictions"
             value={formData.dietaryRestrictions}
             onChange={handleInputChange}
-            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#cc785c] focus:border-transparent transition-colors"
             placeholder="Vegetarian, vegan, gluten-free, etc."
+            fullWidth
           />
         </div>
 
         {/* Submit Button */}
         <div className="pt-6">
-          <button
+          <Button
             type="submit"
+            variant="primary"
+            size="lg"
+            fullWidth
             disabled={isSubmitting || submitStatus === "success"}
-            className={`w-full py-4 px-6 rounded-lg font-medium text-white transition-all duration-200 relative z-10 ${
-              submitStatus === "success"
-                ? "bg-green-600 cursor-default"
-                : isSubmitting
-                ? "bg-gray-400 cursor-not-allowed"
-                : "bg-[#cc785c] hover:bg-[#5d4e37] hover:scale-105 hover:shadow-lg"
-            }`}
+            className={submitStatus === "success" ? "!bg-green-600" : isSubmitting ? "!bg-gray-400" : ""}
           >
             {submitStatus === "success" ? (
               <span className="flex items-center justify-center">
@@ -511,21 +480,21 @@ export default function HackathonSignupForm() {
             ) : (
               "Submit Hackathon Registration"
             )}
-          </button>
+          </Button>
         </div>
       </form>
 
       {/* Contact Info */}
       <div className="text-center mt-8">
-        <p className="text-[#5d4e37]/80 mb-2">
+        <Text size="base" variant="secondary" className="mb-2">
           Questions? Contact us at{" "}
           <a
             href="mailto:shivenshekar01@gmail.com"
-            className="text-[#5d4e37] hover:underline font-semibold"
+            className="text-[var(--theme-text-primary)] hover:underline font-semibold"
           >
             shivenshekar01@gmail.com
           </a>
-        </p>
+        </Text>
       </div>
     </div>
   );

@@ -8,6 +8,7 @@ import CalendarHeader from './CalendarHeader';
 import CalendarGrid from './CalendarGrid';
 import CalendarActions from './CalendarActions';
 import EventModal from './EventModal';
+import { Card } from '../ui';
 
 interface CalendarContainerProps {
   className?: string;
@@ -124,41 +125,47 @@ export default function CalendarContainer({ className = '' }: CalendarContainerP
   };
 
   return (
-    <div className={`bg-[var(--theme-card-bg)] border-2 border-[var(--theme-card-border)] rounded-lg shadow-lg p-3 sm:p-4 md:p-6 ${className}`}>
-      <CalendarHeader
-        currentDate={calendarState.currentDate}
-        onPreviousMonth={handlePreviousMonth}
-        onNextMonth={handleNextMonth}
-        onGoToToday={handleGoToToday}
-        isLoading={calendarState.isLoading}
-      />
-      
-      <CalendarGrid
-        calendarMonth={calendarMonth}
-        onSelectDate={handleSelectDate}
-        onEventClick={handleEventClick}
-        isLoading={calendarState.isLoading}
-        allEvents={events}
-        upcomingEventIds={upcomingEventIds}
-      />
-      
-      <CalendarActions
-        calendarId={process.env.NEXT_PUBLIC_GOOGLE_CALENDAR_ID || "asu.edu_primary"}
-        selectedDate={calendarState.selectedDate}
-      />
-      
-      {calendarState.error && (
-        <div className="mt-4 p-3 bg-red-900 border border-red-700 rounded-md">
-          <p className="text-sm text-red-300">{calendarState.error}</p>
-        </div>
-      )}
-      
-      {/* Event Modal */}
+    <>
+      <Card
+        gradient
+        animated
+        className={className}
+      >
+        <CalendarHeader
+          currentDate={calendarState.currentDate}
+          onPreviousMonth={handlePreviousMonth}
+          onNextMonth={handleNextMonth}
+          onGoToToday={handleGoToToday}
+          isLoading={calendarState.isLoading}
+        />
+
+        <CalendarGrid
+          calendarMonth={calendarMonth}
+          onSelectDate={handleSelectDate}
+          onEventClick={handleEventClick}
+          isLoading={calendarState.isLoading}
+          allEvents={events}
+          upcomingEventIds={upcomingEventIds}
+        />
+
+        <CalendarActions
+          calendarId={process.env.NEXT_PUBLIC_GOOGLE_CALENDAR_ID || "asu.edu_primary"}
+          selectedDate={calendarState.selectedDate}
+        />
+
+        {calendarState.error && (
+          <div className="mt-4 p-3 bg-red-900 border border-red-700 rounded-md">
+            <p className="text-sm text-red-300">{calendarState.error}</p>
+          </div>
+        )}
+      </Card>
+
+      {/* Event Modal - outside Card to avoid z-index issues */}
       <EventModal
         event={selectedEvent}
         isOpen={isModalOpen}
         onClose={handleCloseModal}
       />
-    </div>
+    </>
   );
 }

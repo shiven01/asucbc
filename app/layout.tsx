@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import { ThemeProvider } from "./contexts/ThemeContext";
+import DarkModeToggle from "./components/DarkModeToggle";
 import "./globals.css";
 
 const poppins = Poppins({
@@ -48,9 +50,12 @@ export default function RootLayout({
         <meta name="twitter:image" content="/assets/og/splash.png" />
       </head>
       <body className={`${poppins.variable} antialiased`}>
-        {children}
-        <Analytics />
-        <SpeedInsights />
+        <ThemeProvider>
+          {children}
+          <DarkModeToggle />
+          <Analytics />
+          <SpeedInsights />
+        </ThemeProvider>
       </body>
     </html>
   );

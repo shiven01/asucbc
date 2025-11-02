@@ -1,6 +1,8 @@
 "use client";
 
 import Link from "next/link";
+import { motion } from "framer-motion";
+import { Heading, Text, Button } from "./ui";
 
 type JoinCardProps = {
   title?: string;
@@ -8,6 +10,44 @@ type JoinCardProps = {
   discordHref?: string;
   benefitsHref?: string;
   className?: string;
+};
+
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.08,
+      delayChildren: 0.1,
+    },
+  },
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 20, scale: 0.95 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    transition: {
+      type: "spring" as const,
+      stiffness: 100,
+      damping: 15,
+    },
+  },
+};
+
+const listItemVariants = {
+  hidden: { opacity: 0, x: -10 },
+  visible: {
+    opacity: 1,
+    x: 0,
+    transition: {
+      type: "spring" as const,
+      stiffness: 120,
+      damping: 12,
+    },
+  },
 };
 
 export default function JoinCard({
@@ -18,42 +58,115 @@ export default function JoinCard({
   className = "",
 }: JoinCardProps) {
   return (
-    <div
-      className={`w-full rounded-xl bg-[var(--theme-card-bg)] border-2 border-[var(--theme-card-border)] shadow-sm p-4 sm:p-6 ${className}`}
+    <motion.div
+      variants={containerVariants}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, amount: 0.3 }}
+      className={`w-full rounded-xl relative overflow-hidden border-2 border-[var(--theme-card-border)] p-4 sm:p-5 lg:p-6 ${className}`}
+      style={{
+        background: `
+          linear-gradient(135deg,
+            var(--theme-card-bg) 0%,
+            var(--theme-card-gradient-end, var(--theme-card-bg)) 100%
+          )
+        `,
+        boxShadow: "2px 2px 4px rgba(0, 0, 0, 0.05), 4px 4px 12px rgba(0, 0, 0, 0.08)",
+      }}
     >
-      <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-black mb-3">
-        {title}
-      </h2>
-      <p className="text-sm sm:text-base text-black/70 leading-relaxed mb-4">
-        {subtitle}
-      </p>
-      <ul className="list-disc pl-4 text-sm sm:text-base text-black/80 space-y-1 mb-4">
-        <li>Free Claude Pro + $50 in API credits</li>
-        <li>Hands-on workshops and resources</li>
-        <li>Exclusive merchandise</li>
-      </ul>
-      <p className="text-xs sm:text-sm text-black/60 italic mb-4">
-        **Benefits require attendance at a CBC event for activation**
-      </p>
+      {/* Subtle animated gradient overlay */}
+      <motion.div
+        className="absolute inset-0 opacity-20 pointer-events-none"
+        style={{
+          background: `
+            radial-gradient(circle at 20% 50%,
+              var(--theme-gradient-accent, transparent) 0%,
+              transparent 50%
+            )
+          `,
+        }}
+        animate={{
+          scale: [1, 1.1, 1],
+          opacity: [0.15, 0.25, 0.15],
+        }}
+        transition={{
+          duration: 8,
+          repeat: Infinity,
+          ease: "easeInOut" as const,
+        }}
+      />
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-3">
-        <Link
-          href={discordHref}
-          target="_blank"
-          rel="noopener noreferrer"
-          className={`relative z-10 inline-flex w-full items-center justify-center rounded-xl bg-[var(--theme-card-bg)] text-[var(--theme-button-text)] px-4 py-3 text-sm sm:text-base font-semibold shadow hover:bg-[var(--theme-button-text)] hover:text-[var(--theme-card-bg)] hover:scale-105 hover:shadow-lg transition-all duration-300 ease-in-out border border-[var(--theme-button-text)] hover:border-[var(--theme-button-text)] min-h-[40px] touch-manipulation`}
+      {/* Subtle highlight on lit edge */}
+      <div
+        className="absolute top-0 left-0 w-full h-full pointer-events-none rounded-xl"
+        style={{
+          background: `
+            linear-gradient(135deg,
+              rgba(255, 255, 255, 0.08) 0%,
+              transparent 40%
+            )
+          `,
+        }}
+      />
+
+      {/* Content */}
+      <div className="relative z-10">
+        <motion.div variants={itemVariants}>
+          <Heading level="h4" animate={false} className="mb-3">
+            {title}
+          </Heading>
+        </motion.div>
+        <motion.div variants={itemVariants}>
+          <Text size="base" variant="secondary" className="mb-4">
+            {subtitle}
+          </Text>
+        </motion.div>
+        <motion.ul
+          variants={itemVariants}
+          className="list-disc pl-4 text-sm sm:text-base text-[var(--theme-text-primary)]/80 space-y-1 mb-4"
         >
-          Join our Discord
-        </Link>
-        <Link
-          href={benefitsHref}
-          target="_blank"
-          rel="noopener noreferrer"
-          className={`relative z-10 inline-flex w-full items-center justify-center rounded-xl bg-[var(--theme-button-text)] text-[var(--theme-card-bg)] px-4 py-3 text-sm sm:text-base font-semibold shadow hover:bg-[var(--theme-card-bg)] hover:text-[var(--theme-button-text)] hover:scale-105 hover:shadow-lg transition-all duration-300 ease-in-out border border-[var(--theme-button-text)] hover:border-[var(--theme-button-text)] min-h-[40px] touch-manipulation `}
+          <motion.li variants={listItemVariants}>
+            Free Claude Pro + $50 in API credits
+          </motion.li>
+          <motion.li variants={listItemVariants}>
+            Hands-on workshops and resources
+          </motion.li>
+          <motion.li variants={listItemVariants}>
+            Exclusive merchandise
+          </motion.li>
+        </motion.ul>
+        <motion.div variants={itemVariants}>
+          <Text size="sm" variant="secondary" className="italic mb-4">
+            **Benefits require attendance at a CBC event for activation**
+          </Text>
+        </motion.div>
+
+        <motion.div
+          variants={itemVariants}
+          className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-3"
         >
-          Sign up to receive benefits
-        </Link>
+          <Link
+            href={discordHref}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="w-full"
+          >
+            <Button variant="primary" size="md" fullWidth>
+              Join our Discord
+            </Button>
+          </Link>
+          <Link
+            href={benefitsHref}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="w-full"
+          >
+            <Button variant="secondary" size="md" fullWidth>
+              Sign up to receive benefits
+            </Button>
+          </Link>
+        </motion.div>
       </div>
-    </div>
+    </motion.div>
   );
 }
