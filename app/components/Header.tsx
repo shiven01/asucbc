@@ -235,7 +235,7 @@ export default function Header() {
                 <motion.div variants={mobileItemVariants}>
                   <Link
                     href="/about"
-                    className={`flex px-3 py-4 text-[var(--theme-button-text)] hover:text-[var(--theme-text-accent)] hover:bg-[var(--theme-button-bg)]/10 transition-all duration-200 font-medium font-sans rounded-lg min-h-[48px] items-center touch-manipulation`}
+                    className={`flex px-3 py-4 text-[var(--theme-text-primary)] hover:text-[var(--theme-text-accent)] hover:bg-white/10 transition-all duration-200 font-medium font-sans rounded-lg min-h-[48px] items-center touch-manipulation`}
                     onClick={() => setIsMobileMenuOpen(false)}
                   >
                     About
@@ -244,7 +244,7 @@ export default function Header() {
                 <motion.div variants={mobileItemVariants}>
                   <Link
                     href="/team"
-                    className={`flex px-3 py-4 text-[var(--theme-button-text)] hover:text-[var(--theme-text-accent)] hover:bg-[var(--theme-button-bg)]/10 transition-all duration-200 font-medium font-sans rounded-lg min-h-[48px] items-center touch-manipulation`}
+                    className={`flex px-3 py-4 text-[var(--theme-text-primary)] hover:text-[var(--theme-text-accent)] hover:bg-white/10 transition-all duration-200 font-medium font-sans rounded-lg min-h-[48px] items-center touch-manipulation`}
                     onClick={() => setIsMobileMenuOpen(false)}
                   >
                     Team
@@ -253,7 +253,7 @@ export default function Header() {
                 <motion.div variants={mobileItemVariants}>
                   <Link
                     href="/careers"
-                    className={`flex px-3 py-4 text-[var(--theme-button-text)] hover:text-[var(--theme-text-accent)] hover:bg-[var(--theme-button-bg)]/10 transition-all duration-200 font-medium font-sans rounded-lg min-h-[48px] items-center touch-manipulation`}
+                    className={`flex px-3 py-4 text-[var(--theme-text-primary)] hover:text-[var(--theme-text-accent)] hover:bg-white/10 transition-all duration-200 font-medium font-sans rounded-lg min-h-[48px] items-center touch-manipulation`}
                     onClick={() => setIsMobileMenuOpen(false)}
                   >
                     Careers
