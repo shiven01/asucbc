@@ -11,7 +11,7 @@ export interface TeamMember {
 export const teamMembers: TeamMember[] = [
   {
     id: 'punya',
-    name: 'Punya',
+    name: 'Punya Mishra',
     position: 'Advisor',
     image: '/staff/punya.png',
     websiteUrl: 'https://punyamishra.com/',
@@ -19,7 +19,7 @@ export const teamMembers: TeamMember[] = [
   },
   {
     id: 'shiven',
-    name: 'Shiven',
+    name: 'Shiven Shekar',
     position: 'President',
     image: '/staff/shiven.png',
     linkedinUrl: 'https://www.linkedin.com/in/shiven-shekar/',
@@ -31,11 +31,11 @@ export const teamMembers: TeamMember[] = [
     position: 'Claude Builder Ambassador',
     image: '/staff/farnaz.png',
     linkedinUrl: 'https://www.linkedin.com/in/farnaz-avarzamani-a672069b/',
-    description: 'Farnaz is a PhD candidate in Educational Policy and Evaluation at ASU. Her doctoral research combines multilingual STEM education, curriculum policy, and generative AI to enhance teaching practices. She develops AI-driven solutions that support teachers in diverse classrooms, efforts that have been recognized through multiple awards, publications, and invited talks. Her most recent AI project, conducted through Principled Innovation®, has led to the development of an AI tool that will be launched in mid-October.'
+    description: 'Farnaz is a PhD candidate in Educational Policy and Evaluation at Arizona State University. Her research focuses on multilingual STEM education and generative AI to support teachers in diverse classrooms. Her work has earned multiple awards and publications. Through Principled Innovation®, she recently developed an AI tool for educators launching in mid-October.'
   },
   {
     id: 'tino',
-    name: 'Tino',
+    name: 'Tino Heather',
     position: 'Claude Ambassador',
     image: '/staff/tino.png',
     linkedinUrl: 'https://www.linkedin.com/in/heathermavunga/',
@@ -43,19 +43,19 @@ export const teamMembers: TeamMember[] = [
   },
   {
     id: 'anjali',
-    name: 'Anjali',
+    name: 'Anjali Kok',
     position: 'Vice President',
     image: '/staff/claude.svg',
   },
   {
     id: 'hieu',
-    name: 'Hieu',
+    name: 'Hieu Than',
     position: 'Technology',
     image: '/staff/claude.svg',
   },
   {
     id: 'john',
-    name: 'John',
+    name: 'John Li',
     position: 'Technology',
     image: '/staff/john.png',
     description: "John Li is a Full Stack Developer, Honors Student at Arizona State University, and Technical Officer of the Claude Builder Club. With a passion for building robust applications and leading technical initiatives, John combines hands-on development expertise with community leadership. As a technical officer, he spearheads innovative projects and fosters a collaborative environment for club members to explore the latest in AI and software development.",
@@ -65,7 +65,7 @@ export const teamMembers: TeamMember[] = [
   },
   {
     id: 'sebastian',
-    name: 'Sebastian',
+    name: 'Sebastian Abundis',
     position: 'Technology',
     image: '/staff/claude.svg',
   },
@@ -79,32 +79,32 @@ export const teamMembers: TeamMember[] = [
   },
   {
     id: 'ben',
-    name: 'Ben',
+    name: 'Ben Juntilla',
     position: 'Head of Operations',
     image: '/staff/claude.svg',
   },
   {
     id: 'sathwin',
-    name: 'Sathwin',
+    name: 'Sathwin Reddy',
     position: 'Operations + Finance',
     image: '/staff/claude.svg',
   },
   {
     id: 'anirudh',
-    name: 'Anirudh',
+    name: 'Anirudh Manjesh',
     position: 'Operations',
     image: '/staff/claude.svg',
   },
   {
     id: 'joana',
-    name: 'Joana',
+    name: 'Joana Choong',
     position: 'Community Outreach',
     image: '/staff/claude.svg',
   },
   {
     id: 'erick',
-    name: 'Erick',
-    position: 'Business + Finance Outreach',
+    name: 'Erick Li',
+    position: 'Business + Finance',
     image: '/staff/claude.svg',
   }
 ];

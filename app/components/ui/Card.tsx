@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import { HTMLAttributes, forwardRef } from "react";
 
-export interface CardProps extends HTMLAttributes<HTMLDivElement> {
+export interface CardProps extends Omit<HTMLAttributes<HTMLDivElement>, 'onDrag' | 'onDragStart' | 'onDragEnd' | 'onAnimationStart' | 'onAnimationEnd'> {
   hoverable?: boolean;
   animated?: boolean;
   gradient?: boolean;
@@ -104,8 +104,8 @@ const Card = forwardRef<HTMLDivElement, CardProps>(
         ref={ref}
         className={`${baseStyles} ${className}`}
         style={backgroundStyle}
-        initial={animated ? { opacity: 0, y: 20 } : false}
-        whileInView={animated ? { opacity: 1, y: 0 } : false}
+        initial={animated ? { opacity: 0, y: 20 } : undefined}
+        whileInView={animated ? { opacity: 1, y: 0 } : undefined}
         viewport={animated ? { once: true, amount: 0.3 } : undefined}
         animate={{
           boxShadow: baseShadow,

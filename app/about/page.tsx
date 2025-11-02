@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
+import { Heading, Text, Card } from "../components/ui";
 import { motion } from "framer-motion";
 
 const containerVariants = {
@@ -27,20 +28,6 @@ const imageVariants = {
       stiffness: 60,
       damping: 20,
       mass: 0.8,
-    },
-  },
-};
-
-const textVariants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      type: "spring" as const,
-      stiffness: 60,
-      damping: 20,
-      mass: 0.5,
     },
   },
 };
@@ -90,22 +77,16 @@ export default function About() {
 
             {/* Right side - Content */}
             <div className="text-center lg:text-left">
-              <motion.h1
-                variants={textVariants}
-                className="text-4xl sm:text-5xl lg:text-6xl font-bold text-[var(--theme-text-primary)] mb-6"
-              >
+              <Heading level="h1" animate={false} className="mb-6">
                 About Anthropic
-              </motion.h1>
-              <motion.p
-                variants={textVariants}
-                className="text-[var(--theme-text-secondary)] text-lg leading-relaxed mb-8 max-w-2xl mx-auto lg:mx-0"
-              >
+              </Heading>
+              <Text size="lg" variant="secondary" className="mb-8 max-w-2xl mx-auto lg:mx-0">
                 The Arizona State University Claude Builder Club is a
                 student-run organization dedicated to exploring the cutting-edge
                 capabilities of Anthropic's Claude AI. We foster innovation,
                 collaboration, and learning in the rapidly evolving field of
                 artificial intelligence.
-              </motion.p>
+              </Text>
 
               {/* Feature Cards */}
               <motion.div
@@ -115,67 +96,63 @@ export default function About() {
                 <motion.div
                   custom={0}
                   variants={cardVariants}
-                  whileHover={{ scale: 1.05, y: -5 }}
-                  transition={{ type: "spring" as const, stiffness: 300, damping: 25 }}
-                  className="bg-[var(--theme-card-bg)] rounded-lg p-6 border border-[var(--theme-card-border)] cursor-pointer"
                 >
-                  <h3 className="text-xl font-bold text-[var(--theme-text-primary)] mb-3">
-                    AI Innovation
-                  </h3>
-                  <p className="text-[var(--theme-text-secondary)] text-sm leading-relaxed">
-                    Explore the latest developments in AI technology and build
-                    innovative applications using Claude's advanced
-                    capabilities.
-                  </p>
+                  <Card hoverable gradient className="cursor-pointer h-full">
+                    <Heading level="h3" animate={false} className="mb-3">
+                      AI Innovation
+                    </Heading>
+                    <Text size="sm" variant="secondary">
+                      Explore the latest developments in AI technology and build
+                      innovative applications using Claude's advanced
+                      capabilities.
+                    </Text>
+                  </Card>
                 </motion.div>
 
                 <motion.div
                   custom={1}
                   variants={cardVariants}
-                  whileHover={{ scale: 1.05, y: -5 }}
-                  transition={{ type: "spring" as const, stiffness: 300, damping: 25 }}
-                  className="bg-[var(--theme-card-bg)] rounded-lg p-6 border border-[var(--theme-card-border)] cursor-pointer"
                 >
-                  <h3 className="text-xl font-bold text-[var(--theme-text-primary)] mb-3">
-                    Community Learning
-                  </h3>
-                  <p className="text-[var(--theme-text-secondary)] text-sm leading-relaxed">
-                    Join a vibrant community of students passionate about AI,
-                    sharing knowledge and collaborating on exciting projects.
-                  </p>
+                  <Card hoverable gradient className="cursor-pointer h-full">
+                    <Heading level="h3" animate={false} className="mb-3">
+                      Community Learning
+                    </Heading>
+                    <Text size="sm" variant="secondary">
+                      Join a vibrant community of students passionate about AI,
+                      sharing knowledge and collaborating on exciting projects.
+                    </Text>
+                  </Card>
                 </motion.div>
 
                 <motion.div
                   custom={2}
                   variants={cardVariants}
-                  whileHover={{ scale: 1.05, y: -5 }}
-                  transition={{ type: "spring" as const, stiffness: 300, damping: 25 }}
-                  className="bg-[var(--theme-card-bg)] rounded-lg p-6 border border-[var(--theme-card-border)] cursor-pointer"
                 >
-                  <h3 className="text-xl font-bold text-[var(--theme-text-primary)] mb-3">
-                    Hands-on Projects
-                  </h3>
-                  <p className="text-[var(--theme-text-secondary)] text-sm leading-relaxed">
-                    Work on real-world projects that showcase the power of
-                    Claude AI and contribute to meaningful technological
-                    solutions.
-                  </p>
+                  <Card hoverable gradient className="cursor-pointer h-full">
+                    <Heading level="h3" animate={false} className="mb-3">
+                      Hands-on Projects
+                    </Heading>
+                    <Text size="sm" variant="secondary">
+                      Work on real-world projects that showcase the power of
+                      Claude AI and contribute to meaningful technological
+                      solutions.
+                    </Text>
+                  </Card>
                 </motion.div>
 
                 <motion.div
                   custom={3}
                   variants={cardVariants}
-                  whileHover={{ scale: 1.05, y: -5 }}
-                  transition={{ type: "spring" as const, stiffness: 300, damping: 25 }}
-                  className="bg-[var(--theme-card-bg)] rounded-lg p-6 border border-[var(--theme-card-border)] cursor-pointer"
                 >
-                  <h3 className="text-xl font-bold text-[var(--theme-text-primary)] mb-3">
-                    Future-Ready Skills
-                  </h3>
-                  <p className="text-[var(--theme-text-secondary)] text-sm leading-relaxed">
-                    Develop essential skills for the AI-driven future, preparing
-                    for careers in technology and artificial intelligence.
-                  </p>
+                  <Card hoverable gradient className="cursor-pointer h-full">
+                    <Heading level="h3" animate={false} className="mb-3">
+                      Future-Ready Skills
+                    </Heading>
+                    <Text size="sm" variant="secondary">
+                      Develop essential skills for the AI-driven future, preparing
+                      for careers in technology and artificial intelligence.
+                    </Text>
+                  </Card>
                 </motion.div>
               </motion.div>
             </div>

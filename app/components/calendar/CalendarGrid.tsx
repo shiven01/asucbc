@@ -4,6 +4,7 @@ import React from 'react';
 import { CalendarMonth, CalendarEvent } from '@/types/calendar';
 import { getDayNames } from '@/lib/calendar/utils';
 import CalendarDay from './CalendarDay';
+import { Text } from '../ui';
 
 interface CalendarGridProps {
   calendarMonth: CalendarMonth;
@@ -59,9 +60,11 @@ export default function CalendarGrid({
         {dayNames.map((day, index) => (
           <div
             key={index}
-            className="h-8 flex items-center justify-start text-sm font-medium text-[var(--theme-text-primary)]/60"
+            className="h-8 flex items-center justify-start"
           >
-            {day}
+            <Text size="sm" variant="secondary" className="font-medium">
+              {day}
+            </Text>
           </div>
         ))}
       </div>

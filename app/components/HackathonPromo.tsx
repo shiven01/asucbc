@@ -5,6 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { useState } from "react";
 import { useBatParticles } from "../hooks/useBatParticles";
+import { Heading, Text, Button } from "./ui";
 
 type HackathonPromoProps = {
   className?: string;
@@ -24,13 +25,8 @@ export default function HackathonPromo({
       ref={containerRef}
     >
       {/* Particles container - positioned to allow escape */}
-      <div
-        ref={particlesRef}
-        className="absolute inset-0 pointer-events-none overflow-visible z-[15]"
-      />
-
       {/* Inner content with glow effect */}
-      <div className="relative rounded-2xl overflow-hidden border-4 border-[var(--theme-text-accent)] theme-glow min-h-[400px] sm:min-h-[450px] transition">
+      <div className="relative rounded-2xl overflow-hidden border-4 border-[var(--theme-text-accent)] theme-glow min-h-[400px] sm:min-h-[450px] !transition-all duration-300">
         {/* Loading Skeleton - shown while image is loading */}
         {!imageLoaded && (
           <div className="absolute inset-0 bg-gradient-to-r from-orange-400/30 via-orange-500/30 via-orange-600/30 to-orange-700/30 animate-pulse">
@@ -59,14 +55,14 @@ export default function HackathonPromo({
 
         {/* Content overlay */}
         <div className="relative p-3 sm:p-4">
-          <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-white mb-3 leading-tight text-shadow-strong">
+          <Heading level="h3" animate={false} className="text-white mb-3 leading-tight text-shadow-strong">
             Spooky Hackathon 2025
-          </h2>
+          </Heading>
 
-          <p className="text-base sm:text-lg text-white leading-relaxed mb-4 text-shadow-medium">
+          <Text size="lg" className="text-white leading-relaxed mb-4 text-shadow-medium">
             Join us for an epic Halloween-themed hackathon! Build something
             spooky, win amazing prizes, and connect with fellow builders.
-          </p>
+          </Text>
 
           <ul className="list-none space-y-1.5 mb-4 text-base text-white text-shadow-medium pl-8">
             <li className="flex items-start">
@@ -83,16 +79,15 @@ export default function HackathonPromo({
             </li>
           </ul>
 
-          <Link
-            href="/hackathon"
-            className={`relative z-10 inline-flex w-full items-center justify-center rounded-xl bg-[var(--theme-button-bg)] text-[var(--theme-button-text)] px-4 py-3 text-sm sm:text-base font-semibold shadow hover:bg-[var(--theme-button-text)] hover:text-[var(--theme-card-text)] hover:shadow-lg transition-all duration-300 ease-in-out border border-transparent hover:border-[var(--theme-button-text)] min-h-[40px] touch-manipulation`}
-          >
-            Register Now - Limited Spots!
+          <Link href="/hackathon" className="w-full inline-block">
+            <Button variant="primary" size="md" fullWidth>
+              Register Now - Limited Spots!
+            </Button>
           </Link>
 
-          <p className="text-xs text-white text-center mt-2 text-shadow-medium">
+          <Text size="xs" className="text-white text-center mt-2 text-shadow-medium">
             November 8-9, 2025 • Nov 8, 11 AM - Nov 9, 5 PM
-          </p>
+          </Text>
         </div>
       </div>
 

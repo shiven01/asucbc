@@ -3,6 +3,7 @@
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import HackathonSignupForm from "../components/HackathonSignupForm";
+import { Heading, Text, Badge, Card } from "../components/ui";
 import { motion } from "framer-motion";
 
 const headerVariants = {
@@ -72,31 +73,35 @@ export default function Hackathon() {
         <div className="max-w-4xl mx-auto">
           {/* Page Header */}
           <div className="text-center mb-8 sm:mb-12">
-            <motion.h1
+            <motion.div
               variants={headerVariants}
               initial="hidden"
               animate="visible"
-              className="text-3xl sm:text-4xl md:text-5xl font-bold text-[var(--theme-text-primary)] leading-tight mb-2"
             >
-              🎃 Spooky <span className="text-[var(--theme-text-accent)] font-bold underline">Hackathon</span> 2025
-            </motion.h1>
+              <Heading level="h1" animate={false} className="leading-tight mb-2">
+                🎃 Spooky <span className="text-[var(--theme-text-accent)] font-bold underline">Hackathon</span> 2025
+              </Heading>
+            </motion.div>
             <motion.div
               variants={badgeVariants}
               initial="hidden"
               animate="visible"
               whileHover={{ scale: 1.05, rotate: [0, -2, 2, -2, 0] }}
-              className="bg-[var(--theme-button-bg)] text-white px-4 py-2 rounded-full inline-block text-sm font-semibold mb-4 cursor-default"
+              className="inline-block mb-4 cursor-default"
             >
-              🚀 LIMITED TIME OPPORTUNITY
+              <Badge variant="primary" size="lg">
+                🚀 LIMITED TIME OPPORTUNITY
+              </Badge>
             </motion.div>
-            <motion.p
+            <motion.div
               variants={descriptionVariants}
               initial="hidden"
               animate="visible"
-              className="text-lg sm:text-xl text-[var(--theme-text-secondary)] max-w-2xl mx-auto"
             >
-              Join us for an epic Halloween-themed hackathon! Build something spooky, win amazing prizes, and connect with fellow builders.
-            </motion.p>
+              <Text size="xl" variant="secondary" className="max-w-2xl mx-auto">
+                Join us for an epic Halloween-themed hackathon! Build something spooky, win amazing prizes, and connect with fellow builders.
+              </Text>
+            </motion.div>
           </div>
 
           {/* Registration Form */}
@@ -104,9 +109,10 @@ export default function Hackathon() {
             variants={formVariants}
             initial="hidden"
             animate="visible"
-            className="bg-[var(--theme-card-bg)] backdrop-blur-sm rounded-2xl p-6 sm:p-8 md:p-12 shadow-xl border-2 border-[var(--theme-card-border)]"
           >
-            <HackathonSignupForm />
+            <Card gradient animated={false} className="shadow-xl">
+              <HackathonSignupForm />
+            </Card>
           </motion.div>
         </div>
       </div>

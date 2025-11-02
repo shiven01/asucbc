@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import { HTMLAttributes, forwardRef } from "react";
 
-export interface TagProps extends HTMLAttributes<HTMLSpanElement> {
+export interface TagProps extends Omit<HTMLAttributes<HTMLSpanElement>, 'onDrag' | 'onDragStart' | 'onDragEnd' | 'onAnimationStart' | 'onAnimationEnd'> {
   variant?: "primary" | "secondary" | "outline";
   removable?: boolean;
   onRemove?: () => void;

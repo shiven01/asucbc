@@ -7,8 +7,8 @@ import CalendarContainer from "./components/calendar/CalendarContainer";
 import JoinCard from "./components/JoinCard";
 import HackathonPromo from "./components/HackathonPromo";
 import { showHackathonPromo } from "./theme-config";
+import { Heading, Text } from "./components/ui";
 import { motion } from "framer-motion";
-import ComponentShowcase from "./components/ui/examples/ComponentShowcase";
 
 const pageVariants = {
   hidden: { opacity: 0 },
@@ -77,18 +77,20 @@ export default function Home() {
         animate="visible"
         className="font-sans flex-1 pt-4 px-4 pb-0 sm:pt-8 sm:px-8 md:p-20 relative z-10"
       >
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 md:gap-8 min-h-full items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 md:gap-8 min-h-full items-start max-w-7xl mx-auto">
           {/* Left half - Title + Hackathon */}
           <motion.div
             variants={leftColumnVariants}
-            className="flex flex-col justify-start p-4 gap-4 sm:p-6 sm:gap-6"
+            className="flex flex-col justify-start items-center lg:items-start p-4 gap-4 sm:p-6 sm:gap-6 text-center lg:text-left"
           >
-            <motion.h1
-              variants={itemVariants}
-              className="text-2xl sm:text-3xl md:text-4xl font-bold text-[var(--theme-text-primary)] leading-tight"
-            >
-              The Arizona State University Claude Builder Club. Where curiosity meets <span className="text-[var(--theme-text-accent)] font-bold underline">cutting-edge AI</span>. Build <span className="text-[var(--theme-text-accent)] font-bold underline">anything</span>. Create the <span className="text-[var(--theme-text-accent)] font-bold underline italic">impossible</span>.
-            </motion.h1>
+            <motion.div variants={itemVariants} className="space-y-3 sm:space-y-4">
+              <Heading level="h1" animate={false} className="leading-tight">
+                The Arizona State University Claude Builder Club
+              </Heading>
+              <Heading level="h3" className="leading-relaxed">
+                Where curiosity meets <span className="text-[var(--theme-text-accent)] font-bold underline">cutting-edge AI</span>. Build <span className="text-[var(--theme-text-accent)] font-bold underline">anything</span>. Create the <span className="text-[var(--theme-text-accent)] font-bold underline italic">impossible</span>.
+              </Heading>
+            </motion.div>
 
             {/* Hackathon promo */}
             {showHackathonPromo && (
@@ -101,7 +103,7 @@ export default function Home() {
           {/* Right half - Calendar + Join Card */}
           <motion.div
             variants={rightColumnVariants}
-            className="flex flex-col items-center sm:items-start pt-0 pb-4 px-4 sm:pb-8 md:pb-12 lg:pb-20 lg:px-0"
+            className="flex flex-col items-center pt-0 pb-4 px-4 sm:pb-8 md:pb-12 lg:pb-20 lg:px-0"
           >
             <motion.div variants={itemVariants} className="w-full max-w-2xl">
               <CalendarContainer className="w-full max-w-2xl" />

@@ -2,6 +2,9 @@
 export { default as Button } from "./Button";
 export type { ButtonProps } from "./Button";
 
+export { ButtonGroup } from "./ButtonGroup";
+export type { ButtonGroupProps, ButtonGroupOption } from "./ButtonGroup";
+
 // Typography Components
 export { Heading, Text, Label } from "./Typography";
 

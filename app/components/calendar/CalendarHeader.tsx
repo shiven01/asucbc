@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import { getMonthName } from '@/lib/calendar/utils';
+import { Heading } from '../ui';
 
 interface CalendarHeaderProps {
   currentDate: Date;
@@ -31,9 +32,9 @@ export default function CalendarHeader({
   return (
     <div className="flex items-center justify-between mb-6">
       {/* Month Only */}
-      <h2 className="text-2xl font-bold text-[var(--theme-text-primary)] min-w-[120px]">
+      <Heading level="h2" animate={false} className="min-w-[120px]">
         {monthName}
-      </h2>
+      </Heading>
 
       {/* Navigation Controls */}
       <div className="flex items-center gap-4">

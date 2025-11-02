@@ -3,7 +3,15 @@
 import { motion } from "framer-motion";
 import { ButtonHTMLAttributes, forwardRef, useState } from "react";
 
-export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+export interface ButtonProps
+  extends Omit<
+    ButtonHTMLAttributes<HTMLButtonElement>,
+    | "onDrag"
+    | "onDragStart"
+    | "onDragEnd"
+    | "onAnimationStart"
+    | "onAnimationEnd"
+  > {
   variant?: "primary" | "secondary" | "ghost" | "outline";
   size?: "sm" | "md" | "lg";
   fullWidth?: boolean;
@@ -35,7 +43,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       ghost:
         "bg-transparent text-[var(--theme-text-primary)] border-transparent hover:bg-white/10 hover:text-[var(--theme-text-accent)] disabled:opacity-50 disabled:cursor-not-allowed",
       outline:
-        "bg-transparent text-[var(--theme-text-primary)] border-2 border-[var(--theme-card-border)] hover:border-[var(--theme-text-accent)] hover:bg-[var(--theme-text-accent)]/5 disabled:opacity-50 disabled:cursor-not-allowed",
+        "bg-transparent text-[var(--theme-text-primary)] border-2 border-[var(--theme-card-border)] hover:border-transparent hover:bg-[var(--theme-text-accent)]/5 disabled:opacity-50 disabled:cursor-not-allowed",
     };
 
     const sizes = {
@@ -128,82 +136,51 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
           />
         )}
 
-        {/* Animated border segments for outline variant */}
+        {/* Animated border trace for outline variant */}
         {variant === "outline" && (
-          <>
-            {/* Top border segment */}
-            <motion.div
-              className="absolute top-0 left-0 h-[2px] rounded-full pointer-events-none"
-              style={{
-                background: "linear-gradient(90deg, var(--theme-text-accent), transparent)",
+          <svg
+            className="absolute inset-0 w-full h-full pointer-events-none rounded-lg z-10"
+            style={{ overflow: "visible" }}
+          >
+            <motion.rect
+              x="1"
+              y="1"
+              width="calc(100% - 2px)"
+              height="calc(100% - 2px)"
+              rx="7"
+              ry="7"
+              fill="none"
+              stroke="var(--theme-text-accent)"
+              strokeWidth="2"
+              strokeLinejoin="round"
+              strokeLinecap="round"
+              vectorEffect="non-scaling-stroke"
+              initial={{
+                strokeDasharray: "1000",
+                strokeDashoffset: 1000,
+                opacity: 0,
               }}
               animate={{
-                width: isHovered && !disabled ? "100%" : "0%",
+                strokeDashoffset: isHovered && !disabled ? 0 : 1000,
                 opacity: isHovered && !disabled ? 1 : 0,
               }}
               transition={{
-                duration: 0.3,
-                ease: "easeOut",
-                delay: 0,
+                strokeDashoffset: {
+                  duration: 1,
+                  ease: "easeInOut",
+                },
+                opacity: {
+                  duration: 0.3,
+                  ease: "easeInOut",
+                },
               }}
             />
-
-            {/* Right border segment */}
-            <motion.div
-              className="absolute top-0 right-0 w-[2px] rounded-full pointer-events-none"
-              style={{
-                background: "linear-gradient(180deg, var(--theme-text-accent), transparent)",
-              }}
-              animate={{
-                height: isHovered && !disabled ? "100%" : "0%",
-                opacity: isHovered && !disabled ? 1 : 0,
-              }}
-              transition={{
-                duration: 0.3,
-                ease: "easeOut",
-                delay: 0.1,
-              }}
-            />
-
-            {/* Bottom border segment */}
-            <motion.div
-              className="absolute bottom-0 right-0 h-[2px] rounded-full pointer-events-none"
-              style={{
-                background: "linear-gradient(270deg, var(--theme-text-accent), transparent)",
-              }}
-              animate={{
-                width: isHovered && !disabled ? "100%" : "0%",
-                opacity: isHovered && !disabled ? 1 : 0,
-              }}
-              transition={{
-                duration: 0.3,
-                ease: "easeOut",
-                delay: 0.2,
-              }}
-            />
-
-            {/* Left border segment */}
-            <motion.div
-              className="absolute bottom-0 left-0 w-[2px] rounded-full pointer-events-none"
-              style={{
-                background: "linear-gradient(0deg, var(--theme-text-accent), transparent)",
-              }}
-              animate={{
-                height: isHovered && !disabled ? "100%" : "0%",
-                opacity: isHovered && !disabled ? 1 : 0,
-              }}
-              transition={{
-                duration: 0.3,
-                ease: "easeOut",
-                delay: 0.3,
-              }}
-            />
-          </>
+          </svg>
         )}
 
         {/* Button content with bounce */}
         <motion.span
-          className="relative z-10"
+          className="relative z-10 inline-flex items-center justify-center gap-2"
           animate={{
             scale: 1,
           }}

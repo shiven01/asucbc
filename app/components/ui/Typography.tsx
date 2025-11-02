@@ -124,7 +124,7 @@ export const Text = forwardRef<HTMLParagraphElement, TextProps>(
 
 Text.displayName = "Text";
 
-interface LabelProps extends HTMLAttributes<HTMLLabelElement> {
+interface LabelProps extends Omit<HTMLAttributes<HTMLLabelElement>, 'onDrag' | 'onDragStart' | 'onDragEnd' | 'onAnimationStart' | 'onAnimationEnd'> {
   required?: boolean;
   htmlFor?: string;
 }

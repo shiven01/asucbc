@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import { HTMLAttributes, forwardRef } from "react";
 
-export interface DividerProps extends HTMLAttributes<HTMLHRElement> {
+export interface DividerProps extends Omit<HTMLAttributes<HTMLHRElement>, 'onDrag' | 'onDragStart' | 'onDragEnd' | 'onAnimationStart' | 'onAnimationEnd'> {
   orientation?: "horizontal" | "vertical";
   variant?: "solid" | "dashed" | "gradient";
   label?: string;
@@ -37,8 +37,8 @@ const Divider = forwardRef<HTMLHRElement, DividerProps>(
     if (label && orientation === "horizontal") {
       return (
         <motion.div
-          initial={animate ? { opacity: 0, scaleX: 0 } : false}
-          whileInView={animate ? { opacity: 1, scaleX: 1 } : false}
+          initial={animate ? { opacity: 0, scaleX: 0 } : undefined}
+          whileInView={animate ? { opacity: 1, scaleX: 1 } : undefined}
           viewport={animate ? { once: true } : undefined}
           transition={{ duration: 0.5 }}
           className="flex items-center gap-3 sm:gap-4 my-3 sm:my-4"
@@ -70,14 +70,14 @@ const Divider = forwardRef<HTMLHRElement, DividerProps>(
             ? orientation === "horizontal"
               ? { opacity: 0, scaleX: 0 }
               : { opacity: 0, scaleY: 0 }
-            : false
+            : undefined
         }
         whileInView={
           animate
             ? orientation === "horizontal"
               ? { opacity: 1, scaleX: 1 }
               : { opacity: 1, scaleY: 1 }
-            : false
+            : undefined
         }
         viewport={animate ? { once: true } : undefined}
         transition={{ duration: 0.5 }}

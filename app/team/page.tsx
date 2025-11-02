@@ -5,6 +5,7 @@ import { TeamMember, teamMembers } from "../../types/team";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
 import { TeamMemberCard } from "../components/Team/TeamMemberCard";
+import { Heading, Text } from "../components/ui";
 
 const titleVariants = {
   hidden: { opacity: 0, y: -20 },
@@ -69,22 +70,24 @@ export default function TeamPage() {
         <div className="max-w-7xl mx-auto">
           {/* Page Title */}
           <div className="text-center mb-16 flex flex-col items-center max-w-prose mx-auto">
-            <motion.h1
+            <motion.div
               variants={titleVariants}
               initial="hidden"
               animate="visible"
-              className="text-4xl sm:text-5xl lg:text-6xl font-bold text-[var(--theme-text-primary)] mb-4"
             >
-              Meet Our Team
-            </motion.h1>
-            <motion.p
+              <Heading level="h1" animate={false} className="mb-4">
+                Meet Our Team
+              </Heading>
+            </motion.div>
+            <motion.div
               variants={subtitleVariants}
               initial="hidden"
               animate="visible"
-              className="text-[var(--theme-text-secondary)] text-lg leading-relaxed mb-8 max-w-2xl mx-auto lg:mx-0"
             >
+              <Text size="lg" variant="secondary" className="max-w-2xl">
                 A diverse group of individuals passionate about AI and its potential to transform education and technology.
-            </motion.p>
+              </Text>
+            </motion.div>
           </div>
           {/* Team Members Grid */}
           <motion.div

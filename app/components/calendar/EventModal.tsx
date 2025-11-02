@@ -4,6 +4,7 @@ import React, { useEffect } from 'react';
 import { CalendarEvent } from '@/types/calendar';
 import DOMPurify from 'dompurify';
 import { useBatParticles } from '../../hooks/useBatParticles';
+import { Heading, Text, Button } from '../ui';
 
 interface EventModalProps {
   event: CalendarEvent | null;
@@ -99,9 +100,9 @@ export default function EventModal({ event, isOpen, onClose, onAddToCalendar }: 
         {/* Header */}
         <div className="bg-[var(--theme-card-bg)] border-b border-[var(--theme-card-border)] px-6 py-5">
           <div className="flex items-center justify-between">
-            <h2 className="text-xl font-bold text-[var(--theme-text-primary)] pr-4">
+            <Heading level="h2" animate={false} className="pr-4">
               {event.summary}
-            </h2>
+            </Heading>
             <button
               onClick={onClose}
               className="text-[var(--theme-text-primary)]/60 hover:text-[var(--theme-text-primary)] hover:bg-[var(--theme-button-alternate-bg)] rounded-full p-2 transition-all duration-200 ease-in-out flex-shrink-0"
@@ -125,9 +126,9 @@ export default function EventModal({ event, isOpen, onClose, onAddToCalendar }: 
               </svg>
             </div>
             <div>
-              <p className="text-sm font-medium text-[var(--theme-text-primary)]">
+              <Text size="sm" variant="primary" className="font-medium">
                 {formatEventTime(event)}
-              </p>
+              </Text>
             </div>
           </div>
           
@@ -141,9 +142,9 @@ export default function EventModal({ event, isOpen, onClose, onAddToCalendar }: 
                 </svg>
               </div>
               <div>
-                <p className="text-sm font-medium text-[var(--theme-text-primary)]">
+                <Text size="sm" variant="primary" className="font-medium">
                   {formatLocation(event.location)}
-                </p>
+                </Text>
               </div>
             </div>
           )}
@@ -151,7 +152,7 @@ export default function EventModal({ event, isOpen, onClose, onAddToCalendar }: 
           {/* Description */}
           {event.description && (
             <div className="space-y-3">
-              <h4 className="text-sm font-semibold text-[var(--theme-text-accent)] uppercase tracking-wide">Description</h4>
+              <Heading level="h4" animate={false} className="text-[var(--theme-text-accent)] uppercase tracking-wide">Description</Heading>
               <div className="p-4 bg-[var(--theme-button-alternate-bg)] rounded-xl border border-[var(--theme-card-border)]">
                 <div
                   className="text-[var(--theme-text-primary)] text-sm leading-relaxed prose prose-sm max-w-none"
@@ -187,12 +188,15 @@ export default function EventModal({ event, isOpen, onClose, onAddToCalendar }: 
                 ref={particlesRef}
                 className="absolute inset-0 pointer-events-none overflow-visible z-0"
               />
-              <button
+              <Button
                 onClick={onAddToCalendar}
-                className={`relative z-10 w-full bg-[var(--theme-text-accent)] hover:bg-[var(--theme-button-hover-bg)] text-white font-medium py-3 px-4 rounded-xl transition-all duration-200 ease-in-out hover:shadow-lg transform hover:scale-[1.02]`}
+                variant="primary"
+                size="md"
+                fullWidth
+                className="relative z-10"
               >
                 Add to Calendar
-              </button>
+              </Button>
             </div>
           </div>
         )}

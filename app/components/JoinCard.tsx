@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
+import { Heading, Text, Button } from "./ui";
 
 type JoinCardProps = {
   title?: string;
@@ -62,7 +63,7 @@ export default function JoinCard({
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, amount: 0.3 }}
-      className={`w-full rounded-xl relative overflow-hidden border-2 border-[var(--theme-card-border)] shadow-sm p-4 sm:p-6 ${className}`}
+      className={`w-full rounded-xl relative overflow-hidden border-2 border-[var(--theme-card-border)] p-4 sm:p-5 lg:p-6 ${className}`}
       style={{
         background: `
           linear-gradient(135deg,
@@ -70,11 +71,12 @@ export default function JoinCard({
             var(--theme-card-gradient-end, var(--theme-card-bg)) 100%
           )
         `,
+        boxShadow: "2px 2px 4px rgba(0, 0, 0, 0.05), 4px 4px 12px rgba(0, 0, 0, 0.08)",
       }}
     >
       {/* Subtle animated gradient overlay */}
       <motion.div
-        className="absolute inset-0 opacity-30 pointer-events-none"
+        className="absolute inset-0 opacity-20 pointer-events-none"
         style={{
           background: `
             radial-gradient(circle at 20% 50%,
@@ -85,7 +87,7 @@ export default function JoinCard({
         }}
         animate={{
           scale: [1, 1.1, 1],
-          opacity: [0.2, 0.35, 0.2],
+          opacity: [0.15, 0.25, 0.15],
         }}
         transition={{
           duration: 8,
@@ -94,20 +96,31 @@ export default function JoinCard({
         }}
       />
 
+      {/* Subtle highlight on lit edge */}
+      <div
+        className="absolute top-0 left-0 w-full h-full pointer-events-none rounded-xl"
+        style={{
+          background: `
+            linear-gradient(135deg,
+              rgba(255, 255, 255, 0.08) 0%,
+              transparent 40%
+            )
+          `,
+        }}
+      />
+
       {/* Content */}
       <div className="relative z-10">
-        <motion.h2
-          variants={itemVariants}
-          className="text-lg sm:text-xl md:text-2xl font-bold text-[var(--theme-text-primary)] mb-3"
-        >
-          {title}
-        </motion.h2>
-        <motion.p
-          variants={itemVariants}
-          className="text-sm sm:text-base text-[var(--theme-text-primary)]/70 leading-relaxed mb-4"
-        >
-          {subtitle}
-        </motion.p>
+        <motion.div variants={itemVariants}>
+          <Heading level="h4" animate={false} className="mb-3">
+            {title}
+          </Heading>
+        </motion.div>
+        <motion.div variants={itemVariants}>
+          <Text size="base" variant="secondary" className="mb-4">
+            {subtitle}
+          </Text>
+        </motion.div>
         <motion.ul
           variants={itemVariants}
           className="list-disc pl-4 text-sm sm:text-base text-[var(--theme-text-primary)]/80 space-y-1 mb-4"
@@ -122,45 +135,36 @@ export default function JoinCard({
             Exclusive merchandise
           </motion.li>
         </motion.ul>
-        <motion.p
-          variants={itemVariants}
-          className="text-xs sm:text-sm text-[var(--theme-text-primary)]/60 italic mb-4"
-        >
-          **Benefits require attendance at a CBC event for activation**
-        </motion.p>
+        <motion.div variants={itemVariants}>
+          <Text size="sm" variant="secondary" className="italic mb-4">
+            **Benefits require attendance at a CBC event for activation**
+          </Text>
+        </motion.div>
 
         <motion.div
           variants={itemVariants}
           className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-3"
         >
-          <motion.div
-            whileHover={{ scale: 1.02, y: -2 }}
-            whileTap={{ scale: 0.98 }}
-            transition={{ type: "spring" as const, stiffness: 400, damping: 17 }}
+          <Link
+            href={discordHref}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="w-full"
           >
-            <Link
-              href={discordHref}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="relative inline-flex w-full items-center justify-center rounded-xl bg-[var(--theme-button-bg)] text-[var(--theme-button-text)] hover:bg-[var(--theme-button-text)] hover:text-[var(--theme-button-bg)] px-4 py-3 text-sm sm:text-base font-semibold shadow hover:shadow-lg border border-[var(--theme-button-text)] min-h-[40px] touch-manipulation transition-all duration-300"
-            >
+            <Button variant="primary" size="md" fullWidth>
               Join our Discord
-            </Link>
-          </motion.div>
-          <motion.div
-            whileHover={{ scale: 1.02, y: -2 }}
-            whileTap={{ scale: 0.98 }}
-            transition={{ type: "spring" as const, stiffness: 400, damping: 17 }}
+            </Button>
+          </Link>
+          <Link
+            href={benefitsHref}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="w-full"
           >
-            <Link
-              href={benefitsHref}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="relative inline-flex w-full items-center justify-center rounded-xl bg-[var(--theme-button-bg)] text-[var(--theme-button-text)] hover:bg-[var(--theme-button-text)] hover:text-[var(--theme-button-bg)] px-4 py-3 text-sm sm:text-base font-semibold shadow hover:shadow-lg border border-[var(--theme-button-text)] min-h-[40px] touch-manipulation transition-all duration-300"
-            >
+            <Button variant="secondary" size="md" fullWidth>
               Sign up to receive benefits
-            </Link>
-          </motion.div>
+            </Button>
+          </Link>
         </motion.div>
       </div>
     </motion.div>

@@ -33,6 +33,10 @@
   --theme-pattern-color: rgba(204, 120, 92, 0.1);
   --theme-pattern-color-light: rgba(204, 120, 92, 0.05);
 }
+/* add transition-colors and duration-300 to all elements */
+* {
+  @apply transition-colors duration-300;
+}
 
 /* Dark Mode Variables */
 [data-theme="dark"] {
@@ -88,6 +92,7 @@ html {
 }
 
 body {
+  @apply transition-colors duration-300;
   overflow-x: hidden !important;
   width: 100%;
   max-width: 100vw;
