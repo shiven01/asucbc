@@ -37,12 +37,12 @@ export default function CalendarDay({ day, onSelect, onEventClick, allEvents = [
   const baseClasses = `
     h-20 rounded-lg cursor-pointer transition-all duration-200
     flex flex-col items-center justify-start relative
-    hover:bg-[#b1ada1]/10
-    ${hasEvents ? 'bg-[#cc785c]/50 hover:bg-[#b56a4f]' : ''}
-    ${isCurrentMonth && !hasEvents ? 'text-[#000000]' : 'text-[#b1ada1]'}
+    hover:bg-[var(--theme-text-accent)]/10
+    ${hasEvents ? 'bg-[var(--theme-text-accent)]/60 hover:bg-[var(--theme-text-accent)]/80' : ''}
+    ${isCurrentMonth && !hasEvents ? 'text-[var(--theme-text-primary)]' : 'text-[var(--theme-text-primary)]/40'}
     ${hasEvents ? 'text-white' : ''}
-    ${isToday && !hasEvents ? 'ring-2 ring-[#a04d2f] bg-[#f4f3ee]/10' : ''}
-    ${isSelected && !hasEvents ? `${isToday ? '' : 'ring-2 ring-[#f4f3ee]'} bg-[#f4f3ee]/5` : ''}
+    ${isToday && !hasEvents ? 'ring-2 ring-[var(--theme-text-accent)] bg-[var(--theme-text-accent)]/10' : ''}
+    ${isSelected && !hasEvents ? `${isToday ? '' : 'ring-2 ring-[var(--theme-text-accent)]/50'} bg-[var(--theme-text-accent)]/5` : ''}
   `;
 
   return (

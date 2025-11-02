@@ -3,7 +3,7 @@ import Footer from "../components/Footer";
 
 export default function Announcements() {
   return (
-    <div className="min-h-screen flex flex-col relative">
+    <div className="min-h-[100dvh] max-h-[100dvh] flex flex-col relative overflow-y-auto">
       <Header />
       
       <div className="font-sans flex-1 pt-4 px-4 pb-0 sm:pt-8 sm:px-8 md:p-20 relative z-10">

@@ -3,7 +3,7 @@ import Footer from "../components/Footer";
 
 export default function Careers() {
   return (
-    <div className="min-h-screen flex flex-col relative">
+    <div className="min-h-[100dvh] max-h-[100dvh] flex flex-col relative overflow-y-auto">
       <Header />
       <div className="font-sans flex-1 flex items-center justify-center px-4 relative z-10">
         <div className="text-center">

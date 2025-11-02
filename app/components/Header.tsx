@@ -1,15 +1,73 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 
 export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
-  // Separate particle hooks for each navigation item
-
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
+  };
+
+  // Only animate on first visit
+  const [hasAnimated, setHasAnimated] = useState(false);
+
+  useEffect(() => {
+    const animated = sessionStorage.getItem('headerAnimated');
+    if (animated) {
+      setHasAnimated(true);
+    } else {
+      sessionStorage.setItem('headerAnimated', 'true');
+    }
+  }, []);
+
+  const navItemVariants = {
+    hidden: { opacity: hasAnimated ? 1 : 0, y: hasAnimated ? 0 : -20 },
+    visible: (i: number) => ({
+      opacity: 1,
+      y: 0,
+      transition: hasAnimated ? { duration: 0 } : {
+        delay: i * 0.1,
+        type: "spring" as const,
+        stiffness: 100,
+        damping: 12,
+      },
+    }),
+  };
+
+  const mobileMenuVariants = {
+    hidden: { opacity: 0, height: 0 },
+    visible: {
+      opacity: 1,
+      height: "auto" as const,
+      transition: {
+        duration: 0.3,
+        ease: "easeOut" as const,
+        staggerChildren: 0.05,
+      },
+    },
+    exit: {
+      opacity: 0,
+      height: 0,
+      transition: {
+        duration: 0.2,
+        ease: "easeIn" as const,
+      },
+    },
+  };
+
+  const mobileItemVariants = {
+    hidden: { opacity: 0, x: -20 },
+    visible: {
+      opacity: 1,
+      x: 0,
+      transition: {
+        type: "spring" as const,
+        stiffness: 100,
+      },
+    },
   };
 
   return (
@@ -17,6 +75,11 @@ export default function Header() {
       <div className="px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 overflow-visible">
           {/* Logo on the left */}
+          <motion.div
+            initial={{ opacity: hasAnimated ? 1 : 0, x: hasAnimated ? 0 : -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={hasAnimated ? { duration: 0 } : { type: "spring", stiffness: 100, damping: 15 }}
+          >
             <Link
               href="/"
               className={`relative z-10 group hover:scale-105 transition-all duration-200 px-4 py-3 rounded-lg hover:bg-white/10 min-h-[48px] flex items-center touch-manipulation`}
@@ -30,44 +93,92 @@ export default function Header() {
                 </span>
               </h1>
             </Link>
+          </motion.div>
 
             {/* Navigation buttons in the middle */}
             <nav className="hidden lg:flex items-center space-x-8 overflow-visible">
-              <Link
-                href="/about"
-                className={`relative z-10 text-[var(--theme-text-primary)] hover:text-[var(--theme-text-accent)] hover:scale-105 transition-all duration-200 font-medium font-sans px-4 py-3 rounded-md hover:bg-white/10 min-h-[48px] flex items-center touch-manipulation`}
+              <motion.div
+                custom={0}
+                initial="hidden"
+                animate="visible"
+                variants={navItemVariants}
               >
-                About
-              </Link>
+                <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                  <Link
+                    href="/about"
+                    className={`relative z-10 text-[var(--theme-text-primary)] hover:text-[var(--theme-text-accent)] transition-all duration-200 font-medium font-sans px-4 py-3 rounded-md hover:bg-white/10 min-h-[48px] flex items-center touch-manipulation`}
+                  >
+                    About
+                  </Link>
+                </motion.div>
+              </motion.div>
 
-              <Link
-                href="/team"
-                className={`relative z-10 text-[var(--theme-text-primary)] hover:text-[var(--theme-text-accent)] hover:scale-105 transition-all duration-200 font-medium font-sans px-4 py-3 rounded-md hover:bg-white/10 min-h-[48px] flex items-center touch-manipulation`}
+              <motion.div
+                custom={1}
+                initial="hidden"
+                animate="visible"
+                variants={navItemVariants}
               >
-                Team
-              </Link>
-              <Link
-                href="/careers"
-                className={`relative z-10 text-[var(--theme-text-primary)] hover:text-[var(--theme-text-accent)] hover:scale-105 transition-all duration-200 font-medium font-sans px-4 py-3 rounded-md hover:bg-white/10 min-h-[48px] flex items-center touch-manipulation`}
+                <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                  <Link
+                    href="/team"
+                    className={`relative z-10 text-[var(--theme-text-primary)] hover:text-[var(--theme-text-accent)] transition-all duration-200 font-medium font-sans px-4 py-3 rounded-md hover:bg-white/10 min-h-[48px] flex items-center touch-manipulation`}
+                  >
+                    Team
+                  </Link>
+                </motion.div>
+              </motion.div>
+
+              <motion.div
+                custom={2}
+                initial="hidden"
+                animate="visible"
+                variants={navItemVariants}
               >
-                Careers
-              </Link>
-              <div className="relative z-10">
-                <Link
-                  href="/hackathon"
-                  className={`relative z-10 bg-[var(--theme-button-alternate-bg)] text-[var(--theme-button-alternate-text)] px-6 py-3 rounded-lg hover:bg-[var(--theme-button-hover-bg)] hover:text-[var(--theme-button-hover-text)] hover:scale-105 hover:shadow-lg transition-all duration-300 ease-in-out font-medium text-base font-sans border border-transparent hover:border-[var(--theme-button-hover-border)] min-h-[48px] flex items-center touch-manipulation overflow-visible`}
-                >
-                  Hackathon
-                </Link>
-              </div>
-              <Link
-                href="https://docs.google.com/forms/d/e/1FAIpQLScP9LuFwiHEx806tv9zczjCIEzqO1Zjb-FjB4XWoa6BS1NNKQ/viewform"
-                target="_blank"
-                rel="noopener noreferrer"
-                className={`relative z-20 bg-[var(--theme-button-bg)] text-white px-6 py-3 rounded-lg hover:bg-[var(--theme-button-hover-bg)] hover:shadow-lg transition-all duration-300 ease-in-out font-medium text-base font-sans  min-h-[48px] flex items-center touch-manipulation`}
+                <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                  <Link
+                    href="/careers"
+                    className={`relative z-10 text-[var(--theme-text-primary)] hover:text-[var(--theme-text-accent)] transition-all duration-200 font-medium font-sans px-4 py-3 rounded-md hover:bg-white/10 min-h-[48px] flex items-center touch-manipulation`}
+                  >
+                    Careers
+                  </Link>
+                </motion.div>
+              </motion.div>
+
+              <motion.div
+                custom={3}
+                initial="hidden"
+                animate="visible"
+                variants={navItemVariants}
+                className="relative z-10"
               >
-                Join Us
-              </Link>
+                <motion.div whileHover={{ scale: 1.05, y: -2 }} whileTap={{ scale: 0.95 }}>
+                  <Link
+                    href="/hackathon"
+                    className={`relative z-10 bg-[var(--theme-button-alternate-bg)] text-[var(--theme-button-alternate-text)] px-6 py-3 rounded-lg hover:bg-[var(--theme-button-hover-bg)] hover:text-[var(--theme-button-hover-text)] hover:shadow-lg transition-all duration-300 ease-in-out font-medium text-base font-sans border border-transparent hover:border-[var(--theme-button-hover-border)] min-h-[48px] flex items-center touch-manipulation overflow-visible`}
+                  >
+                    Hackathon
+                  </Link>
+                </motion.div>
+              </motion.div>
+
+              <motion.div
+                custom={4}
+                initial="hidden"
+                animate="visible"
+                variants={navItemVariants}
+              >
+                <motion.div whileHover={{ scale: 1.05, y: -2 }} whileTap={{ scale: 0.95 }}>
+                  <Link
+                    href="https://docs.google.com/forms/d/e/1FAIpQLScP9LuFwiHEx806tv9zczjCIEzqO1Zjb-FjB4XWoa6BS1NNKQ/viewform"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={`relative z-20 bg-[var(--theme-button-bg)] text-white px-6 py-3 rounded-lg hover:bg-[var(--theme-button-hover-bg)] hover:shadow-lg transition-all duration-300 ease-in-out font-medium text-base font-sans  min-h-[48px] flex items-center touch-manipulation`}
+                  >
+                    Join Us
+                  </Link>
+                </motion.div>
+              </motion.div>
             </nav>
 
           {/* Mobile menu button */}
@@ -111,49 +222,67 @@ export default function Header() {
         </div>
 
         {/* Mobile menu */}
-        {isMobileMenuOpen && (
-          <div className="md:hidden">
-            <div className="px-2 pt-2 pb-3 space-y-1 bg-[var(--theme-card-bg)] backdrop-blur-sm border-t border-[var(--theme-card-border)] rounded-b-2xl">
-              <Link
-                href="/about"
-                className={`flex px-3 py-4 text-[var(--theme-button-text)] hover:text-[var(--theme-text-accent)] hover:bg-[var(--theme-button-bg)]/10 transition-all duration-200 font-medium font-sans rounded-lg min-h-[48px] items-center touch-manipulation`}
-                onClick={() => setIsMobileMenuOpen(false)}
-              >
-                About
-              </Link>
-              <Link
-                href="/team"
-                className={`flex px-3 py-4 text-[var(--theme-button-text)] hover:text-[var(--theme-text-accent)] hover:bg-[var(--theme-button-bg)]/10 transition-all duration-200 font-medium font-sans rounded-lg min-h-[48px] items-center touch-manipulation`}
-                onClick={() => setIsMobileMenuOpen(false)}
-              >
-                Team
-              </Link>
-              <Link
-                href="/careers"
-                className={`flex px-3 py-4 text-[var(--theme-button-text)] hover:text-[var(--theme-text-accent)] hover:bg-[var(--theme-button-bg)]/10 transition-all duration-200 font-medium font-sans rounded-lg min-h-[48px] items-center touch-manipulation`}
-                onClick={() => setIsMobileMenuOpen(false)}
-              >
-                Careers
-              </Link>
-              <Link
-                href="/hackathon"
-                className={`relative z-20 flex px-3 py-4 bg-orange-500 text-white hover:bg-white hover:text-orange-500 transition-all duration-300 ease-in-out font-medium text-base font-sans border border-orange-400 hover:border-orange-500 rounded-lg min-h-[48px] items-center touch-manipulation`}
-                onClick={() => setIsMobileMenuOpen(false)}
-              >
-                Hackathon
-              </Link>
-              <Link
-                href="https://docs.google.com/forms/d/e/1FAIpQLScP9LuFwiHEx806tv9zczjCIEzqO1Zjb-FjB4XWoa6BS1NNKQ/viewform"
-                target="_blank"
-                rel="noopener noreferrer"
-                className={`relative z-20 flex px-3 py-4 bg-orange-500 text-white hover:bg-white hover:text-orange-500 transition-all duration-300 ease-in-out font-medium text-base font-sans border border-orange-400 hover:border-orange-500 rounded-lg min-h-[48px] items-center touch-manipulation`}
-                onClick={() => setIsMobileMenuOpen(false)}
-              >
-                Join Us
-              </Link>
-            </div>
-          </div>
-        )}
+        <AnimatePresence>
+          {isMobileMenuOpen && (
+            <motion.div
+              initial="hidden"
+              animate="visible"
+              exit="exit"
+              variants={mobileMenuVariants}
+              className="md:hidden overflow-hidden"
+            >
+              <div className="px-2 pt-2 pb-3 space-y-1 bg-[var(--theme-card-bg)] backdrop-blur-sm border-t border-[var(--theme-card-border)] rounded-b-2xl">
+                <motion.div variants={mobileItemVariants}>
+                  <Link
+                    href="/about"
+                    className={`flex px-3 py-4 text-[var(--theme-button-text)] hover:text-[var(--theme-text-accent)] hover:bg-[var(--theme-button-bg)]/10 transition-all duration-200 font-medium font-sans rounded-lg min-h-[48px] items-center touch-manipulation`}
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
+                    About
+                  </Link>
+                </motion.div>
+                <motion.div variants={mobileItemVariants}>
+                  <Link
+                    href="/team"
+                    className={`flex px-3 py-4 text-[var(--theme-button-text)] hover:text-[var(--theme-text-accent)] hover:bg-[var(--theme-button-bg)]/10 transition-all duration-200 font-medium font-sans rounded-lg min-h-[48px] items-center touch-manipulation`}
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
+                    Team
+                  </Link>
+                </motion.div>
+                <motion.div variants={mobileItemVariants}>
+                  <Link
+                    href="/careers"
+                    className={`flex px-3 py-4 text-[var(--theme-button-text)] hover:text-[var(--theme-text-accent)] hover:bg-[var(--theme-button-bg)]/10 transition-all duration-200 font-medium font-sans rounded-lg min-h-[48px] items-center touch-manipulation`}
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
+                    Careers
+                  </Link>
+                </motion.div>
+                <motion.div variants={mobileItemVariants}>
+                  <Link
+                    href="/hackathon"
+                    className={`relative z-20 flex px-3 py-4 bg-orange-500 text-white hover:bg-white hover:text-orange-500 transition-all duration-300 ease-in-out font-medium text-base font-sans border border-orange-400 hover:border-orange-500 rounded-lg min-h-[48px] items-center touch-manipulation`}
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
+                    Hackathon
+                  </Link>
+                </motion.div>
+                <motion.div variants={mobileItemVariants}>
+                  <Link
+                    href="https://docs.google.com/forms/d/e/1FAIpQLScP9LuFwiHEx806tv9zczjCIEzqO1Zjb-FjB4XWoa6BS1NNKQ/viewform"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={`relative z-20 flex px-3 py-4 bg-orange-500 text-white hover:bg-white hover:text-orange-500 transition-all duration-300 ease-in-out font-medium text-base font-sans border border-orange-400 hover:border-orange-500 rounded-lg min-h-[48px] items-center touch-manipulation`}
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
+                    Join Us
+                  </Link>
+                </motion.div>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
     </header>
   );

@@ -27,17 +27,17 @@ export const TeamMemberCard = ({
       glareMaxOpacity={0.2}
       scale={1.05}
       transitionSpeed={500}
-      tiltMaxAngleX={10}
-      tiltMaxAngleY={10}
-      className={`${flip ? `z-20` : `z-0`} ${
+      tiltMaxAngleX={activeMember === id ? 2 : 10}
+      tiltMaxAngleY={activeMember === id ? 2 : 10}
+      className={`${flip ? `z-[100]` : activeMember ? `z-0` : `z-10`} ${
         !(activeMember === id) && activeMember
           ? ` grayscale blur-[2px]`
           : `opacity-100`
-      } w-full h-full transition-all`}
+      } w-full h-full transition-all rounded-lg`}
     >
       <div
         className={`rounded-lg bg-[var(--theme-card-bg)]/100 relative shadow ${
-          flip ? `opacity-0 scale-150` : `opacity-100 z-0`
+          flip ? `opacity-0 scale-150 z-20` : `opacity-100 z-0`
         } transition-all duration-300 ${flip ? `blur-sm pointer-events-none` : `pointer-events-auto`}`}
       >
         <div
@@ -54,7 +54,7 @@ export const TeamMemberCard = ({
           <img
             src={member.image}
             alt={name}
-            className={`w-full h-full object-cover ${
+            className={`w-full h-full object-cover text-[var(--theme-text-primary)] fill-[var(--theme-text-primary)] ${
               member.image === "/staff/claude.svg" ? "p-20 mb-20" : ""
             }`}
             style={{
@@ -62,7 +62,7 @@ export const TeamMemberCard = ({
                 "linear-gradient(to bottom, black 80%, transparent 100%)",
               WebkitMaskImage:
                 "linear-gradient(to bottom, black 80%, transparent 100%)",
-            }}
+              }}
           />
           <div
             className={`absolute -bottom-0 left-0 w-full h-full bg-linear-to-tl from-[var(--theme-bg)]/20 via-[var(--theme-card-bg)]/10 to-[var(--theme-bg)]/5`}
@@ -79,8 +79,8 @@ export const TeamMemberCard = ({
       </div>
       <div
         className={`w-[150%] h-[150%] absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-lg ${flip ? `pointer-events-auto` : `pointer-events-none`} ${
-          flip ? `opacity-100 scale-100` : `opacity-0 scale-[66.67%]`
-        } -scale-x-100 z-20 border border-[var(--theme-card-border)] bg-[var(--theme-card-bg)]/95 backdrop-blur-sm shadow-lg transition-all duration-150`}
+          flip ? `opacity-100 scale-100` : `opacity-0 scale-[66.67%] -z-10`
+        } -scale-x-100 z-[100] border border-[var(--theme-card-border)] bg-[var(--theme-card-bg)]/95 backdrop-blur-sm shadow-lg transition-all duration-150`}
          onClick={()=>{
           setActiveMember(null);
           setFlip(false);
@@ -106,7 +106,6 @@ export const TeamMemberCard = ({
               ? member.description
               : "No additional information provided."}
           </p>
-          {/* Links */}
           <div className={`flex-grow w-full mt-8 gap-8`}>
             <div className="">
               {member.linkedinUrl && (

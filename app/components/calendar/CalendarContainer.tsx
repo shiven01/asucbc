@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
+import { motion } from 'framer-motion';
 import { CalendarState, CalendarEvent } from '@/types/calendar';
 import { createCalendarMonth, getEventsForDate, getUpcomingEventIds } from '@/lib/calendar/utils';
 import { getEventsForMonth } from '@/lib/google/calendar';
@@ -124,41 +125,83 @@ export default function CalendarContainer({ className = '' }: CalendarContainerP
   };
 
   return (
-    <div className={`bg-[var(--theme-card-bg)] border-2 border-[var(--theme-card-border)] rounded-lg shadow-lg p-3 sm:p-4 md:p-6 ${className}`}>
-      <CalendarHeader
-        currentDate={calendarState.currentDate}
-        onPreviousMonth={handlePreviousMonth}
-        onNextMonth={handleNextMonth}
-        onGoToToday={handleGoToToday}
-        isLoading={calendarState.isLoading}
+    <motion.div
+      initial={{ opacity: 0, y: 20, scale: 0.95 }}
+      whileInView={{ opacity: 1, y: 0, scale: 1 }}
+      viewport={{ once: true, amount: 0.3 }}
+      transition={{
+        type: "spring" as const,
+        stiffness: 80,
+        damping: 20,
+      }}
+      className={`relative overflow-hidden border-2 border-[var(--theme-card-border)] rounded-lg shadow-lg p-3 sm:p-4 md:p-6 ${className}`}
+      style={{
+        background: `
+          linear-gradient(135deg,
+            var(--theme-card-bg) 0%,
+            var(--theme-card-gradient-end, var(--theme-card-bg)) 100%
+          )
+        `,
+      }}
+    >
+      {/* Subtle animated gradient overlay */}
+      <motion.div
+        className="absolute inset-0 opacity-20 pointer-events-none"
+        style={{
+          background: `
+            radial-gradient(circle at 80% 20%,
+              var(--theme-gradient-accent, transparent) 0%,
+              transparent 50%
+            )
+          `,
+        }}
+        animate={{
+          scale: [1, 1.15, 1],
+          opacity: [0.15, 0.25, 0.15],
+        }}
+        transition={{
+          duration: 10,
+          repeat: Infinity,
+          ease: "easeInOut" as const,
+        }}
       />
-      
-      <CalendarGrid
-        calendarMonth={calendarMonth}
-        onSelectDate={handleSelectDate}
-        onEventClick={handleEventClick}
-        isLoading={calendarState.isLoading}
-        allEvents={events}
-        upcomingEventIds={upcomingEventIds}
-      />
-      
-      <CalendarActions
-        calendarId={process.env.NEXT_PUBLIC_GOOGLE_CALENDAR_ID || "asu.edu_primary"}
-        selectedDate={calendarState.selectedDate}
-      />
-      
-      {calendarState.error && (
-        <div className="mt-4 p-3 bg-red-900 border border-red-700 rounded-md">
-          <p className="text-sm text-red-300">{calendarState.error}</p>
-        </div>
-      )}
-      
-      {/* Event Modal */}
-      <EventModal
-        event={selectedEvent}
-        isOpen={isModalOpen}
-        onClose={handleCloseModal}
-      />
-    </div>
+
+      <div className="relative z-10">
+        <CalendarHeader
+          currentDate={calendarState.currentDate}
+          onPreviousMonth={handlePreviousMonth}
+          onNextMonth={handleNextMonth}
+          onGoToToday={handleGoToToday}
+          isLoading={calendarState.isLoading}
+        />
+
+        <CalendarGrid
+          calendarMonth={calendarMonth}
+          onSelectDate={handleSelectDate}
+          onEventClick={handleEventClick}
+          isLoading={calendarState.isLoading}
+          allEvents={events}
+          upcomingEventIds={upcomingEventIds}
+        />
+
+        <CalendarActions
+          calendarId={process.env.NEXT_PUBLIC_GOOGLE_CALENDAR_ID || "asu.edu_primary"}
+          selectedDate={calendarState.selectedDate}
+        />
+
+        {calendarState.error && (
+          <div className="mt-4 p-3 bg-red-900 border border-red-700 rounded-md">
+            <p className="text-sm text-red-300">{calendarState.error}</p>
+          </div>
+        )}
+
+        {/* Event Modal */}
+        <EventModal
+          event={selectedEvent}
+          isOpen={isModalOpen}
+          onClose={handleCloseModal}
+        />
+      </div>
+    </motion.div>
   );
 }

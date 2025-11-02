@@ -31,7 +31,7 @@ export const teamMembers: TeamMember[] = [
     position: 'Claude Builder Ambassador',
     image: '/staff/farnaz.png',
     linkedinUrl: 'https://www.linkedin.com/in/farnaz-avarzamani-a672069b/',
-    description: 'Farnaz is a PhD candidate in Educational Policy and Evaluation at Arizona State University\'s Mary Lou Fulton College for Teaching and Learning Innovation. Her doctoral research combines multilingual STEM education, curriculum policy, and generative AI to enhance teaching practices. She develops AI-driven solutions that support teachers in diverse classrooms, efforts that have been recognized through multiple awards, publications, and invited talks. Her most recent AI project, conducted through Principled Innovation®, has led to the development of an AI tool that will be launched in mid-October.'
+    description: 'Farnaz is a PhD candidate in Educational Policy and Evaluation at ASU. Her doctoral research combines multilingual STEM education, curriculum policy, and generative AI to enhance teaching practices. She develops AI-driven solutions that support teachers in diverse classrooms, efforts that have been recognized through multiple awards, publications, and invited talks. Her most recent AI project, conducted through Principled Innovation®, has led to the development of an AI tool that will be launched in mid-October.'
   },
   {
     id: 'tino',

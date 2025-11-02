@@ -1,3 +1,5 @@
+"use client";
+
 import Image from "next/image";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
@@ -5,39 +7,116 @@ import CalendarContainer from "./components/calendar/CalendarContainer";
 import JoinCard from "./components/JoinCard";
 import HackathonPromo from "./components/HackathonPromo";
 import { showHackathonPromo } from "./theme-config";
+import { motion } from "framer-motion";
+import ComponentShowcase from "./components/ui/examples/ComponentShowcase";
+
+const pageVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.15,
+      delayChildren: 0.2,
+    },
+  },
+};
+
+const leftColumnVariants = {
+  hidden: { opacity: 0, x: -20 },
+  visible: {
+    opacity: 1,
+    x: 0,
+    transition: {
+      type: "spring" as const,
+      stiffness: 60,
+      damping: 20,
+      mass: 0.5,
+      staggerChildren: 0.1,
+    },
+  },
+};
+
+const rightColumnVariants = {
+  hidden: { opacity: 0, x: 20 },
+  visible: {
+    opacity: 1,
+    x: 0,
+    transition: {
+      type: "spring" as const,
+      stiffness: 60,
+      damping: 20,
+      mass: 0.5,
+      delay: 0.2,
+      staggerChildren: 0.15,
+    },
+  },
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 15 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      type: "spring" as const,
+      stiffness: 60,
+      damping: 20,
+      mass: 0.5,
+    },
+  },
+};
 
 export default function Home() {
   return (
-    <div className="min-h-screen flex flex-col relative">
+    <div className="min-h-[100dvh] max-h-[100dvh] flex flex-col relative overflow-y-auto">
       <Header />
-      
-      <div className="font-sans flex-1 pt-4 px-4 pb-0 sm:pt-8 sm:px-8 md:p-20 relative z-10">
+
+      <motion.div
+        variants={pageVariants}
+        initial="hidden"
+        animate="visible"
+        className="font-sans flex-1 pt-4 px-4 pb-0 sm:pt-8 sm:px-8 md:p-20 relative z-10"
+      >
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 md:gap-8 min-h-full items-start">
           {/* Left half - Title + Hackathon */}
-          <div className="flex flex-col justify-start p-4 gap-4 sm:p-6 sm:gap-6">
-            <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[var(--theme-text-primary)] leading-tight">
-            The Arizona State University Claude Builder Club. Where curiosity meets <span className="text-[var(--theme-text-accent)] font-bold underline">cutting-edge AI</span>. Build <span className="text-[var(--theme-text-accent)] font-bold underline">anything</span>. Create the <span className="text-[var(--theme-text-accent)] font-bold underline italic">impossible</span>.
-            </h1>
-            
+          <motion.div
+            variants={leftColumnVariants}
+            className="flex flex-col justify-start p-4 gap-4 sm:p-6 sm:gap-6"
+          >
+            <motion.h1
+              variants={itemVariants}
+              className="text-2xl sm:text-3xl md:text-4xl font-bold text-[var(--theme-text-primary)] leading-tight"
+            >
+              The Arizona State University Claude Builder Club. Where curiosity meets <span className="text-[var(--theme-text-accent)] font-bold underline">cutting-edge AI</span>. Build <span className="text-[var(--theme-text-accent)] font-bold underline">anything</span>. Create the <span className="text-[var(--theme-text-accent)] font-bold underline italic">impossible</span>.
+            </motion.h1>
+
             {/* Hackathon promo */}
             {showHackathonPromo && (
-              <HackathonPromo className="mt-2" />
+              <motion.div variants={itemVariants}>
+                <HackathonPromo className="mt-2" />
+              </motion.div>
             )}
-          </div>
-          
+          </motion.div>
+
           {/* Right half - Calendar + Join Card */}
-          <div className="flex flex-col items-center sm:items-start pt-0 pb-4 px-4 sm:pb-8 md:pb-12 lg:pb-20 lg:px-0">
-            <CalendarContainer className="w-full max-w-2xl" />
+          <motion.div
+            variants={rightColumnVariants}
+            className="flex flex-col items-center sm:items-start pt-0 pb-4 px-4 sm:pb-8 md:pb-12 lg:pb-20 lg:px-0"
+          >
+            <motion.div variants={itemVariants} className="w-full max-w-2xl">
+              <CalendarContainer className="w-full max-w-2xl" />
+            </motion.div>
             {/* Join Card moved here */}
-            <div className="w-full max-w-2xl mt-4">
+            <motion.div variants={itemVariants} className="w-full max-w-2xl mt-4">
               <JoinCard
                 discordHref="https://discord.gg/PRh8F2XebB"
                 benefitsHref="https://docs.google.com/forms/d/e/1FAIpQLScP9LuFwiHEx806tv9zczjCIEzqO1Zjb-FjB4XWoa6BS1NNKQ/viewform"
               />
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
         </div>
-      </div>
+      </motion.div>
+
       <Footer />
     </div>
   );
