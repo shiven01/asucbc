@@ -107,6 +107,7 @@ export const teamMembers: TeamMember[] = [
     description:
       "Sophomore, major in CS . Beyond coding , I actively engage in multidisciplinary project to explore how coding connect with real world challenges.",
     image: "/staff/joana.png",
+    linkedinUrl: "https://www.linkedin.com/in/joana-choong-8595b1285/",
   },
   {
     id: "erick",
