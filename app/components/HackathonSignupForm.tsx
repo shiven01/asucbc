@@ -147,6 +147,14 @@ export default function HackathonSignupForm() {
 
       if (response.ok) {
         setSubmitStatus("success");
+        // Track successful submission
+        if (typeof window !== 'undefined' && (window as any).umami) {
+          (window as any).umami.track('Hackathon Form Submitted', {
+            track: formData.track,
+            year: formData.year,
+            experienceLevel: formData.experienceLevel
+          });
+        }
         setFormData({
           track: '',
           isAsuOnlineStudent: false,
@@ -160,6 +168,10 @@ export default function HackathonSignupForm() {
         });
       } else {
         setSubmitStatus("error");
+        // Track submission error
+        if (typeof window !== 'undefined' && (window as any).umami) {
+          (window as any).umami.track('Hackathon Form Error', { status: response.status });
+        }
       }
     } catch (error) {
       console.error("Form submission error:", error);
@@ -227,6 +239,10 @@ export default function HackathonSignupForm() {
               if (errors.track) {
                 setErrors((prev) => ({ ...prev, track: undefined }));
               }
+              // Track track selection
+              if (typeof window !== 'undefined' && (window as any).umami) {
+                (window as any).umami.track('Hackathon Track Selected', { track: value });
+              }
             }}
             columns={2}
           />
@@ -258,6 +274,10 @@ export default function HackathonSignupForm() {
               setFormData((p) => ({ ...p, isAsuOnlineStudent: value }));
               if (errors.isAsuOnlineStudent) {
                 setErrors((prev) => ({ ...prev, isAsuOnlineStudent: undefined }));
+              }
+              // Track ASU Online status
+              if (typeof window !== 'undefined' && (window as any).umami) {
+                (window as any).umami.track('Hackathon ASU Online Status', { isOnline: value });
               }
             }}
             columns={2}
@@ -344,6 +364,10 @@ export default function HackathonSignupForm() {
                   if (errors.year) {
                     setErrors((prev) => ({ ...prev, year: undefined }));
                   }
+                  // Track year selection
+                  if (typeof window !== 'undefined' && (window as any).umami) {
+                    (window as any).umami.track('Hackathon Year Selected', { year: option.value });
+                  }
                 }}
                 className="w-full"
               >
@@ -395,6 +419,10 @@ export default function HackathonSignupForm() {
                   setFormData((p) => ({ ...p, experienceLevel: option.value }));
                   if (errors.experienceLevel) {
                     setErrors((prev) => ({ ...prev, experienceLevel: undefined }));
+                  }
+                  // Track experience level selection
+                  if (typeof window !== 'undefined' && (window as any).umami) {
+                    (window as any).umami.track('Hackathon Experience Selected', { experience: option.value });
                   }
                 }}
                 className="w-full"
@@ -491,6 +519,8 @@ export default function HackathonSignupForm() {
           <a
             href="mailto:shivenshekar01@gmail.com"
             className="text-[var(--theme-text-primary)] hover:underline font-semibold"
+            data-umami-event="Contact Email Click"
+            data-umami-event-location="Hackathon Form"
           >
             shivenshekar01@gmail.com
           </a>

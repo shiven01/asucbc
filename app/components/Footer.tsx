@@ -63,6 +63,7 @@ export default function Footer() {
             className="text-[var(--theme-text-primary)] hover:text-[var(--theme-text-accent)] transition-colors duration-200 font-medium flex items-center gap-1"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
+            data-umami-event="Footer - Shiven GitHub"
           >
             <svg
               className="w-3 h-3"
@@ -84,6 +85,7 @@ export default function Footer() {
               target="_blank"
               rel="noopener noreferrer"
               className="text-[var(--theme-text-primary)] hover:text-[var(--theme-text-accent)] transition-colors duration-200 font-medium flex items-center gap-1"
+              data-umami-event="Footer - John Portfolio"
             >
               John Li
             </Link>
@@ -101,6 +103,7 @@ export default function Footer() {
           aria-label="Visit Shiven Shekar's GitHub"
           whileHover={{ scale: 1.1, rotate: 5 }}
           whileTap={{ scale: 0.9 }}
+          data-umami-event="Footer - Shiven GitHub Mobile"
         >
           <svg
             className="w-5 h-5"

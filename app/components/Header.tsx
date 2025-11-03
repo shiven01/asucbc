@@ -83,6 +83,7 @@ export default function Header() {
             <Link
               href="/"
               className={`relative z-10 group hover:scale-105 transition-all duration-200 px-4 py-3 rounded-lg hover:bg-white/10 min-h-[48px] flex items-center touch-manipulation`}
+              data-umami-event="Logo Click"
             >
               <h1 className="text-xl sm:text-2xl font-bold tracking-tight cursor-pointer font-sans whitespace-nowrap">
                 <span className="text-[var(--theme-text-primary)] group-hover:text-[var(--theme-text-accent)] transition-colors duration-200">
@@ -107,6 +108,7 @@ export default function Header() {
                   <Link
                     href="/about"
                     className={`relative z-10 text-[var(--theme-text-primary)] hover:text-[var(--theme-text-accent)] transition-all duration-200 font-medium font-sans px-4 py-3 rounded-md hover:bg-white/10 min-h-[48px] flex items-center touch-manipulation`}
+                    data-umami-event="Nav - About"
                   >
                     About
                   </Link>
@@ -123,6 +125,7 @@ export default function Header() {
                   <Link
                     href="/team"
                     className={`relative z-10 text-[var(--theme-text-primary)] hover:text-[var(--theme-text-accent)] transition-all duration-200 font-medium font-sans px-4 py-3 rounded-md hover:bg-white/10 min-h-[48px] flex items-center touch-manipulation`}
+                    data-umami-event="Nav - Team"
                   >
                     Team
                   </Link>
@@ -139,6 +142,7 @@ export default function Header() {
                   <Link
                     href="/careers"
                     className={`relative z-10 text-[var(--theme-text-primary)] hover:text-[var(--theme-text-accent)] transition-all duration-200 font-medium font-sans px-4 py-3 rounded-md hover:bg-white/10 min-h-[48px] flex items-center touch-manipulation`}
+                    data-umami-event="Nav - Careers"
                   >
                     Careers
                   </Link>
@@ -156,6 +160,7 @@ export default function Header() {
                   <Link
                     href="/hackathon"
                     className={`relative z-10 bg-[var(--theme-button-alternate-bg)] text-[var(--theme-button-alternate-text)] px-6 py-3 rounded-lg hover:bg-[var(--theme-button-hover-bg)] hover:text-[var(--theme-button-hover-text)] hover:shadow-lg transition-all duration-300 ease-in-out font-medium text-base font-sans border border-transparent hover:border-[var(--theme-button-hover-border)] min-h-[48px] flex items-center touch-manipulation overflow-visible`}
+                    data-umami-event="Nav - Hackathon"
                   >
                     Hackathon
                   </Link>
@@ -174,6 +179,7 @@ export default function Header() {
                     target="_blank"
                     rel="noopener noreferrer"
                     className={`relative z-20 bg-[var(--theme-button-bg)] text-white px-6 py-3 rounded-lg hover:bg-[var(--theme-button-hover-bg)] hover:shadow-lg transition-all duration-300 ease-in-out font-medium text-base font-sans  min-h-[48px] flex items-center touch-manipulation`}
+                    data-umami-event="Header - Join Us"
                   >
                     Join Us
                   </Link>
@@ -187,6 +193,7 @@ export default function Header() {
               onClick={toggleMobileMenu}
               className="text-[var(--theme-text-primary)] hover:text-[var(--theme-text-accent)] transition-colors duration-200 font-sans p-2 rounded-lg hover:bg-white/10 min-h-[48px] min-w-[48px] flex items-center justify-center touch-manipulation"
               aria-label="Toggle mobile menu"
+              data-umami-event="Mobile Menu Toggle"
             >
               {isMobileMenuOpen ? (
                 <svg
@@ -231,12 +238,13 @@ export default function Header() {
               variants={mobileMenuVariants}
               className="md:hidden overflow-hidden"
             >
-              <div className="px-2 pt-2 pb-3 space-y-1 bg-[var(--theme-card-bg)] backdrop-blur-sm border-t border-[var(--theme-card-border)] rounded-b-2xl">
+              <div className="px-2 pt-2 pb-3 space-y-1 bg-[var(--theme-card-bg)] backdrop-blur-sm border-t border-[var(--theme-card-border)] rounded-2xl">
                 <motion.div variants={mobileItemVariants}>
                   <Link
                     href="/about"
-                    className={`flex px-3 py-4 text-[var(--theme-text-primary)] hover:text-[var(--theme-text-accent)] hover:bg-white/10 transition-all duration-200 font-medium font-sans rounded-lg min-h-[48px] items-center touch-manipulation`}
+                    className={`flex px-3 py-4 text-[var(--theme-text-primary)] hover:text-[var(--theme-text-accent)] hover:bg-[var(--theme-text-accent)]/10 transition-all duration-200 font-medium font-sans rounded-lg min-h-[48px] items-center touch-manipulation`}
                     onClick={() => setIsMobileMenuOpen(false)}
+                    data-umami-event="Mobile Nav - About"
                   >
                     About
                   </Link>
@@ -244,8 +252,9 @@ export default function Header() {
                 <motion.div variants={mobileItemVariants}>
                   <Link
                     href="/team"
-                    className={`flex px-3 py-4 text-[var(--theme-text-primary)] hover:text-[var(--theme-text-accent)] hover:bg-white/10 transition-all duration-200 font-medium font-sans rounded-lg min-h-[48px] items-center touch-manipulation`}
+                    className={`flex px-3 py-4 text-[var(--theme-text-primary)] hover:text-[var(--theme-text-accent)] hover:bg-[var(--theme-text-accent)]/10 transition-all duration-200 font-medium font-sans rounded-lg min-h-[48px] items-center touch-manipulation`}
                     onClick={() => setIsMobileMenuOpen(false)}
+                    data-umami-event="Mobile Nav - Team"
                   >
                     Team
                   </Link>
@@ -253,8 +262,9 @@ export default function Header() {
                 <motion.div variants={mobileItemVariants}>
                   <Link
                     href="/careers"
-                    className={`flex px-3 py-4 text-[var(--theme-text-primary)] hover:text-[var(--theme-text-accent)] hover:bg-white/10 transition-all duration-200 font-medium font-sans rounded-lg min-h-[48px] items-center touch-manipulation`}
+                    className={`flex px-3 py-4 text-[var(--theme-text-primary)] hover:text-[var(--theme-text-accent)] hover:bg-[var(--theme-text-accent)]/10 transition-all duration-200 font-medium font-sans rounded-lg min-h-[48px] items-center touch-manipulation`}
                     onClick={() => setIsMobileMenuOpen(false)}
+                    data-umami-event="Mobile Nav - Careers"
                   >
                     Careers
                   </Link>
@@ -262,8 +272,9 @@ export default function Header() {
                 <motion.div variants={mobileItemVariants}>
                   <Link
                     href="/hackathon"
-                    className={`relative z-20 flex px-3 py-4 bg-orange-500 text-white hover:bg-white hover:text-orange-500 transition-all duration-300 ease-in-out font-medium text-base font-sans border border-orange-400 hover:border-orange-500 rounded-lg min-h-[48px] items-center touch-manipulation`}
+                    className={`relative z-20 flex px-3 py-4 bg-[var(--theme-button-alternate-bg)] text-[var(--theme-button-alternate-text)] hover:bg-[var(--theme-button-hover-bg)] hover:text-[var(--theme-button-hover-text)] transition-all duration-300 ease-in-out font-medium text-base font-sans border border-[var(--theme-button-alternate-border)] hover:border-[var(--theme-button-hover-border)] rounded-lg min-h-[48px] items-center touch-manipulation`}
                     onClick={() => setIsMobileMenuOpen(false)}
+                    data-umami-event="Mobile Nav - Hackathon"
                   >
                     Hackathon
                   </Link>
@@ -273,8 +284,9 @@ export default function Header() {
                     href="https://docs.google.com/forms/d/e/1FAIpQLScP9LuFwiHEx806tv9zczjCIEzqO1Zjb-FjB4XWoa6BS1NNKQ/viewform"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className={`relative z-20 flex px-3 py-4 bg-orange-500 text-white hover:bg-white hover:text-orange-500 transition-all duration-300 ease-in-out font-medium text-base font-sans border border-orange-400 hover:border-orange-500 rounded-lg min-h-[48px] items-center touch-manipulation`}
+                    className={`relative z-20 flex px-3 py-4 bg-[var(--theme-button-bg)] text-[var(--theme-button-text)] hover:bg-[var(--theme-button-hover-bg)] hover:text-[var(--theme-button-hover-text)] transition-all duration-300 ease-in-out font-medium text-base font-sans border border-[var(--theme-button-border)] hover:border-[var(--theme-button-hover-border)] rounded-lg min-h-[48px] items-center touch-manipulation`}
                     onClick={() => setIsMobileMenuOpen(false)}
+                    data-umami-event="Mobile Nav - Join Us"
                   >
                     Join Us
                   </Link>

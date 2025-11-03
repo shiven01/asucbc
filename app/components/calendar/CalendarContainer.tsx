@@ -86,21 +86,33 @@ export default function CalendarContainer({ className = '' }: CalendarContainerP
     const newDate = new Date(calendarState.currentDate);
     newDate.setMonth(newDate.getMonth() - 1);
     setCalendarState(prev => ({ ...prev, currentDate: newDate }));
+    // Track calendar navigation
+    if (typeof window !== 'undefined' && (window as any).umami) {
+      (window as any).umami.track('Calendar Previous Month');
+    }
   };
 
   const handleNextMonth = () => {
     const newDate = new Date(calendarState.currentDate);
     newDate.setMonth(newDate.getMonth() + 1);
     setCalendarState(prev => ({ ...prev, currentDate: newDate }));
+    // Track calendar navigation
+    if (typeof window !== 'undefined' && (window as any).umami) {
+      (window as any).umami.track('Calendar Next Month');
+    }
   };
 
   const handleGoToToday = () => {
     const today = new Date();
-    setCalendarState(prev => ({ 
-      ...prev, 
+    setCalendarState(prev => ({
+      ...prev,
       currentDate: today,
-      selectedDate: today 
+      selectedDate: today
     }));
+    // Track calendar navigation
+    if (typeof window !== 'undefined' && (window as any).umami) {
+      (window as any).umami.track('Calendar Go To Today');
+    }
   };
 
   const handleSelectDate = (date: Date) => {
@@ -110,6 +122,10 @@ export default function CalendarContainer({ className = '' }: CalendarContainerP
   const handleEventClick = (event: CalendarEvent) => {
     setSelectedEvent(event);
     setIsModalOpen(true);
+    // Track event click
+    if (typeof window !== 'undefined' && (window as any).umami) {
+      (window as any).umami.track('Calendar Event Click', { eventName: event.summary });
+    }
   };
 
   const handleCloseModal = () => {
