@@ -5,6 +5,7 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
 import { ThemeProvider } from "./contexts/ThemeContext";
 import DarkModeToggle from "./components/DarkModeToggle";
 import "./globals.css";
+import Script from "next/script";
 
 const poppins = Poppins({
   variable: "--font-poppins",
@@ -28,7 +29,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-                <title>ASU Claude Builder Club</title>
+        <title>ASU Claude Builder Club</title>
         <meta
           name="description"
           content="ASU Claude Builder Club - Building with Claude AI"
@@ -57,6 +58,11 @@ export default function RootLayout({
           <SpeedInsights />
         </ThemeProvider>
       </body>
+      <Script
+        defer
+        src="https://asucbc-umami.vercel.app/script.js"
+        data-website-id="407772a6-dc54-4c85-8e46-327d20c45c26"
+      />
     </html>
   );
 }
