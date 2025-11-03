@@ -79,7 +79,7 @@ export default function Hackathon() {
               animate="visible"
             >
               <Heading level="h1" animate={false} className="leading-tight mb-2">
-                🎃 Spooky <span className="text-[var(--theme-text-accent)] font-bold underline">Hackathon</span> 2025
+                <span className="text-[var(--theme-text-accent)] font-bold underline">HackASU</span> 2025
               </Heading>
             </motion.div>
             <motion.div
@@ -89,17 +89,15 @@ export default function Hackathon() {
               whileHover={{ scale: 1.05, rotate: [0, -2, 2, -2, 0] }}
               className="inline-block mb-4 cursor-default"
             >
-              <Badge variant="primary" size="lg">
-                🚀 LIMITED TIME OPPORTUNITY
-              </Badge>
+              <Badge variant="primary" size="lg">LIMITED TIME OPPORTUNITY</Badge>
             </motion.div>
             <motion.div
               variants={descriptionVariants}
               initial="hidden"
               animate="visible"
             >
-              <Text size="xl" variant="secondary" className="max-w-2xl mx-auto">
-                Join us for an epic Halloween-themed hackathon! Build something spooky, win amazing prizes, and connect with fellow builders.
+              <Text size="xl" variant="secondary" className="max-w-2xl mx-auto leading-relaxed">
+                <strong>Nov 8–9, 11 AM</strong> • Memorial Union, Pima (230)
               </Text>
             </motion.div>
           </div>
