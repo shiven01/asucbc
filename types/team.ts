@@ -115,4 +115,24 @@ export const teamMembers: TeamMember[] = [
     position: "Business + Finance",
     image: "/staff/claude.svg",
   },
-];
+].sort(
+  // Keep order, but prioritize people with non-empty descriptions and photos. Priority is given in the following order:
+  // 1. Has description and non-default photo
+  // 2. Has description
+  // 3. Has non-default photo
+  // 4. Neither
+  (a, b) => {
+    const aHasDesc = a.description && a.description.trim().length > 0;
+    const bHasDesc = b.description && b.description.trim().length > 0;
+    const aHasPhoto = !a.image.includes("claude.svg");
+    const bHasPhoto = !b.image.includes("claude.svg");
+
+    if (aHasDesc && aHasPhoto && !(bHasDesc && bHasPhoto)) return -1;
+    if (bHasDesc && bHasPhoto && !(aHasDesc && aHasPhoto)) return 1;
+    if (aHasDesc && !(bHasDesc && bHasPhoto)) return -1;
+    if (bHasDesc && !(aHasDesc && aHasPhoto)) return 1;
+    if (aHasPhoto && !bHasPhoto) return -1;
+    if (bHasPhoto && !aHasPhoto) return 1;
+    return 0;
+  }
+);
