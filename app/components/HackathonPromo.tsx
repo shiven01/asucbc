@@ -140,6 +140,18 @@ export default function HackathonPromo({
           background-position: 48% 46%;
         }
 
+        /* Disable gradient in light mode (flat card surface) */
+        :global(html[data-theme='light']) .theme-card-bg {
+          background: var(--theme-card-bg);
+          background-size: auto;
+          background-position: center;
+        }
+        :global(html[data-theme='light']) .hackathon-tilt:hover .theme-card-bg {
+          background: var(--theme-card-bg);
+          background-size: auto;
+          background-position: center;
+        }
+
         /* Optimized button hover */
         .cta-button {
           transition: transform 0.2s ease-out, box-shadow 0.2s ease-out;
