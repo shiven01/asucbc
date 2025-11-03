@@ -39,7 +39,7 @@
 }
 
 /* Dark Mode Variables */
-[data-theme="dark"] {
+.dark {
   --background: #1a1a1a;
   --foreground: #e0e0e0;
   --primary: #2a2a2a;
@@ -98,50 +98,51 @@ body {
   max-width: 100vw;
   position: relative;
   background: var(--background);
-  background-image:
-    linear-gradient(90deg, var(--theme-pattern-color) 1px, transparent 1px),
+  background-image: linear-gradient(
+      90deg,
+      var(--theme-pattern-color) 1px,
+      transparent 1px
+    ),
     linear-gradient(180deg, var(--theme-pattern-color) 1px, transparent 1px),
-    linear-gradient(45deg, var(--theme-pattern-color-light) 1px, transparent 1px),
-    linear-gradient(-45deg, var(--theme-pattern-color-light) 1px, transparent 1px);
-  background-size:
-    20px 20px,
-    20px 20px,
-    40px 40px,
-    40px 40px;
-  background-position:
-    0 0,
-    0 0,
-    0 0,
-    20px 20px;
+    linear-gradient(
+      45deg,
+      var(--theme-pattern-color-light) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      -45deg,
+      var(--theme-pattern-color-light) 1px,
+      transparent 1px
+    );
+  background-size: 20px 20px, 20px 20px, 40px 40px, 40px 40px;
+  background-position: 0 0, 0 0, 0 0, 20px 20px;
   color: var(--foreground);
   font-family: var(--font-poppins), Arial, Helvetica, sans-serif;
-  cursor: url('/claude.svg'), auto;
+  cursor: url("/claude.svg"), auto;
 }
 
 * {
-  cursor: url('/claude.svg'), auto !important;
-}
-
-/* Dark mode image inversion */
-[data-theme="dark"] .claude-image-dark-mode {
-  filter: invert(1) hue-rotate(180deg);
+  cursor: url("/claude.svg"), auto !important;
 }
 
 .mesh-background {
   background: var(--background);
-  background-image: 
-    linear-gradient(90deg, var(--theme-pattern-color) 1px, transparent 1px),
+  background-image: linear-gradient(
+      90deg,
+      var(--theme-pattern-color) 1px,
+      transparent 1px
+    ),
     linear-gradient(180deg, var(--theme-pattern-color) 1px, transparent 1px),
-    linear-gradient(45deg, var(--theme-pattern-color-light) 1px, transparent 1px),
-    linear-gradient(-45deg, var(--theme-pattern-color-light) 1px, transparent 1px);
-  background-size: 
-    20px 20px,
-    20px 20px,
-    40px 40px,
-    40px 40px;
-  background-position: 
-    0 0,
-    0 0,
-    0 0,
-    20px 20px;
+    linear-gradient(
+      45deg,
+      var(--theme-pattern-color-light) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      -45deg,
+      var(--theme-pattern-color-light) 1px,
+      transparent 1px
+    );
+  background-size: 20px 20px, 20px 20px, 40px 40px, 40px 40px;
+  background-position: 0 0, 0 0, 0 0, 20px 20px;
 }
