@@ -62,7 +62,9 @@ const cardVariants = {
 };
 
 export default function TeamPage() {
-  const [activeMember, setActiveMember] = useState<TeamMember["id"] | null>(null);
+  const [activeMember, setActiveMember] = useState<TeamMember["id"] | null>(
+    null
+  );
   return (
     <div className="min-h-[100dvh] max-h-[100dvh] relative overflow-y-auto">
       <Header />
@@ -85,7 +87,8 @@ export default function TeamPage() {
               animate="visible"
             >
               <Text size="lg" variant="secondary" className="max-w-2xl">
-                A diverse group of individuals passionate about AI and its potential to transform education and technology.
+                A diverse group of individuals passionate about AI and its
+                potential to transform education and technology.
               </Text>
             </motion.div>
           </div>
@@ -97,13 +100,17 @@ export default function TeamPage() {
             className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-4 gap-y-12"
           >
             {/* Team Member Card */}
-            {teamMembers.map((member, index) => (
+            {teamMembers.map((member) => (
               <motion.div
                 key={member.id}
                 variants={cardVariants}
                 className={activeMember === member.id ? "z-20" : ""}
               >
-                <TeamMemberCard member={member} activeMember={activeMember} setActiveMember={setActiveMember} />
+                <TeamMemberCard
+                  member={member}
+                  activeMember={activeMember}
+                  setActiveMember={setActiveMember}
+                />
               </motion.div>
             ))}
           </motion.div>
