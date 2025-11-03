@@ -37,10 +37,32 @@ export const Analyze = () => {
   };
 
   // Function to track pageview in a non-blocking way
-  const trackPageview = () => {
-    if (typeof window !== "undefined" && window.umami) {
+  const trackPageview = async () => {
+    if (typeof window !== "undefined") {
+      if (!(window as any).umami) {
+        let checkInt: NodeJS.Timeout;
+        const exists = await Promise.race([
+          new Promise<boolean>((resolve) => {
+            checkInt = setInterval(() => {
+              if ((window as any).umami) {
+                clearInterval(checkInt);
+                resolve(true);
+              }
+            }, 100);
+          }),
+          new Promise<boolean>((resolve) =>
+            setTimeout(() => {
+              clearInterval(checkInt);
+              resolve(false);
+            }, 2000)
+          ),
+        ]);
+        if (!exists) {
+          console.warn("Umami script not loaded; skipping pageview tracking.");
+          return;
+        }
+      }
       const trackingData = collectTrackingData();
-
       if (!trackingData) return;
 
       // Use requestIdleCallback to ensure tracking doesn't block navigation
