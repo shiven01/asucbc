@@ -97,15 +97,13 @@ export default function Hackathon() {
               animate="visible"
             >
               <Text size="xl" variant="secondary" className="max-w-2xl mx-auto leading-relaxed">
-                Hey everyone — The Claude Builder Club @ ASU is hosting a 24‑hour hackathon sponsored by Anthropic, Polymarket, Acorns, Silicon Oasis, StreetSmart, and more.
+                HackASU is a 24‑hour hackathon by the Claude Builder Club @ ASU, sponsored by Anthropic, Polymarket, Acorns, Silicon Oasis, StreetSmart, and more.
                 <br />
                 <br />
-                <strong>Date:</strong> Nov. 8–9, starts 11 AM
-                <br />
-                <strong>Location:</strong> Memorial Union, Pima (230)
+                <strong>Nov 8–9, 11 AM</strong> • Memorial Union, Pima (230)
                 <br />
                 <br />
-                Enjoy free Claude Pro accounts, $50 in API credits, thousands in prizes, food and drinks, mentorship from top tech students, and more!
+                Free Claude Pro, $50 API credits, prizes, food, and more.
               </Text>
             </motion.div>
           </div>
