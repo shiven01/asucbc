@@ -104,17 +104,12 @@ export default function HackathonPromo({
           }
         }
 
-        /* Theme-aware card background (matches team cards) */
+        /* Flat card background (no gradient) */
         .theme-card-bg {
-          background: linear-gradient(
-              160deg,
-              color-mix(in oklab, var(--theme-card-bg) 100%, transparent 0%) 0%,
-              color-mix(in oklab, var(--theme-card-bg) 85%, transparent 15%) 50%,
-              color-mix(in oklab, var(--theme-bg) 92%, transparent 8%) 100%
-            );
-          background-size: 120% 120%;
-          background-position: 50% 50%;
-          transition: background 300ms ease, background-position 300ms ease;
+          background: var(--theme-card-bg);
+          background-size: auto;
+          background-position: center;
+          transition: background 300ms ease;
         }
 
         /* Accent glow akin to team visuals */
@@ -129,15 +124,11 @@ export default function HackathonPromo({
           box-shadow: none;
         }
 
-        /* Hover tilt gradient accent similar to team cards */
+        /* Keep background flat on hover */
         .hackathon-tilt:hover .theme-card-bg {
-          background: linear-gradient(
-              150deg,
-              color-mix(in oklab, var(--theme-text-accent) 16%, var(--theme-card-bg) 84%) 0%,
-              color-mix(in oklab, var(--theme-card-bg) 88%, transparent 12%) 50%,
-              color-mix(in oklab, var(--theme-bg) 96%, transparent 4%) 100%
-            );
-          background-position: 48% 46%;
+          background: var(--theme-card-bg);
+          background-size: auto;
+          background-position: center;
         }
 
         /* Disable gradient in light mode (flat card surface) */
