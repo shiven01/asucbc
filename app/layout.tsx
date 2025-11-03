@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
-import { ThemeProvider } from "./contexts/ThemeContext";
+import { ThemeProvider } from "./components/ThemeProvider";
 import DarkModeToggle from "./components/DarkModeToggle";
 import "./globals.css";
 
@@ -26,9 +26,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <head>
-                <title>ASU Claude Builder Club</title>
+        <title>ASU Claude Builder Club</title>
         <meta
           name="description"
           content="ASU Claude Builder Club - Building with Claude AI"
@@ -50,7 +50,12 @@ export default function RootLayout({
         <meta name="twitter:image" content="/assets/og/splash.png" />
       </head>
       <body className={`${poppins.variable} antialiased`}>
-        <ThemeProvider>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
           {children}
           <DarkModeToggle />
           <Analytics />

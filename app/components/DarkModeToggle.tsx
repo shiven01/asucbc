@@ -1,10 +1,20 @@
 "use client";
 
-import { useTheme } from '../contexts/ThemeContext';
-import { motion, AnimatePresence } from 'framer-motion';
+import { useTheme } from "next-themes";
+import { motion, AnimatePresence } from "framer-motion";
+import { useEffect, useState } from "react";
 
 export default function DarkModeToggle() {
-  const { theme, toggleTheme } = useTheme();
+  const { theme, setTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  const toggleTheme = () => {
+    setTheme(theme === "light" ? "dark" : "light");
+  };
 
   const iconVariants = {
     initial: { scale: 0, rotate: -180, opacity: 0 },
@@ -28,11 +38,15 @@ export default function DarkModeToggle() {
     },
   };
 
+  if (!mounted) {
+    return null;
+  }
+
   return (
     <motion.button
       onClick={toggleTheme}
       className="fixed bottom-6 right-6 z-50 p-3 rounded-full bg-[var(--theme-button-bg)] text-[var(--theme-button-text)] hover:bg-[var(--theme-button-hover-bg)] hover:text-[var(--theme-button-hover-text)] transition-all duration-300 shadow-lg border-2 border-transparent hover:border-[var(--theme-button-hover-border)] overflow-hidden"
-      aria-label={`Switch to ${theme === 'light' ? 'dark' : 'light'} mode`}
+      aria-label={`Switch to ${theme === "light" ? "dark" : "light"} mode`}
       whileHover={{
         scale: 1.1,
         boxShadow: "0 10px 40px rgba(0, 0, 0, 0.3)",
@@ -51,7 +65,8 @@ export default function DarkModeToggle() {
       <motion.div
         className="absolute inset-0 rounded-full"
         style={{
-          background: 'radial-gradient(circle, var(--theme-button-hover-bg) 0%, transparent 70%)',
+          background:
+            "radial-gradient(circle, var(--theme-button-hover-bg) 0%, transparent 70%)",
         }}
         animate={{
           scale: [1, 1.2, 1],
@@ -65,7 +80,7 @@ export default function DarkModeToggle() {
       />
 
       <AnimatePresence mode="wait" initial={false}>
-        {theme === 'light' ? (
+        {theme === "light" ? (
           <motion.svg
             key="moon"
             xmlns="http://www.w3.org/2000/svg"
