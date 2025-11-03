@@ -121,8 +121,16 @@ body {
   cursor: url("/claude.svg"), auto;
 }
 
+.dark body {
+  cursor: url("/claude-dark.svg"), auto;
+}
+
 * {
   cursor: url("/claude.svg"), auto !important;
+}
+
+.dark * {
+  cursor: url("/claude-dark.svg"), auto !important;
 }
 
 .dark .claude-image-dark-mode {
