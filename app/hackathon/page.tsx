@@ -79,7 +79,7 @@ export default function Hackathon() {
               animate="visible"
             >
               <Heading level="h1" animate={false} className="leading-tight mb-2">
-                🎃 Spooky <span className="text-[var(--theme-text-accent)] font-bold underline">Hackathon</span> 2025
+                <span className="text-[var(--theme-text-accent)] font-bold underline">HackASU</span> 2025
               </Heading>
             </motion.div>
             <motion.div
@@ -89,17 +89,23 @@ export default function Hackathon() {
               whileHover={{ scale: 1.05, rotate: [0, -2, 2, -2, 0] }}
               className="inline-block mb-4 cursor-default"
             >
-              <Badge variant="primary" size="lg">
-                🚀 LIMITED TIME OPPORTUNITY
-              </Badge>
+              <Badge variant="primary" size="lg">LIMITED TIME OPPORTUNITY</Badge>
             </motion.div>
             <motion.div
               variants={descriptionVariants}
               initial="hidden"
               animate="visible"
             >
-              <Text size="xl" variant="secondary" className="max-w-2xl mx-auto">
-                Join us for an epic Halloween-themed hackathon! Build something spooky, win amazing prizes, and connect with fellow builders.
+              <Text size="xl" variant="secondary" className="max-w-2xl mx-auto leading-relaxed">
+                Hey everyone — The Claude Builder Club @ ASU is hosting a 24‑hour hackathon sponsored by Anthropic, Polymarket, Acorns, Silicon Oasis, StreetSmart, and more.
+                <br />
+                <br />
+                <strong>Date:</strong> Nov. 8–9, starts 11 AM
+                <br />
+                <strong>Location:</strong> Memorial Union, Pima (230)
+                <br />
+                <br />
+                Enjoy free Claude Pro accounts, $50 in API credits, thousands in prizes, food and drinks, mentorship from top tech students, and more!
               </Text>
             </motion.div>
           </div>
