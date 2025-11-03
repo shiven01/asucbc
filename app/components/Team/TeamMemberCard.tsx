@@ -37,7 +37,7 @@ export const TeamMemberCard = ({
     >
       <div
         className={`rounded-lg bg-[var(--theme-card-bg)]/100 relative shadow ${
-          flip ? `opacity-0 scale-150 z-20` : `opacity-100 z-0`
+          flip ? `opacity-0 scale-100 md:scale-150 z-20` : `opacity-100 z-0`
         } transition-all duration-300 ${
           flip ? `blur-sm pointer-events-none` : `pointer-events-auto`
         }`}
@@ -89,8 +89,8 @@ export const TeamMemberCard = ({
         className={`w-[150%] h-[150%] absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-lg ${
           flip ? `pointer-events-auto` : `pointer-events-none`
         } ${
-          flip ? `opacity-100 scale-100` : `opacity-0 scale-[66.67%] -z-10`
-        } -scale-x-100 z-[100] border border-[var(--theme-card-border)] bg-[var(--theme-card-bg)]/95 backdrop-blur-sm shadow-lg transition-all duration-150`}
+          flip ? `opacity-100 scale-y-[66.67%] lg:scale-100` : `opacity-0 scale-[66.67%] -z-10`
+        } -scale-x-[66.67%] lg:-scale-x-100 z-[100] border border-[var(--theme-card-border)] bg-[var(--theme-card-bg)]/95 backdrop-blur-sm shadow-lg transition-all duration-150`}
         onClick={() => {
           setActiveMember(null);
           setFlip(false);
