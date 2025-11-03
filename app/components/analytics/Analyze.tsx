@@ -1,6 +1,6 @@
 "use client";
 
-import { usePathname, useSearchParams } from "next/navigation";
+import { usePathname } from "next/navigation";
 import { useEffect } from "react";
 
 declare global {
@@ -17,15 +17,13 @@ const WEBSITE_ID =
 
 export const Analyze = () => {
   const pathname = usePathname();
-  const searchParams = useSearchParams();
 
   // Collect all tracking properties manually
   const collectTrackingData = () => {
     if (typeof window === "undefined") return null;
 
-    const url =
-      pathname +
-      (searchParams?.toString() ? `?${searchParams.toString()}` : "");
+    // Get the full URL including search params directly from window.location
+    const url = window.location.pathname + window.location.search;
 
     return {
       website: WEBSITE_ID,
@@ -66,7 +64,7 @@ export const Analyze = () => {
   // Track pageview on pathname change
   useEffect(() => {
     trackPageview();
-  }, [pathname, searchParams]);
+  }, [pathname]);
 
   return null;
 };
