@@ -124,6 +124,11 @@ export default function HackathonPromo({
             0 0 72px color-mix(in oklab, var(--theme-text-accent) 45%, transparent 55%);
         }
 
+        /* Disable glow in light mode */
+        :global(html[data-theme='light']) .theme-glow {
+          box-shadow: none;
+        }
+
         /* Hover tilt gradient accent similar to team cards */
         .hackathon-tilt:hover .theme-card-bg {
           background: linear-gradient(
