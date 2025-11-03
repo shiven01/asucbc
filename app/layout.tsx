@@ -4,7 +4,9 @@ import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { ThemeProvider } from "./components/ThemeProvider";
 import DarkModeToggle from "./components/DarkModeToggle";
+import { Analyze } from "./components/analytics/Analyze";
 import "./globals.css";
+import Script from "next/script";
 
 const poppins = Poppins({
   variable: "--font-poppins",
@@ -60,7 +62,17 @@ export default function RootLayout({
           <DarkModeToggle />
           <Analytics />
           <SpeedInsights />
+          <Analyze />
         </ThemeProvider>
+        <Script
+          src="https://asucbc-umami.vercel.app/script.js"
+          data-website-id={
+            process.env.NEXT_PUBLIC_LOCAL_UMAMI_OVERRIDE_ID ||
+            "407772a6-dc54-4c85-8e46-327d20c45c26"
+          }
+          data-auto-track="false"
+          strategy="afterInteractive"
+        />
       </body>
     </html>
   );
