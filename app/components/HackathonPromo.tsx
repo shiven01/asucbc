@@ -2,7 +2,6 @@
 
 import { showHackathonPromo } from "../theme-config";
 import Link from "next/link";
-import { useState } from "react";
 import { useBatParticles } from "../hooks/useBatParticles";
 import { Heading, Text, Button } from "./ui";
 import Tilt from "react-parallax-tilt";
@@ -15,11 +14,6 @@ export default function HackathonPromo({
   className = "",
 }: HackathonPromoProps) {
   const { containerRef, particlesRef, createParticles } = useBatParticles();
-  const [mounted, setMounted] = useState(false);
-  if (!mounted) {
-    // trigger minimal mount state for any future effects if needed
-    setMounted(true);
-  }
 
   if (!showHackathonPromo) return null;
 
