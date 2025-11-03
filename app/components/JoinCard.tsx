@@ -150,6 +150,8 @@ export default function JoinCard({
             target="_blank"
             rel="noopener noreferrer"
             className="w-full"
+            data-umami-event="Join Discord"
+            data-umami-event-location="JoinCard"
           >
             <Button variant="primary" size="md" fullWidth>
               Join our Discord
@@ -160,6 +162,8 @@ export default function JoinCard({
             target="_blank"
             rel="noopener noreferrer"
             className="w-full"
+            data-umami-event="Sign Up Benefits"
+            data-umami-event-location="JoinCard"
           >
             <Button variant="secondary" size="md" fullWidth>
               Sign up to receive benefits

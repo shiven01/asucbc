@@ -49,6 +49,10 @@ export const TeamMemberCard = ({
               setActiveMember(null);
             } else {
               setActiveMember(member.id);
+              // Track team member card click
+              if (typeof window !== 'undefined' && (window as any).umami) {
+                (window as any).umami.track('Team Member Card Click', { member: member.name });
+              }
             }
             setFlip(true);
           }}
@@ -121,6 +125,8 @@ export const TeamMemberCard = ({
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-[var(--theme-text-accent)] hover:underline flex items-center"
+                    data-umami-event="Team LinkedIn Click"
+                    data-umami-event-member={member.name}
                   >
                     <CiLinkedin
                       size={24}
@@ -139,6 +145,8 @@ export const TeamMemberCard = ({
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-[var(--theme-text-accent)] hover:underline flex items-center"
+                    data-umami-event="Team Website Click"
+                    data-umami-event-member={member.name}
                   >
                     <CiGlobe
                       size={24}

@@ -36,6 +36,8 @@ export default function Announcements() {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="group relative overflow-hidden bg-gradient-to-br from-[var(--theme-text-accent)] to-[var(--theme-text-accent)]/80 text-white p-8 rounded-3xl hover:shadow-2xl hover:scale-105 transition-all duration-300 ease-in-out"
+                data-umami-event="Announcements - Meeting Registration"
+                data-umami-event-location="Announcements Page"
               >
                 <div className="relative z-10">
                   <div className="flex items-center mb-4">
@@ -57,6 +59,8 @@ export default function Announcements() {
               <a
                 href="/hackathon"
                 className="group relative overflow-hidden bg-[var(--theme-card-bg)] border-2 border-[var(--theme-text-accent)] p-8 rounded-3xl hover:shadow-2xl hover:scale-105 transition-all duration-300 ease-in-out"
+                data-umami-event="Announcements - Hackathon Register"
+                data-umami-event-location="Announcements Page"
               >
                 <div className="relative z-10">
                   <div className="flex items-center mb-4">
@@ -80,6 +84,8 @@ export default function Announcements() {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="group flex items-center justify-between p-6 bg-[var(--theme-card-bg)] border border-[var(--theme-card-border)] rounded-2xl hover:shadow-lg hover:scale-102 transition-all duration-300"
+                data-umami-event="Announcements - Discord Join"
+                data-umami-event-location="Announcements Page"
               >
                 <div className="flex items-center">
                   <div className="w-10 h-10 bg-[var(--theme-text-accent)]/10 rounded-full flex items-center justify-center mr-4">
@@ -98,6 +104,8 @@ export default function Announcements() {
               <a
                 href="/"
                 className="group flex items-center justify-between p-6 bg-[var(--theme-card-bg)] border border-[var(--theme-card-border)] rounded-2xl hover:shadow-lg hover:scale-102 transition-all duration-300"
+                data-umami-event="Announcements - View Calendar"
+                data-umami-event-location="Announcements Page"
               >
                 <div className="flex items-center">
                   <div className="w-10 h-10 bg-[var(--theme-text-accent)]/10 rounded-full flex items-center justify-center mr-4">
