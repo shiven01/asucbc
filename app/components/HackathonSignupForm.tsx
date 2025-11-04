@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { Heading, Text, Label, Input, Button, ButtonGroup } from "./ui";
+import HackathonCongratulations from "./HackathonCongratulations";
 
 interface FormData {
   track: string;
@@ -45,16 +46,21 @@ export default function HackathonSignupForm() {
     "idle" | "success" | "error"
   >("idle");
 
-  // Reset success state after 5 seconds to allow another submission
-  useEffect(() => {
-    if (submitStatus === "success") {
-      const timer = setTimeout(() => {
-        setSubmitStatus("idle");
-      }, 5000);
-
-      return () => clearTimeout(timer);
-    }
-  }, [submitStatus]);
+  // Function to reset form and go back to registration
+  const handleReset = () => {
+    setSubmitStatus("idle");
+    setFormData({
+      track: '',
+      isAsuOnlineStudent: false,
+      firstName: '',
+      lastName: '',
+      schoolEmail: '',
+      year: '',
+      hackathonsParticipated: 0,
+      experienceLevel: "",
+      dietaryRestrictions: "",
+    });
+  };
 
   const validateForm = (): boolean => {
     const newErrors: FormErrors = {};
@@ -155,17 +161,7 @@ export default function HackathonSignupForm() {
             experienceLevel: formData.experienceLevel
           });
         }
-        setFormData({
-          track: '',
-          isAsuOnlineStudent: false,
-          firstName: '',
-          lastName: '',
-          schoolEmail: '',
-          year: '',
-          hackathonsParticipated: 0,
-          experienceLevel: "",
-          dietaryRestrictions: "",
-        });
+        // Don't clear form data here - only clear when user explicitly resets
       } else {
         setSubmitStatus("error");
         // Track submission error
@@ -181,6 +177,11 @@ export default function HackathonSignupForm() {
     }
   };
 
+  // Show congratulations screen on success
+  if (submitStatus === "success") {
+    return <HackathonCongratulations onReset={handleReset} />;
+  }
+
   return (
     <div className="max-w-2xl mx-auto pt-8 sm:pt-12 md:pt-16">
       <div className="mb-8">
@@ -191,17 +192,6 @@ export default function HackathonSignupForm() {
           All fields marked with * are required.
         </Text>
       </div>
-
-      {submitStatus === "success" && (
-        <div className="mb-6 p-4 bg-green-100 border border-green-400 text-green-700 rounded-lg">
-          <p className="font-medium">
-            Hackathon registration submitted successfully!
-          </p>
-          <p className="text-sm mt-1">
-            We'll review your registration and get back to you soon.
-          </p>
-        </div>
-      )}
 
       {submitStatus === "error" && (
         <div className="mb-6 p-4 bg-red-100 border border-red-400 text-red-700 rounded-lg">
@@ -461,27 +451,10 @@ export default function HackathonSignupForm() {
             variant="primary"
             size="lg"
             fullWidth
-            disabled={isSubmitting || submitStatus === "success"}
-            className={submitStatus === "success" ? "!bg-green-600" : isSubmitting ? "!bg-gray-400" : ""}
+            disabled={isSubmitting}
+            className={isSubmitting ? "!bg-gray-400" : ""}
           >
-            {submitStatus === "success" ? (
-              <span className="flex items-center justify-center">
-                <svg
-                  className="mr-3 h-5 w-5 text-white"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M5 13l4 4L19 7"
-                  />
-                </svg>
-                Registration Complete!
-              </span>
-            ) : isSubmitting ? (
+            {isSubmitting ? (
               <span className="flex items-center justify-center">
                 <svg
                   className="animate-spin -ml-1 mr-3 h-5 w-5 text-white"
