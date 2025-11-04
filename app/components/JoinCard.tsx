@@ -61,8 +61,7 @@ export default function JoinCard({
     <motion.div
       variants={containerVariants}
       initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true, amount: 0.3 }}
+      animate="visible"
       className={`w-full rounded-xl relative overflow-hidden border-2 border-[var(--theme-card-border)] p-4 sm:p-5 lg:p-6 ${className}`}
       style={{
         background: `

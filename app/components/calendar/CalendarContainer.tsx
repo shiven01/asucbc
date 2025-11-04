@@ -144,7 +144,7 @@ export default function CalendarContainer({ className = '' }: CalendarContainerP
     <>
       <Card
         gradient
-        animated
+        animated={false}
         className={className}
       >
         <CalendarHeader
