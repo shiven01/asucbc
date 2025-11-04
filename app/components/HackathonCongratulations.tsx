@@ -124,7 +124,7 @@ export default function HackathonCongratulations({
 
       <motion.div variants={itemVariants}>
         <Text size="xl" variant="primary" className="mb-6 font-semibold">
-          You're registered for the Spooky Hackathon 2025!
+          You're registered for the HackASU 2025!
         </Text>
       </motion.div>
 
