@@ -957,7 +957,7 @@ export default function Hackathon() {
               <ScheduleItem
                 time="8:30 PM - 9:30 PM"
                 title="Minecraft Tournament Break! 🎮"
-                description="Optional team-based Minecraft mini-games tournament. Prizes for winning team (Discord Nitro). Relaxation area for those who prefer to rest"
+                description="Optional team-based Minecraft mini-games tournament. Prizes for winners. Relaxation area for those who prefer to rest"
               />
               <ScheduleItem
                 time="9:30 PM - 12:00 AM"
