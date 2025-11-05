@@ -9,14 +9,6 @@ import Countdown from "../components/Countdown";
 import { Heading, Text, Card, Button } from "../components/ui";
 import Link from "next/link";
 
-declare global {
-  interface Window {
-    umami?: {
-      track: (eventName: string, eventData?: any) => void;
-    };
-  }
-}
-
 const headerVariants = {
   hidden: { opacity: 0, y: -30 },
   visible: {
