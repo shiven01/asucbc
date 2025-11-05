@@ -559,6 +559,123 @@ interface PrizeItemProps {
   highlight?: boolean;
 }
 
+interface SponsorCardProps {
+  name: string;
+  tier?: "title" | "platinum" | "gold" | "partner";
+  delay?: number;
+  logo?: string;
+  url?: string;
+}
+
+function SponsorCard({
+  name,
+  tier = "partner",
+  delay = 0,
+  logo,
+  url,
+}: SponsorCardProps) {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-50px" });
+
+  const getTierStyles = () => {
+    switch (tier) {
+      case "title":
+        return "scale-100 bg-gradient-to-br from-[var(--theme-text-accent)] to-[var(--theme-button-alternate-bg)] border-4 border-[var(--theme-text-accent)]";
+      case "platinum":
+        return "bg-[var(--theme-card-bg)] border-3 border-[var(--theme-text-accent)]";
+      case "gold":
+        return "bg-[var(--theme-card-bg)] border-2 border-[var(--theme-text-accent)]/70";
+      default:
+        return "bg-[var(--theme-card-bg)] border-2 border-[var(--theme-card-border)] hover:border-[var(--theme-text-accent)]";
+    }
+  };
+
+  const getTextColor = () => {
+    return tier === "title" ? "text-white" : "text-[var(--theme-text-primary)]";
+  };
+
+  const getLogoHeight = () => {
+    switch (tier) {
+      case "title":
+        return "h-32"; // Largest for title sponsors
+      case "platinum":
+        return "h-24"; // Medium-large for platinum
+      case "gold":
+        return "h-20"; // Medium for gold
+      default:
+        return "h-16"; // Smallest for partners
+    }
+  };
+
+  const content = (
+    <div
+      className={`h-full flex flex-col items-center justify-center rounded-xl p-8 shadow-lg hover:shadow-2xl transition-all ${getTierStyles()} ${
+        url ? "cursor-pointer" : ""
+      }`}
+    >
+      {logo ? (
+        <div className="flex flex-col items-center gap-4 w-full">
+          <div className={`relative w-full ${getLogoHeight()} flex items-center justify-center`}>
+            <img
+              src={logo}
+              alt={`${name} logo`}
+              className="max-w-full max-h-full object-contain dark:invert dark:hue-rotate-180"
+            />
+          </div>
+          <h3 className={`font-bold text-xl text-center ${getTextColor()}`}>
+            {name}
+          </h3>
+        </div>
+      ) : (
+        <h3 className={`font-bold text-2xl text-center ${getTextColor()}`}>
+          {name}
+        </h3>
+      )}
+    </div>
+  );
+
+  return (
+    <motion.div
+      ref={ref}
+      initial={{ opacity: 0, scale: 0.9 }}
+      animate={
+        isInView
+          ? {
+              opacity: 1,
+              scale: 1,
+              transition: {
+                delay: delay,
+                type: "spring",
+                stiffness: 60,
+                damping: 15,
+              },
+            }
+          : { opacity: 0, scale: 0.9 }
+      }
+      whileHover={{ scale: tier === "title" ? 1.1 : 1.05, y: -8 }}
+      transition={{
+        type: "spring",
+        stiffness: 60,
+        damping: 15,
+      }}
+      className="h-full"
+    >
+      {url ? (
+        <a
+          href={url}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="h-full block"
+        >
+          {content}
+        </a>
+      ) : (
+        content
+      )}
+    </motion.div>
+  );
+}
+
 function PrizeItem({
   emoji,
   title,
@@ -977,6 +1094,118 @@ export default function Hackathon() {
               </li>
             </ul>
           </motion.div>
+        </div>
+      </section>
+
+      {/* Sponsors Section */}
+      <section className="py-16 px-4 sm:px-8 bg-gradient-to-b from-[var(--theme-gradient-accent)] to-transparent">
+        <div className="max-w-6xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="text-center mb-12"
+          >
+            <Heading level="h2" className="text-4xl sm:text-5xl font-bold mb-4">
+              Our{" "}
+              <span className="text-[var(--theme-text-accent)]">Sponsors</span>
+            </Heading>
+            <Text size="lg" variant="secondary">
+              Thank you to our amazing sponsors who make this event possible
+            </Text>
+          </motion.div>
+
+          {/* Title Sponsors */}
+          <div className="mb-12">
+            <h3 className="text-2xl font-bold text-center mb-6 text-[var(--theme-text-accent)]">
+              Title Sponsors
+            </h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+              <SponsorCard
+                name="Anthropic"
+                tier="title"
+                delay={0}
+                url="https://anthropic.com"
+                logo="/assets/hackathon/sponsors/anthropic.png"
+              />
+
+              <SponsorCard
+                name="EtherFi"
+                tier="title"
+                delay={0.1}
+                url="https://ether.fi"
+                logo="/assets/hackathon/sponsors/etherfi.png"
+              />
+            </div>
+          </div>
+
+          {/* Platinum Sponsors */}
+          <div className="mb-12">
+            <h3 className="text-xl font-bold text-center mb-6 text-[var(--theme-text-dark)]">
+              Platinum Sponsors
+            </h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              <SponsorCard
+                name="Base"
+                tier="platinum"
+                delay={0.2}
+                url="https://base.org"
+                logo="/assets/hackathon/sponsors/base.svg"
+              />
+              <SponsorCard
+                name="Acorns"
+                tier="platinum"
+                delay={0.3}
+                url="https://acorns.com"
+                logo="/assets/hackathon/sponsors/acorns.svg"
+              />
+              <SponsorCard
+                name="Streetsmart"
+                tier="platinum"
+                delay={0.4}
+                url="https://streetsmart.com"
+                logo="/assets/hackathon/sponsors/streetsmart.svg"
+
+              />
+            </div>
+          </div>
+
+          {/* Partner Sponsors */}
+          <div>
+            <h3 className="text-lg font-bold text-center mb-6 text-[var(--theme-text-dark)]">
+              Partners
+            </h3>
+            <div className="flex flex-wrap justify-center gap-4 max-w-4xl mx-auto">
+              <div className="w-full md:w-[calc(50%-0.5rem)] lg:w-[calc(25%-0.75rem)]">
+                <SponsorCard
+                  name="ASU GDSC"
+                  tier="partner"
+                  delay={0.5}
+                  url="https://www.asudsc.com/"
+                  logo="/assets/hackathon/sponsors/gdsc.webp"
+                />
+              </div>
+              <div className="w-full md:w-[calc(50%-0.5rem)] lg:w-[calc(25%-0.75rem)]">
+                <SponsorCard
+                  name="Red Bull"
+                  tier="partner"
+                  delay={0.6}
+                  url="https://redbull.com"
+                  logo="/assets/hackathon/sponsors/redbull.png"
+                />
+              </div>
+              <div className="w-full md:w-[calc(50%-0.5rem)] lg:w-[calc(25%-0.75rem)]">
+                <SponsorCard
+                  name="SoDA"
+                  tier="partner"
+                  delay={0.7}
+                  url="https://thesoda.io/"
+                  logo="/assets/hackathon/sponsors/soda.svg"
+                />
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
