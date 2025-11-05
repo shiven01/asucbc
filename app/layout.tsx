@@ -51,7 +51,7 @@ export default function RootLayout({
         />
         <meta name="twitter:image" content="/assets/og/splash.png" />
       </head>
-      <body className={`${poppins.variable} antialiased`}>
+      <body className={`${poppins.variable} antialiased absolute top-0 left-0 w-full h-[100dvh] overflow-auto`}>
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
