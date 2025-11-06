@@ -960,9 +960,9 @@ export default function Hackathon() {
                 description="Optional team-based Minecraft mini-games tournament. Prizes for winners. Relaxation area for those who prefer to rest"
               />
               <ScheduleItem
-                time="9:30 PM - 12:00 AM"
-                title="Evening Hacking Sprint"
-                description="Snacks and energy drinks available"
+                time="9:30 PM"
+                title="Go Home and Rest!"
+                description="Remember to get a good night's sleep, or take advantage of it to hack overnight!"
               />
             </div>
 
@@ -971,34 +971,29 @@ export default function Hackathon() {
               <h3 className="text-3xl font-bold mb-8 text-[var(--theme-text-accent)]">
                 Day 2 - November 9
               </h3>
-              <ScheduleItem
-                time="12:00 AM - 6:00 AM"
-                title="Overnight Hacking & Rest"
-                description="Quiet hours for sleeping. Dedicated space for night owl teams. Midnight pizza at 2 AM"
-              />
               <ScheduleItem time="6:00 AM - 7:00 AM" title="Breakfast" />
               <ScheduleItem
-                time="7:00 AM - 10:00 AM"
+                time="9:00 AM - 10:00 AM"
                 title="Final Sprint"
                 description="Last push for features and polish. Code freeze reminder at 9:30 AM"
               />
               <ScheduleItem
-                time="10:00 AM - 10:30 AM"
+                time="12:00 PM - 12:30 PM"
                 title="Submission Deadline & Setup"
-                description="Hard deadline for submissions. Teams set up demo stations"
+                description="Hard deadline for submissions. Teams prepare demos"
               />
               <ScheduleItem
-                time="10:30 AM - 12:00 PM"
+                time="12:30 PM - 3:00 PM"
                 title="Judging & Demos"
-                description="Teams present to judges (3 min demos + 1 min Q&A). Expo-style viewing for other participants"
+                description="Teams present a video demo of their projects to judges. We will be screening projects for compliance with hackathon rules"
               />
               <ScheduleItem
-                time="12:00 PM - 1:00 PM"
-                title="Closing Ceremony & Lunch"
-                description="Winner announcements for each track + grand prize. Sponsor remarks. Distribution of prizes. Closing lunch"
+                time="3:00 PM - 4:00 PM"
+                title="Closing Ceremony"
+                description="Winner announcements for each track + grand prize. Sponsor remarks. Distribution of prizes. Closing remarks"
               />
               <ScheduleItem
-                time="1:00 PM"
+                time="4:00 PM"
                 title="Event Ends"
                 description="See you next year!"
               />
@@ -1061,7 +1056,7 @@ export default function Hackathon() {
             <PrizeItem
               emoji="🎮"
               title="Minecraft Minigame Winners"
-              prizes="Plushies"
+              prizes="???"
               delay={0.5}
             />
           </div>
