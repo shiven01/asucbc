@@ -945,22 +945,17 @@ export default function Hackathon() {
                 description="Teams finalize and register their projects. Access to mentors for initial concept validation. Lunch available"
               />
               <ScheduleItem
-                time="1:00 PM - 6:00 PM"
+                time="1:00 PM - 8:00 PM"
                 title="Hacking Sprint #1"
                 description="Mentors circulating, help desk for API issues, track-specific mentor hours"
               />
-              <ScheduleItem time="6:00 PM - 7:00 PM" title="Dinner Break" />
               <ScheduleItem
-                time="7:00 PM - 8:30 PM"
-                title="Hacking Sprint #2"
-              />
-              <ScheduleItem
-                time="8:30 PM - 9:30 PM"
+                time="8:00 PM - 9:00 PM"
                 title="Minecraft Tournament Break! 🎮"
                 description="Optional team-based Minecraft mini-games tournament. Prizes for winners. Relaxation area for those who prefer to rest"
               />
               <ScheduleItem
-                time="9:30 PM"
+                time="9:00 PM"
                 title="Go Home and Rest!"
                 description="Remember to get a good night's sleep, or take advantage of it to hack overnight!"
               />
