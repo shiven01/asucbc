@@ -2,9 +2,11 @@ import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
-import { ThemeProvider } from "./contexts/ThemeContext";
+import { ThemeProvider } from "./components/ThemeProvider";
 import DarkModeToggle from "./components/DarkModeToggle";
+import { Analyze } from "./components/analytics/Analyze";
 import "./globals.css";
+import Script from "next/script";
 
 const poppins = Poppins({
   variable: "--font-poppins",
@@ -26,9 +28,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <head>
-                <title>ASU Claude Builder Club</title>
+        <title>ASU Claude Builder Club</title>
         <meta
           name="description"
           content="ASU Claude Builder Club - Building with Claude AI"
@@ -50,12 +52,27 @@ export default function RootLayout({
         <meta name="twitter:image" content="/assets/og/splash.png" />
       </head>
       <body className={`${poppins.variable} antialiased`}>
-        <ThemeProvider>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
           {children}
           <DarkModeToggle />
           <Analytics />
           <SpeedInsights />
+          <Analyze />
         </ThemeProvider>
+        <Script
+          src="https://asucbc-umami.vercel.app/script.js"
+          data-website-id={
+            process.env.NEXT_PUBLIC_LOCAL_UMAMI_OVERRIDE_ID ||
+            "407772a6-dc54-4c85-8e46-327d20c45c26"
+          }
+          data-auto-track="false"
+          strategy="afterInteractive"
+        />
       </body>
     </html>
   );
