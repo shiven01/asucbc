@@ -3,10 +3,19 @@
 import { motion } from "framer-motion";
 import { HTMLAttributes, forwardRef } from "react";
 
-export interface CardProps extends Omit<HTMLAttributes<HTMLDivElement>, 'onDrag' | 'onDragStart' | 'onDragEnd' | 'onAnimationStart' | 'onAnimationEnd'> {
+export interface CardProps
+  extends Omit<
+    HTMLAttributes<HTMLDivElement>,
+    | "onDrag"
+    | "onDragStart"
+    | "onDragEnd"
+    | "onAnimationStart"
+    | "onAnimationEnd"
+  > {
   hoverable?: boolean;
   animated?: boolean;
   gradient?: boolean;
+  childrenAreRelative?: boolean;
   children: React.ReactNode;
 }
 
@@ -18,6 +27,7 @@ const Card = forwardRef<HTMLDivElement, CardProps>(
       gradient = false,
       children,
       className = "",
+      childrenAreRelative = true,
       ...props
     },
     ref
@@ -94,7 +104,11 @@ const Card = forwardRef<HTMLDivElement, CardProps>(
               />
             </>
           )}
-          <div className="relative z-10">{children}</div>
+          {childrenAreRelative ? (
+            <div className="relative z-10">{children}</div>
+          ) : (
+            children
+          )}
         </div>
       );
     }
@@ -160,7 +174,11 @@ const Card = forwardRef<HTMLDivElement, CardProps>(
             />
           </>
         )}
-        <div className="relative z-10">{children}</div>
+        {childrenAreRelative ? (
+          <div className="relative z-10">{children}</div>
+        ) : (
+          children
+        )}
       </motion.div>
     );
   }

@@ -68,7 +68,7 @@ const itemVariants = {
 
 export default function Home() {
   return (
-    <div className="min-h-[100dvh] max-h-[100dvh] flex flex-col relative overflow-y-auto">
+    <div className="max-h-full flex flex-col ">
       <Header />
 
       <motion.div
