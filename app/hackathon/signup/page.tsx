@@ -67,7 +67,7 @@ const formVariants = {
 
 export default function Hackathon() {
   return (
-    <div className="min-h-full flex flex-col overflow-y-auto">
+    <div className="max-h-full flex flex-col">
       <Header />
       <div className="font-sans flex-1 pt-4 px-4 pb-0 sm:pt-8 sm:px-8 md:p-20">
         <div className="max-w-4xl mx-auto">
