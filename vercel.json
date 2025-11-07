@@ -1,4 +1,18 @@
 {
+  "$schema": "https://openapi.vercel.sh/vercel.json",
   "regions": ["sfo1"],
-  "framework": "nextjs"
+  "framework": "nextjs",
+  "redirects": [
+    {
+      "source": "/(.*)",
+      "has": [
+        {
+          "type": "host",
+          "value": "asucbc.vercel.app"
+        }
+      ],
+      "destination": "https://claudebuilder.club/$1",
+      "statusCode": 301
+    }
+  ]
 }
