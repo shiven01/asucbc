@@ -5,9 +5,10 @@ import { useRef, useState, useEffect } from "react";
 import Confetti from "react-confetti-boom";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
-import Countdown from "../components/Countdown";
+const Countdown = dynamic(() => import("../components/Countdown"), { ssr: false });
 import { Heading, Text, Card, Button } from "../components/ui";
 import Link from "next/link";
+import dynamic from "next/dynamic";
 
 const headerVariants = {
   hidden: { opacity: 0, y: -30 },
@@ -700,7 +701,7 @@ function JudgeCard({
       }}
       className="h-full"
     >
-      <div className="h-full bg-[var(--theme-card-bg)] border-2 border-[var(--theme-card-border)] hover:border-[var(--theme-text-accent)] rounded-xl p-6 shadow-lg hover:shadow-2xl transition-all relative overflow-hidden">
+      <div className="h-full bg-[var(--theme-card-bg)] border-2 border-[var(--theme-card-border)] hover:border-[var(--theme-text-accent)] rounded-xl p-6 shadow-lg hover:shadow-2xl transition-all duration-300 relative overflow-hidden">
         {/* Top accent gradient */}
         <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-[var(--theme-text-accent)] to-[var(--theme-button-alternate-bg)]" />
 
