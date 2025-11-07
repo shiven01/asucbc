@@ -81,7 +81,10 @@ export const teamMembers: TeamMember[] = [
     id: "anirudh",
     name: "Anirudh Manjesh",
     position: "Operations",
-    image: "/staff/claude.svg",
+    image: "/staff/anirudh.png",
+    linkedinUrl: "https://www.linkedin.com/in/anirudh-manjesh-978ba5194/",
+    description:
+      "Computer Science senior at ASU’s Barrett Honors College, experienced in full-stack development, AI/ML, and accessibility technology research. Passionate about building agentic AI systems, collaborating on open source projects, and optimizing technology for real-world impact. Active in hackathons and technical conferences, with a proven track record in deploying machine learning solutions and leading research initiatives. Always exploring new ways to advance software, mentor peers, and make technology more inclusive.",
   },
   {
     id: "joana",
@@ -96,7 +99,9 @@ export const teamMembers: TeamMember[] = [
     id: "erick",
     name: "Erick Li",
     position: "Business + Finance",
-    image: "/staff/claude.svg",
+    image: "/staff/erick.png",
+    description:
+      "Erick Li is a sophomore majoring in finance with a minor in data science at Arizona State University. He is a polyglot and entrepreneur at the same time. He has experience with front end development, and his expertise lies in business and outreach.",
   },
   {
     id: "farnaz",

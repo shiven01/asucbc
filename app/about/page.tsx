@@ -89,15 +89,14 @@ export default function About() {
               </Text>
 
               {/* Feature Cards */}
-              <motion.div
-                variants={containerVariants}
-                className="grid grid-cols-1 md:grid-cols-2 gap-6"
-              >
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <motion.div
                   custom={0}
+                  initial="hidden"
+                  animate="visible"
                   variants={cardVariants}
                 >
-                  <Card hoverable gradient className="cursor-pointer h-full">
+                  <Card hoverable gradient animated={false} className="cursor-pointer h-full">
                     <Heading level="h3" animate={false} className="mb-3">
                       AI Innovation
                     </Heading>
@@ -111,9 +110,11 @@ export default function About() {
 
                 <motion.div
                   custom={1}
+                  initial="hidden"
+                  animate="visible"
                   variants={cardVariants}
                 >
-                  <Card hoverable gradient className="cursor-pointer h-full">
+                  <Card hoverable gradient animated={false} className="cursor-pointer h-full">
                     <Heading level="h3" animate={false} className="mb-3">
                       Community Learning
                     </Heading>
@@ -126,9 +127,11 @@ export default function About() {
 
                 <motion.div
                   custom={2}
+                  initial="hidden"
+                  animate="visible"
                   variants={cardVariants}
                 >
-                  <Card hoverable gradient className="cursor-pointer h-full">
+                  <Card hoverable gradient animated={false} className="cursor-pointer h-full">
                     <Heading level="h3" animate={false} className="mb-3">
                       Hands-on Projects
                     </Heading>
@@ -142,9 +145,11 @@ export default function About() {
 
                 <motion.div
                   custom={3}
+                  initial="hidden"
+                  animate="visible"
                   variants={cardVariants}
                 >
-                  <Card hoverable gradient className="cursor-pointer h-full">
+                  <Card hoverable gradient animated={false} className="cursor-pointer h-full">
                     <Heading level="h3" animate={false} className="mb-3">
                       Future-Ready Skills
                     </Heading>
@@ -154,7 +159,7 @@ export default function About() {
                     </Text>
                   </Card>
                 </motion.div>
-              </motion.div>
+              </div>
             </div>
           </div>
 

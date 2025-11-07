@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import GradualBlur from "./ui/GradualBlur";
 
 export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -71,8 +72,9 @@ export default function Header() {
   };
 
   return (
-    <header className="w-full mesh-background ">
-      <div className="px-4 sm:px-6 lg:px-8">
+    <header className="w-full mesh-background-header top-0 sticky z-50 backdrop-blur-md border-b border-[var(--theme-card-border)] shadow-sm">
+      {/* <GradualBlur position="bottom" strength={3} height="4rem" className={`z-0 relative`} /> */}
+      <div className="px-4 sm:px-6 lg:px-8 relative z-20">
         <div className="flex items-center justify-between h-16 overflow-visible">
           {/* Logo on the left */}
           <motion.div
