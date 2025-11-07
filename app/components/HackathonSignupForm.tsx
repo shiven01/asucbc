@@ -19,6 +19,8 @@ interface FormData {
 
 interface FormErrors {
   track?: string;
+  isAsuStudent?: string;
+  isAsuOnlineStudent?: string;
   firstName?: string;
   lastName?: string;
   schoolEmail?: string;
@@ -53,6 +55,7 @@ export default function HackathonSignupForm() {
     setFormData({
       track: '',
       isAsuOnlineStudent: false,
+      isAsuStudent: true,
       firstName: '',
       lastName: '',
       schoolEmail: '',

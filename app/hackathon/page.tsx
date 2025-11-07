@@ -1355,7 +1355,7 @@ export default function Hackathon() {
                   tier="partner"
                   delay={0.7}
                   url="https://thesiliconoasis.org/"
-                  logo="/assets/hackathon/sponsors/siliconoasis.svg"
+                  logo="/assets/hackathon/sponsors/siliconoasis.webp"
                 />
               </div>
             </div>
