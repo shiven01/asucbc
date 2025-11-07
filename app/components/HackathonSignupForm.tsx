@@ -6,6 +6,7 @@ import HackathonCongratulations from "./HackathonCongratulations";
 
 interface FormData {
   track: string;
+  isAsuStudent: boolean;
   isAsuOnlineStudent: boolean;
   firstName: string;
   lastName: string;
@@ -18,7 +19,6 @@ interface FormData {
 
 interface FormErrors {
   track?: string;
-  isAsuOnlineStudent?: string;
   firstName?: string;
   lastName?: string;
   schoolEmail?: string;
@@ -30,6 +30,7 @@ interface FormErrors {
 export default function HackathonSignupForm() {
   const [formData, setFormData] = useState<FormData>({
     track: '',
+    isAsuStudent: true,
     isAsuOnlineStudent: false,
     firstName: '',
     lastName: '',
@@ -67,10 +68,6 @@ export default function HackathonSignupForm() {
 
     if (!formData.track) {
       newErrors.track = "Please select a track";
-    }
-
-    if (formData.isAsuOnlineStudent === undefined || formData.isAsuOnlineStudent === null) {
-      newErrors.isAsuOnlineStudent = 'Please confirm if you are an ASU Online student';
     }
 
     if (!formData.firstName.trim()) {
@@ -136,8 +133,12 @@ export default function HackathonSignupForm() {
 
     try {
       const formDataToSend = new FormData();
+      const isAsuStudent = formData.isAsuStudent === true;
+      const isAsuOnlineStudent = isAsuStudent && formData.isAsuOnlineStudent === true;
+
       formDataToSend.append('track', formData.track);
-      formDataToSend.append('isAsuOnlineStudent', formData.isAsuOnlineStudent.toString());
+      formDataToSend.append('isAsuStudent', String(isAsuStudent));
+      formDataToSend.append('isAsuOnlineStudent', String(isAsuOnlineStudent));
       formDataToSend.append('firstName', formData.firstName);
       formDataToSend.append('lastName', formData.lastName);
       formDataToSend.append('schoolEmail', formData.schoolEmail);
@@ -161,7 +162,18 @@ export default function HackathonSignupForm() {
             experienceLevel: formData.experienceLevel
           });
         }
-        // Don't clear form data here - only clear when user explicitly resets
+        setFormData({
+          track: '',
+          isAsuStudent: true,
+          isAsuOnlineStudent: false,
+          firstName: '',
+          lastName: '',
+          schoolEmail: '',
+          year: '',
+          hackathonsParticipated: 0,
+          experienceLevel: "",
+          dietaryRestrictions: "",
+        });
       } else {
         setSubmitStatus("error");
         // Track submission error
@@ -241,44 +253,73 @@ export default function HackathonSignupForm() {
           )}
         </div>
 
-        {/* ASU Online Student Confirmation */}
+        {/* ASU Affiliation */}
         <div>
           <Label required>
-            Are you an ASU Online Student?
+            Are you an ASU student?
           </Label>
           <ButtonGroup
             options={[
               {
                 value: true,
                 label: 'Yes',
-                description: 'I am an ASU Online student'
+                description: 'I am currently enrolled at ASU'
               },
               {
                 value: false,
                 label: 'No',
-                description: 'I am an in-person student'
+                description: 'I am not an ASU Student'
               }
             ]}
-            value={formData.isAsuOnlineStudent}
+            value={formData.isAsuStudent}
             onChange={(value) => {
-              setFormData((p) => ({ ...p, isAsuOnlineStudent: value }));
-              if (errors.isAsuOnlineStudent) {
-                setErrors((prev) => ({ ...prev, isAsuOnlineStudent: undefined }));
-              }
-              // Track ASU Online status
+              setFormData((prev) => ({
+                ...prev,
+                isAsuStudent: value,
+                isAsuOnlineStudent: false,
+              }));
               if (typeof window !== 'undefined' && (window as any).umami) {
-                (window as any).umami.track('Hackathon ASU Online Status', { isOnline: value });
+                (window as any).umami.track('Hackathon ASU Affiliation', { isAsuStudent: value });
               }
             }}
             columns={2}
           />
-          {errors.isAsuOnlineStudent && (
-            <p className="mt-1 text-sm text-red-600">{errors.isAsuOnlineStudent}</p>
-          )}
-          <Text size="xs" variant="secondary" className="mt-2">
-            We will be verifying each one individually for proof later
-          </Text>
         </div>
+
+        {/* ASU Online Student Confirmation */}
+        {formData.isAsuStudent && (
+          <div>
+            <Label required>
+              Are you an ASU Online Student?
+            </Label>
+            <ButtonGroup
+              options={[
+                {
+                  value: true,
+                  label: 'Yes',
+                  description: 'I am an ASU Online student'
+                },
+                {
+                  value: false,
+                  label: 'No',
+                description: 'I am an in-person student'
+                }
+              ]}
+              value={formData.isAsuOnlineStudent}
+              onChange={(value) => {
+                setFormData((p) => ({ ...p, isAsuOnlineStudent: value }));
+                // Track ASU Online status
+                if (typeof window !== 'undefined' && (window as any).umami) {
+                  (window as any).umami.track('Hackathon ASU Online Status', { isOnline: value });
+                }
+              }}
+              columns={2}
+            />
+            <Text size="xs" variant="secondary" className="mt-2">
+            We will be verifying each one individually for proof later
+            </Text>
+          </div>
+        )}
 
         {/* First Name */}
         <div>
@@ -326,7 +367,11 @@ export default function HackathonSignupForm() {
             value={formData.schoolEmail}
             onChange={handleInputChange}
             error={errors.schoolEmail}
-            placeholder="your.email@asu.edu"
+            placeholder={
+              formData.isAsuStudent === false
+                ? "name@example.com"
+                : "your.email@asu.edu"
+            }
             fullWidth
           />
         </div>
