@@ -580,7 +580,7 @@ function SponsorCard({
   const getTierStyles = () => {
     switch (tier) {
       case "title":
-        return "scale-100 bg-gradient-to-br from-[var(--theme-text-accent)] to-[var(--theme-button-alternate-bg)] border-4 border-[var(--theme-text-accent)]";
+        return "scale-100 bg-gradient-to-br from-[var(--theme-text-accent)] to-[var(--theme-button-alternate-bg)] border-4 border-[var(--theme-text-accent)] shadow-2xl shadow-[var(--theme-text-accent)]/30 relative";
       case "platinum":
         return "bg-[var(--theme-card-bg)] border-3 border-[var(--theme-text-accent)]";
       case "gold":
@@ -609,13 +609,45 @@ function SponsorCard({
 
   const content = (
     <div
-      className={`h-full flex flex-col items-center justify-center rounded-xl p-8 shadow-lg hover:shadow-2xl transition-all ${getTierStyles()} ${
+      className={`h-full flex flex-col items-center justify-center rounded-xl ${
+        tier === "title" ? "p-10" : "p-8"
+      } shadow-lg hover:shadow-2xl transition-all ${getTierStyles()} ${
         url ? "cursor-pointer" : ""
       }`}
     >
+      {/* Title Sponsor Badge */}
+      {tier === "title" && (
+        <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-4 py-1 bg-white dark:bg-gray-900 border-2 border-[var(--theme-text-accent)] rounded-full z-10">
+          <span className="text-xs font-bold text-[var(--theme-text-accent)] uppercase tracking-wider">
+            Title Sponsor
+          </span>
+        </div>
+      )}
+
+      {/* Animated glow effect for title sponsors */}
+      {tier === "title" && (
+        <motion.div
+          className="absolute inset-0 rounded-xl opacity-50"
+          animate={{
+            boxShadow: [
+              "0 0 20px rgba(204, 120, 92, 0.3)",
+              "0 0 40px rgba(204, 120, 92, 0.5)",
+              "0 0 20px rgba(204, 120, 92, 0.3)",
+            ],
+          }}
+          transition={{
+            duration: 2,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
+        />
+      )}
+
       {logo ? (
-        <div className="flex flex-col items-center gap-4 w-full">
-          <div className={`relative w-full ${getLogoHeight()} flex items-center justify-center`}>
+        <div className="flex flex-col items-center gap-4 w-full relative z-10">
+          <div
+            className={`relative w-full ${getLogoHeight()} flex items-center justify-center`}
+          >
             <img
               src={logo}
               alt={`${name} logo`}
@@ -627,7 +659,7 @@ function SponsorCard({
           </h3>
         </div>
       ) : (
-        <h3 className={`font-bold text-2xl text-center ${getTextColor()}`}>
+        <h3 className={`font-bold text-2xl text-center ${getTextColor()} relative z-10`}>
           {name}
         </h3>
       )}
@@ -1107,17 +1139,25 @@ export default function Hackathon() {
           </motion.div>
 
           {/* Title Sponsors */}
-          <div className="mb-12">
-            <h3 className="text-2xl font-bold text-center mb-6 text-[var(--theme-text-accent)]">
+          <div className="mb-16 -mx-4 sm:-mx-8 px-4 sm:px-8 py-12 bg-gradient-to-b from-[var(--theme-gradient-accent)] via-transparent to-transparent">
+            <h3 className="text-2xl font-bold text-center mb-8 text-[var(--theme-text-accent)]">
               Title Sponsors
             </h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 max-w-6xl mx-auto">
               <SponsorCard
                 name="Anthropic"
                 tier="title"
                 delay={0}
                 url="https://anthropic.com"
                 logo="/assets/hackathon/sponsors/anthropic.png"
+              />
+
+              <SponsorCard
+                name="Polymarket"
+                tier="title"
+                delay={0.05}
+                url="https://polymarket.com"
+                logo="/assets/hackathon/sponsors/polymarket.svg"
               />
 
               <SponsorCard
@@ -1156,7 +1196,6 @@ export default function Hackathon() {
                 delay={0.4}
                 url="https://streetsmart.com"
                 logo="/assets/hackathon/sponsors/streetsmart.svg"
-
               />
             </div>
           </div>
@@ -1167,15 +1206,6 @@ export default function Hackathon() {
               Partners
             </h3>
             <div className="flex flex-wrap justify-center gap-4 max-w-4xl mx-auto">
-              <div className="w-full md:w-[calc(50%-0.5rem)] lg:w-[calc(25%-0.75rem)]">
-                <SponsorCard
-                  name="ASU GDSC"
-                  tier="partner"
-                  delay={0.5}
-                  url="https://www.asudsc.com/"
-                  logo="/assets/hackathon/sponsors/gdsc.webp"
-                />
-              </div>
               <div className="w-full md:w-[calc(50%-0.5rem)] lg:w-[calc(25%-0.75rem)]">
                 <SponsorCard
                   name="Red Bull"
