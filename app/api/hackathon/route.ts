@@ -28,6 +28,7 @@ export async function POST(request: NextRequest) {
 
     // Extract form data
     const track = formData.get("track") as string;
+    const isAsuStudent = formData.get("isAsuStudent") === "true";
     const isAsuOnlineStudent = formData.get("isAsuOnlineStudent") === "true";
     const firstName = formData.get("firstName") as string;
     const lastName = formData.get("lastName") as string;
@@ -42,8 +43,6 @@ export async function POST(request: NextRequest) {
     // Validate required fields
     if (
       !track ||
-      isAsuOnlineStudent === undefined ||
-      isAsuOnlineStudent === null ||
       !firstName ||
       !lastName ||
       !schoolEmail ||
@@ -76,7 +75,8 @@ export async function POST(request: NextRequest) {
                 { name: "School Email", value: schoolEmail },
                 { name: "Year", value: year, inline: true },
                 { name: "Track", value: track, inline: true },
-                { name: "ASU Online Student", value: isAsuOnlineStudent ? "Yes" : "No" },
+                { name: "ASU Student", value: isAsuStudent ? "Yes" : "No", inline: true },
+                { name: "ASU Online Student", value: isAsuOnlineStudent ? "Yes" : "No", inline: true },
                 { name: "Hackathons Participated", value: hackathonsParticipated, inline: true },
                 { name: "Experience Level", value: experienceLevel, inline: true },
               ],
@@ -99,6 +99,7 @@ Personal Information:
 - School Email: ${schoolEmail}
 - Year: ${year}
 - Track: ${track}
+- ASU Student: ${isAsuStudent ? "Yes" : "No"}
 - ASU Online Student: ${isAsuOnlineStudent ? "Yes" : "No"}
 - Hackathons Participated: ${hackathonsParticipated}
 - Experience Level: ${experienceLevel}
@@ -126,6 +127,7 @@ Registration submitted on: ${new Date().toLocaleString()}
       console.log("Attempting to save to Google Sheets...");
       const sheetsData = {
         track,
+        isAsuStudent,
         isAsuOnlineStudent,
         firstName,
         lastName,

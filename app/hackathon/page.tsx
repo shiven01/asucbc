@@ -5,9 +5,10 @@ import { useRef, useState, useEffect } from "react";
 import Confetti from "react-confetti-boom";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
-import Countdown from "../components/Countdown";
+const Countdown = dynamic(() => import("../components/Countdown"), { ssr: false });
 import { Heading, Text, Card, Button } from "../components/ui";
 import Link from "next/link";
+import dynamic from "next/dynamic";
 
 const headerVariants = {
   hidden: { opacity: 0, y: -30 },
@@ -100,6 +101,7 @@ interface TrackCardProps {
   link?: string;
   linkText?: string;
   mystery?: boolean;
+  sponsored?: boolean;
 }
 
 const killMessages = [
@@ -120,6 +122,7 @@ function TrackCard({
   link,
   linkText,
   mystery = false,
+  sponsored = false,
 }: TrackCardProps) {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-50px" });
@@ -513,7 +516,15 @@ function TrackCard({
       }}
       className="h-full"
     >
-      <Card gradient animated={false} className="h-full flex flex-col">
+      <Card gradient animated={false} className="h-full flex flex-col relative">
+        {/* Sponsored Track Badge */}
+        {sponsored && (
+          <div className="absolute -top-2 -right-2 px-3 py-1 bg-gradient-to-br from-[var(--theme-text-accent)] to-[var(--theme-button-alternate-bg)] rounded-full border-2 border-[var(--theme-card-bg)] z-10 shadow-lg">
+            <span className="text-xs font-bold text-white uppercase tracking-wider">
+              💰 Sponsored
+            </span>
+          </div>
+        )}
         <div className="text-4xl mb-3">{icon}</div>
         <h3 className="font-bold text-xl mb-2 text-[var(--theme-text-primary)]">
           {title}
@@ -551,12 +562,177 @@ function TrackCard({
   );
 }
 
+interface RuleItemProps {
+  number: number;
+  icon: string;
+  title: string;
+  description: string;
+  delay?: number;
+}
+
+function RuleItem({
+  number,
+  icon,
+  title,
+  description,
+  delay = 0,
+}: RuleItemProps) {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-50px" });
+
+  return (
+    <motion.div
+      ref={ref}
+      initial={{ opacity: 0, y: 30 }}
+      animate={
+        isInView
+          ? {
+              opacity: 1,
+              y: 0,
+              transition: {
+                delay: delay,
+                type: "spring",
+                stiffness: 60,
+                damping: 15,
+              },
+            }
+          : { opacity: 0, y: 30 }
+      }
+      whileHover={{ scale: 1.02, y: -4 }}
+      transition={{
+        type: "spring",
+        stiffness: 60,
+        damping: 15,
+      }}
+      className="h-full"
+    >
+      <div className="h-full bg-[var(--theme-card-bg)] border-2 border-[var(--theme-card-border)] hover:border-[var(--theme-text-accent)] rounded-xl p-6 shadow-lg hover:shadow-2xl transition-all relative overflow-hidden group">
+        {/* Animated gradient background on hover */}
+        <motion.div
+          className="absolute inset-0 bg-gradient-to-br from-[var(--theme-text-accent)]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+          style={{ zIndex: 0 }}
+        />
+
+        {/* Content */}
+        <div className="relative z-10 flex gap-4">
+          {/* Number badge */}
+          <div className="flex-shrink-0">
+            <div className="w-12 h-12 rounded-full bg-gradient-to-br from-[var(--theme-text-accent)] to-[var(--theme-button-alternate-bg)] flex items-center justify-center shadow-md">
+              <span className="text-white font-black text-lg">{number}</span>
+            </div>
+          </div>
+
+          {/* Text content */}
+          <div className="flex-1">
+            <div className="flex items-center gap-2 mb-2">
+              <span className="text-2xl">{icon}</span>
+              <h3 className="font-bold text-xl text-[var(--theme-text-primary)]">
+                {title}
+              </h3>
+            </div>
+            <p className="text-[var(--theme-text-dark)] leading-relaxed">
+              {description}
+            </p>
+          </div>
+        </div>
+
+        {/* Bottom accent line */}
+        <motion.div
+          className="absolute bottom-0 left-0 h-1 bg-gradient-to-r from-[var(--theme-text-accent)] to-[var(--theme-button-alternate-bg)]"
+          initial={{ width: "0%" }}
+          whileInView={{ width: "100%" }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: delay + 0.2 }}
+        />
+      </div>
+    </motion.div>
+  );
+}
+
 interface PrizeItemProps {
   emoji: string;
   title: string;
   prizes: string;
   delay?: number;
   highlight?: boolean;
+}
+
+interface JudgeCardProps {
+  name: string;
+  title: string;
+  company: string;
+  photo?: string;
+  delay?: number;
+}
+
+function JudgeCard({
+  name,
+  title,
+  company,
+  photo,
+  delay = 0,
+}: JudgeCardProps) {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-50px" });
+
+  return (
+    <motion.div
+      ref={ref}
+      initial={{ opacity: 0, y: 30 }}
+      animate={
+        isInView
+          ? {
+              opacity: 1,
+              y: 0,
+              transition: {
+                delay: delay,
+                type: "spring",
+                stiffness: 60,
+                damping: 15,
+              },
+            }
+          : { opacity: 0, y: 30 }
+      }
+      whileHover={{ scale: 1.05, y: -8 }}
+      transition={{
+        type: "spring",
+        stiffness: 60,
+        damping: 15,
+      }}
+      className="h-full"
+    >
+      <div className="h-full bg-[var(--theme-card-bg)] border-2 border-[var(--theme-card-border)] hover:border-[var(--theme-text-accent)] rounded-xl p-6 shadow-lg hover:shadow-2xl transition-all duration-300 relative overflow-hidden">
+        {/* Top accent gradient */}
+        <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-[var(--theme-text-accent)] to-[var(--theme-button-alternate-bg)]" />
+
+        <div className="flex flex-col items-center text-center">
+          {/* Judge photo */}
+          <div className="w-24 h-24 rounded-full bg-gradient-to-br from-[var(--theme-text-accent)] to-[var(--theme-button-alternate-bg)] p-1 mb-4">
+            <div className="w-full h-full rounded-full bg-[var(--theme-card-bg)] flex items-center justify-center overflow-hidden">
+              {photo ? (
+                <img
+                  src={photo}
+                  alt={`${name} photo`}
+                  className="w-full h-full object-cover"
+                />
+              ) : (
+                <span className="text-4xl">👤</span>
+              )}
+            </div>
+          </div>
+
+          {/* Judge info */}
+          <h3 className="font-bold text-xl mb-1 text-[var(--theme-text-primary)]">
+            {name}
+          </h3>
+          <p className="text-sm font-semibold text-[var(--theme-text-accent)] mb-1">
+            {title}
+          </p>
+          <p className="text-sm text-[var(--theme-text-dark)]">{company}</p>
+        </div>
+      </div>
+    </motion.div>
+  );
 }
 
 interface SponsorCardProps {
@@ -580,7 +756,7 @@ function SponsorCard({
   const getTierStyles = () => {
     switch (tier) {
       case "title":
-        return "scale-100 bg-gradient-to-br from-[var(--theme-text-accent)] to-[var(--theme-button-alternate-bg)] border-4 border-[var(--theme-text-accent)]";
+        return "scale-100 bg-gradient-to-br from-[var(--theme-text-accent)] to-[var(--theme-button-alternate-bg)] border-4 border-[var(--theme-text-accent)] shadow-2xl shadow-[var(--theme-text-accent)]/30 relative";
       case "platinum":
         return "bg-[var(--theme-card-bg)] border-3 border-[var(--theme-text-accent)]";
       case "gold":
@@ -609,13 +785,45 @@ function SponsorCard({
 
   const content = (
     <div
-      className={`h-full flex flex-col items-center justify-center rounded-xl p-8 shadow-lg hover:shadow-2xl transition-all ${getTierStyles()} ${
+      className={`h-full flex flex-col items-center justify-center rounded-xl ${
+        tier === "title" ? "p-10" : "p-8"
+      } shadow-lg hover:shadow-2xl transition-all ${getTierStyles()} ${
         url ? "cursor-pointer" : ""
       }`}
     >
+      {/* Title Sponsor Badge */}
+      {tier === "title" && (
+        <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-4 py-1 bg-white dark:bg-gray-900 border-2 border-[var(--theme-text-accent)] rounded-full z-10">
+          <span className="text-xs font-bold text-[var(--theme-text-accent)] uppercase tracking-wider">
+            Title Sponsor
+          </span>
+        </div>
+      )}
+
+      {/* Animated glow effect for title sponsors */}
+      {tier === "title" && (
+        <motion.div
+          className="absolute inset-0 rounded-xl opacity-50"
+          animate={{
+            boxShadow: [
+              "0 0 20px rgba(204, 120, 92, 0.3)",
+              "0 0 40px rgba(204, 120, 92, 0.5)",
+              "0 0 20px rgba(204, 120, 92, 0.3)",
+            ],
+          }}
+          transition={{
+            duration: 2,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
+        />
+      )}
+
       {logo ? (
-        <div className="flex flex-col items-center gap-4 w-full">
-          <div className={`relative w-full ${getLogoHeight()} flex items-center justify-center`}>
+        <div className="flex flex-col items-center gap-4 w-full relative z-10">
+          <div
+            className={`relative w-full ${getLogoHeight()} flex items-center justify-center`}
+          >
             <img
               src={logo}
               alt={`${name} logo`}
@@ -627,7 +835,9 @@ function SponsorCard({
           </h3>
         </div>
       ) : (
-        <h3 className={`font-bold text-2xl text-center ${getTextColor()}`}>
+        <h3
+          className={`font-bold text-2xl text-center ${getTextColor()} relative z-10`}
+        >
           {name}
         </h3>
       )}
@@ -853,55 +1063,29 @@ export default function Hackathon() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 auto-rows-fr">
             <TrackCard
               icon="📚"
-              title="Education & Accessibility"
-              description="Create tools that make learning more engaging, accessible, or personalized. Could include tutoring systems, interactive learning experiences, or accessibility tools."
+              title="Education & Social Good"
+              description="Create tools that make learning more engaging, accessible, or personalized. Or create solutions that address social challenges."
               delay={0.2}
             />
-
             <TrackCard
-              icon="❓"
-              title="Nice Try Reading This | Mystery Track 2"
-              description="Nice try! This track is a mystery and will be revealed soon. Stay tuned on our Discord for updates or come back later to see what exciting new challenge awaits!"
-              mystery={true}
-              link="https://v6.tet.moe"
-              linkText="You found the easter egg!"
+              icon="🛠️"
+              title="Developer Tools"
+              description="Create tools that enhance developer productivity, collaboration, or code quality using Claude API."
               delay={0.3}
             />
             <TrackCard
-              icon="❓"
-              title="Nice Try Reading This | Mystery Track 3"
-              description="Nice try! This track is a mystery and will be revealed soon. Stay tuned on our Discord for updates or come back later to see what exciting new challenge awaits!"
-              mystery={true}
-              link="https://v6.tet.moe"
-              linkText="You found the easter egg!"
-              delay={0.4}
+              icon="⛓️"
+              title="EtherFi x Claude"
+              description="Build innovative solutions combining EtherFi's liquid staking protocol with Claude's AI capabilities. Create tools for DeFi analytics, portfolio management, staking optimization, or educational resources about liquid staking."
+              delay={0}
+              sponsored={true}
             />
             <TrackCard
-              icon="❓"
-              title="Nice Try Reading This | Mystery Track 4"
-              description="Nice try! This track is a mystery and will be revealed soon. Stay tuned on our Discord for updates or come back later to see what exciting new challenge awaits!"
-              mystery={true}
-              link="https://v6.tet.moe"
-              linkText="You found the easter egg!"
-              delay={0.5}
-            />
-            <TrackCard
-              icon="❓"
-              title="Nice Try Reading This | Mystery Track 5"
-              description="Nice try! This track is a mystery and will be revealed soon. Stay tuned on our Discord for updates or come back later to see what exciting new challenge awaits!"
-              mystery={true}
-              link="https://v6.tet.moe"
-              linkText="You found the easter egg!"
-              delay={0.6}
-            />
-            <TrackCard
-              icon="❓"
-              title="Nice Try Reading This | Mystery Track 6"
-              description="Nice try! This track is a mystery and will be revealed soon. Stay tuned on our Discord for updates or come back later to see what exciting new challenge awaits!"
-              mystery={true}
-              link="https://v6.tet.moe"
-              linkText="You found the easter egg!"
-              delay={0.7}
+              icon="📊"
+              title="Polymarket x Claude"
+              description="Leverage Polymarket's prediction markets with Claude AI to build market analysis tools, trading assistants, event outcome analyzers, or educational platforms that make prediction markets more accessible."
+              delay={0.1}
+              sponsored={true}
             />
           </div>
         </div>
@@ -998,7 +1182,7 @@ export default function Hackathon() {
       </section>
 
       {/* Prizes Section */}
-      <section className="py-16 px-4 sm:px-8 bg-gradient-to-b from-transparent via-[var(--theme-gradient-accent)] to-transparent">
+      {/* <section className="py-16 px-4 sm:px-8 bg-gradient-to-b from-transparent via-[var(--theme-gradient-accent)] to-transparent">
         <div className="max-w-6xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -1012,35 +1196,43 @@ export default function Hackathon() {
               <span className="text-[var(--theme-text-accent)]">Rewards</span>
             </Heading>
             <Text size="lg" variant="secondary">
-              Over $1500 in prizes and API credits
+              Over $6500 in prizes and API credits
             </Text>
           </motion.div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12 auto-rows-fr">
             <PrizeItem
               emoji="🏆"
-              title="Grand Prize (Best Overall)"
+              title="First Place (Best in Claude Track)"
               prizes="$500 Claude API Credits + Nintendo Switch"
-              delay={0}
+              delay={0.1}
               highlight={true}
             />
             <PrizeItem
               emoji="🥈"
               title="Second Place"
               prizes="$250 Claude API Credits"
-              delay={0.1}
+              delay={0.2}
             />
             <PrizeItem
               emoji="🥉"
               title="Third Place"
               prizes="$150 Claude API Credits"
-              delay={0.2}
+              delay={0.3}
             />
             <PrizeItem
-              emoji="⭐"
-              title="Best per Track (6 winners)"
-              prizes="$100 API credits split + Claude merch"
-              delay={0.3}
+              emoji="📊"
+              title="Best Use of Polymarket with Claude"
+              prizes="$2500 per team"
+              delay={0}
+              highlight={false}
+            />
+            <PrizeItem
+              emoji="⛓️"
+              title="Best Use of EtherFi with Claude"
+              prizes="$2500 per team"
+              delay={0.05}
+              highlight={false}
             />
             <PrizeItem
               emoji="🎖️"
@@ -1055,37 +1247,8 @@ export default function Hackathon() {
               delay={0.5}
             />
           </div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.6 }}
-            className="bg-[var(--theme-card-bg)] border-2 border-[var(--theme-text-accent)] rounded-lg p-8"
-          >
-            <h3 className="text-2xl font-bold mb-4 text-[var(--theme-text-accent)]">
-              Additional Swag & Prizes
-            </h3>
-            <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-[var(--theme-text-dark)]">
-              <li className="flex items-center">
-                <span className="mr-2">🎵</span> Echo Pop (5 units)
-              </li>
-              <li className="flex items-center">
-                <span className="mr-2">🎮</span> Nintendo Switch
-              </li>
-              <li className="flex items-center">
-                <span className="mr-2">🎁</span> Mystery Prizes (5 units)
-              </li>
-              <li className="flex items-center">
-                <span className="mr-2">💬</span> Discord Nitro Classic x2
-              </li>
-              <li className="flex items-center">
-                <span className="mr-2">🧱</span> Lego Set
-              </li>
-            </ul>
-          </motion.div>
         </div>
-      </section>
+      </section> */}
 
       {/* Sponsors Section */}
       <section className="py-16 px-4 sm:px-8 bg-gradient-to-b from-[var(--theme-gradient-accent)] to-transparent">
@@ -1107,17 +1270,25 @@ export default function Hackathon() {
           </motion.div>
 
           {/* Title Sponsors */}
-          <div className="mb-12">
-            <h3 className="text-2xl font-bold text-center mb-6 text-[var(--theme-text-accent)]">
+          <div className="mb-16 -mx-4 sm:-mx-8 px-4 sm:px-8 py-12 bg-gradient-to-b from-[var(--theme-gradient-accent)] via-transparent to-transparent">
+            <h3 className="text-2xl font-bold text-center mb-8 text-[var(--theme-text-accent)]">
               Title Sponsors
             </h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 max-w-6xl mx-auto">
               <SponsorCard
                 name="Anthropic"
                 tier="title"
                 delay={0}
                 url="https://anthropic.com"
                 logo="/assets/hackathon/sponsors/anthropic.png"
+              />
+
+              <SponsorCard
+                name="Polymarket"
+                tier="title"
+                delay={0.05}
+                url="https://polymarket.com"
+                logo="/assets/hackathon/sponsors/polymarket.svg"
               />
 
               <SponsorCard
@@ -1135,7 +1306,7 @@ export default function Hackathon() {
             <h3 className="text-xl font-bold text-center mb-6 text-[var(--theme-text-dark)]">
               Platinum Sponsors
             </h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:w-1/2 lg:mx-auto gap-6">
               <SponsorCard
                 name="Base"
                 tier="platinum"
@@ -1144,19 +1315,11 @@ export default function Hackathon() {
                 logo="/assets/hackathon/sponsors/base.svg"
               />
               <SponsorCard
-                name="Acorns"
+                name="Red Bull"
                 tier="platinum"
-                delay={0.3}
-                url="https://acorns.com"
-                logo="/assets/hackathon/sponsors/acorns.svg"
-              />
-              <SponsorCard
-                name="Streetsmart"
-                tier="platinum"
-                delay={0.4}
-                url="https://streetsmart.com"
-                logo="/assets/hackathon/sponsors/streetsmart.svg"
-
+                delay={0.6}
+                url="https://redbull.com"
+                logo="/assets/hackathon/sponsors/redbull.png"
               />
             </div>
           </div>
@@ -1169,33 +1332,198 @@ export default function Hackathon() {
             <div className="flex flex-wrap justify-center gap-4 max-w-4xl mx-auto">
               <div className="w-full md:w-[calc(50%-0.5rem)] lg:w-[calc(25%-0.75rem)]">
                 <SponsorCard
-                  name="ASU GDSC"
+                  name="Streetsmart"
                   tier="partner"
-                  delay={0.5}
-                  url="https://www.asudsc.com/"
-                  logo="/assets/hackathon/sponsors/gdsc.webp"
+                  delay={0.4}
+                  url="https://streetsmart.com"
+                  logo="/assets/hackathon/sponsors/streetsmart.svg"
                 />
               </div>
               <div className="w-full md:w-[calc(50%-0.5rem)] lg:w-[calc(25%-0.75rem)]">
                 <SponsorCard
-                  name="Red Bull"
+                  name="Acorns"
                   tier="partner"
-                  delay={0.6}
-                  url="https://redbull.com"
-                  logo="/assets/hackathon/sponsors/redbull.png"
+                  delay={0.3}
+                  url="https://acorns.com"
+                  logo="/assets/hackathon/sponsors/acorns.svg"
                 />
               </div>
+
               <div className="w-full md:w-[calc(50%-0.5rem)] lg:w-[calc(25%-0.75rem)]">
                 <SponsorCard
-                  name="SoDA"
+                  name="Silicon Oasis"
                   tier="partner"
                   delay={0.7}
-                  url="https://thesoda.io/"
-                  logo="/assets/hackathon/sponsors/soda.svg"
+                  url="https://thesiliconoasis.org/"
+                  logo="/assets/hackathon/sponsors/siliconoasis.svg"
                 />
               </div>
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* Rules Section */}
+      <section className="py-16 px-4 sm:px-8 bg-gradient-to-b from-transparent via-[var(--theme-gradient-accent)] to-transparent">
+        <div className="max-w-6xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="text-center mb-12"
+          >
+            <Heading level="h2" className="text-4xl sm:text-5xl font-bold mb-4">
+              Hackathon{" "}
+              <span className="text-[var(--theme-text-accent)]">Rules</span>
+            </Heading>
+            <Text size="lg" variant="secondary">
+              Keep it fair, keep it fun, keep it innovative
+            </Text>
+          </motion.div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <RuleItem
+              number={1}
+              icon="👥"
+              title="Team Requirements"
+              description="Teams can have 1-5 members. Solo hackers are welcome!"
+              delay={0.1}
+            />
+            <RuleItem
+              number={2}
+              icon="🎓"
+              title="ASU Student Eligibility"
+              description="ASU students are eligible for all prizes (API credits, cash, prizes, and merch). Must complete registration form in-person at the hackathon on Saturday or Sunday."
+              delay={0.125}
+            />
+            <RuleItem
+              number={3}
+              icon="🌐"
+              title="Non-ASU Student Eligibility"
+              description="Non-ASU students are only eligible for Anthropic merch prizes. If your team includes one non-ASU student, they will not be eligible for other prizes."
+              delay={0.15}
+            />
+            <RuleItem
+              number={4}
+              icon="💻"
+              title="ASU Online Students"
+              description="Must provide verifiable proof of ASU Online enrollment. With verification, eligible for all prize categories without in-person form completion."
+              delay={0.175}
+            />
+            <RuleItem
+              number={5}
+              icon="⚡"
+              title="Work During Event Hours"
+              description="All projects must be created during official Hackathon hours. Exceptions: publicly available open-source code and standard libraries (must comply with licenses)."
+              delay={0.2}
+            />
+            <RuleItem
+              number={6}
+              icon="📝"
+              title="Academic Integrity"
+              description="No plagiarism. You must disclose and properly attribute all APIs, libraries, third-party resources, or pre-written code used in your project."
+              delay={0.225}
+            />
+
+            <RuleItem
+              number={7}
+              icon="🚫"
+              title="Double Submission Prohibited"
+              description="No submitting the same project to multiple tracks or hackathons. Each project must be unique to this event."
+              delay={0.25}
+            />
+
+            <RuleItem
+              number={8}
+              icon="✅"
+              title="Demos should be Functional"
+              description="Any project or application submitted must be able to be verified by judges. Non-functional demos will be sent to further review."
+              delay={0.275}
+            />
+            
+            <RuleItem
+              number={9}
+              icon="📹"
+              title="Demo Video Required"
+              description="Submit a 3-5 minute demo video showing your project in action. Judging will be based on video submissions."
+              delay={0.3}
+            />
+            
+            <RuleItem
+              number={10}
+              icon="🤝"
+              title="Respect the Venue, Organizers, and Participants"
+              description="Treat the hackathon space with respect. Follow instructions from organizers and staff. Maintain a positive and collaborative environment for all participants."
+              delay={0.325}
+            />
+
+            <RuleItem
+              number={11}
+              icon="📜"
+              title="Code of Conduct"
+              description="Harassment of any kind (based on gender, race, age, sexual orientation, disability, nationality, or religion) will not be tolerated and will result in removal from the event."
+              delay={0.35}
+            />
+
+            <RuleItem
+              number={12}
+              icon="📜"
+              title="Compliance with Laws"
+              description="All participants must comply with local, state, and federal laws while participating in the hackathon."
+              delay={0.375}
+            />
+          </div>
+
+          {/* Judges Section */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="mt-16"
+          >
+            <div className="text-center mb-8">
+              <h3 className="text-3xl font-bold mb-2 text-[var(--theme-text-primary)]">
+                Meet Our{" "}
+                <span className="text-[var(--theme-text-accent)]">Judges</span>
+              </h3>
+              <Text size="lg" variant="secondary">
+                Industry experts who will evaluate your projects
+              </Text>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              <JudgeCard
+                name="Sean Yen"
+                title="Judge"
+                company="Software Engineer @ Tesla"
+                delay={0.1}
+                photo="/assets/hackathon/judges/sean.png"
+                
+              />
+              <JudgeCard
+                name="Dylan Lu"
+                title="Judge"
+                company="First Place Winner @ CalHacks"
+                photo="/assets/hackathon/judges/dylan.png"
+                delay={0.2}
+              />
+              <JudgeCard
+                name="Ben Zhou"
+                title="Judge"
+                company="ASU Assistant Professor @ SCAI"
+                delay={0.3}
+                photo="/assets/hackathon/judges/ben.png"
+              />
+              {/* <JudgeCard
+                name="TBA"
+                title="Judge"
+                company="Company"
+                delay={0.4}
+              /> */}
+            </div>
+          </motion.div>
         </div>
       </section>
 
