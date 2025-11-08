@@ -1074,7 +1074,7 @@ export default function Hackathon() {
                       <span className="text-white font-black text-2xl">1</span>
                     </div>
                     <h3 className="font-bold text-lg mb-2 text-[var(--theme-text-primary)]">
-                      Check-In at Turquoise
+                      Check-In at Turquoise room in MU (Room #220)
                     </h3>
                     <p className="text-[var(--theme-text-dark)] text-sm leading-relaxed">
                       Start by checking in at the Turquoise desk to get verified
