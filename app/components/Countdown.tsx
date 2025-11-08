@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 
 interface CountdownProps {
   targetDate: Date;
+  endDate?: Date;
 }
 
 interface TimeLeft {
@@ -14,43 +15,82 @@ interface TimeLeft {
   seconds: number;
 }
 
-export default function Countdown({ targetDate }: CountdownProps) {
+type CountdownState = "before-start" | "in-progress" | "ended";
+
+export default function Countdown({ targetDate, endDate }: CountdownProps) {
   const [timeLeft, setTimeLeft] = useState<TimeLeft>({
     days: 0,
     hours: 0,
     minutes: 0,
     seconds: 0,
   });
+  const [state, setState] = useState<CountdownState>("before-start");
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
     setMounted(true);
 
-    const calculateTimeLeft = (): TimeLeft => {
-      const difference = targetDate.getTime() - new Date().getTime();
+    const calculateTimeLeft = (): { timeLeft: TimeLeft; state: CountdownState } => {
+      const now = new Date().getTime();
+      const startTime = targetDate.getTime();
+      const endTime = endDate?.getTime();
 
-      if (difference > 0) {
+      // If event has ended
+      if (endTime && now > endTime) {
         return {
-          days: Math.floor(difference / (1000 * 60 * 60 * 24)),
-          hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
-          minutes: Math.floor((difference / 1000 / 60) % 60),
-          seconds: Math.floor((difference / 1000) % 60),
+          timeLeft: { days: 0, hours: 0, minutes: 0, seconds: 0 },
+          state: "ended",
         };
       }
 
-      return { days: 0, hours: 0, minutes: 0, seconds: 0 };
+      // If event is in progress
+      if (now >= startTime && endTime && now < endTime) {
+        const difference = endTime - now;
+        return {
+          timeLeft: {
+            days: Math.floor(difference / (1000 * 60 * 60 * 24)),
+            hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
+            minutes: Math.floor((difference / 1000 / 60) % 60),
+            seconds: Math.floor((difference / 1000) % 60),
+          },
+          state: "in-progress",
+        };
+      }
+
+      // Before event starts
+      const difference = startTime - now;
+      if (difference > 0) {
+        return {
+          timeLeft: {
+            days: Math.floor(difference / (1000 * 60 * 60 * 24)),
+            hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
+            minutes: Math.floor((difference / 1000 / 60) % 60),
+            seconds: Math.floor((difference / 1000) % 60),
+          },
+          state: "before-start",
+        };
+      }
+
+      return {
+        timeLeft: { days: 0, hours: 0, minutes: 0, seconds: 0 },
+        state: "before-start",
+      };
     };
 
     const timer = setInterval(() => {
-      setTimeLeft(calculateTimeLeft());
+      const result = calculateTimeLeft();
+      setTimeLeft(result.timeLeft);
+      setState(result.state);
     }, 1000);
 
-    setTimeLeft(calculateTimeLeft());
+    const result = calculateTimeLeft();
+    setTimeLeft(result.timeLeft);
+    setState(result.state);
 
     return () => clearInterval(timer);
-  }, [targetDate]);
+  }, [targetDate, endDate]);
 
-  if (!mounted) {
+  if (!mounted || state === "ended") {
     return null;
   }
 
@@ -61,6 +101,8 @@ export default function Countdown({ targetDate }: CountdownProps) {
     { label: "Seconds", value: timeLeft.seconds },
   ];
 
+  const title = state === "in-progress" ? "Time Left to Hack" : "Hacking Starts In";
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -68,6 +110,18 @@ export default function Countdown({ targetDate }: CountdownProps) {
       transition={{ duration: 0.6, delay: 0.3 }}
       className="w-full"
     >
+      <motion.div
+        key={state}
+        initial={{ opacity: 0, y: -10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+        className="text-center mb-6"
+      >
+        <h3 className="text-2xl sm:text-3xl font-bold text-[var(--theme-text-primary)]">
+          {title}
+        </h3>
+      </motion.div>
+
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 max-w-4xl mx-auto">
         {timeUnits.map((unit, index) => (
           <motion.div
