@@ -1211,23 +1211,23 @@ export default function Hackathon() {
                 Day 1 - November 8
               </h3>
               <ScheduleItem
-                time="10:00 AM - 11:00 AM"
-                title="Registration & Breakfast"
-                description="Check-in, swag distribution, team formation area. Light breakfast and networking"
+                time="11:00 AM - 11:30 AM"
+                title="Registration & Welcome"
+                description="Check-in, networking, pictures, and a speech by Ben Zhou (NLP Professor at ASU)"
               />
               <ScheduleItem
-                time="11:00 AM - 12:00 PM"
+                time="11:30 AM - 12:00 PM"
                 title="Opening Ceremony"
                 description="Welcome from organizers and Anthropic sponsors. Hackathon rules, prizes, track announcements, and Claude API demo"
               />
               <ScheduleItem
                 time="12:00 PM - 1:00 PM"
                 title="Hacking Begins! Team Formation & Ideation"
-                description="Teams finalize and register their projects. Access to mentors for initial concept validation. Lunch available"
+                description="Teams finalize and register their projects. Access to mentors for initial concept validation. Pizza available from Hungry Howie's"
               />
               <ScheduleItem
                 time="1:00 PM - 8:00 PM"
-                title="Hacking Sprint #1"
+                title="Hacking Sprint"
                 description="Mentors circulating, help desk for API issues, track-specific mentor hours"
               />
               <ScheduleItem
@@ -1248,19 +1248,19 @@ export default function Hackathon() {
                 Day 2 - November 9
               </h3>
               <ScheduleItem
-                time="9:00 AM - 10:00 AM"
+                time="9:00 AM - 11:00 AM"
                 title="Final Sprint"
                 description="Last push for features and polish. Code freeze reminder at 9:30 AM"
               />
               <ScheduleItem
-                time="12:00 PM - 12:30 PM"
+                time="11:00 AM - 11:30 AM"
                 title="Submission Deadline & Setup"
                 description="Hard deadline for submissions. Teams prepare demos"
               />
               <ScheduleItem
-                time="12:30 PM - 3:00 PM"
-                title="Judging & Demos"
-                description="Teams present a video demo of their projects to judges. We will be screening projects for compliance with hackathon rules"
+                time="12:30 PM - 1:30 PM"
+                title="Lunch Break"
+                description="Costco Pizza lunch break"
               />
               <ScheduleItem
                 time="3:00 PM - 4:00 PM"
