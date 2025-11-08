@@ -1018,7 +1018,10 @@ export default function Hackathon() {
 
           {/* Countdown */}
           <div className="mb-8">
-            <Countdown targetDate={new Date("2025-11-08T11:00:00")} />
+            <Countdown
+              targetDate={new Date("2025-11-08T12:00:00")}
+              endDate={new Date("2025-11-09T12:00:00")}
+            />
           </div>
 
           <motion.div
@@ -1037,6 +1040,100 @@ export default function Hackathon() {
                 <p className="text-sm">11 AM Start • Nov 8-9</p>
               </div>
             </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Check-In Logistics Section */}
+      <section className="py-12 px-4 sm:px-8">
+        <div className="max-w-4xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
+            <Card gradient animated={false} className="relative overflow-hidden border-2 border-[var(--theme-text-accent)]">
+              <div className="text-center mb-6">
+                <div className="inline-flex items-center gap-2 mb-3">
+                  <span className="text-3xl">📍</span>
+                  <h2 className="text-3xl font-bold text-[var(--theme-text-primary)]">
+                    Check-In & Room Information
+                  </h2>
+                </div>
+                <Text size="lg" variant="secondary">
+                  Follow these steps when you arrive
+                </Text>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                {/* Step 1 */}
+                <div className="relative">
+                  <div className="flex flex-col items-center text-center">
+                    <div className="w-16 h-16 rounded-full bg-gradient-to-br from-[var(--theme-text-accent)] to-[var(--theme-button-alternate-bg)] flex items-center justify-center mb-4 shadow-lg">
+                      <span className="text-white font-black text-2xl">1</span>
+                    </div>
+                    <h3 className="font-bold text-lg mb-2 text-[var(--theme-text-primary)]">
+                      Check-In at Turquoise
+                    </h3>
+                    <p className="text-[var(--theme-text-dark)] text-sm leading-relaxed">
+                      Start by checking in at the Turquoise desk to get verified
+                    </p>
+                  </div>
+                  {/* Arrow for desktop */}
+                  <div className="hidden md:block absolute top-8 -right-8 text-4xl text-[var(--theme-text-accent)]">
+                    →
+                  </div>
+                  {/* Arrow for mobile */}
+                  <div className="md:hidden flex justify-center mt-4 text-4xl text-[var(--theme-text-accent)]">
+                    ↓
+                  </div>
+                </div>
+
+                {/* Step 2 */}
+                <div className="relative">
+                  <div className="flex flex-col items-center text-center">
+                    <div className="w-16 h-16 rounded-full bg-gradient-to-br from-[var(--theme-text-accent)] to-[var(--theme-button-alternate-bg)] flex items-center justify-center mb-4 shadow-lg">
+                      <span className="text-white font-black text-2xl">2</span>
+                    </div>
+                    <h3 className="font-bold text-lg mb-2 text-[var(--theme-text-primary)]">
+                      Main Room: MU Pima (230)
+                    </h3>
+                    <p className="text-[var(--theme-text-dark)] text-sm leading-relaxed">
+                      After check-in, proceed to Memorial Union Pima room for the main event
+                    </p>
+                  </div>
+                  {/* Arrow for desktop */}
+                  <div className="hidden md:block absolute top-8 -right-8 text-4xl text-[var(--theme-text-accent)]">
+                    →
+                  </div>
+                  {/* Arrow for mobile */}
+                  <div className="md:hidden flex justify-center mt-4 text-4xl text-[var(--theme-text-accent)]">
+                    ↓
+                  </div>
+                </div>
+
+                {/* Step 3 */}
+                <div className="flex flex-col items-center text-center">
+                  <div className="w-16 h-16 rounded-full bg-gradient-to-br from-[var(--theme-text-accent)] to-[var(--theme-button-alternate-bg)] flex items-center justify-center mb-4 shadow-lg">
+                    <span className="text-white font-black text-2xl">3</span>
+                  </div>
+                  <h3 className="font-bold text-lg mb-2 text-[var(--theme-text-primary)]">
+                    Overflow: LSE 104
+                  </h3>
+                  <p className="text-[var(--theme-text-dark)] text-sm leading-relaxed">
+                    If MU Pima is at capacity, overflow participants will be directed to LSE 104
+                  </p>
+                </div>
+              </div>
+
+              {/* Important Note */}
+              <div className="mt-8 p-4 bg-[var(--theme-text-accent)]/10 rounded-lg border-l-4 border-[var(--theme-text-accent)]">
+                <p className="text-sm font-semibold text-[var(--theme-text-primary)]">
+                  <span className="text-[var(--theme-text-accent)]">⚠️ Important:</span> You must check in at Turquoise before entering any hackathon rooms. Verification is required for entry.
+                </p>
+              </div>
+            </Card>
           </motion.div>
         </div>
       </section>
@@ -1150,7 +1247,6 @@ export default function Hackathon() {
               <h3 className="text-3xl font-bold mb-8 text-[var(--theme-text-accent)]">
                 Day 2 - November 9
               </h3>
-              <ScheduleItem time="6:00 AM - 7:00 AM" title="Breakfast" />
               <ScheduleItem
                 time="9:00 AM - 10:00 AM"
                 title="Final Sprint"
