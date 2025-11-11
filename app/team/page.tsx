@@ -65,7 +65,7 @@ const cardVariants = {
 export default function TeamPage() {
   const [activeMember, setActiveMember] = useState<TeamMember["id"] | null>(null);
   return (
-    <div className="min-h-[100dvh] max-h-[100dvh] relative overflow-y-auto">
+    <div className="min-h-[100dvh] max-h-[100dvh] relative overflow-y-auto" onClick={()=>setActiveMember(null)}>
       <Header />
       <div className="font-sans p-8 pb-20 sm:p-20 relative z-10">
         <div className="max-w-7xl mx-auto">
