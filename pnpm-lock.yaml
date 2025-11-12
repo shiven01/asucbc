@@ -34,10 +34,10 @@ importers:
         version: 7.0.1
       '@vercel/analytics':
         specifier: ^1.5.0
-        version: 1.5.0(next@15.5.2(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react@19.1.0)
+        version: 1.5.0(next@15.5.2(@playwright/test@1.56.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react@19.1.0)
       '@vercel/speed-insights':
         specifier: ^1.2.0
-        version: 1.2.0(next@15.5.2(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react@19.1.0)
+        version: 1.2.0(next@15.5.2(@playwright/test@1.56.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react@19.1.0)
       clsx:
         specifier: ^2.1.1
         version: 2.1.1
@@ -55,7 +55,7 @@ importers:
         version: 15.0.0
       next:
         specifier: 15.5.2
-        version: 15.5.2(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+        version: 15.5.2(@playwright/test@1.56.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       next-themes:
         specifier: ^0.4.6
         version: 0.4.6(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
@@ -78,6 +78,9 @@ importers:
         specifier: ^1.7.310
         version: 1.7.310(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
     devDependencies:
+      '@playwright/test':
+        specifier: ^1.49.0
+        version: 1.56.1
       '@tailwindcss/postcss':
         specifier: ^4
         version: 4.1.12
@@ -455,6 +458,11 @@ packages:
     engines: {node: '>= 10'}
     cpu: [x64]
     os: [win32]
+
+  '@playwright/test@1.56.1':
+    resolution: {integrity: sha512-vSMYtL/zOcFpvJCW71Q/OEGQb7KYBPAdKh35WNSkaZA75JlAO8ED8UN6GUNTm3drWomcbcqRPFqQbLae8yBTdg==}
+    engines: {node: '>=18'}
+    hasBin: true
 
   '@radix-ui/react-compose-refs@1.1.2':
     resolution: {integrity: sha512-z4eqJvfiNnFMHIIvXP3CY57y2WJs5g2v3X0zm9mEJkrkNv4rDxu+sg9Jh8EkXyeqBkB7SOcboo9dMVqhyrACIg==}
@@ -885,6 +893,11 @@ packages:
       react-dom:
         optional: true
 
+  fsevents@2.3.2:
+    resolution: {integrity: sha512-xiqMQR4xAeHTuB9uWm+fFRcIOgKBMiOBP+eXiyT7jsgVCq1bkVygt00oASowB7EdtpOHaaPgKt812P9ab+DDKA==}
+    engines: {node: ^8.16.0 || ^10.6.0 || >=11.0.0}
+    os: [darwin]
+
   graceful-fs@4.2.11:
     resolution: {integrity: sha512-RbJ5/jmFcNNCcDV5o9eTnBLJ/HszWV0P73bc+Ff4nS/rJj+YaS6IGyiOL0VoBYX+l1Wrl3k63h/KrH+nhJ0XvQ==}
 
@@ -1032,6 +1045,16 @@ packages:
 
   picocolors@1.1.1:
     resolution: {integrity: sha512-xceH2snhtb5M9liqDsmEw56le376mTZkEX/jEb/RxNFyegNul7eNslCXP9FDj/Lcu0X8KEyMceP2ntpaHrDEVA==}
+
+  playwright-core@1.56.1:
+    resolution: {integrity: sha512-hutraynyn31F+Bifme+Ps9Vq59hKuUCz7H1kDOcBs+2oGguKkWTU50bBWrtz34OUWmIwpBTWDxaRPXrIXkgvmQ==}
+    engines: {node: '>=18'}
+    hasBin: true
+
+  playwright@1.56.1:
+    resolution: {integrity: sha512-aFi5B0WovBHTEvpM3DzXTUaeN6eN0qWnTkKx4NQaH4Wvcmc153PdaY2UBdSYKaGYw+UyWXSVyxDUg5DoPEttjw==}
+    engines: {node: '>=18'}
+    hasBin: true
 
   postcss@8.4.31:
     resolution: {integrity: sha512-PS08Iboia9mts/2ygV3eLpY5ghnUcfLV/EXTOW1E2qYxJKGGBUtNjN76FYHnMs36RmARn41bC0AZmn+rR0OVpQ==}
@@ -1698,6 +1721,10 @@ snapshots:
   '@next/swc-win32-x64-msvc@15.5.2':
     optional: true
 
+  '@playwright/test@1.56.1':
+    dependencies:
+      playwright: 1.56.1
+
   '@radix-ui/react-compose-refs@1.1.2(@types/react@19.1.12)(react@19.1.0)':
     dependencies:
       react: 19.1.0
@@ -2089,14 +2116,14 @@ snapshots:
   '@types/trusted-types@2.0.7':
     optional: true
 
-  '@vercel/analytics@1.5.0(next@15.5.2(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react@19.1.0)':
+  '@vercel/analytics@1.5.0(next@15.5.2(@playwright/test@1.56.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react@19.1.0)':
     optionalDependencies:
-      next: 15.5.2(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      next: 15.5.2(@playwright/test@1.56.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       react: 19.1.0
 
-  '@vercel/speed-insights@1.2.0(next@15.5.2(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react@19.1.0)':
+  '@vercel/speed-insights@1.2.0(next@15.5.2(@playwright/test@1.56.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react@19.1.0)':
     optionalDependencies:
-      next: 15.5.2(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      next: 15.5.2(@playwright/test@1.56.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       react: 19.1.0
 
   bowser@2.12.1: {}
@@ -2162,6 +2189,9 @@ snapshots:
     optionalDependencies:
       react: 19.1.0
       react-dom: 19.1.0(react@19.1.0)
+
+  fsevents@2.3.2:
+    optional: true
 
   graceful-fs@4.2.11: {}
 
@@ -2258,7 +2288,7 @@ snapshots:
       react: 19.1.0
       react-dom: 19.1.0(react@19.1.0)
 
-  next@15.5.2(react-dom@19.1.0(react@19.1.0))(react@19.1.0):
+  next@15.5.2(@playwright/test@1.56.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0):
     dependencies:
       '@next/env': 15.5.2
       '@swc/helpers': 0.5.15
@@ -2276,6 +2306,7 @@ snapshots:
       '@next/swc-linux-x64-musl': 15.5.2
       '@next/swc-win32-arm64-msvc': 15.5.2
       '@next/swc-win32-x64-msvc': 15.5.2
+      '@playwright/test': 1.56.1
       sharp: 0.34.3
     transitivePeerDependencies:
       - '@babel/core'
@@ -2284,6 +2315,14 @@ snapshots:
   nodemailer@7.0.6: {}
 
   picocolors@1.1.1: {}
+
+  playwright-core@1.56.1: {}
+
+  playwright@1.56.1:
+    dependencies:
+      playwright-core: 1.56.1
+    optionalDependencies:
+      fsevents: 2.3.2
 
   postcss@8.4.31:
     dependencies:
