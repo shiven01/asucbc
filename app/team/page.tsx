@@ -136,6 +136,7 @@ export default function TeamPage() {
                 { name: "anmol7470", url: "https://github.com/anmol7470", image: "/github-images/anmol7470.jpeg" },
                 { name: "icedTet", url: "https://github.com/icedTet", image: "/github-images/icedtet.jpeg" },
                 { name: "shiven01", url: "https://github.com/shiven01", image: "/github-images/shiven01.png" },
+                { name: "ShoryaRaj", url: "https://github.com/X-XENDROME-X", image: "/github-images/X-XENDROME-X.jpeg" },
               ].map((contrib) => (
                 <motion.div key={contrib.url} variants={cardVariants}>
                   <Tilt
