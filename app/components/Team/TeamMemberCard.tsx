@@ -34,6 +34,7 @@ export const TeamMemberCard = ({
           ? ` grayscale blur-[2px]`
           : `opacity-100`
       } w-full h-full transition-all rounded-lg`}
+       
     >
       <div
         className={`rounded-lg bg-[var(--theme-card-bg)]/100 relative shadow ${
@@ -44,7 +45,8 @@ export const TeamMemberCard = ({
       >
         <div
           className={`w-full h-auto aspect-square bg-[var(--theme-card-bg)]/10 backdrop-blur-sm rounded-lg overflow-hidden flex items-center justify-center relative cursor-pointer`}
-          onClick={() => {
+          onClick={(e) => {
+            e.stopPropagation();
             if (activeMember === member.id) {
               setActiveMember(null);
             } else {
