@@ -327,6 +327,3 @@ export function generateAddToCalendarUrl(event: CalendarEvent): string {
   return `https://calendar.google.com/calendar/render?${params.toString()}`;
 }
 
-// Previously there were helper functions (getUpcomingEventIds/shouldShowEventDetails)
-// to hide certain event names behind a Claude logo. Since every event now shows its
-// summary directly on the calendar, that logic has been removed.
