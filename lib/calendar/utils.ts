@@ -327,61 +327,6 @@ export function generateAddToCalendarUrl(event: CalendarEvent): string {
   return `https://calendar.google.com/calendar/render?${params.toString()}`;
 }
 
-/**
- * Get the first two upcoming events from today onwards
- * Returns a Set of event IDs that should show details for future events
- * Note: Past events are handled separately and always show details
- */
-export function getUpcomingEventIds(events: CalendarEvent[], referenceDate: Date = new Date()): Set<string> {
-  const today = new Date();
-  today.setHours(0, 0, 0, 0);
-  
-  // Filter events that are today or in the future (not past events)
-  const upcomingEvents = events.filter(event => {
-    const eventDate = event.start.dateTime 
-      ? new Date(event.start.dateTime)
-      : new Date(event.start.date!);
-    
-    eventDate.setHours(0, 0, 0, 0);
-    return eventDate >= today;
-  });
-  
-  // Sort by date (earliest first)
-  upcomingEvents.sort((a, b) => {
-    const dateA = a.start.dateTime 
-      ? new Date(a.start.dateTime)
-      : new Date(a.start.date!);
-    const dateB = b.start.dateTime 
-      ? new Date(b.start.dateTime)
-      : new Date(b.start.date!);
-    
-    return dateA.getTime() - dateB.getTime();
-  });
-  
-  // Return the first two upcoming events (today or future)
-  return new Set(upcomingEvents.slice(0, 2).map(event => event.id));
-}
-
-/**
- * Check if an event should show details
- * - Past events: Always show details
- * - Future events: Only show details for first two upcoming events
- */
-export function shouldShowEventDetails(event: CalendarEvent, upcomingEventIds: Set<string>): boolean {
-  const today = new Date();
-  today.setHours(0, 0, 0, 0);
-  
-  const eventDate = event.start.dateTime 
-    ? new Date(event.start.dateTime)
-    : new Date(event.start.date!);
-  
-  eventDate.setHours(0, 0, 0, 0);
-  
-  // If event is in the past, always show details
-  if (eventDate < today) {
-    return true;
-  }
-  
-  // If event is today or in the future, only show details for first two upcoming events
-  return upcomingEventIds.has(event.id);
-}
+// Previously there were helper functions (getUpcomingEventIds/shouldShowEventDetails)
+// to hide certain event names behind a Claude logo. Since every event now shows its
+// summary directly on the calendar, that logic has been removed.
