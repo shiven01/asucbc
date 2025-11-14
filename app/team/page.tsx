@@ -2,6 +2,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import Tilt from "react-parallax-tilt";
+import { FiHash } from "react-icons/fi";
 import { TeamMember, teamMembers } from "../../types/team";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
@@ -110,16 +111,31 @@ export default function TeamPage() {
           </motion.div>
 
           {/* Open Source Contributors Section */}
-          <div className="mt-20">
+          <div className="mt-20" id="open-source-contributors">
             <motion.div
               variants={titleVariants}
               initial="hidden"
               animate="visible"
               className="text-center mb-8"
             >
-              <Heading level="h2" animate={false} className="mb-2">
-                Open Source Contributors
-              </Heading>
+              <button
+                onClick={() => {
+                  const element = document.getElementById('open-source-contributors');
+                  if (element) {
+                    element.scrollIntoView({ behavior: 'smooth' });
+                    window.location.hash = 'open-source-contributors';
+                  }
+                }}
+                className="group inline-flex items-center gap-2 cursor-pointer hover:opacity-80 transition-opacity"
+              >
+                <Heading level="h2" animate={false} className="mb-2">
+                  Open Source Contributors
+                </Heading>
+                <FiHash 
+                  className="text-[var(--theme-text-accent)] opacity-0 group-hover:opacity-100 transition-opacity duration-200 mb-2" 
+                  size={28}
+                />
+              </button>
               <Text size="sm" variant="secondary" className="max-w-prose mx-auto">
                 Thanks to everyone helping build and improve this project.
               </Text>
