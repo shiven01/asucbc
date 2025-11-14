@@ -11,8 +11,6 @@ interface CalendarGridProps {
   onSelectDate: (date: Date) => void;
   onEventClick?: (event: CalendarEvent) => void;
   isLoading?: boolean;
-  allEvents?: CalendarEvent[]; // All events to pass to CalendarDay components
-  upcomingEventIds?: Set<string>; // IDs of events that should show details
 }
 
 export default function CalendarGrid({
@@ -20,8 +18,6 @@ export default function CalendarGrid({
   onSelectDate,
   onEventClick,
   isLoading = false,
-  allEvents = [],
-  upcomingEventIds = new Set(),
 }: CalendarGridProps) {
   const dayNames = getDayNames(true);
 
@@ -77,8 +73,6 @@ export default function CalendarGrid({
             day={day}
             onSelect={() => onSelectDate(day.date)}
             onEventClick={onEventClick}
-            allEvents={allEvents}
-            upcomingEventIds={upcomingEventIds}
           />
         ))}
       </div>
