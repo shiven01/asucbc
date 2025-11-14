@@ -156,6 +156,40 @@ export default function Header() {
                 initial="hidden"
                 animate="visible"
                 variants={navItemVariants}
+              >
+                <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                  <Link
+                    href="/industry"
+                    className={`relative z-10 text-[var(--theme-text-primary)] hover:text-[var(--theme-text-accent)] transition-all duration-200 font-medium font-sans px-4 py-3 rounded-md hover:bg-white/10 min-h-[48px] flex items-center touch-manipulation`}
+                    data-umami-event="Nav - Industry"
+                  >
+                    Industry
+                  </Link>
+                </motion.div>
+              </motion.div>
+
+              <motion.div
+                custom={4}
+                initial="hidden"
+                animate="visible"
+                variants={navItemVariants}
+              >
+                <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                  <Link
+                    href="/contact"
+                    className={`relative z-10 text-[var(--theme-text-primary)] hover:text-[var(--theme-text-accent)] transition-all duration-200 font-medium font-sans px-4 py-3 rounded-md hover:bg-white/10 min-h-[48px] flex items-center touch-manipulation`}
+                    data-umami-event="Nav - Contact"
+                  >
+                    Contact
+                  </Link>
+                </motion.div>
+              </motion.div>
+
+              <motion.div
+                custom={5}
+                initial="hidden"
+                animate="visible"
+                variants={navItemVariants}
                 className="relative z-10"
               >
                 <motion.div whileHover={{ scale: 1.05, y: -2 }} whileTap={{ scale: 0.95 }}>
@@ -170,7 +204,7 @@ export default function Header() {
               </motion.div>
 
               <motion.div
-                custom={4}
+                custom={6}
                 initial="hidden"
                 animate="visible"
                 variants={navItemVariants}
@@ -269,6 +303,26 @@ export default function Header() {
                     data-umami-event="Mobile Nav - Careers"
                   >
                     Careers
+                  </Link>
+                </motion.div>
+                <motion.div variants={mobileItemVariants}>
+                  <Link
+                    href="/industry"
+                    className={`flex px-3 py-4 text-[var(--theme-text-primary)] hover:text-[var(--theme-text-accent)] hover:bg-[var(--theme-text-accent)]/10 transition-all duration-200 font-medium font-sans rounded-lg min-h-[48px] items-center touch-manipulation`}
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    data-umami-event="Mobile Nav - Industry"
+                  >
+                    Industry
+                  </Link>
+                </motion.div>
+                <motion.div variants={mobileItemVariants}>
+                  <Link
+                    href="/contact"
+                    className={`flex px-3 py-4 text-[var(--theme-text-primary)] hover:text-[var(--theme-text-accent)] hover:bg-[var(--theme-text-accent)]/10 transition-all duration-200 font-medium font-sans rounded-lg min-h-[48px] items-center touch-manipulation`}
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    data-umami-event="Mobile Nav - Contact"
+                  >
+                    Contact
                   </Link>
                 </motion.div>
                 <motion.div variants={mobileItemVariants}>
