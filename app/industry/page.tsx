@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import Tilt from "react-parallax-tilt";
 import { motion } from "framer-motion";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
@@ -105,15 +106,9 @@ export default function IndustryPage() {
               <div className="flex flex-wrap gap-4">
                 <Link
                   href="/contact"
-                  className="inline-flex items-center justify-center rounded-xl border border-transparent bg-[var(--theme-button-bg)] px-6 py-3 text-base font-semibold text-white shadow-lg transition hover:-translate-y-1 hover:bg-[var(--theme-button-hover-bg)] hover:shadow-xl focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--theme-text-accent)]"
+                  className="inline-flex items-center justify-center rounded-xl border border-transparent bg-[var(--theme-button-bg)] px-6 py-3 text-base font-semibold text-white shadow-lg transition hover:scale-[1.02] hover:bg-[var(--theme-button-hover-bg)] hover:shadow-xl focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--theme-text-accent)]"
                 >
                   Contact Us
-                </Link>
-                <Link
-                  href="#partnership"
-                  className="inline-flex items-center justify-center rounded-xl border border-[var(--theme-card-border)] px-6 py-3 text-base font-semibold text-[var(--theme-text-primary)] transition hover:border-transparent hover:bg-[var(--theme-text-accent)]/10"
-                >
-                  Partnership Details
                 </Link>
               </div>
             </motion.div>
@@ -124,22 +119,24 @@ export default function IndustryPage() {
               animate={{ opacity: 1, scale: 1 }}
               transition={{ type: "spring", stiffness: 80, damping: 20, delay: 0.2 }}
             >
-              <Link
-                href={currentSponsor.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="block"
-                aria-label={`Visit ${currentSponsor.name}`}
+              <Tilt
+                glareEnable
+                glareMaxOpacity={0.15}
+                scale={1.02}
+                tiltMaxAngleX={8}
+                tiltMaxAngleY={8}
+                transitionSpeed={600}
+                className="h-full"
               >
-                <Card gradient hoverable className="h-full">
-                  <div className="space-y-6">
-                    <div className="space-y-4">
-                      <div>
-                        <Text size="sm" variant="secondary" className="uppercase tracking-wide">
-                          Current Sponsor
-                        </Text>
-                        <span className="sr-only">{currentSponsor.name}</span>
-                      </div>
+                <Link
+                  href={currentSponsor.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block h-full"
+                  aria-label={`Visit ${currentSponsor.name}`}
+                >
+                  <Card gradient hoverable className="h-full">
+                    <div className="space-y-6">
                       <div className="relative h-16 w-44 sm:h-20 sm:w-56">
                         <Image
                           src={currentSponsor.logo}
@@ -150,57 +147,14 @@ export default function IndustryPage() {
                           priority
                         />
                       </div>
+                      <Text variant="secondary" className="text-sm leading-relaxed">
+                        {currentSponsor.description}
+                      </Text>
                     </div>
-                    <Text variant="secondary" className="text-sm leading-relaxed">
-                      {currentSponsor.description}
-                    </Text>
-                  </div>
-                </Card>
-              </Link>
+                  </Card>
+                </Link>
+              </Tilt>
             </motion.div>
-          </section>
-
-          <section className="space-y-6">
-            <Heading level="h2" animate={false}>
-              Past Sponsors
-            </Heading>
-            <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-6">
-              {pastSponsors.map((sponsor, index) => (
-                <motion.div
-                  key={sponsor.name}
-                  custom={index}
-                  initial="hidden"
-                  whileInView="visible"
-                  viewport={{ once: true, amount: 0.3 }}
-                  variants={fadeUp}
-                >
-                  <Link
-                    href={sponsor.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="block"
-                    aria-label={`Visit ${sponsor.name}`}
-                  >
-                    <Card
-                      animated={false}
-                      hoverable
-                      className="flex items-center justify-center py-6"
-                      childrenAreRelative
-                    >
-                      <div className="relative h-10 w-24 sm:h-12 sm:w-28">
-                        <Image
-                          src={sponsor.logo}
-                          alt={`${sponsor.name} logo`}
-                          fill
-                          sizes="112px"
-                          className="object-contain drop-shadow-[0_4px_24px_rgba(0,0,0,0.35)] dark:invert dark:hue-rotate-180"
-                        />
-                      </div>
-                    </Card>
-                  </Link>
-                </motion.div>
-              ))}
-            </div>
           </section>
 
           <section id="partnership" className="space-y-8">
@@ -222,18 +176,81 @@ export default function IndustryPage() {
                   viewport={{ once: true, amount: 0.3 }}
                   variants={fadeUp}
                 >
-                  <Card hoverable gradient className="h-full">
-                    <Heading
-                      level="h6"
-                      animate={false}
-                      className="!text-lg sm:!text-xl mb-3 font-semibold"
+                  <Tilt
+                    glareEnable
+                    glareMaxOpacity={0.1}
+                    tiltMaxAngleX={6}
+                    tiltMaxAngleY={6}
+                    scale={1.01}
+                    transitionSpeed={600}
+                    className="h-full"
+                  >
+                    <Card hoverable gradient className="h-full">
+                      <Heading
+                        level="h6"
+                        animate={false}
+                        className="!text-lg sm:!text-xl mb-3 font-semibold"
+                      >
+                        {item.question}
+                      </Heading>
+                      <Text variant="secondary" size="sm" className="!text-sm leading-6">
+                        {item.answer}
+                      </Text>
+                    </Card>
+                  </Tilt>
+                </motion.div>
+              ))}
+            </div>
+          </section>
+
+          <section className="space-y-6">
+            <Heading level="h2" animate={false}>
+              Past Sponsors
+            </Heading>
+            <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-6">
+              {pastSponsors.map((sponsor, index) => (
+                <motion.div
+                  key={sponsor.name}
+                  custom={index}
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true, amount: 0.3 }}
+                  variants={fadeUp}
+                >
+                  <Tilt
+                    glareEnable
+                    glareMaxOpacity={0.12}
+                    tiltMaxAngleX={8}
+                    tiltMaxAngleY={8}
+                    scale={1.02}
+                    transitionSpeed={500}
+                    className="h-full"
+                  >
+                    <Link
+                      href={sponsor.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="block h-full"
+                      aria-label={`Visit ${sponsor.name}`}
                     >
-                      {item.question}
-                    </Heading>
-                    <Text variant="secondary" size="sm" className="!text-sm leading-6">
-                      {item.answer}
-                    </Text>
-                  </Card>
+                      <Card
+                        animated={false}
+                        hoverable
+                        className="flex items-center justify-center py-6"
+                        childrenAreRelative
+                      >
+                        <div className="relative h-10 w-24 sm:h-12 sm:w-28">
+                          <Image
+                            src={sponsor.logo}
+                            alt={`${sponsor.name} logo`}
+                            fill
+                            sizes="112px"
+                            className="object-contain drop-shadow-[0_4px_24px_rgba(0,0,0,0.35)] dark:invert dark:hue-rotate-180"
+                          />
+                        </div>
+                      </Card>
+                    </Link>
+                  </Tilt>
                 </motion.div>
               ))}
             </div>
@@ -246,7 +263,7 @@ export default function IndustryPage() {
 
       <Link
         href="/contact"
-        className="fixed left-5 bottom-5 z-50 inline-flex items-center gap-2 rounded-full bg-[var(--theme-button-alternate-bg)] px-5 py-3 text-sm font-semibold text-[var(--theme-button-alternate-text)] shadow-2xl backdrop-blur hover:-translate-y-1 hover:bg-[var(--theme-button-hover-bg)] hover:text-[var(--theme-button-hover-text)] transition"
+        className="fixed left-5 bottom-5 z-50 inline-flex items-center gap-2 rounded-full bg-[var(--theme-button-alternate-bg)] px-5 py-3 text-sm font-semibold text-[var(--theme-button-alternate-text)] shadow-2xl backdrop-blur transition duration-200 hover:scale-[1.02] hover:bg-[var(--theme-button-hover-bg)] hover:text-[var(--theme-button-hover-text)]"
         aria-label="Open contact page"
       >
         <span className="h-2 w-2 rounded-full bg-green-400 animate-pulse" aria-hidden />

@@ -52,9 +52,11 @@ export default function ContactPage() {
       newErrors.name = "Name is required";
     }
 
-    if (!formData.email.trim()) {
+    const trimmedEmail = formData.email.trim();
+
+    if (!trimmedEmail) {
       newErrors.email = "Email is required";
-    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(trimmedEmail)) {
       newErrors.email = "Enter a valid email address";
     }
 
