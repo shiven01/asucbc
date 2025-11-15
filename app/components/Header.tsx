@@ -161,7 +161,7 @@ export default function Header() {
                   <Link
                     href="/industry"
                     className={`relative z-10 text-[var(--theme-text-primary)] hover:text-[var(--theme-text-accent)] transition-all duration-300 ease-in-out font-medium text-base font-sans border border-transparent min-h-[48px] flex items-center touch-manipulation overflow-visible`}
-                    data-umami-event="Nav - Hackathon"
+                    data-umami-event="Nav - Industry"
                   >
                     Industry
                   </Link>
@@ -170,6 +170,23 @@ export default function Header() {
 
               <motion.div
                 custom={4}
+                initial="hidden"
+                animate="visible"
+                variants={navItemVariants}
+              >
+                <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                  <Link
+                    href="/contact"
+                    className={`relative z-10 text-[var(--theme-text-primary)] hover:text-[var(--theme-text-accent)] transition-all duration-300 ease-in-out font-medium text-base font-sans border border-transparent min-h-[48px] flex items-center touch-manipulation overflow-visible`}
+                    data-umami-event="Nav - Contact"
+                  >
+                    Contact
+                  </Link>
+                </motion.div>
+              </motion.div>
+
+              <motion.div
+                custom={5}
                 initial="hidden"
                 animate="visible"
                 variants={navItemVariants}
