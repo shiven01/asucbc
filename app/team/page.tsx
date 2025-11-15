@@ -8,6 +8,40 @@ import Header from "../components/Header";
 import { TeamMemberCard } from "../components/Team/TeamMemberCard";
 import { Heading, Text } from "../components/ui";
 
+interface Contributor {
+  name: string;
+  url: string;
+  image: string;
+}
+
+const contributors: Contributor[] = [
+  {
+    name: "AwesomeJaith",
+    url: "https://github.com/AwesomeJaith",
+    image: "https://avatars.githubusercontent.com/AwesomeJaith",
+  },
+  {
+    name: "anmol7470",
+    url: "https://github.com/anmol7470",
+    image: "https://avatars.githubusercontent.com/anmol7470",
+  },
+  {
+    name: "icedTet",
+    url: "https://github.com/icedTet",
+    image: "https://avatars.githubusercontent.com/icedTet",
+  },
+  {
+    name: "shiven01",
+    url: "https://github.com/shiven01",
+    image: "https://avatars.githubusercontent.com/shiven01",
+  },
+  {
+    name: "ShoryaRaj",
+    url: "https://github.com/X-XENDROME-X",
+    image: "https://avatars.githubusercontent.com/X-XENDROME-X",
+  },
+];
+
 const titleVariants = {
   hidden: { opacity: 0, y: -20 },
   visible: {
@@ -131,13 +165,7 @@ export default function TeamPage() {
               animate="visible"
               className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6"
             >
-              {[
-                { name: "AwesomeJaith", url: "https://github.com/AwesomeJaith", image: "/github-images/awesomejaith.jpeg" },
-                { name: "anmol7470", url: "https://github.com/anmol7470", image: "/github-images/anmol7470.jpeg" },
-                { name: "icedTet", url: "https://github.com/icedTet", image: "/github-images/icedtet.jpeg" },
-                { name: "shiven01", url: "https://github.com/shiven01", image: "/github-images/shiven01.png" },
-                { name: "ShoryaRaj", url: "https://github.com/X-XENDROME-X", image: "/github-images/X-XENDROME-X.jpeg" },
-              ].map((contrib) => (
+              {contributors.map((contrib) => (
                 <motion.div key={contrib.url} variants={cardVariants}>
                   <Tilt
                     glareEnable={true}
