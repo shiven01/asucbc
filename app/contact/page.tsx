@@ -232,7 +232,7 @@ export default function ContactPage() {
                             </div>
 
                             <div>
-                                <Label htmlFor="company" required>
+                                <Label htmlFor="company">
                                     Company/Organization
                                 </Label>
                                 <Input
