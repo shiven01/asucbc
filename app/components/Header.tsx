@@ -156,15 +156,14 @@ export default function Header() {
                 initial="hidden"
                 animate="visible"
                 variants={navItemVariants}
-                className="relative z-10"
               >
-                <motion.div whileHover={{ scale: 1.05, y: -2 }} whileTap={{ scale: 0.95 }}>
+                <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
                   <Link
-                    href="/hackathon"
-                    className={`relative z-10 bg-[var(--theme-button-alternate-bg)] text-[var(--theme-button-alternate-text)] px-6 py-3 rounded-lg hover:bg-[var(--theme-button-hover-bg)] hover:text-[var(--theme-button-hover-text)] hover:shadow-lg transition-all duration-300 ease-in-out font-medium text-base font-sans border border-transparent hover:border-[var(--theme-button-hover-border)] min-h-[48px] flex items-center touch-manipulation overflow-visible`}
+                    href="/industry"
+                    className={`relative z-10 text-[var(--theme-text-primary)] hover:text-[var(--theme-text-accent)] transition-all duration-300 ease-in-out font-medium text-base font-sans border border-transparent min-h-[48px] flex items-center touch-manipulation overflow-visible`}
                     data-umami-event="Nav - Hackathon"
                   >
-                    Hackathon
+                    Industry
                   </Link>
                 </motion.div>
               </motion.div>
