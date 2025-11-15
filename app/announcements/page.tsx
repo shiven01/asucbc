@@ -1,8 +1,14 @@
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import { Heading, Text } from "../components/ui";
+import { notFound } from "next/navigation";
+import { showHackathonPromo } from "../theme-config";
 
 export default function Announcements() {
+  if (!showHackathonPromo) {
+    notFound();
+  }
+
   return (
     <div className="min-h-[100dvh] max-h-[100dvh] flex flex-col relative overflow-y-auto">
       <Header />

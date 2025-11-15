@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import GradualBlur from "./ui/GradualBlur";
+import { showHackathonPromo } from "../theme-config";
 
 export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -151,23 +152,25 @@ export default function Header() {
                 </motion.div>
               </motion.div>
 
-              <motion.div
-                custom={3}
-                initial="hidden"
-                animate="visible"
-                variants={navItemVariants}
-                className="relative z-10"
-              >
-                <motion.div whileHover={{ scale: 1.05, y: -2 }} whileTap={{ scale: 0.95 }}>
-                  <Link
-                    href="/hackathon"
-                    className={`relative z-10 bg-[var(--theme-button-alternate-bg)] text-[var(--theme-button-alternate-text)] px-6 py-3 rounded-lg hover:bg-[var(--theme-button-hover-bg)] hover:text-[var(--theme-button-hover-text)] hover:shadow-lg transition-all duration-300 ease-in-out font-medium text-base font-sans border border-transparent hover:border-[var(--theme-button-hover-border)] min-h-[48px] flex items-center touch-manipulation overflow-visible`}
-                    data-umami-event="Nav - Hackathon"
-                  >
-                    Hackathon
-                  </Link>
+              {showHackathonPromo && (
+                <motion.div
+                  custom={3}
+                  initial="hidden"
+                  animate="visible"
+                  variants={navItemVariants}
+                  className="relative z-10"
+                >
+                  <motion.div whileHover={{ scale: 1.05, y: -2 }} whileTap={{ scale: 0.95 }}>
+                    <Link
+                      href="/hackathon"
+                      className={`relative z-10 bg-[var(--theme-button-alternate-bg)] text-[var(--theme-button-alternate-text)] px-6 py-3 rounded-lg hover:bg-[var(--theme-button-hover-bg)] hover:text-[var(--theme-button-hover-text)] hover:shadow-lg transition-all duration-300 ease-in-out font-medium text-base font-sans border border-transparent hover:border-[var(--theme-button-hover-border)] min-h-[48px] flex items-center touch-manipulation overflow-visible`}
+                      data-umami-event="Nav - Hackathon"
+                    >
+                      Hackathon
+                    </Link>
+                  </motion.div>
                 </motion.div>
-              </motion.div>
+              )}
 
               <motion.div
                 custom={4}
@@ -271,16 +274,18 @@ export default function Header() {
                     Careers
                   </Link>
                 </motion.div>
-                <motion.div variants={mobileItemVariants}>
-                  <Link
-                    href="/hackathon"
-                    className={`relative z-20 flex px-3 py-4 bg-[var(--theme-button-alternate-bg)] text-[var(--theme-button-alternate-text)] hover:bg-[var(--theme-button-hover-bg)] hover:text-[var(--theme-button-hover-text)] transition-all duration-300 ease-in-out font-medium text-base font-sans border border-[var(--theme-button-alternate-border)] hover:border-[var(--theme-button-hover-border)] rounded-lg min-h-[48px] items-center touch-manipulation`}
-                    onClick={() => setIsMobileMenuOpen(false)}
-                    data-umami-event="Mobile Nav - Hackathon"
-                  >
-                    Hackathon
-                  </Link>
-                </motion.div>
+                {showHackathonPromo && (
+                  <motion.div variants={mobileItemVariants}>
+                    <Link
+                      href="/hackathon"
+                      className={`relative z-20 flex px-3 py-4 bg-[var(--theme-button-alternate-bg)] text-[var(--theme-button-alternate-text)] hover:bg-[var(--theme-button-hover-bg)] hover:text-[var(--theme-button-hover-text)] transition-all duration-300 ease-in-out font-medium text-base font-sans border border-[var(--theme-button-alternate-border)] hover:border-[var(--theme-button-hover-border)] rounded-lg min-h-[48px] items-center touch-manipulation`}
+                      onClick={() => setIsMobileMenuOpen(false)}
+                      data-umami-event="Mobile Nav - Hackathon"
+                    >
+                      Hackathon
+                    </Link>
+                  </motion.div>
+                )}
                 <motion.div variants={mobileItemVariants}>
                   <Link
                     href="https://docs.google.com/forms/d/e/1FAIpQLScP9LuFwiHEx806tv9zczjCIEzqO1Zjb-FjB4XWoa6BS1NNKQ/viewform"

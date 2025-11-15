@@ -9,6 +9,8 @@ const Countdown = dynamic(() => import("../components/Countdown"), { ssr: false 
 import { Heading, Text, Card, Button } from "../components/ui";
 import Link from "next/link";
 import dynamic from "next/dynamic";
+import { notFound } from "next/navigation";
+import { showHackathonPromo } from "../theme-config";
 
 const headerVariants = {
   hidden: { opacity: 0, y: -30 },
@@ -984,6 +986,10 @@ function PrizeItem({
 }
 
 export default function Hackathon() {
+  if (!showHackathonPromo) {
+    notFound();
+  }
+
   return (
     <div className="max-h-full flex flex-col">
       <Header />

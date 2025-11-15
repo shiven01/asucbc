@@ -5,6 +5,8 @@ import Footer from "../../components/Footer";
 import HackathonSignupForm from "../../components/HackathonSignupForm";
 import { Heading, Text, Badge, Card } from "../../components/ui";
 import { motion } from "framer-motion";
+import { notFound } from "next/navigation";
+import { showHackathonPromo } from "../../theme-config";
 
 const headerVariants = {
   hidden: { opacity: 0, y: -20 },
@@ -66,6 +68,10 @@ const formVariants = {
 };
 
 export default function Hackathon() {
+  if (!showHackathonPromo) {
+    notFound();
+  }
+
   return (
     <div className="max-h-full flex flex-col">
       <Header />
