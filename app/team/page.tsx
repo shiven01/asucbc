@@ -65,6 +65,16 @@ const cardVariants = {
 
 export default function TeamPage() {
   const [activeMember, setActiveMember] = useState<TeamMember["id"] | null>(null);
+
+  const copyToClipboard = (e: React.MouseEvent) => {
+    navigator.clipboard.writeText(`${window.location.origin}${window.location.pathname}#open-source-contributors`);
+    const element = document.getElementById('open-source-contributors');
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+      window.location.hash = 'open-source-contributors';
+    }
+  };
+
   return (
     <div className="min-h-[100dvh] max-h-[100dvh] relative overflow-y-auto" onClick={()=>setActiveMember(null)}>
       <Header />
@@ -119,13 +129,7 @@ export default function TeamPage() {
               className="text-center mb-8"
             >
               <button
-                onClick={() => {
-                  const element = document.getElementById('open-source-contributors');
-                  if (element) {
-                    element.scrollIntoView({ behavior: 'smooth' });
-                    window.location.hash = 'open-source-contributors';
-                  }
-                }}
+                onClick={copyToClipboard}
                 className="group inline-flex items-center gap-2 cursor-pointer hover:opacity-80 transition-opacity"
               >
                 <Heading level="h2" animate={false} className="mb-2">
