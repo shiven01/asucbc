@@ -74,111 +74,114 @@ const faqs = [
 export default function IndustryPage() {
     return(
         <div className="min-h-screen flex flex-col">
-      <Header />
-      <div className="font-sans flex-1 pt-8 px-4 pb-8 sm:pt-12 sm:px-8 md:p-20">
-        <div className="max-w-6xl mx-auto">
-          {/* Page Header */}
-          <div className="text-center mb-12">
-            <motion.div
-              variants={headerVariants}
-              initial="hidden"
-              animate="visible"
-            >
-              <Heading level="h1" animate={false} className="mb-4">
-                Industry <span className="text-[var(--theme-text-accent)]">Partnerships</span>
-              </Heading>
-              <Text size="lg" variant="secondary" className="max-w-3xl mx-auto">
-                Partner with ASU's premier AI and software development club to build innovative solutions
-              </Text>
-            </motion.div>
-          </div>
+        <Header />
+        <div className="font-sans flex-1 pt-8 px-4 pb-8 sm:pt-12 sm:px-8 md:p-20">
+            <div className="max-w-6xl mx-auto">
 
-          {/* Current Sponsor */}
-          <motion.div
-            custom={0}
-            variants={cardVariants}
-            initial="hidden"
-            animate="visible"
-            className="mb-12"
-          >
-            <Card gradient className="text-center">
-              <Badge variant="accent" size="lg" className="mb-6">
-                Current Primary Sponsor
-              </Badge>
-              <div className="flex justify-center items-center mb-6">
-                <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-8 w-64 h-32 flex items-center justify-center">
-                    <img
-                        src={sponsors.current[0].logo}
-                        alt={`${sponsors.current[0].name} logo`}
-                        className="flex-1 max-w-[200px] max-h-full object-contain dark:invert dark:hue-rotate-180"
-                    />
-                </div>
-              </div>
-              <Badge variant="accent" size="lg" className="mb-6">
-                Past Sponsors
-              </Badge>
-              <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
-                {sponsors.past.map((sponsor, index) => (
-                  <div
-                    key={index}
-                    className="bg-white/5 backdrop-blur-sm rounded-xl p-6 flex items-center justify-center hover:bg-white/10 transition-colors"
-                  >
-                    <img
-                        src={sponsor.logo}
-                        alt={`${sponsor.name} logo`}
-                        className="flex-1 max-w-[120px] max-h-full object-contain dark:invert dark:hue-rotate-180"
-                    />
-                  </div>
-                ))}
-              </div>
-            </Card>
-          </motion.div>
-
-          {/* Partnership Information */}
-          <motion.div
-            custom={2}
-            variants={cardVariants}
-            initial="hidden"
-            animate="visible"
-            className="mb-12"
-          >
-            <Heading level="h2" className="mb-8 text-center">
-              Partnership Information
-            </Heading>
-            <div className="space-y-6">
-              {faqs.map((faq, index) => (
-                <Card key={index} gradient hoverable>
-                  <Heading level="h3" className="mb-3 text-[var(--theme-text-accent)]">
-                    {faq.question}
-                  </Heading>
-                  <Text variant="secondary">{faq.answer}</Text>
-                </Card>
-              ))}
+            {/* Page Header */}
+            <div className="text-center mb-12">
+                <motion.div
+                    variants={headerVariants}
+                    initial="hidden"
+                    animate="visible"
+                >
+                    <Heading level="h1" animate={false} className="mb-4">
+                        Industry <span className="text-[var(--theme-text-accent)]">Partnerships</span>
+                    </Heading>
+                    <Text size="lg" variant="secondary" className="max-w-3xl mx-auto">
+                        Partner with ASU's premier AI and software development club to build innovative solutions
+                    </Text>
+                </motion.div>
             </div>
-          </motion.div>
 
-          {/* Call to Action */}
-          <motion.div
-            custom={3}
-            variants={cardVariants}
-            initial="hidden"
-            animate="visible"
-            className="text-center"
-          >
-            <Card gradient className="bg-gradient-to-br from-[var(--theme-card-bg)] to-[var(--theme-card-gradient-end)]">
-              <Heading level="h3" className="mb-4">
-                Ready to Partner With Us?
-              </Heading>
-              <Text size="base" variant="secondary" className="mb-6 max-w-2xl mx-auto">
-                Let's discuss how ASU Claude Builder Club can help bring your project to life
-              </Text>
-              <Link href="/contact">
-                <Button variant="primary" size="lg">
-                  Get in Touch
-                </Button>
-              </Link>
-            </Card>
-          </motion.div>
+            <motion.div
+                custom={0}
+                variants={cardVariants}
+                initial="hidden"
+                animate="visible"
+                className="mb-12"
+            >
+                <Card gradient className="text-center">
+                    {/* Current Sponsor Section */}
+                    <Badge variant="accent" size="lg" className="mb-6">
+                        Current Primary Sponsor
+                    </Badge>
+                    <div className="flex justify-center items-center mb-6">
+                        <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-8 w-64 h-32 flex items-center justify-center">
+                            <img
+                                src={sponsors.current[0].logo}
+                                alt={`${sponsors.current[0].name} logo`}
+                                className="flex-1 max-w-[200px] max-h-full object-contain dark:invert dark:hue-rotate-180"
+                            />
+                        </div>
+                    </div>
+
+                    {/* Past Sponsor Section */}
+                    <Badge variant="accent" size="lg" className="mb-6">
+                        Past Sponsors
+                    </Badge>
+                    <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
+                        {sponsors.past.map((sponsor, index) => (
+                            <div
+                                key={index}
+                                className="bg-white/5 backdrop-blur-sm rounded-xl p-6 flex items-center justify-center hover:bg-white/10 transition-colors"
+                            >
+                                <img
+                                    src={sponsor.logo}
+                                    alt={`${sponsor.name} logo`}
+                                    className="flex-1 max-w-[120px] max-h-full object-contain dark:invert dark:hue-rotate-180"
+                                />
+                            </div>
+                        ))}
+                    </div>
+                </Card>
+            </motion.div>
+
+            { /* Partnership Information */}
+            <motion.div
+                custom={2}
+                variants={cardVariants}
+                initial="hidden"
+                animate="visible"
+                className="mb-12"
+            >
+                <Heading level="h2" className="mb-8 text-center">
+                    Partnership Information
+                </Heading>
+                <div className="space-y-6">
+                    {faqs.map((faq, index) => (
+                        <Card key={index} gradient hoverable>
+                            <Heading level="h3" className="mb-3 text-[var(--theme-text-accent)]">
+                                {faq.question}
+                            </Heading>
+                            <Text variant="secondary">{faq.answer}</Text>
+                        </Card>
+                    ))}
+                </div>
+            </motion.div>
+
+            {/* Call to Action Section */}
+            <motion.div
+                custom={3}
+                variants={cardVariants}
+                initial="hidden"
+                animate="visible"
+                className="text-center"
+            >
+                <Card gradient className="bg-gradient-to-br from-[var(--theme-card-bg)] to-[var(--theme-card-gradient-end)]">
+                    <Heading level="h3" className="mb-4">
+                        Ready to Partner With Us?
+                    </Heading>
+                    <Text size="base" variant="secondary" className="mb-6 max-w-2xl mx-auto">
+                        Let's discuss how ASU Claude Builder Club can help bring your project to life
+                    </Text>
+                    <Link href="/contact">
+                        <Button variant="primary" size="lg">
+                            Get in Touch
+                        </Button>
+                    </Link>
+                </Card>
+            </motion.div>
         </div>
       </div>
 
