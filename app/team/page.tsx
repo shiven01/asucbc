@@ -8,6 +8,7 @@ import Footer from "../components/Footer";
 import Header from "../components/Header";
 import { TeamMemberCard } from "../components/Team/TeamMemberCard";
 import { Heading, Text } from "../components/ui";
+import { useCopyUrlWithHash } from "../hooks/useCopyUrlWithHash";
 
 const titleVariants = {
   hidden: { opacity: 0, y: -20 },
@@ -65,15 +66,7 @@ const cardVariants = {
 
 export default function TeamPage() {
   const [activeMember, setActiveMember] = useState<TeamMember["id"] | null>(null);
-
-  const copyToClipboard = (e: React.MouseEvent) => {
-    navigator.clipboard.writeText(`${window.location.origin}${window.location.pathname}#open-source-contributors`);
-    const element = document.getElementById('open-source-contributors');
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-      window.location.hash = 'open-source-contributors';
-    }
-  };
+  const { copyToClipboard } = useCopyUrlWithHash();
 
   return (
     <div className="min-h-[100dvh] max-h-[100dvh] relative overflow-y-auto" onClick={()=>setActiveMember(null)}>
@@ -129,7 +122,7 @@ export default function TeamPage() {
               className="text-center mb-8"
             >
               <button
-                onClick={copyToClipboard}
+                onClick={() => copyToClipboard("open-source-contributors")}
                 className="group inline-flex items-center gap-2 cursor-pointer hover:opacity-80 transition-opacity"
               >
                 <Heading level="h2" animate={false} className="mb-2">
