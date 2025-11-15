@@ -213,9 +213,6 @@ export default function ContactPage() {
                                     fullWidth
                                     error={errors.name}
                                 />
-                                { errors.name && (
-                                    <p className="mt-1 text-sm text-red-600">{errors.name}</p>
-                                )}
                             </div>
 
                             <div>
@@ -232,9 +229,6 @@ export default function ContactPage() {
                                     fullWidth
                                     error={errors.email}
                                 />
-                                { errors.email && (
-                                    <p className="mt-1 text-sm text-red-600">{errors.email}</p>
-                                )}
                             </div>
 
                             <div>
@@ -266,9 +260,6 @@ export default function ContactPage() {
                                     fullWidth
                                     error={errors.subject}
                                 />
-                                { errors.subject && (
-                                    <p className="mt-1 text-sm text-red-600">{errors.subject}</p>
-                                )}
                             </div>
 
                             <div>
@@ -285,11 +276,43 @@ export default function ContactPage() {
                                     fullWidth
                                     error={errors.message}
                                 />
-                                { errors.message && (
-                                    <p className="mt-1 text-sm text-red-600">{errors.message}</p>
-                                )}
+                            </div>
+
+                            {/* Submit Button */}
+                            <div className="pt-4">
+                                <Button
+                                    type="submit"
+                                    variant="primary"
+                                    size="lg"
+                                    fullWidth
+                                    disabled={isSubmitting}
+                                    className={isSubmitting ? "!bg-gray-400" : "" }
+                                >
+                                    { isSubmitting ? (
+                                        <span className="flex items-center justify-center">
+                                            Sending...
+                                        </span>
+                                    ) : (
+                                        "Send Message"
+                                    )}
+                                </Button>
                             </div>
                         </form>
+
+                        {/* Contact Info */}
+                        <div className="text-center mt-8 pt-8 border-t border-[var(--theme-card-border)]">
+                            <Text size="base" variant="secondary" className="mb-2">
+                                Or email us directly at
+                            </Text>
+                            <a
+                                href="mailto:shivenshekar01@gmail.com"
+                                className="text-[var(--theme-text-accent)] hover:underline font-semibold"
+                                data-umami-event="Contact Email Click"
+                                data-umami-event-location="Contact Form"
+                            >
+                                shivenshekar01@gmail.com
+                            </a>
+                        </div>
                     </Card>
                 </motion.div>
             </div>
