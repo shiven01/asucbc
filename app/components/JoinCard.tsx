@@ -142,17 +142,17 @@ export default function JoinCard({
 
         <motion.div
           variants={itemVariants}
-          className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-3"
+          className="flex flex-col sm:flex-row gap-3"
         >
           <Link
             href={discordHref}
             target="_blank"
             rel="noopener noreferrer"
-            className="w-full"
+            className="flex-1"
             data-umami-event="Join Discord"
             data-umami-event-location="JoinCard"
           >
-            <Button variant="primary" size="md" fullWidth>
+            <Button variant="primary" size="md" fullWidth className="whitespace-nowrap">
               Join our Discord
             </Button>
           </Link>
@@ -160,11 +160,11 @@ export default function JoinCard({
             href={benefitsHref}
             target="_blank"
             rel="noopener noreferrer"
-            className="w-full"
+            className="flex-1"
             data-umami-event="Sign Up Benefits"
             data-umami-event-location="JoinCard"
           >
-            <Button variant="secondary" size="md" fullWidth>
+            <Button variant="secondary" size="md" fullWidth className="h-full">
               Sign up to receive benefits
             </Button>
           </Link>
