@@ -2,11 +2,47 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import Tilt from "react-parallax-tilt";
+import { FiHash } from "react-icons/fi";
 import { TeamMember, teamMembers } from "../../types/team";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
 import { TeamMemberCard } from "../components/Team/TeamMemberCard";
 import { Heading, Text } from "../components/ui";
+import { useCopyUrlWithHash } from "../hooks/useCopyUrlWithHash";
+
+interface Contributor {
+  name: string;
+  url: string;
+  image: string;
+}
+
+const contributors: Contributor[] = [
+  {
+    name: "AwesomeJaith",
+    url: "https://github.com/AwesomeJaith",
+    image: "https://avatars.githubusercontent.com/AwesomeJaith",
+  },
+  {
+    name: "anmol7470",
+    url: "https://github.com/anmol7470",
+    image: "https://avatars.githubusercontent.com/anmol7470",
+  },
+  {
+    name: "icedTet",
+    url: "https://github.com/icedTet",
+    image: "https://avatars.githubusercontent.com/icedTet",
+  },
+  {
+    name: "shiven01",
+    url: "https://github.com/shiven01",
+    image: "https://avatars.githubusercontent.com/shiven01",
+  },
+  {
+    name: "ShoryaRaj",
+    url: "https://github.com/X-XENDROME-X",
+    image: "https://avatars.githubusercontent.com/X-XENDROME-X",
+  },
+];
 
 const titleVariants = {
   hidden: { opacity: 0, y: -20 },
@@ -64,6 +100,8 @@ const cardVariants = {
 
 export default function TeamPage() {
   const [activeMember, setActiveMember] = useState<TeamMember["id"] | null>(null);
+  const { copyToClipboard } = useCopyUrlWithHash();
+
   return (
     <div className="min-h-[100dvh] max-h-[100dvh] relative overflow-y-auto" onClick={()=>setActiveMember(null)}>
       <Header />
@@ -110,16 +148,25 @@ export default function TeamPage() {
           </motion.div>
 
           {/* Open Source Contributors Section */}
-          <div className="mt-20">
+          <div className="mt-20" id="open-source-contributors">
             <motion.div
               variants={titleVariants}
               initial="hidden"
               animate="visible"
               className="text-center mb-8"
             >
-              <Heading level="h2" animate={false} className="mb-2">
-                Open Source Contributors
-              </Heading>
+              <button
+                onClick={() => copyToClipboard("open-source-contributors")}
+                className="group inline-flex items-center gap-2 cursor-pointer hover:opacity-80 transition-opacity"
+              >
+                <Heading level="h2" animate={false} className="mb-2">
+                  Open Source Contributors
+                </Heading>
+                <FiHash 
+                  className="text-[var(--theme-text-accent)] opacity-0 group-hover:opacity-100 transition-opacity duration-200 mb-2" 
+                  size={28}
+                />
+              </button>
               <Text size="sm" variant="secondary" className="max-w-prose mx-auto">
                 Thanks to everyone helping build and improve this project.
               </Text>
@@ -131,13 +178,7 @@ export default function TeamPage() {
               animate="visible"
               className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6"
             >
-              {[
-                { name: "AwesomeJaith", url: "https://github.com/AwesomeJaith", image: "/github-images/awesomejaith.jpeg" },
-                { name: "anmol7470", url: "https://github.com/anmol7470", image: "/github-images/anmol7470.jpeg" },
-                { name: "icedTet", url: "https://github.com/icedTet", image: "/github-images/icedtet.jpeg" },
-                { name: "shiven01", url: "https://github.com/shiven01", image: "/github-images/shiven01.png" },
-                { name: "ShoryaRaj", url: "https://github.com/X-XENDROME-X", image: "/github-images/X-XENDROME-X.jpeg" },
-              ].map((contrib) => (
+              {contributors.map((contrib) => (
                 <motion.div key={contrib.url} variants={cardVariants}>
                   <Tilt
                     glareEnable={true}
