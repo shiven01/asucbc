@@ -81,6 +81,10 @@ This page provides a live showcase of the entire UI component library, including
 
 The `/devs` page is a hidden route (not in the navigation) that serves as a visual reference and testing ground for all UI components. See the [UI Component README](./app/components/ui/README.md) for detailed documentation.
 
+## Contributing
+
+We welcome contributions from the community! Please see our [Contributing Guide](./CONTRIBUTING.md) to learn how to submit pull requests and contribute to this project.
+
 ## Learn More
 
 To learn more about Next.js, take a look at the following resources:
