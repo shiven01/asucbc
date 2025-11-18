@@ -77,19 +77,34 @@ export default function Home() {
         animate="visible"
         className="font-sans flex-1 pt-4 px-4 pb-0 sm:pt-8 sm:px-8 md:p-20 relative z-10"
       >
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 md:gap-8 min-h-full items-start max-w-7xl mx-auto">
-          {/* Left half - Title + Hackathon */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8 items-start max-w-7xl mx-auto">
+          {/* Left half - Title + Hackathon + Join Card */}
           <motion.div
             variants={leftColumnVariants}
-            className="flex flex-col justify-start items-center lg:items-start p-4 gap-4 sm:p-6 sm:gap-6 text-center lg:text-left"
+            className="flex flex-col justify-start items-center lg:items-start gap-6 text-center lg:text-left w-full max-w-2xl"
           >
-            <motion.div variants={itemVariants} className="space-y-3 sm:space-y-4">
-              <Heading level="h1" animate={false} className="leading-tight">
+            <motion.div variants={itemVariants} className="space-y-3 sm:space-y-4 lg:space-y-3 w-full lg:mb-13">
+              <Heading
+                level="h1"
+                animate={false}
+                className="leading-tight text-balance lg:text-5xl xl:text-[3.25rem] 2xl:text-[3.5rem]"
+              >
                 The Arizona State University Claude Builder Club
               </Heading>
-              <Heading level="h3" className="leading-relaxed">
+              <Heading
+                level="h3"
+                className="leading-relaxed text-balance lg:text-2xl xl:text-2xl"
+              >
                 Where curiosity meets <span className="text-[var(--theme-text-accent)] font-bold underline">cutting-edge AI</span>. Build <span className="text-[var(--theme-text-accent)] font-bold underline">anything</span>. Create the <span className="text-[var(--theme-text-accent)] font-bold underline italic">impossible</span>.
               </Heading>
+            </motion.div>
+
+            {/* Join Card moved here */}
+            <motion.div variants={itemVariants} className="w-full">
+              <JoinCard
+                discordHref="https://discord.gg/PRh8F2XebB"
+                benefitsHref="https://docs.google.com/forms/d/e/1FAIpQLScP9LuFwiHEx806tv9zczjCIEzqO1Zjb-FjB4XWoa6BS1NNKQ/viewform"
+              />
             </motion.div>
 
             {/* Hackathon promo */}
@@ -100,20 +115,13 @@ export default function Home() {
             )}
           </motion.div>
 
-          {/* Right half - Calendar + Join Card */}
+          {/* Right half - Calendar only */}
           <motion.div
             variants={rightColumnVariants}
-            className="flex flex-col items-center pt-0 pb-4 px-4 sm:pb-8 md:pb-12 lg:pb-20 lg:px-0"
+            className="flex flex-col items-center lg:items-start w-full max-w-2xl"
           >
-            <motion.div variants={itemVariants} className="w-full max-w-2xl">
-              <CalendarContainer className="w-full max-w-2xl" />
-            </motion.div>
-            {/* Join Card moved here */}
-            <motion.div variants={itemVariants} className="w-full max-w-2xl mt-4">
-              <JoinCard
-                discordHref="https://discord.gg/PRh8F2XebB"
-                benefitsHref="https://docs.google.com/forms/d/e/1FAIpQLScP9LuFwiHEx806tv9zczjCIEzqO1Zjb-FjB4XWoa6BS1NNKQ/viewform"
-              />
+            <motion.div variants={itemVariants} className="w-full">
+              <CalendarContainer className="w-full" />
             </motion.div>
           </motion.div>
         </div>
