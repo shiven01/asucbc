@@ -59,6 +59,16 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 The calendar will automatically load events from your configured Google Calendar.
 
+## Industry & Contact Form Configuration
+
+The industry partnership and contact forms rely on SMTP to deliver submissions. Configure the following environment variables (see `env.example`):
+
+- `SMTP_HOST`, `SMTP_PORT`, `SMTP_SECURE`, `SMTP_USER`, `SMTP_PASS`
+- `RECIPIENT_EMAIL` (defaults to `SMTP_USER` if omitted)
+- `CONTACT_DISCORD_WEBHOOK_URL` *(optional)* — post each submission to a Discord channel so teammates without inbox access can stay informed.
+
+With the webhook configured, every form entry is delivered both via email and Discord.
+
 ## Developer Tools
 
 ### Component Showcase (`/devs`)
