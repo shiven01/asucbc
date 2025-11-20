@@ -136,7 +136,7 @@ export const Label = forwardRef<HTMLLabelElement, LabelProps>(
         ref={ref}
         whileHover={{ x: 2 }}
         transition={{ type: "spring", stiffness: 300, damping: 20 }}
-        className={`text-sm font-medium text-[var(--theme-text-primary)] inline-block mb-1 ${className}`}
+        className={`text-sm font-medium text-[var(--theme-text-primary)] flex items-center mb-1 ${className}`}
         {...props}
       >
         {children}
