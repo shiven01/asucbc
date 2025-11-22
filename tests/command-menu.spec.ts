@@ -1,5 +1,12 @@
 import { test, expect } from '@playwright/test';
 
+// Helper function to open command menu with correct keyboard shortcut
+async function openCommandMenu(page: any) {
+  const isMac = process.platform === 'darwin';
+  const modifierKey = isMac ? 'Meta' : 'Control';
+  await page.keyboard.press(`${modifierKey}+k`);
+}
+
 test.describe('Command Menu', () => {
   test.beforeEach(async ({ page }) => {
     await page.goto('/');
@@ -7,12 +14,8 @@ test.describe('Command Menu', () => {
   });
 
   test('should open command menu with Cmd+K (Mac) / Ctrl+K (Windows)', async ({ page, browserName }) => {
-    // Determine the correct modifier key based on OS
-    const isMac = process.platform === 'darwin';
-    const modifierKey = isMac ? 'Meta' : 'Control';
-
-    // Press the keyboard shortcut
-    await page.keyboard.press(`${modifierKey}+k`);
+    // Open command menu with OS-specific shortcut
+    await openCommandMenu(page);
 
     // Wait for command menu to appear
     const commandMenu = page.locator('[cmdk-root]');
@@ -35,7 +38,7 @@ test.describe('Command Menu', () => {
 
   test('should close command menu with Escape key', async ({ page }) => {
     // Open command menu
-    await page.keyboard.press('Meta+k');
+    await openCommandMenu(page);
 
     // Verify it's open
     const commandMenu = page.locator('[cmdk-root]');
@@ -50,7 +53,7 @@ test.describe('Command Menu', () => {
 
   test('should close command menu when clicking outside', async ({ page }) => {
     // Open command menu
-    await page.keyboard.press('Meta+k');
+    await openCommandMenu(page);
 
     // Verify it's open
     const commandMenu = page.locator('[cmdk-root]');
@@ -65,7 +68,7 @@ test.describe('Command Menu', () => {
 
   test('should display all main navigation pages', async ({ page }) => {
     // Open command menu
-    await page.keyboard.press('Meta+k');
+    await openCommandMenu(page);
 
     // Wait for command menu to appear
     const commandMenu = page.locator('[cmdk-root]');
@@ -80,7 +83,7 @@ test.describe('Command Menu', () => {
 
   test('should display hidden developer pages', async ({ page }) => {
     // Open command menu
-    await page.keyboard.press('Meta+k');
+    await openCommandMenu(page);
 
     // Wait for command menu to appear
     const commandMenu = page.locator('[cmdk-root]');
@@ -92,7 +95,7 @@ test.describe('Command Menu', () => {
 
   test('should filter items when searching', async ({ page }) => {
     // Open command menu
-    await page.keyboard.press('Meta+k');
+    await openCommandMenu(page);
 
     // Wait for command menu to appear
     const commandMenu = page.locator('[cmdk-root]');
@@ -114,7 +117,7 @@ test.describe('Command Menu', () => {
 
   test('should navigate to page when selecting an item', async ({ page }) => {
     // Open command menu
-    await page.keyboard.press('Meta+k');
+    await openCommandMenu(page);
 
     // Wait for command menu to appear
     const commandMenu = page.locator('[cmdk-root]');
@@ -133,7 +136,7 @@ test.describe('Command Menu', () => {
 
   test('should navigate with keyboard arrow keys', async ({ page }) => {
     // Open command menu
-    await page.keyboard.press('Meta+k');
+    await openCommandMenu(page);
 
     // Wait for command menu to appear
     const commandMenu = page.locator('[cmdk-root]');
@@ -158,7 +161,7 @@ test.describe('Command Menu', () => {
 
   test('should show external link indicators', async ({ page }) => {
     // Open command menu
-    await page.keyboard.press('Meta+k');
+    await openCommandMenu(page);
 
     // Wait for command menu to appear
     const commandMenu = page.locator('[cmdk-root]');
@@ -175,7 +178,7 @@ test.describe('Command Menu', () => {
 
   test('should show keyboard shortcuts hint in footer', async ({ page }) => {
     // Open command menu
-    await page.keyboard.press('Meta+k');
+    await openCommandMenu(page);
 
     // Wait for command menu to appear
     const commandMenu = page.locator('[cmdk-root]');
@@ -189,7 +192,7 @@ test.describe('Command Menu', () => {
 
   test('should display "No results found" when search has no matches', async ({ page }) => {
     // Open command menu
-    await page.keyboard.press('Meta+k');
+    await openCommandMenu(page);
 
     // Wait for command menu to appear
     const commandMenu = page.locator('[cmdk-root]');
