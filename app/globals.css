@@ -297,3 +297,48 @@ body {
     @apply bg-background text-foreground;
   }
 }
+
+/* Command Menu Styles */
+[cmdk-root] {
+  max-width: 100%;
+}
+
+[cmdk-input] {
+  font-family: var(--font-poppins), sans-serif;
+}
+
+[cmdk-list] {
+  scrollbar-width: thin;
+  scrollbar-color: var(--theme-text-accent) transparent;
+}
+
+[cmdk-list]::-webkit-scrollbar {
+  width: 8px;
+}
+
+[cmdk-list]::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+[cmdk-list]::-webkit-scrollbar-thumb {
+  background: var(--theme-text-accent);
+  border-radius: 4px;
+  opacity: 0.5;
+}
+
+[cmdk-list]::-webkit-scrollbar-thumb:hover {
+  opacity: 0.8;
+}
+
+[cmdk-item] {
+  cursor: pointer;
+  user-select: none;
+}
+
+[cmdk-item][data-selected="true"] {
+  outline: none;
+}
+
+[cmdk-group-heading] {
+  user-select: none;
+}
