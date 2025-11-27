@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState, useCallback } from "react";
+import { useEffect, useCallback } from "react";
 import { Command } from "cmdk";
 import { motion, AnimatePresence } from "framer-motion";
 import { useRouter } from "next/navigation";
@@ -13,7 +13,6 @@ interface CommandMenuProps {
 
 export default function CommandMenu({ open, onOpenChange }: CommandMenuProps) {
   const router = useRouter();
-  const [search, setSearch] = useState("");
   const groupedItems = getGroupedCommandMenuItems();
 
   // Close on escape
@@ -49,13 +48,6 @@ export default function CommandMenu({ open, onOpenChange }: CommandMenuProps) {
     },
     [onOpenChange, router]
   );
-
-  // Reset search when closed
-  useEffect(() => {
-    if (!open) {
-      setSearch("");
-    }
-  }, [open]);
 
   const CommandItem = ({ item }: { item: NavigationItem }) => (
     <Command.Item
@@ -139,8 +131,6 @@ export default function CommandMenu({ open, onOpenChange }: CommandMenuProps) {
               <Command
                 className="rounded-xl border-2 border-[var(--theme-card-border)] bg-[var(--theme-card-bg)] shadow-2xl overflow-hidden"
                 shouldFilter={true}
-                value={search}
-                onValueChange={setSearch}
               >
                 {/* Search Input */}
                 <div className="flex items-center gap-3 px-4 py-4 border-b border-[var(--theme-card-border)]">
