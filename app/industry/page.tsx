@@ -260,15 +260,6 @@ export default function IndustryPage() {
           <Footer />
         </div>
       </main>
-
-      <Link
-        href="/contact"
-        className="fixed left-5 bottom-5 z-50 inline-flex items-center gap-2 rounded-full bg-[var(--theme-button-alternate-bg)] px-5 py-3 text-sm font-semibold text-[var(--theme-button-alternate-text)] shadow-2xl backdrop-blur transition duration-200 hover:scale-[1.02] hover:bg-[var(--theme-button-hover-bg)] hover:text-[var(--theme-button-hover-text)]"
-        aria-label="Open contact page"
-      >
-        <span className="h-2 w-2 rounded-full bg-green-400 animate-pulse" aria-hidden />
-        Contact Us
-      </Link>
     </div>
   );
 }
