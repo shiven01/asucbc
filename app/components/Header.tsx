@@ -4,14 +4,31 @@ import Link from "next/link";
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import GradualBlur from "./ui/GradualBlur";
-import { showHackathonPromo } from "../theme-config";
+import { getHeaderNavigationItems } from "@/lib/navigation-config";
+import CommandMenu from "./CommandMenu";
+import { showHackathonPromo } from "@/app/theme-config";
 
 export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isCommandMenuOpen, setIsCommandMenuOpen] = useState(false);
+  const navigationItems = getHeaderNavigationItems();
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
   };
+
+  // Keyboard shortcut for command menu
+  useEffect(() => {
+    const down = (e: KeyboardEvent) => {
+      if (e.key === "k" && (e.metaKey || e.ctrlKey)) {
+        e.preventDefault();
+        setIsCommandMenuOpen((open) => !open);
+      }
+    };
+
+    document.addEventListener("keydown", down);
+    return () => document.removeEventListener("keydown", down);
+  }, []);
 
   // Only animate on first visit
   const [hasAnimated, setHasAnimated] = useState(false);
@@ -99,135 +116,102 @@ export default function Header() {
             </Link>
           </motion.div>
 
-            {/* Navigation buttons in the middle */}
-            <nav className="hidden lg:flex items-center space-x-8 overflow-visible">
-              <motion.div
-                custom={0}
-                initial="hidden"
-                animate="visible"
-                variants={navItemVariants}
-              >
-                <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                  <Link
-                    href="/about"
-                    className={`relative z-10 text-[var(--theme-text-primary)] hover:text-[var(--theme-text-accent)] transition-all duration-200 font-medium font-sans px-4 py-3 rounded-md hover:bg-white/10 min-h-[48px] flex items-center touch-manipulation`}
-                    data-umami-event="Nav - About"
-                  >
-                    About
-                  </Link>
-                </motion.div>
-              </motion.div>
+          {/* Navigation buttons in the middle */}
+          <nav className="hidden lg:flex items-center space-x-8 overflow-visible">
+            {navigationItems.map((item, index) => {
+              const isDefault = item.variant === "default" || !item.variant;
+              const isPrimary = item.variant === "primary";
+              const isSecondary = item.variant === "secondary";
 
-              <motion.div
-                custom={1}
-                initial="hidden"
-                animate="visible"
-                variants={navItemVariants}
-              >
-                <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                  <Link
-                    href="/team"
-                    className={`relative z-10 text-[var(--theme-text-primary)] hover:text-[var(--theme-text-accent)] transition-all duration-200 font-medium font-sans px-4 py-3 rounded-md hover:bg-white/10 min-h-[48px] flex items-center touch-manipulation`}
-                    data-umami-event="Nav - Team"
-                  >
-                    Team
-                  </Link>
-                </motion.div>
-              </motion.div>
+              const baseClasses = `relative z-10 transition-all duration-200 font-medium font-sans px-${isDefault ? '4' : '6'} py-3 rounded-${isDefault ? 'md' : 'lg'} min-h-[48px] flex items-center touch-manipulation`;
+              
+              const variantClasses = isDefault
+                ? "text-[var(--theme-text-primary)] hover:text-[var(--theme-text-accent)] hover:bg-white/10"
+                : isPrimary
+                ? "bg-[var(--theme-button-bg)] text-white hover:bg-[var(--theme-button-hover-bg)] hover:shadow-lg"
+                : "bg-[var(--theme-button-alternate-bg)] text-[var(--theme-button-alternate-text)] hover:bg-[var(--theme-button-hover-bg)] hover:text-[var(--theme-button-hover-text)] hover:shadow-lg border border-transparent hover:border-[var(--theme-button-hover-border)]";
 
-              <motion.div
-                custom={2}
-                initial="hidden"
-                animate="visible"
-                variants={navItemVariants}
-              >
-                <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                  <Link
-                    href="/careers"
-                    className={`relative z-10 text-[var(--theme-text-primary)] hover:text-[var(--theme-text-accent)] transition-all duration-200 font-medium font-sans px-4 py-3 rounded-md hover:bg-white/10 min-h-[48px] flex items-center touch-manipulation`}
-                    data-umami-event="Nav - Careers"
-                  >
-                    Careers
-                  </Link>
-                </motion.div>
-              </motion.div>
-
-              <motion.div
-                custom={3}
-                initial="hidden"
-                animate="visible"
-                variants={navItemVariants}
-              >
-                <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                  <Link
-                    href="/industry"
-                    className={`relative z-10 text-[var(--theme-text-primary)] hover:text-[var(--theme-text-accent)] transition-all duration-200 font-medium font-sans px-4 py-3 rounded-md hover:bg-white/10 min-h-[48px] flex items-center touch-manipulation`}
-                    data-umami-event="Nav - Industry"
-                  >
-                    Industry
-                  </Link>
-                </motion.div>
-              </motion.div>
-
-              <motion.div
-                custom={4}
-                initial="hidden"
-                animate="visible"
-                variants={navItemVariants}
-              >
-                <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                  <Link
-                    href="/contact"
-                    className={`relative z-10 text-[var(--theme-text-primary)] hover:text-[var(--theme-text-accent)] transition-all duration-200 font-medium font-sans px-4 py-3 rounded-md hover:bg-white/10 min-h-[48px] flex items-center touch-manipulation`}
-                    data-umami-event="Nav - Contact"
-                  >
-                    Contact
-                  </Link>
-                </motion.div>
-              </motion.div>
-
-              {showHackathonPromo && (
+              return (
                 <motion.div
-                  custom={5}
+                  key={item.href}
+                  custom={index}
                   initial="hidden"
                   animate="visible"
                   variants={navItemVariants}
-                  className="relative z-10"
+                  className={isSecondary ? "relative z-10" : undefined}
                 >
-                  <motion.div whileHover={{ scale: 1.05, y: -2 }} whileTap={{ scale: 0.95 }}>
+                  <motion.div
+                    whileHover={{ scale: 1.05, y: isDefault ? 0 : -2 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
                     <Link
-                      href="/hackathon"
-                      className={`relative z-10 bg-[var(--theme-button-alternate-bg)] text-[var(--theme-button-alternate-text)] px-6 py-3 rounded-lg hover:bg-[var(--theme-button-hover-bg)] hover:text-[var(--theme-button-hover-text)] hover:shadow-lg transition-all duration-300 ease-in-out font-medium text-base font-sans border border-transparent hover:border-[var(--theme-button-hover-border)] min-h-[48px] flex items-center touch-manipulation overflow-visible`}
-                      data-umami-event="Nav - Hackathon"
+                      href={item.href}
+                      target={item.isExternal ? "_blank" : undefined}
+                      rel={item.isExternal ? "noopener noreferrer" : undefined}
+                      className={`${baseClasses} ${variantClasses} ${isPrimary ? 'z-20' : ''} ${isSecondary ? 'overflow-visible' : ''}`}
+                      data-umami-event={item.umamiEvent}
                     >
-                      Hackathon
+                      {item.label}
                     </Link>
                   </motion.div>
                 </motion.div>
-              )}
+              );
+            })}
 
-              <motion.div
-                custom={6}
-                initial="hidden"
-                animate="visible"
-                variants={navItemVariants}
+            {/* Command Menu Trigger Button */}
+            <motion.div
+              custom={navigationItems.length}
+              initial="hidden"
+              animate="visible"
+              variants={navItemVariants}
+            >
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                onClick={() => setIsCommandMenuOpen(true)}
+                className="relative z-10 text-[var(--theme-text-primary)] hover:text-[var(--theme-text-accent)] transition-all duration-200 p-3 rounded-md hover:bg-white/10 min-h-[48px] min-w-[48px] flex items-center justify-center touch-manipulation"
+                aria-label="Open command menu"
+                title="Search (⌘K)"
               >
-                <motion.div whileHover={{ scale: 1.05, y: -2 }} whileTap={{ scale: 0.95 }}>
-                  <Link
-                    href="https://docs.google.com/forms/d/e/1FAIpQLScP9LuFwiHEx806tv9zczjCIEzqO1Zjb-FjB4XWoa6BS1NNKQ/viewform"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={`relative z-20 bg-[var(--theme-button-bg)] text-white px-6 py-3 rounded-lg hover:bg-[var(--theme-button-hover-bg)] hover:shadow-lg transition-all duration-300 ease-in-out font-medium text-base font-sans  min-h-[48px] flex items-center touch-manipulation`}
-                    data-umami-event="Header - Join Us"
-                  >
-                    Join Us
-                  </Link>
-                </motion.div>
-              </motion.div>
-            </nav>
+                <svg
+                  className="w-5 h-5"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                  />
+                </svg>
+              </motion.button>
+            </motion.div>
+          </nav>
 
-          {/* Mobile menu button */}
-          <div className="lg:hidden">
+          {/* Mobile menu button and command menu button */}
+          <div className="lg:hidden flex items-center gap-2">
+            <button
+              onClick={() => setIsCommandMenuOpen(true)}
+              className="text-[var(--theme-text-primary)] hover:text-[var(--theme-text-accent)] transition-colors duration-200 font-sans p-2 rounded-lg hover:bg-white/10 min-h-[48px] min-w-[48px] flex items-center justify-center touch-manipulation"
+              aria-label="Open command menu"
+              data-umami-event="Mobile Command Menu Toggle"
+            >
+              <svg
+                className="h-5 w-5"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                />
+              </svg>
+            </button>
             <button
               onClick={toggleMobileMenu}
               className="text-[var(--theme-text-primary)] hover:text-[var(--theme-text-accent)] transition-colors duration-200 font-sans p-2 rounded-lg hover:bg-white/10 min-h-[48px] min-w-[48px] flex items-center justify-center touch-manipulation"
@@ -357,6 +341,9 @@ export default function Header() {
           )}
         </AnimatePresence>
       </div>
+
+      {/* Command Menu */}
+      <CommandMenu open={isCommandMenuOpen} onOpenChange={setIsCommandMenuOpen} />
     </header>
   );
 }
