@@ -98,6 +98,7 @@ export const getNavigationItems = (): NavigationItem[] => {
       category: "hidden",
       showInHeader: false,
       showInCommandMenu: true,
+      isExternal: true,
       keywords: ["devs", "developers", "components", "showcase", "ui"],
       icon: "🛠️",
       umamiEvent: "Nav - Devs",
