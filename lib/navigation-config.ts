@@ -75,6 +75,31 @@ export const getNavigationItems = (): NavigationItem[] => {
       umamiEvent: "Nav - Careers",
       variant: "default",
     },
+    {
+      label: "Industry",
+      href: "/industry",
+      description: "Collaborate with us!",
+      category: "main",
+      showInHeader: true,
+      showInCommandMenu: true,
+      keywords: ["industry"],
+      icon: "⚙️",
+      umamiEvent: "Nav - Industry",
+      variant: "default",
+    },
+    {
+      label: "Contact",
+      href: "/contact",
+      description: "Contact us!",
+      category: "main",
+      showInHeader: true,
+      showInCommandMenu: true,
+      keywords: ["contact"],
+      icon: "📞",
+      umamiEvent: "Nav - Contact",
+      variant: "default",
+    },
+    
     // Conditional pages
     {
       label: "Hackathon",

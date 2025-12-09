@@ -6,6 +6,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import GradualBlur from "./ui/GradualBlur";
 import { getHeaderNavigationItems } from "@/lib/navigation-config";
 import CommandMenu from "./CommandMenu";
+import { showHackathonPromo } from "@/app/theme-config";
 
 export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -130,43 +131,10 @@ export default function Header() {
                 ? "bg-[var(--theme-button-bg)] text-white hover:bg-[var(--theme-button-hover-bg)] hover:shadow-lg"
                 : "bg-[var(--theme-button-alternate-bg)] text-[var(--theme-button-alternate-text)] hover:bg-[var(--theme-button-hover-bg)] hover:text-[var(--theme-button-hover-text)] hover:shadow-lg border border-transparent hover:border-[var(--theme-button-hover-border)]";
 
-              <motion.div
-                custom={3}
-                initial="hidden"
-                animate="visible"
-                variants={navItemVariants}
-              >
-                <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                  <Link
-                    href="/industry"
-                    className={`relative z-10 text-[var(--theme-text-primary)] hover:text-[var(--theme-text-accent)] transition-all duration-200 font-medium font-sans px-4 py-3 rounded-md hover:bg-white/10 min-h-[48px] flex items-center touch-manipulation`}
-                    data-umami-event="Nav - Industry"
-                  >
-                    Industry
-                  </Link>
-                </motion.div>
-              </motion.div>
-
-              <motion.div
-                custom={4}
-                initial="hidden"
-                animate="visible"
-                variants={navItemVariants}
-              >
-                <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                  <Link
-                    href="/contact"
-                    className={`relative z-10 text-[var(--theme-text-primary)] hover:text-[var(--theme-text-accent)] transition-all duration-200 font-medium font-sans px-4 py-3 rounded-md hover:bg-white/10 min-h-[48px] flex items-center touch-manipulation`}
-                    data-umami-event="Nav - Contact"
-                  >
-                    Contact
-                  </Link>
-                </motion.div>
-              </motion.div>
-
-              {showHackathonPromo && (
+              return (
                 <motion.div
-                  custom={5}
+                  key={item.href}
+                  custom={index}
                   initial="hidden"
                   animate="visible"
                   variants={navItemVariants}
@@ -190,11 +158,20 @@ export default function Header() {
               );
             })}
 
-              <motion.div
-                custom={6}
-                initial="hidden"
-                animate="visible"
-                variants={navItemVariants}
+            {/* Command Menu Trigger Button */}
+            <motion.div
+              custom={navigationItems.length}
+              initial="hidden"
+              animate="visible"
+              variants={navItemVariants}
+            >
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                onClick={() => setIsCommandMenuOpen(true)}
+                className="relative z-10 text-[var(--theme-text-primary)] hover:text-[var(--theme-text-accent)] transition-all duration-200 p-3 rounded-md hover:bg-white/10 min-h-[48px] min-w-[48px] flex items-center justify-center touch-manipulation"
+                aria-label="Open command menu"
+                title="Search (⌘K)"
               >
                 <svg
                   className="w-5 h-5"
