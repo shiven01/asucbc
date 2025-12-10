@@ -1,7 +1,7 @@
 // Example usage of the simplified read-only calendar types
 
 import { CalendarEvent, CalendarMetadata } from '@/types/calendar';
-import { fetchCalendarEvents, fetchCalendarMetadata } from '@/lib/google/calendar';
+import { fetchCalendarEvents, fetchCalendarMetadata } from '@/lib/calendar/google';
 
 /**
  * Example: How to use the simplified calendar system

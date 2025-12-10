@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { getCalendarSubscriptionUrl } from '@/lib/google/calendar';
+import { getCalendarSubscriptionUrl } from '@/lib/calendar/google';
 import { Button } from '../ui';
 
 interface CalendarActionsProps {

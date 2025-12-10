@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import { CalendarState, CalendarEvent } from '@/types/calendar';
 import { createCalendarMonth } from '@/lib/calendar/utils';
-import { getEventsForMonth } from '@/lib/google/calendar';
+import { getEventsForMonth } from '@/lib/calendar/google';
 import CalendarHeader from './CalendarHeader';
 import CalendarGrid from './CalendarGrid';
 import CalendarActions from './CalendarActions';
